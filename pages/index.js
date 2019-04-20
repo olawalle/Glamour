@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { serverRenderAction } from '../store/actions'
+import Banner from '../components/home/Banner'
 
 class Index extends React.Component {
   static getInitialProps ({ reduxStore, req }) {
@@ -21,7 +22,10 @@ class Index extends React.Component {
 
   render () {
     return (
-      <h1>Glamour</h1>
+      <>
+        <h1>Glamour</h1>
+        <Banner />
+      </>
     )
   }
 }
