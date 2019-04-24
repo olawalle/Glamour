@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { serverRenderAction } from '../store/actions'
-import Banner from '../components/home/Banner'
 import Link from 'next/link'
 import Axios from 'axios';
+import { Button } from 'semantic-ui-react';
 
 class Index extends React.Component {
   static async getInitialProps ({ reduxStore, req }) {
@@ -34,6 +34,7 @@ class Index extends React.Component {
     return (
       <>
        <h1>Hello</h1>
+       <Button primary>Primary</Button>
       </>
     )
   }

@@ -2,7 +2,9 @@ import App, { Container } from 'next/app'
 import React from 'react'
 import withReduxStore from '../lib/with-redux-store'
 import { Provider } from 'react-redux'
-import 'semantic-ui-css/semantic.min.css'
+// import 'semantic-ui-less/semantic.less';
+import 'semantic-ui-less/semantic.less';
+// import 'semantic-ui-css/semantic.min.css'
 
 class Glamour extends App {
 

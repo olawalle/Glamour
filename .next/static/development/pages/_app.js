@@ -29194,8 +29194,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _lib_with_redux_store__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../lib/with-redux-store */ "./lib/with-redux-store.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var semantic_ui_css_semantic_min_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! semantic-ui-css/semantic.min.css */ "./node_modules/semantic-ui-css/semantic.min.css");
-/* harmony import */ var semantic_ui_css_semantic_min_css__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_css_semantic_min_css__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var semantic_ui_less_semantic_less__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! semantic-ui-less/semantic.less */ "./node_modules/semantic-ui-less/semantic.less");
+/* harmony import */ var semantic_ui_less_semantic_less__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_less_semantic_less__WEBPACK_IMPORTED_MODULE_11__);
 
 
 
@@ -29206,8 +29206,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // import 'semantic-ui-less/semantic.less';
 
-
+ // import 'semantic-ui-css/semantic.min.css'
 
 var Glamour =
 /*#__PURE__*/
