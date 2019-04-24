@@ -1,7 +1,7 @@
-// ACTION CREATORS GOES HERE
+// IMPORT SERVICES HERE
+
+
+// ACTION CREATORS GOES HERE../../services/post
 
 export const serverRenderAction = () => {
-  return {
-    type: 'server render'
-  }
 }
