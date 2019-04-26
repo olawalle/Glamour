@@ -6,7 +6,7 @@ const styles = {
   Segment: {
     // margin: '0px',
     background: '#020202',
-    minHeight: '90vh',
+    minHeight: '100vh',
     backgroundImage: 'url("/static/images/auth.svg")',
     backgroundSize: 'cover'
   }

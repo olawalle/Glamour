@@ -24,6 +24,9 @@
   justify-content: center;
   align-items: center;
 }
+.is-flex {
+  display: flex !important;
+}
 p {
   margin: 2em 0em !important;
 }
@@ -41,6 +44,16 @@ p {
   font-size: 32px !important;
 }
 .signupForm .sub.header {
+  font-family: sofiapromedium !important;
+}
+.loginForm {
+  font-size: 16px !important;
+}
+.loginForm .ui.header {
+  font-family: freightproblack !important;
+  font-size: 32px !important;
+}
+.loginForm .sub.header {
   font-family: sofiapromedium !important;
 }
 .navbar a {
