@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { Grid, Header, Input, Checkbox, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
@@ -8,7 +7,7 @@ const styles = {
   Column: {
     background: 'white',
     padding: '45px 20px',
-    marginTop: '135px',
+    marginTop: '160px',
     paddingBottom: '15px'
   },
   Link: {
@@ -39,10 +38,10 @@ const LoginForm = (props) => {
 
   const handleChange = (e, key, {value = null, checked = null } = {}) => {
     let newState = {
-      ...loginFormData,
+      ...forgotPasswordFormData,
       [key]: e.target.value || value || checked || ''
     }
-    setLoginData(newState)
+    setForgotPasswordData(newState)
 
     //delete error entry
     if (formErrors[key]) delete formErrors[key]
@@ -51,38 +50,34 @@ const LoginForm = (props) => {
   const submit = (e) => {
     e.preventDefault();
     let  _formErrors = {};
-    Object.keys(loginFormData).forEach((item) => {
-      if (!loginFormData[item]) {
+    Object.keys(forgotPasswordFormData).forEach((item) => {
+      if (!forgotPasswordFormData[item]) {
         _formErrors[item] = true
       }
     })
 
     setFormErrors(_formErrors)
 
-    console.log(loginFormData, formErrors)
+    console.log(forgotPasswordFormData, formErrors)
 
-    // CALL API WITH loginFormData
+    // CALL API WITH forgotPasswordFormData
   }
 
   const [ formErrors, setFormErrors ] = useState({})
 
-  const [loginFormData, setLoginData] = useState({
-    email: '',
-    password: '',
+  const [forgotPasswordFormData, setForgotPasswordData] = useState({
+    email: ''
   });
 
 
   return (
-    <Grid className="loginForm" columns={2} centered>
+    <Grid className="forgotPasswordForm" columns={2} centered>
       <Grid.Row>
         <Grid.Column width="7" style={styles.Column}>
           <Header style={styles.Header} textAlign="center" as='h1'>
-            Log in
+            Recover password
             <Header.Subheader style={styles.SubHeader}>
-              Don't have an account? {' '}
-              <Link href="/signup">
-                <a style={styles.Link}>Sign up</a>
-              </Link>
+              Enter the email address associated with your account to receive a password reset link
             </Header.Subheader>
           </Header>
           <form style={styles.Form}>
@@ -90,20 +85,10 @@ const LoginForm = (props) => {
               type="email"
               error={formErrors['email']}
               onChange={(e) => handleChange(e, 'email')}
-              value={loginFormData.email}
+              value={forgotPasswordFormData.email}
               style={styles.FormInput}
               size="huge"
               placeholder='Email address'
-              fluid
-            />
-            <Input
-              type="password"
-              error={formErrors['password']}
-              onChange={(e) => handleChange(e, 'password')}
-              value={loginFormData.password}
-              style={styles.FormInput}
-              size="huge"CharacterData
-              placeholder='Password'
               fluid
             />
             <div className="is-v-centered">
@@ -111,15 +96,8 @@ const LoginForm = (props) => {
                 onClick={submit}
                 style={styles.Button}
                 size="large"
-                content='Log in'
+                content='Get link'
                 secondary />
-              <p>
-                Are you a service provider?
-                {' '}
-                <Link href="/">
-                  <a style={styles.Link}>Get started</a>
-                </Link>
-              </p>
             </div>
 
           </form>
