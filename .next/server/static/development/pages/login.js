@@ -129,7 +129,7 @@ var styles = {
   Column: {
     background: 'white',
     padding: '45px 20px',
-    margin: '55px 0px',
+    marginTop: '135px',
     paddingBottom: '15px'
   },
   Link: {
