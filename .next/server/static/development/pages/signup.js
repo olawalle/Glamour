@@ -115,7 +115,7 @@ var styles = {
   Segment: {
     // margin: '0px',
     background: '#020202',
-    minHeight: '90vh',
+    minHeight: '100vh',
     backgroundImage: 'url("/static/images/auth.svg")',
     backgroundSize: 'cover'
   }
@@ -161,6 +161,9 @@ var styles = {
   },
   Menu: {
     marginBottom: '0px'
+  },
+  Image: {
+    height: '50px'
   }
 };
 
@@ -172,6 +175,7 @@ var Navbar = function Navbar() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Container"], {
     fluid: true
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Menu"].Item, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Image"], {
+    style: styles.Image,
     src: "/static/images/logo.svg",
     size: "small"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Menu"].Menu, {
@@ -239,7 +243,7 @@ var styles = {
   Column: {
     background: 'white',
     padding: '45px 20px',
-    margin: '55px 0px',
+    margin: '30px 0px',
     paddingBottom: '15px'
   },
   Link: {
@@ -263,7 +267,8 @@ var styles = {
     paddingTop: '18px'
   },
   Checkbox: {
-    paddingTop: '3px'
+    paddingTop: '3px',
+    marginRight: '10px'
   },
   Button: {
     height: '60px',
@@ -324,9 +329,9 @@ var SignupForm = function SignupForm(props) {
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_4__["useState"])({
     fullname: '',
-    email: 'm',
+    email: '',
     address: '',
-    mobileNumber: '0',
+    mobileNumber: '',
     password: '',
     referral: '',
     accept: false
@@ -349,7 +354,7 @@ var SignupForm = function SignupForm(props) {
     columns: 2,
     centered: true
   }, react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Grid"].Row, null, react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Grid"].Column, {
-    width: "8",
+    width: "7",
     style: styles.Column
   }, react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Header"], {
     style: styles.Header,
@@ -418,6 +423,7 @@ var SignupForm = function SignupForm(props) {
     options: options,
     placeholder: "How did you hear about Glamour on Demand?"
   }), react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
+    className: "is-flex",
     style: styles.accept
   }, react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Checkbox"], {
     checked: signupFormData.accept,
@@ -425,7 +431,7 @@ var SignupForm = function SignupForm(props) {
     onChange: function onChange(e, data) {
       return handleChange(e, 'accept', data);
     }
-  }), '   ', react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("span", null, "Yes, I accept the", react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_5___default.a, {
+  }), react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("span", null, "Yes, I accept the", react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_5___default.a, {
     href: "/termsandconditions"
   }, react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("a", {
     style: styles.Link
@@ -1525,13 +1531,14 @@ var SignUp = function SignUp() {
 /*!********************************!*\
   !*** ./store/actions/index.js ***!
   \********************************/
-/*! exports provided: serverRenderAction, updateSignupForm */
+/*! exports provided: serverRenderAction, updateSignupForm, updateLoginForm */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "serverRenderAction", function() { return serverRenderAction; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateSignupForm", function() { return updateSignupForm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateLoginForm", function() { return updateLoginForm; });
 /* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types */ "./store/actions/types.js");
  // IMPORT SERVICES HERE
 // ACTION CREATORS GOES HERE../../services/post
@@ -1543,6 +1550,12 @@ var updateSignupForm = function updateSignupForm(payload) {
     payload: payload
   };
 };
+var updateLoginForm = function updateLoginForm(payload) {
+  return {
+    type: _types__WEBPACK_IMPORTED_MODULE_0__["UPDATE_LOGIN_FORM"],
+    payload: payload
+  };
+};
 
 /***/ }),
 
@@ -1550,14 +1563,16 @@ var updateSignupForm = function updateSignupForm(payload) {
 /*!********************************!*\
   !*** ./store/actions/types.js ***!
   \********************************/
-/*! exports provided: UPDATE_SIGNUP_FORM */
+/*! exports provided: UPDATE_SIGNUP_FORM, UPDATE_LOGIN_FORM */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_SIGNUP_FORM", function() { return UPDATE_SIGNUP_FORM; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_LOGIN_FORM", function() { return UPDATE_LOGIN_FORM; });
 // ACTION TYPES STAYS HERE
 var UPDATE_SIGNUP_FORM = 'update_signup_form';
+var UPDATE_LOGIN_FORM = 'update_login_form';
 
 /***/ }),
 

@@ -8,7 +8,7 @@ const styles = {
   Column: {
     background: 'white',
     padding: '45px 20px',
-    margin: '55px 0px',
+    margin: '30px 0px',
     paddingBottom: '15px'
   },
   Link: {
@@ -33,7 +33,8 @@ const styles = {
     paddingTop: '18px'
   },
   Checkbox: {
-    paddingTop: '3px'
+    paddingTop: '3px',
+    marginRight: '10px'
   },
   Button: {
     height: '60px',
@@ -86,9 +87,9 @@ const SignupForm = (props) => {
 
   const [signupFormData, setSignupData] = useState({
     fullname: '',
-    email: 'm',
+    email: '',
     address: '',
-    mobileNumber: '0',
+    mobileNumber: '',
     password: '',
     referral: '',
     accept: false
@@ -107,7 +108,7 @@ const SignupForm = (props) => {
   return (
     <Grid className="signupForm" columns={2} centered>
       <Grid.Row>
-        <Grid.Column width="8" style={styles.Column}>
+        <Grid.Column width="7" style={styles.Column}>
           <Header style={styles.Header} textAlign="center" as='h1'>
             Sign up
             <Header.Subheader style={styles.SubHeader}>
@@ -166,13 +167,12 @@ const SignupForm = (props) => {
               options={options}
               placeholder='How did you hear about Glamour on Demand?'
             />
-            <div style={styles.accept}>
+            <div className="is-flex" style={styles.accept}>
               <Checkbox
                 checked={signupFormData.accept}
                 style={styles.Checkbox}
                 onChange={(e, data) => handleChange(e, 'accept', data)}
               />
-              {'   '}
               <span>
                 Yes, I accept the
                 <Link href="/termsandconditions">

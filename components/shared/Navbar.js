@@ -12,6 +12,9 @@ const styles = {
   },
   Menu: {
     marginBottom: '0px'
+  },
+  Image: {
+    height: '50px'
   }
 }
 
@@ -24,7 +27,7 @@ const Navbar = () => {
     >
       <Container fluid>
         <Menu.Item>
-          <Image src='/static/images/logo.svg' size='small' />
+          <Image style={styles.Image} src='/static/images/logo.svg' size='small' />
         </Menu.Item>
         <Menu.Menu position='right'>
           <Menu.Item as='a'>Services</Menu.Item>
