@@ -4,6 +4,7 @@ import { serverRenderAction } from '../store/actions'
 import Link from 'next/link'
 import Axios from 'axios';
 import { Button } from 'semantic-ui-react';
+import withMasterLayout from '../pages/layouts/withMasterLayout'
 
 class Index extends React.Component {
   static async getInitialProps ({ reduxStore, req }) {
@@ -43,4 +44,4 @@ const mapDispatchToProps = {  }
 export default connect(
   null,
   mapDispatchToProps
-)(Index)
+)(withMasterLayout(Index))

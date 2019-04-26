@@ -1,3 +1,7 @@
 /*******************************
      User Global Variables
 *******************************/
+
+
+@fontName          : 'sofiaproregular';
+@importGoogleFonts : false;

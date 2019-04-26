@@ -20,6 +20,7 @@
     "enzyme-adapter-react-16": "^1.12.1",
     "express": "^4.16.4",
     "next": "8.1.0",
+    "next-fonts": "^0.17.0",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-redux": "^5.0.1",

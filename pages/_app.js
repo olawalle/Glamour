@@ -2,14 +2,14 @@ import App, { Container } from 'next/app'
 import React from 'react'
 import withReduxStore from '../lib/with-redux-store'
 import { Provider } from 'react-redux'
-// import 'semantic-ui-less/semantic.less';
+
+import '../app.less';
 import 'semantic-ui-less/semantic.less';
-// import 'semantic-ui-css/semantic.min.css'
+
 
 class Glamour extends App {
 
   static async getInitialProps ({ Component, ctx }) {
-    // console.log(Component);
     let pageProps = {}
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
@@ -19,7 +19,6 @@ class Glamour extends App {
   }
 
   render () {
-    // console.log(this.props.initialReduxState)
     const { Component, pageProps, reduxStore } = this.props
     return (
       <Container>

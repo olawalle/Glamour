@@ -34,3 +34,5 @@
 
 
 @backgroundColor: @lightOrange;
+
+@defaultBorderRadius: 0px;
