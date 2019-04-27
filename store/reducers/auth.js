@@ -10,9 +10,6 @@ const INITIAL_STATE = {
     referral: null,
     accept: false
   },
-  login: {
-
-  }
 }
 
 export default function (state = INITIAL_STATE, { type, payload }) {

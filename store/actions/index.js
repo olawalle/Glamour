@@ -14,3 +14,10 @@ export const updateSignupForm = (payload) => {
     payload
   }
 }
+
+export const updateLoginForm = (payload) => {
+  return {
+    type: types.UPDATE_LOGIN_FORM,
+    payload
+  }
+}
