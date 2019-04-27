@@ -24,6 +24,7 @@ const Navbar = () => {
       borderless
       style={styles.Menu}
       className="navbar"
+      // fixed="top"
     >
       <Container fluid>
         <Menu.Item>
