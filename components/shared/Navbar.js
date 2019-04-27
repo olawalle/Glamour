@@ -1,5 +1,6 @@
 import React from 'react';
-import { Menu, List, Image, Button, Container } from 'semantic-ui-react'
+import { Menu, Image, Button, Container } from 'semantic-ui-react';
+import Link from 'next/link';
 
 const styles = {
   signUp: {
@@ -26,18 +27,28 @@ const Navbar = () => {
       className="navbar"
       // fixed="top"
     >
-      <Container fluid>
+      <Container >
         <Menu.Item>
           <Image style={styles.Image} src='/static/images/logo.svg' size='small' />
         </Menu.Item>
         <Menu.Menu position='right'>
-          <Menu.Item as='a'>Services</Menu.Item>
-          <Menu.Item as='a'>About Us</Menu.Item>
-          <Menu.Item as='a'>Become a provider</Menu.Item>
-          <Menu.Item as='a'>Log in</Menu.Item>
-          <Menu.Item as='div'>
-            <Button style={styles.signUp} size="huge" secondary>Sign up</Button>
-          </Menu.Item>
+          <Link href="/services">
+            <Menu.Item as='a'>Services</Menu.Item>
+          </Link>
+          <Link href="/aboutus">
+            <Menu.Item as='a'>About Us</Menu.Item>
+          </Link>
+          <Link href="/signup/provider">
+            <Menu.Item as='a'>Become a provider</Menu.Item>
+          </Link>
+          <Link href="/login">
+            <Menu.Item as='a'>Log in</Menu.Item>
+          </Link>
+          <Link href="/signup">
+            <Menu.Item as='div'>
+              <Button style={styles.signUp} size="huge" secondary>Sign up</Button>
+            </Menu.Item>
+          </Link>
           <Menu.Item as='a'>
             <Image style={styles.basket} src='/static/images/basket.svg' size='mini' />
           </Menu.Item>

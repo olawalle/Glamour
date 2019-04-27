@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 
 import '../app.less';
 import 'semantic-ui-less/semantic.less';
+// import Head from 'next/head'
 
 
 class Glamour extends App {

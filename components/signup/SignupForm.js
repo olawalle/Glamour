@@ -149,16 +149,6 @@ const SignupForm = (props) => {
               placeholder='Mobile number'
               fluid
             />
-            {/* <Input
-              type="password"
-              error={formErrors['password']}
-              onChange={(e) => handleChange(e, 'password')}
-              value={signupFormData.password}
-              style={styles.FormInput}
-              size="huge"
-              placeholder='Password'
-              fluid
-            /> */}
             <Password
               formerror={formErrors['password']}
               handlechange={(e) => handleChange(e, 'password')}

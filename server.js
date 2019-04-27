@@ -11,20 +11,16 @@ const handler = app.getRequestHandler();
 
 app.prepare()
    .then(() => {
-      server.get('/jj', (req, res) => {
-        app.render(req, res, '/index', {});
-      })
 
-      server.get('/a', (req, res) => {
-        console.log('kdlsdk dk lsfkd fdl');
-        app.render(req, res, '/aboutus', {});
-      })
+    server.get('/forgotpassword', (req, res) => {
+      app.render(req, res, '/forgotpassword/reset', {})
+    })
 
-      server.get('*', (req, res) => {
-        return handler(req, res);
-      })
+    server.get('*', (req, res) => {
+      return handler(req, res);
+    })
 
-      server.listen(PORT, _ => console.log(`>server running on port ${PORT}`))
+    server.listen(PORT, _ => console.log(`> server running on port ${PORT}`))
    })
    .catch((err) => {
     console.log(err);

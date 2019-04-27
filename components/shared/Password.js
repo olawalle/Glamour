@@ -8,8 +8,8 @@ const styles = {
     right: '18px'
   },
   reveal: {
-    color: 'black !important',
-    fontSize: '14px !important',
+    color: 'black',
+    fontSize: '14px',
     cursor: 'pointer'
   },
   container: {

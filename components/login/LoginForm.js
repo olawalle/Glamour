@@ -111,7 +111,7 @@ const LoginForm = (props) => {
               placeholder='Password'
               fluid
             />
-            <Link href="/forgotpassword">
+            <Link href="/forgotpassword/reset">
               <a className="forgotPassword">Forgot password ?</a>
             </Link>
             <div className="is-v-centered">
