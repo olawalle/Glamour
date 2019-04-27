@@ -16,7 +16,7 @@ class TermsAndConditions extends Component {
 
   render () {
     return (
-      <Info text="Terms and conditions" banner="/static/images/termsandconditionsbanner.svg">
+      <Info text="Terms and conditions" banner="/static/images/termsandconditionsbanner.png">
         <Content />
       </Info>
     )

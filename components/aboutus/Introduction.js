@@ -35,7 +35,7 @@ const Introduction = () => {
             <p>Did he just throw my cat out of the window? They're using our own satellites against us. And the clock is ticking. Life finds a way. This thing comes fully loaded. AM/FM radio, reclining bucket seats, and... power windows. Checkmate... Hey, you know how I'm, like, always trying to save the planet? Here's my chance.ntually, you do plan to have dinosaurs on your dinosaur tour, right? Do you have any idea how long it takes those cups to decompose.</p>
           </Grid.Column>
           <Grid.Column width="7" style={styles.Column}>
-            <Image style={styles.Image} src="/static/images/aboutusintroductionimg.svg" />
+            <Image style={styles.Image} src="/static/images/aboutusintroductionimg.png" />
           </Grid.Column>
         </Grid.Row>
       </Grid>

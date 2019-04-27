@@ -17,7 +17,7 @@ class Aboutus extends Component {
 
   render () {
     return (
-      <Info text="About us" banner="/static/images/aboutusbanner.svg">
+      <Info text="About us" banner="/static/images/aboutusbanner.png">
         <Introduction />
         <Team />
       </Info>

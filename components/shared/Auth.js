@@ -7,7 +7,7 @@ const styles = {
     // margin: '0px',
     background: '#020202',
     minHeight: '100vh',
-    backgroundImage: 'url("/static/images/auth.svg")',
+    backgroundImage: 'url("/static/images/auth.png")',
     backgroundSize: 'cover'
   }
 }
