@@ -1,4 +1,7 @@
+
 // FONTS
+
+// @import url('../node_modules/font-awesome/css/font-awesome.min.css');
 
 @font-face {
         font-family: sofiaproblack;
@@ -18,6 +21,11 @@
 @font-face {
         font-family: sofiapromedium;
         src: url(/static/fonts/sofiapro/Sofia\ Pro\ Medium.ttf);
+}
+
+@font-face {
+        font-family: sofiapro;
+        src: url(/static/fonts/sofiapro/sofiapro-light.otf);
 }
 
 @font-face {
@@ -44,6 +52,10 @@
         display: flex !important
 }
 
+.mt-0{
+        margin-top: 0px !important;
+}
+
 
 
 // GENERAL STYLING OVERRIDES.
@@ -54,6 +66,63 @@ p{
 
  .text{
     color:    #637381 !important
+}
+
+.footer {
+        color: white;
+        font-family: freightproblack !important;
+
+        .copyright {
+                color: white !important;
+
+                span {
+                        font-weight: 100 !important;
+
+                        font-size: 14px !important;
+                }
+
+                img {
+                        margin-top: 0px !important;
+                        height: 18px !important;
+                        // marginRight: '0px'
+                }
+
+        }
+
+        .social-links {
+
+                margin-left: -12px !important;
+
+                img {
+                        height: 18px !important;
+
+                }
+
+                .item {
+                        width: 40px;
+                        padding: 0px !important;
+                        padding-left: 0px !important;
+                        margin: 0px !important;
+                        margin-left: 0px !important;
+                }
+        }
+
+        .ui.link.list.list a.item:hover, .ui.link.list.list .item a:not(.ui):hover {
+                color: rgba(255, 255, 255, 0.8) !important;
+                margin-bottom: 13px !important;
+                font-size: 16px;
+        }
+
+        .ui.link.list .item, .ui.link.list a.item, .ui.link.list .item a:not(.ui) {
+                color: white !important;
+                margin-bottom: 13px !important;
+                font-size: 16px;
+        }
+
+        .header {
+                margin-bottom: 27px;
+                font-size: 18px;
+        }
 }
 
 // SIGN UP PAGE
