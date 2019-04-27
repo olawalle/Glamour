@@ -12,7 +12,8 @@ const styles = {
     paddingBottom: '15px'
   },
   Link: {
-    color: '#e84671'
+    color: '#e84671',
+    // fontWeight: '600'
   },
   Form: {
     padding: '5px 25px'
@@ -21,6 +22,10 @@ const styles = {
     margin: '10px 0px',
     marginBottom: '30px'
   },
+  FormInput2: {
+    margin: '10px 0px',
+    // marginBottom: '10px'
+  },
   Header: {
   },
   SubHeader: {
@@ -28,6 +33,17 @@ const styles = {
   },
   Checkbox: {
     paddingTop: '3px'
+  },
+  forgotPassword: {
+    fontFamily: 'sofiaprosemibold !important',
+    textAlign: 'end',
+    color: '#e84671',
+    fontSize: '16px',
+    marginTop: '10px !important',
+    marginBottom: '20px !important',
+    textAlign: 'right !important',
+    display: 'block'
+    // fontWeight: '600'
   },
   Button: {
     height: '60px',
@@ -101,11 +117,14 @@ const LoginForm = (props) => {
               error={formErrors['password']}
               onChange={(e) => handleChange(e, 'password')}
               value={loginFormData.password}
-              style={styles.FormInput}
-              size="huge"CharacterData
+              style={styles.FormInput2}
+              size="huge"
               placeholder='Password'
               fluid
             />
+            <Link href="/forgotpassword">
+              <a style={styles.forgotPassword}>Forgot password ?</a>
+            </Link>
             <div className="is-v-centered">
               <Button
                 onClick={submit}
