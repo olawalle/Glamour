@@ -154,7 +154,7 @@ const SignupForm = (props) => {
               onChange={(e) => handleChange(e, 'password')}
               value={signupFormData.password}
               style={styles.FormInput}
-              size="huge"CharacterData
+              size="huge"
               placeholder='Password'
               fluid
             />

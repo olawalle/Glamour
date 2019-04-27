@@ -34,17 +34,6 @@ const styles = {
   Checkbox: {
     paddingTop: '3px'
   },
-  forgotPassword: {
-    fontFamily: 'sofiaprosemibold !important',
-    textAlign: 'end',
-    color: '#e84671',
-    fontSize: '16px',
-    marginTop: '10px !important',
-    marginBottom: '20px !important',
-    textAlign: 'right !important',
-    display: 'block'
-    // fontWeight: '600'
-  },
   Button: {
     height: '60px',
     width: '126px'
@@ -123,7 +112,7 @@ const LoginForm = (props) => {
               fluid
             />
             <Link href="/forgotpassword">
-              <a style={styles.forgotPassword}>Forgot password ?</a>
+              <a className="forgotPassword">Forgot password ?</a>
             </Link>
             <div className="is-v-centered">
               <Button
