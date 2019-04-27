@@ -15,6 +15,10 @@
   src: url(/static/fonts/sofiapro/Sofia\ Pro\ Medium.ttf);
 }
 @font-face {
+  font-family: sofiaprosemibold;
+  src: url(/static/fonts/sofiapro/Sofia\ Pro\ SemiBold.ttf);
+}
+@font-face {
   font-family: fontfreightproblack;
   src: url(/static/fonts/Freight\ Big\ Pro/Freight\ Big\ Pro\ Black.otf);
 }
