@@ -105,8 +105,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/slicedToArray */ "./node_modules/@babel/runtime-corejs2/helpers/esm/slicedToArray.js");
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/objectSpread */ "./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/objectSpread */ "./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
@@ -121,6 +121,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var _forgotPassword;
+
+
 
 
 
@@ -133,7 +136,8 @@ var styles = {
     paddingBottom: '15px'
   },
   Link: {
-    color: '#e84671'
+    color: '#e84671' // fontWeight: '600'
+
   },
   Form: {
     padding: '5px 25px'
@@ -142,6 +146,10 @@ var styles = {
     margin: '10px 0px',
     marginBottom: '30px'
   },
+  FormInput2: {
+    margin: '10px 0px' // marginBottom: '10px'
+
+  },
   Header: {},
   SubHeader: {
     marginTop: '10px'
@@ -149,6 +157,14 @@ var styles = {
   Checkbox: {
     paddingTop: '3px'
   },
+  forgotPassword: (_forgotPassword = {
+    fontFamily: 'sofiaprosemibold !important',
+    textAlign: 'end',
+    color: '#e84671',
+    fontSize: '16px',
+    marginTop: '10px !important',
+    marginBottom: '20px !important'
+  }, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_3__["default"])(_forgotPassword, "textAlign", 'right !important'), Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_3__["default"])(_forgotPassword, "display", 'block'), _forgotPassword),
   Button: {
     height: '60px',
     width: '126px'
@@ -163,7 +179,7 @@ var LoginForm = function LoginForm(props) {
         _ref$checked = _ref.checked,
         checked = _ref$checked === void 0 ? null : _ref$checked;
 
-    var newState = Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_3__["default"])({}, loginFormData, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_2__["default"])({}, key, e.target.value || value || checked || ''));
+    var newState = Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_2__["default"])({}, loginFormData, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_3__["default"])({}, key, e.target.value || value || checked || ''));
 
     setLoginData(newState); //delete error entry
 
@@ -234,12 +250,15 @@ var LoginForm = function LoginForm(props) {
       return handleChange(e, 'password');
     },
     value: loginFormData.password,
-    style: styles.FormInput,
+    style: styles.FormInput2,
     size: "huge",
-    CharacterData: true,
     placeholder: "Password",
     fluid: true
-  }), react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
+  }), react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_5___default.a, {
+    href: "/forgotpassword"
+  }, react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("a", {
+    style: styles.forgotPassword
+  }, "Forgot password ?")), react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement("div", {
     className: "is-v-centered"
   }, react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_6__["Button"], {
     onClick: submit,
