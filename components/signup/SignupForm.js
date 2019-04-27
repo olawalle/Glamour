@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Grid, Header, Select, Input, Checkbox, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
+import Password from '../../components/shared/Password'
 
 const styles = {
   Column: {
@@ -148,12 +149,21 @@ const SignupForm = (props) => {
               placeholder='Mobile number'
               fluid
             />
-            <Input
+            {/* <Input
               type="password"
               error={formErrors['password']}
               onChange={(e) => handleChange(e, 'password')}
               value={signupFormData.password}
               style={styles.FormInput}
+              size="huge"
+              placeholder='Password'
+              fluid
+            /> */}
+            <Password
+              formerror={formErrors['password']}
+              handlechange={(e) => handleChange(e, 'password')}
+              password={signupFormData.password}
+              styles={styles.FormInput}
               size="huge"
               placeholder='Password'
               fluid
