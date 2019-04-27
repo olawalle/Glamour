@@ -28,7 +28,7 @@ const Footer = () => {
                 <List.Header active>Company</List.Header>
                 <Link href="/aboutus"><List.Item as='a'>About us</List.Item></Link>
                 <Link><List.Item as='a'>How it works</List.Item></Link>
-                <Link><List.Item as='a'>Terms and conditions</List.Item></Link>
+                <Link href="/termsandconditions"><List.Item as='a'>Terms and conditions</List.Item></Link>
                 <Link><List.Item as='a'>Privacy policy</List.Item></Link>
               </List>
             </Grid.Column>

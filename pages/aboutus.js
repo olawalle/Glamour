@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import Link from 'next/Link';
 import withMasterLayout from '../pages/layouts/withMasterLayout';
 import Introduction from '../components/aboutus/Introduction';
 import Info from '../components/shared/Info';
