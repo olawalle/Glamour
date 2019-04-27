@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Grid, Header, Input, Checkbox, Button } from 'semantic-ui-react';
+import { Grid, Header, Input, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
+import Password from '../shared/Password';
 
 const styles = {
   Column: {
@@ -9,9 +10,6 @@ const styles = {
     padding: '45px 20px',
     marginTop: '160px',
     paddingBottom: '15px'
-  },
-  Link: {
-    color: '#e84671'
   },
   Form: {
     padding: '5px 25px'
@@ -25,16 +23,13 @@ const styles = {
   SubHeader: {
     marginTop: '10px',
   },
-  Checkbox: {
-    paddingTop: '3px'
-  },
   Button: {
     height: '60px',
     width: '126px'
   },
 }
 
-const LoginForm = (props) => {
+const forgotPasswordCreateForm = (props) => {
 
   const handleChange = (e, key, {value = null, checked = null } = {}) => {
     let newState = {
@@ -66,7 +61,7 @@ const LoginForm = (props) => {
   const [ formErrors, setFormErrors ] = useState({})
 
   const [forgotPasswordFormData, setForgotPasswordData] = useState({
-    email: ''
+    password: ''
   });
 
 
@@ -77,18 +72,17 @@ const LoginForm = (props) => {
           <Header style={styles.Header} textAlign="center" as='h1'>
             Recover password
             <Header.Subheader style={styles.SubHeader}>
-              Enter the email address associated with your account to receive a password reset link
+              Create a new password
             </Header.Subheader>
           </Header>
           <form style={styles.Form}>
-            <Input
-              type="email"
-              error={formErrors['email']}
-              onChange={(e) => handleChange(e, 'email')}
-              value={forgotPasswordFormData.email}
-              style={styles.FormInput}
+            <Password
+              formerror={formErrors['password']}
+              handlechange={(e) => handleChange(e, 'password')}
+              password={forgotPasswordFormData.password}
+              styles={styles.FormInput}
               size="huge"
-              placeholder='Email address'
+              placeholder='Password'
               fluid
             />
             <div className="is-v-centered">
@@ -96,7 +90,7 @@ const LoginForm = (props) => {
                 onClick={submit}
                 style={styles.Button}
                 size="large"
-                content='Get link'
+                content='Create'
                 secondary />
             </div>
 
@@ -107,4 +101,4 @@ const LoginForm = (props) => {
   );
 }
 
-export default connect(null, actions)(LoginForm);
+export default connect(null, actions)(forgotPasswordCreateForm);
