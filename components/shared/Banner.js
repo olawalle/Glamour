@@ -33,7 +33,7 @@ const Banner = (props) => {
         <Grid stretched verticalAlign="middle"  className="banner" columns={4} centered>
           <Grid.Row style={styles.Row} stretched>
             <Grid.Column textAlign="center" width="7" style={styles.Column}>
-              <h1 style={styles.Header}>About us</h1>
+              <h1 style={styles.Header}>{ props.text }</h1>
             </Grid.Column>
           </Grid.Row>
         </Grid>
