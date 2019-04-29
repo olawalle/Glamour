@@ -32,7 +32,7 @@ const Navbar = () => {
           <Image style={styles.Image} src='/static/images/logo.svg' size='small' />
         </Menu.Item>
         <Menu.Menu position='right'>
-          <Link href="/services">
+          <Link href="/serviceproviders">
             <Menu.Item as='a'>Services</Menu.Item>
           </Link>
           <Link href="/aboutus">
