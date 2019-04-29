@@ -92,7 +92,7 @@ const styles = {
         height: '40px',
         textAlign: 'center',
         position: 'relative',
-        top: '-240px'
+        top: '-240px',
     },
     instant_: {
         width: '40%',
