@@ -7,3 +7,5 @@ export const UPDATE_LOGIN_FORM = 'update_login_form';
 export const ADD_TEAM_MEMBERS = 'add_team_members';
 
 export const SET_LOADING_MEMBERS = 'set_loading_members';
+
+export const SAVE_SERVICE_PROVIDERS = 'save_service_providers';

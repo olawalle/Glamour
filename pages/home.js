@@ -12,9 +12,9 @@ class Home extends Component {
     return {
     }
   }
-
-  componentDidMount () {
-  }
+  componentWillMount() {
+    console.log(this)
+}
 
   render () {
     return (
