@@ -20,7 +20,7 @@ const styles = {
 
 class ServiceProvider extends Component {
     static async getInitialProps ({ reduxStore, req }) {
-      const isServer = !!req
+        this.test = reduxStore
       // DISPATCH ACTIONS HERE ONLY WITH `reduxStore.dispatch`
   
       return {
