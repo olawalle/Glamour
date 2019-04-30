@@ -33,8 +33,8 @@ const Testimonials = (props) => {
 
   const handleNextAction = () => {
 
-    console.log(owlCarousel)
-    console.log(owlCarousel.current.$ele.next(100));
+    // console.log(owlCarousel.next(100))
+    console.log(owlCarousel);
   }
 
   return (
@@ -48,6 +48,7 @@ const Testimonials = (props) => {
                 ref={owlCarousel}
                 className="owl-theme"
                 loop
+                autoplay={true}
                 margin={10}
                 nav={false}
                 responsive={{
