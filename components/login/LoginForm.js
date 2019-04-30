@@ -8,7 +8,8 @@ const styles = {
   Column: {
     background: 'white',
     padding: '45px 20px',
-    marginTop: '135px',
+    // marginTop: '135px',
+    marginTop: '4%',
     paddingBottom: '15px'
   },
   Link: {
