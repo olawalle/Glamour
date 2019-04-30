@@ -6,7 +6,7 @@ const styles = {
   Image: {},
   Segment: {
     backgroundColor: '#212B36',
-    height: '471px',
+    minHeight: '471px',
     paddingTop: '60px'
   },
   Divider: {
@@ -18,7 +18,7 @@ const Footer = () => {
   return (
     <Segment className="footer" style={styles.Segment}>
       <Container>
-        <Grid columns={4}>
+        <Grid stackable columns={4}>
           <Grid.Row>
             <Grid.Column width="4" >
               <Image style={styles.Image} src='/static/images/logowhite.svg' size='small' />

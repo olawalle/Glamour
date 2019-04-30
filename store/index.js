@@ -27,3 +27,15 @@ export function initStore (initialState = INITIAL_STATE) {
 export const getTeamMembers = (state) => {
   return state.team.byId.map((id) => state.team.allMembers[id])
 }
+
+export const getTopTrends = (state) => {
+  return state.trend.byId.map((id) => state.trend.allTopTrends[id])
+}
+
+export const getTestimonials = (state) => {
+  return state.testimonial.all
+}
+
+export const getBeautyServices = (state) => {
+  return state.service.beautyServices.byId.map((id) => state.service.beautyServices.allServices[id])
+}
