@@ -6,8 +6,8 @@ export default (Page) => {
     render () {
       return (
         <>
-          <Navbar/>
-          <Page />
+          <Navbar {...this.props} />
+          <Page {...this.props} />
         </>
       )
     }

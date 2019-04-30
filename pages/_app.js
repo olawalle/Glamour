@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 
 import '../app.less';
 import 'semantic-ui-less/semantic.less';
+// import '../node_modules/font-awesome/css/font-awesome.css'
 // import Head from 'next/head'
 
 
