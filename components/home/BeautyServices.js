@@ -26,11 +26,11 @@ const BeautySerivces = (props) => {
         <Header style={styles.Header} textAlign="center" as="h4">Discover beauty services</Header>
         <Services columns={3}>
           {
-            props.beautyServices.map(serviceGroup => (
-              <Grid.Row style={styles.Row}>
+            props.beautyServices.map((serviceGroup, index) => (
+              <Grid.Row key={index} style={styles.Row}>
                 {
-                  serviceGroup.map((service) => (
-                    <Service key={service.id} {...service} />
+                  serviceGroup.map((service, index) => (
+                    <Service key={index} {...service} />
                   ))
                 }
               </Grid.Row>

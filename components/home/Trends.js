@@ -28,11 +28,11 @@ const Trends = (props) => {
         <Header style={styles.Header} textAlign="center" as="h4">Top trends</Header>
         <Grid stackable columns={3}>
           {
-            props.trends.map(trendsGroup => (
-              <Grid.Row stretched style={styles.Row}>
+            props.trends.map((trendsGroup, index) => (
+              <Grid.Row stretched key={index}  style={styles.Row}>
                 {
-                  trendsGroup.map((trend) => (
-                    <Trend key={trend.id} {...trend} />
+                  trendsGroup.map((trend, index) => (
+                    <Trend key={index} {...trend} />
                   ))
                 }
               </Grid.Row>

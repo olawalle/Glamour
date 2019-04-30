@@ -23,29 +23,29 @@ const Footer = () => {
             <Grid.Column width="4" >
               <Image style={styles.Image} src='/static/images/logowhite.svg' size='small' />
             </Grid.Column>
-            <Grid.Column width="4" >
+            <Grid.Column width="4">
               <List link>
-                <List.Header active>Company</List.Header>
+                <List.Header>Company</List.Header>
                 <Link href="/aboutus"><List.Item as='a'>About us</List.Item></Link>
-                <Link><List.Item as='a'>How it works</List.Item></Link>
+                <Link href="/"><List.Item as='a'>How it works</List.Item></Link>
                 <Link href="/termsandconditions"><List.Item as='a'>Terms and conditions</List.Item></Link>
                 <Link href="/privacypolicy"><List.Item as='a'>Privacy policy</List.Item></Link>
               </List>
             </Grid.Column>
             <Grid.Column width="4" >
               <List link>
-                <List.Header active>Services</List.Header>
-                <Link><List.Item as='a'>Hair</List.Item></Link>
-                <Link><List.Item as='a'>Hair removal</List.Item></Link>
-                <Link><List.Item as='a'>Massage</List.Item></Link>
-                <Link><List.Item as='a'>Nails</List.Item></Link>
-                <Link><List.Item as='a'>Face</List.Item></Link>
-                <Link><List.Item as='a'>Body</List.Item></Link>
+                <List.Header>Services</List.Header>
+                <Link href='/'><List.Item as='a'>Hair</List.Item></Link>
+                <Link href='/'><List.Item as='a'>Hair removal</List.Item></Link>
+                <Link href='/'><List.Item as='a'>Massage</List.Item></Link>
+                <Link href='/'><List.Item as='a'>Nails</List.Item></Link>
+                <Link href='/'><List.Item as='a'>Face</List.Item></Link>
+                <Link href='/'><List.Item as='a'>Body</List.Item></Link>
               </List>
             </Grid.Column>
             <Grid.Column width="4" >
               <List link>
-                <List.Header active>Contact us</List.Header>
+                <List.Header>Contact us</List.Header>
                 <List.Item as='a'>support@glamourondemand.com</List.Item>
                 <List.Item as='a'>020 3570 3466</List.Item>
               </List>

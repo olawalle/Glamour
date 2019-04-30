@@ -57,8 +57,8 @@ const HowItWorks = (props) => {
         <Grid stackable columns={4}>
           <Grid.Row  style={styles.Row} columns={4}>
             {
-              steps.map((step) => (
-                <Step key={step.id} {...step} />
+              steps.map((step, index) => (
+                <Step key={index} {...step} />
               ))
             }
           </Grid.Row>

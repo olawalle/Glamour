@@ -34,8 +34,8 @@ const Banner = (props) => {
     <Segment className="home is-v-centered" style={styles.Segment}>
       <Container style={styles.Container} fluid>
         <Grid stackable stretched verticalAlign="middle"  columns={4} centered>
-          <Grid.Row stackable centered verticalAlign="middle" style={styles.Row} stretched>
-            <Grid.Column className="is-v-centered" centered textAlign="center" width="10" style={styles.Column}>
+          <Grid.Row centered verticalAlign="middle" style={styles.Row} stretched>
+            <Grid.Column className="is-v-centered" textAlign="center" width="10" style={styles.Column}>
               <div className="header-container" >
                 <Header as="h3" style={styles.Header}>
                   Expert beauty services right when
