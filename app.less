@@ -173,7 +173,16 @@ p{
         }
 }
 
-// SIGN UP PAGE
+
+
+
+// AUTH PAGEs
+.auth {
+    background: #020202;
+    min-height: 100vh;
+    background-image: url("/static/images/auth.png");
+    background-size: cover;
+}
 .signupForm {
         font-size: 16px !important;
         .dropdown {
@@ -335,6 +344,10 @@ p{
 
 //  NAVBAR
 .navbar {
+        margin-bottom: 0px !important;
+        border-radius: 0px !important;
+        border: none !important;
+        box-shadow: 0px 5px 10px rgba(99, 115, 129, 0.02) !important;
         a {
                 font-family: sofiapromedium;
                 font-size: 15px !important;
@@ -353,9 +366,10 @@ p{
         width: 500px
 }
 
-// .ant-calendar .ant-calendar-time {
-//         width: 100% !important
-// }
+.logo {
+        height: 50px;
+        cursor: pointer
+}
 
 
 
@@ -402,10 +416,6 @@ p{
         [class*="or lower hidden"] {
                 display: none !important;
         }
-
-        // .ant-calendar-picker-container .ant-calendar-picker-container-placement-bottomLeft{
-        //         width: 350px !important
-        // }
 }
 
 @media only screen and (max-width: 580px) {
@@ -418,6 +428,19 @@ p{
 }
 
 @media only screen and (max-width: 480px) {
+
+        .auth {
+                background: none !important;
+        }
+
+        .logo {
+                height: 32px !important;
+        }
+
+        .navbar {
+                box-shadow: 0px 1px 20px 0 rgba(34, 36, 38, 0.15) !important;
+        }
+
         #signupForm {
                 .column {
                         width: 100% !important
