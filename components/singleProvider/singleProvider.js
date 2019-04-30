@@ -153,10 +153,10 @@ const SingleProvider = (props) => (
          </div>
          <div style={styles.stars}>
             {
-                filled(props.stars).map(elm => <img src='../../static/icons/filled-star.svg' />)
+                filled(props.stars).map((elm, i) => <img key={`filled${i}`} src='../../static/icons/filled-star.svg' />)
             }
             {
-                empty(5 - props.stars).map(elm => <img src='../../static/icons/empty-star.svg' />)
+                empty(5 - props.stars).map((elm, i) => <img key={`empty${i}`} src='../../static/icons/empty-star.svg' />)
             }
             
             <span style={styles.count}>({props.ratingsCount})</span>

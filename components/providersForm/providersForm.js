@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Component } from 'react';
 import Link from 'next/link';
 import { Grid, Header, Select, Input, Checkbox, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
@@ -13,14 +13,14 @@ const styles = {
     padding: '20px'
   },
   inputIcon: {
-    top: '-68px',
+    top: '-63px',
     position: 'relative',
     left: '12px',
     zIndex: '100',
     width: '20px'
   },  
   selectIcon: {
-    top: '-50px',
+    top: '-45px',
     position: 'relative',
     left: '12px',
     zIndex: '100',
@@ -28,16 +28,16 @@ const styles = {
   },
   myLabel: {
     position: 'relative',
-    top: '-92px',
+    top: '-88px',
     left: '17px',
-    fontSize: '11px',
+    fontSize: '10px',
     color: '#637381'
   },
   selectLabel: {
     position: 'relative',
-    top: '-74px',
+    top: '-66px',
     left: '21px',
-    fontSize: '11px',
+    fontSize: '10px',
     color: '#637381'
   },
   Column: {
@@ -63,10 +63,12 @@ const styles = {
   },
   Select: {
     margin: '10px 0px',
-    height: '62px',
+    height: '52px',
     borderRadius: '0px',
     borderColor: '#C4CDD5',
-    paddingTop: '20px',
+    paddingTop: '24px',
+    fontSize: '16px',
+    color: '#000',
     paddingLeft: '40px'
   },
   Checkbox: {
@@ -79,6 +81,24 @@ const styles = {
   },
   accept: {
     margin: '2em 0em'
+  },
+  RangeCol: {
+    height: '95px'
+  },
+  RangeCol_: {
+    paddingTop: '17px'
+  },
+  RangeLabel: {
+    fontSize: '16px',
+    color: '#212B36',
+    fontWeight: '500',
+    float: 'left',
+  },
+  RangeValues: {
+    float: 'right',
+    fontWeight: '600',
+    fontSize: '18px',
+    color: '#E84671'
   }
 }
 
@@ -88,37 +108,39 @@ const options = [
   { key: 'offline', text: 'Offline', value: 'offline' },
 ]
 
+// const ProviderForm = (props) => 
+class ProviderForm extends Component {
 
-const recalibrate = () => {
-  console.log('ycuyc')
-}
+  constructor(props) {
+    super(props);
+ 
+    this.state = {
+      value: { min: 2, max: 10 },
+    };
+  }
 
-let value = {min: 2, max: 12}
-
-const ProviderForm = (props) => {
-
-  return (
+  render () {
+    return (
       <div style={styles.pageWrap} className="providerForm">
         <Grid columns={3}>
             <Grid.Row>
-                <Grid.Column>
+                <Grid.Column  style={styles.RangeCol}>
                     <Select
                     style={styles.Select}
                     fluid
                     options={options}
-                    placeholder='How did you hear about Glamour on Demand?'
                     />
                     <img src="../../static/icons/sort.svg" style={styles.selectIcon} alt=""/>
                     <span style={styles.selectLabel}>
                         Sort by
                     </span>
                 </Grid.Column>
-                <Grid.Column>
+                <Grid.Column  style={styles.RangeCol}>
                     <Input
                     type="text"
                     style={styles.FormInput}
                     size="huge"
-                    placeholder='Searcg term goes here'
+                    placeholder='Search term goes here'
                     fluid
                     />
                     <img src="../../static/icons/search.svg" style={styles.inputIcon} alt=""/>
@@ -126,7 +148,7 @@ const ProviderForm = (props) => {
                         Search for
                     </span>
                 </Grid.Column>
-                <Grid.Column>
+                <Grid.Column  style={styles.RangeCol}>
                     <Input
                     type="text"
                     style={styles.FormInput}
@@ -139,19 +161,18 @@ const ProviderForm = (props) => {
                         Post code
                     </span>
                 </Grid.Column>
-                <Grid.Column>
+                <Grid.Column  style={styles.RangeCol}>
                     <Select
                     style={styles.Select}
                     fluid
                     options={options}
-                    placeholder='How did you hear about Glamour on Demand?'
                     />
                     <img src="../../static/icons/mile.svg" style={styles.selectIcon} alt=""/>
                     <span style={styles.selectLabel}>
                       Distance
                     </span>
                 </Grid.Column>
-                <Grid.Column>
+                <Grid.Column  style={styles.RangeCol}>
                     <Select
                     style={styles.Select}
                     fluid
@@ -163,18 +184,23 @@ const ProviderForm = (props) => {
                       When do you want this?
                     </span>
                 </Grid.Column>
-                <Grid.Column>
-                <InputRange
-                  style={styles.Range}
-                  maxValue={20}
-                  minValue={0}
-                  value={value}
-                  onChange={recalibrate()} />
+                <Grid.Column style={styles.RangeCol}>
+                  <div style={styles.RangeCol_}>
+                    <span style={styles.RangeLabel}>Price range</span>
+                    <span style={styles.RangeValues}>£{this.state.value.min} - £{this.state.value.max}</span>
+                  </div>
+                  <InputRange
+                    style={styles.Range}
+                    maxValue={20}
+                    minValue={0}
+                    value={this.state.value}
+                    onChange={value => this.setState({ value })} />
                 </Grid.Column>
             </Grid.Row>
         </Grid>
       </div>
-  );
+    );
+  }
 }
 
 
