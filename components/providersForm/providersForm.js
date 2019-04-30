@@ -4,6 +4,7 @@ import { Grid, Header, Select, Input, Checkbox, Button } from 'semantic-ui-react
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import Password from '../../components/shared/Password'
+import InputRange from 'react-input-range';
 
 const styles = {
   pageWrap: {
@@ -29,6 +30,13 @@ const styles = {
     position: 'relative',
     top: '-92px',
     left: '17px',
+    fontSize: '11px',
+    color: '#637381'
+  },
+  selectLabel: {
+    position: 'relative',
+    top: '-74px',
+    left: '21px',
     fontSize: '11px',
     color: '#637381'
   },
@@ -81,6 +89,11 @@ const options = [
 ]
 
 
+const recalibrate = () => {
+  console.log('ycuyc')
+}
+
+let value = {min: 2, max: 12}
 
 const ProviderForm = (props) => {
 
@@ -89,15 +102,14 @@ const ProviderForm = (props) => {
         <Grid columns={3}>
             <Grid.Row>
                 <Grid.Column>
-                    <Input
-                    type="text"
-                    style={styles.FormInput}
-                    size="huge"
-                    placeholder='Email address'
+                    <Select
+                    style={styles.Select}
                     fluid
+                    options={options}
+                    placeholder='How did you hear about Glamour on Demand?'
                     />
-                    <img src="../../static/icons/sort.svg" style={styles.inputIcon} alt=""/>
-                    <span style={styles.myLabel}>
+                    <img src="../../static/icons/sort.svg" style={styles.selectIcon} alt=""/>
+                    <span style={styles.selectLabel}>
                         Sort by
                     </span>
                 </Grid.Column>
@@ -106,10 +118,26 @@ const ProviderForm = (props) => {
                     type="text"
                     style={styles.FormInput}
                     size="huge"
-                    placeholder='Email address'
+                    placeholder='Searcg term goes here'
+                    fluid
+                    />
+                    <img src="../../static/icons/search.svg" style={styles.inputIcon} alt=""/>
+                    <span style={styles.myLabel}>
+                        Search for
+                    </span>
+                </Grid.Column>
+                <Grid.Column>
+                    <Input
+                    type="text"
+                    style={styles.FormInput}
+                    size="huge"
+                    placeholder='WC1A 1AA'
                     fluid
                     />
                     <img src="../../static/icons/mile.svg" style={styles.inputIcon} alt=""/>
+                    <span style={styles.myLabel}>
+                        Post code
+                    </span>
                 </Grid.Column>
                 <Grid.Column>
                     <Select
@@ -119,35 +147,29 @@ const ProviderForm = (props) => {
                     placeholder='How did you hear about Glamour on Demand?'
                     />
                     <img src="../../static/icons/mile.svg" style={styles.selectIcon} alt=""/>
+                    <span style={styles.selectLabel}>
+                      Distance
+                    </span>
                 </Grid.Column>
                 <Grid.Column>
-                    <Input
-                    type="text"
-                    style={styles.FormInput}
-                    className="icnInput"
-                    size="huge"
-                    placeholder='Email address'
+                    <Select
+                    style={styles.Select}
                     fluid
+                    options={options}
+                    placeholder='Select date and time'
                     />
-                    <img src="../../static/icons/search.svg" style={styles.inputIcon} alt=""/>
+                    <img src="../../static/icons/sort.svg" style={styles.selectIcon} alt=""/>
+                    <span style={styles.selectLabel}>
+                      When do you want this?
+                    </span>
                 </Grid.Column>
                 <Grid.Column>
-                    <Input
-                    type="text"
-                    style={styles.FormInput}
-                    size="huge"
-                    placeholder='Email address'
-                    fluid
-                    />
-                </Grid.Column>
-                <Grid.Column>
-                    <Input
-                    type="text"
-                    style={styles.FormInput}
-                    size="huge"
-                    placeholder='Email address'
-                    fluid
-                    />
+                <InputRange
+                  style={styles.Range}
+                  maxValue={20}
+                  minValue={0}
+                  value={value}
+                  onChange={recalibrate()} />
                 </Grid.Column>
             </Grid.Row>
         </Grid>

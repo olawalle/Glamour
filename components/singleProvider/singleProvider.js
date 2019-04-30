@@ -19,7 +19,11 @@ const styles = {
         top: '0',
         width: '100%',
         height: '190px',
+        overflow: 'hidden',
         backgroundColor: 'green'
+    },
+    BannerImage: {
+        width: '100%'
     },
     roundImageWrap_: {
         borderRadius: '50%',
@@ -105,38 +109,57 @@ const styles = {
     }
 }
 
+
+let filled = (n) => {
+    let arr = []
+    for (let index = 0; index < n; index++) {
+        arr.push('o')  
+    }
+    return arr
+}
+
+let empty = (n) => {
+    let arr = []
+    for (let index = 0; index < n; index++) {
+        arr.push('o')  
+    }
+    return arr
+}
+
 const SingleProvider = (props) => (
     <div style={styles.card}>
         <div style={styles.cardBanner}>
-            <img src='../../static/images/test.png'  />
+            <img src={props.banner} style={styles.BannerImage}  />
         </div>
 
         {
-            props.avail ? <div style={styles.roundImageWrap}><Image src='../../static/images/team/teammember3.png' styles={styles.roundImage} /></div> : <div style={styles.roundImageWrap_}><Image src='../../static/images/team/teammember3.png' styles={styles.roundImage} /></div> 
+            props.instant ? <div style={styles.roundImageWrap}><Image src={props.userPhoto} styles={styles.roundImage} /></div> : <div style={styles.roundImageWrap_}><Image src={props.userPhoto} styles={styles.roundImage} /></div> 
         }
         {
-            props.avail ? <div style={styles.instant}>Instant Booking</div> : <div style={styles.instant_}></div>
+            props.instant ? <div style={styles.instant}>Instant Booking</div> : <div style={styles.instant_}></div>
         }
          <div style={styles.textWrap}>
              <h2 style={styles.name}>
                 <b>
-                    Bellinda Sullivan
+                    {props.name}
                 </b>
              </h2>
              <h2 style={styles.jobDesc}>
-                Makeup, Massage
+                {props.jobDesc}
              </h2>
              <h3 style={styles.desc}>
-                Hey, you know how I'm, like, always trying to save the planet? Here's my chance. 
+                {props.description}
              </h3>
          </div>
          <div style={styles.stars}>
-            <img src='../../static/icons/filled-star.svg' />
-            <img src='../../static/icons/filled-star.svg' />
-            <img src='../../static/icons/filled-star.svg' />
-            <img src='../../static/icons/filled-star.svg' />
-            <img src='../../static/icons/empty-star.svg' />
-            <span style={styles.count}>(11)</span>
+            {
+                filled(props.stars).map(elm => <img src='../../static/icons/filled-star.svg' />)
+            }
+            {
+                empty(5 - props.stars).map(elm => <img src='../../static/icons/empty-star.svg' />)
+            }
+            
+            <span style={styles.count}>({props.ratingsCount})</span>
              <br/>
             <Button style={styles.signUp} size="huge" secondary>View Profile</Button>
         </div>

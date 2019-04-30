@@ -26,30 +26,26 @@ class ServiceProvider extends Component {
       return {
       }
     }
+
     componentWillMount() {
-        console.log(this)
+        console.log(this.props)
     }
+
     render () {
         return (
             <Container>
-                <button onClick={test}>uycuy</button>
                 <div style={styles.pageWrap}>
                     <ProvidersForm />
 
                     <Grid columns={3}>
                         <Grid.Row>
-                            <Grid.Column>
-                                <SingleProvider />
-                            </Grid.Column>
-                            <Grid.Column>
-                                <SingleProvider avail='true' />
-                            </Grid.Column>
-                            <Grid.Column>
-                                <SingleProvider />
-                            </Grid.Column>
-                            <Grid.Column>
-                                <SingleProvider />
-                            </Grid.Column>
+                            {
+                                this.props.serviceProviders.map((provider, i) => (
+                                    <Grid.Column >
+                                        <SingleProvider  key={`provider${i}`} {...provider} />
+                                    </Grid.Column>
+                                ))
+                            }
                         </Grid.Row> 
                     </Grid>  
                 </div>
@@ -59,11 +55,8 @@ class ServiceProvider extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    serviceProviders: state.serviceProviders
+    serviceProviders: state.serviceProviders.allProviders
 })
 
-const test = () => {
-    console.log(props)
-}
 
 export default connect(mapStateToProps)(withMasterLayout(ServiceProvider));

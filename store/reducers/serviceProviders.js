@@ -1,56 +1,62 @@
 import { SAVE_SERVICE_PROVIDERS } from '../actions/types';
 
 const INITIAL_STATE = {
-  allProviders: {
-    1: {
-      banner: '/static/images/team/test.png',
+  allProviders: [
+    {
+      banner: '/static/images/services/hair.png',
+      userPhoto: '/static/images/team/teammember1.png',
       name: 'Bellinda Sullivan',
       jobDesc: 'Makeup, Massage',
       description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
       stars: 3,
-      ratingsCount: 16
+      instant: true, ratingsCount: 16
     },
-    2: {
-      banner: '/static/images/team/test.png',
+    {
+      banner: '/static/images/services/hair.png',
+      userPhoto: '/static/images/team/teammember3.png',
       name: 'Bellinda Sullivan',
       jobDesc: 'Makeup, Massage',
       description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
       stars: 3,
-      ratingsCount: 12
+      instant: false, ratingsCount: 12
     },
-    3: {
-      banner: '/static/images/team/test.png',
+    {
+      banner: '/static/images/services/massage.png',
+      userPhoto: '/static/images/team/teammember5.png',
       name: 'Bellinda Sullivan',
       jobDesc: 'Makeup, Massage',
       description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
       stars: 5,
-      ratingsCount: 14
+      instant: true, ratingsCount: 14
     },
-    4: {
-      banner: '/static/images/team/test.png',
+    {
+      banner: '/static/images/services/nails.png',
+      userPhoto: '/static/images/team/teammember2.png',
       name: 'Bellinda Sullivan',
       jobDesc: 'Makeup, Massage',
       description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
       stars: 2,
-      ratingsCount: 3
+      instant: false, ratingsCount: 3
     },
-    5: {
-      banner: '/static/images/team/test.png',
+    {
+      banner: '/static/images/services/hair.png',
+      userPhoto: '/static/images/team/teammember4.png',
       name: 'Bellinda Sullivan',
       jobDesc: 'Makeup, Massage',
       description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
       stars: 5,
-      ratingsCount: 12
+      instant: false, ratingsCount: 12
     },
-    6: {
-      banner: '/static/images/team/test.png',
+    {
+      banner: '/static/images/services/body.png',
+      userPhoto: '/static/images/team/teammember1.png',
       name: 'Bellinda Sullivan',
       jobDesc: 'Makeup, Massage',
       description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
       stars: 1,
-      ratingsCount: 23
-    },
-  }
+      instant: true, ratingsCount: 23
+    }
+  ]
 }
 
 export default function (state = INITIAL_STATE, { type, payload }) {

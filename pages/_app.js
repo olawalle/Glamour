@@ -6,6 +6,7 @@ import { Provider } from 'react-redux'
 
 import 'semantic-ui-less/semantic.less';
 import '../app.less';
+import 'react-input-range/lib/css/index.css'
 
 
 class Glamour extends App {
