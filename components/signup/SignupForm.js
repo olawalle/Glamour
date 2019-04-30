@@ -107,9 +107,9 @@ const SignupForm = (props) => {
   }, [])
 
   return (
-    <Grid className="signupForm" columns={2} centered>
+    <Grid id="signupForm" className="signupForm" columns={2} centered>
       <Grid.Row>
-        <Grid.Column width="7" style={styles.Column}>
+        <Grid.Column mobile={14} tablet={11} largeScreen={8} widescreen={7}  style={styles.Column}>
           <Header style={styles.Header} textAlign="center" as='h1'>
             Sign up
             <Header.Subheader style={styles.SubHeader}>

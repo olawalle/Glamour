@@ -12,7 +12,7 @@ const styles = {
 
 const Step = (props) => {
   return (
-    <Grid.Column>
+    <Grid.Column className="step">
       <Image className="h40" src={props.image} />
       <Header style={styles.Header} as="h3">{props.header}</Header>
       <Header style={styles.SubHeader} className="is-grey fw100" as="h4">{props.subHeader}</Header>

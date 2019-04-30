@@ -51,7 +51,7 @@ const HowItWorks = (props) => {
   }
 
   return (
-    <Segment style={styles.Segment}>
+    <Segment className="howitworks" style={styles.Segment}>
       <Container>
         <Header style={styles.Header} textAlign="center" as="h4">How it works</Header>
         <Grid stackable columns={4}>

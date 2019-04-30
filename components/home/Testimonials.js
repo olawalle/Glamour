@@ -31,17 +31,10 @@ const Testimonials = (props) => {
 
   const owlCarousel = useRef(null);
 
-  const handleNextAction = (e) => {
-    //Initialize Plugin
-    $(".owl-carousel").owlCarousel()
+  const handleNextAction = () => {
 
-    //get carousel instance data and store it in variable owl
-    var owl = $(".owl-carousel").data('owlCarousel');
-
-    //Public methods
-    // owl.next()   // Go to next slide
-    console.log($(".owl-carousel"))
     console.log(owlCarousel)
+    console.log(owlCarousel.current.$ele.next(100));
   }
 
   return (
