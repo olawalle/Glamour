@@ -9,7 +9,7 @@ const styles = {
   Column: {
     background: 'white',
     padding: '45px 20px',
-    margin: '30px 0px',
+    margin: '2% 0px',
     paddingBottom: '15px'
   },
   Link: {
