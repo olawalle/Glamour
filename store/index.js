@@ -31,3 +31,14 @@ export const getTeamMembers = (state) => {
 export const getProviders = (state) => {
   return state.serviceProviders
 }
+export const getTopTrends = (state) => {
+  return state.trend.byId.map((id) => state.trend.allTopTrends[id])
+}
+
+export const getTestimonials = (state) => {
+  return state.testimonial.all
+}
+
+export const getBeautyServices = (state) => {
+  return state.service.beautyServices.byId.map((id) => state.service.beautyServices.allServices[id])
+}

@@ -8,7 +8,8 @@ const styles = {
   Column: {
     background: 'white',
     padding: '45px 20px',
-    marginTop: '135px',
+    // marginTop: '135px',
+    marginTop: '4%',
     paddingBottom: '15px'
   },
   Link: {
@@ -78,9 +79,9 @@ const LoginForm = (props) => {
 
 
   return (
-    <Grid className="loginForm" columns={2} centered>
+    <Grid id="loginForm" className="loginForm" columns={2} centered>
       <Grid.Row>
-        <Grid.Column width="7" style={styles.Column}>
+        <Grid.Column mobile={14} tablet={9} computer={6}  style={styles.Column}>
           <Header style={styles.Header} textAlign="center" as='h1'>
             Log in
             <Header.Subheader style={styles.SubHeader}>

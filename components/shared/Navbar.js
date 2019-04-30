@@ -15,7 +15,8 @@ const styles = {
     marginBottom: '0px'
   },
   Image: {
-    height: '50px'
+    height: '50px',
+    cursor: 'pointer'
   }
 }
 
@@ -29,27 +30,29 @@ const Navbar = () => {
     >
       <Container >
         <Menu.Item>
-          <Image style={styles.Image} src='/static/images/logo.svg' size='small' />
+          <Link href="/home">
+            <Image style={styles.Image} src='/static/images/logo.svg' size='small' />
+          </Link>
         </Menu.Item>
         <Menu.Menu position='right'>
           <Link href="/serviceproviders">
             <Menu.Item as='a'>Services</Menu.Item>
           </Link>
           <Link href="/aboutus">
-            <Menu.Item as='a'>About Us</Menu.Item>
+            <Menu.Item  className="mobile hidden" position='right' as='a'>About Us</Menu.Item>
           </Link>
           <Link href="/signup/provider">
-            <Menu.Item as='a'>Become a provider</Menu.Item>
+            <Menu.Item className="mobile hidden" position='right' as='a'>Become a provider</Menu.Item>
           </Link>
           <Link href="/login">
-            <Menu.Item as='a'>Log in</Menu.Item>
+            <Menu.Item position='right' as='a'>Log in</Menu.Item>
           </Link>
           <Link href="/signup">
-            <Menu.Item as='div'>
+            <Menu.Item className="mobile hidden" as='div'>
               <Button style={styles.signUp} size="huge" secondary>Sign up</Button>
             </Menu.Item>
           </Link>
-          <Menu.Item as='a'>
+          <Menu.Item className="mobile hidden" as='a'>
             <Image style={styles.basket} src='/static/images/basket.svg' size='mini' />
           </Menu.Item>
         </Menu.Menu>

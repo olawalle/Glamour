@@ -1,8 +1,6 @@
 
 // FONTS
 
-// @import url('../node_modules/font-awesome/css/font-awesome.min.css');
-
 @font-face {
         font-family: sofiaproblack;
         src: url(/static/fonts/sofiapro/Sofia\ Pro\ Black.ttf);
@@ -48,12 +46,62 @@
         align-items: center;
 }
 
+.is-h-centered {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+}
+
+.pr-0{
+        padding-right: 0px !important
+}
+
+.pl-0{
+        padding-left: 0px !important
+}
+
 .is-flex {
         display: flex !important
 }
 
+.has-full-width{
+        width: 100% !important;
+}
+
+.has-width-95{
+        width: 95% !important;
+}
+
 .mt-0{
         margin-top: 0px !important;
+}
+
+// .mb-30 {
+//         margin-bottom: 30px !important;
+// }
+
+// .mb-70 {
+//         margin-bottom: 70px !important;
+// }
+
+.is-grey {
+        color: #637381 !important;
+}
+
+.fw100{
+        font-weight: 100 !important;
+}
+
+.h40{
+        height: 40px !important;
+}
+
+.h30{
+        height: 30px !important;
+}
+
+.p0{
+        padding: 0px !important;
 }
 
 
@@ -143,6 +191,96 @@ p{
 
 }
 
+// HOME
+.home {
+        .ui.header {
+                font-family: freightproblack !important;
+                font-size: 45px !important;
+                margin: 0px !important;
+                line-height: 50px !important;
+        }
+
+        .sub.header {
+                font-family: sofiapromedium !important;
+                line-height: 28px !important;
+        }
+
+        .header-container {
+                margin-bottom: 20px;
+        }
+
+        .subheader-container {
+                margin-bottom: 40px;
+        }
+
+        .searchForm {
+                input {
+                        height: 60px;
+                        width: 95% !important;
+                        border: none !important
+                }
+
+                .container {
+                        background: white;
+                }
+
+                img {
+                        width: 17px !important;
+                        height: 17px !important;
+                        position: absolute;
+                        top: 23px;
+                        left: -5px;
+                }
+
+                .date--picker{
+                        img {
+                                top: 28px;
+                                left: -6%;
+                                // left: -22px;
+                        }
+                }
+        }
+}
+
+.testimonials {
+        margin-bottom: 60px;
+        .item {
+                // height: 150px !important;
+                background: rgba(232, 70, 113, 0.02) !important;
+                // height: 300px !important;
+                padding: 20px;
+                height: 332px !important;
+                // padding: 20px;
+                padding: 50px 40px !important;
+                // width: 351px !important;
+        }
+
+        .testimonials--testimony{
+                // font-family: freightproblack !important;
+                font-family: sofiapromedium !important;
+                height: 140px !important;
+
+        }
+
+        .testimonials--fullname {
+                margin-bottom: 4px !important;
+        }
+
+        .owl-dots {
+                margin-top: 30px !important;
+        }
+
+        .owl-theme .owl-dots .owl-dot span{
+                background: rgba(232, 70, 113, 0.25) !important;
+        }
+
+        .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+                background: #E84669 !important;
+                height: 12px !important;
+                width: 12px !important;
+            }
+}
+
 // LOG IN PAGE
 .loginForm {
         font-size: 16px !important;
@@ -211,4 +349,113 @@ p{
 }
 .providerForm .dropdown.icon {
         margin: 0.214286em !important
+}
+.aboutus--introduction {
+        p {
+                line-height: 25px;
+        }
+}
+
+.moreinfo-text {
+        width: 500px
+}
+
+// .ant-calendar .ant-calendar-time {
+//         width: 100% !important
+// }
+
+
+
+@media only screen and (max-width: 980px) {
+        .moreinfo-text {
+                width: 95%
+        }
+      }
+
+@media only screen and (max-width: 798px) {
+        .home  {
+                min-height: 850px !important;
+                .searchForm .date--picker img {
+                        left: -5px !important;
+                }
+
+                .searchForm .container {
+                        padding: 0px 22px;
+                }
+
+                .header-container {
+                        margin-bottom: 30px;
+                }
+
+                .subheader-container {
+                        margin-bottom: 70px;
+                }
+
+                .searchForm .button {
+                        width: 100% !important;
+                }
+        }
+
+}
+
+/* Mobile */
+
+@media only screen and (max-width: 767px) {
+        [class*="mobile hidden"],
+        [class*="tablet only"]:not(.mobile),
+        [class*="computer only"]:not(.mobile),
+        [class*="large monitor only"]:not(.mobile),
+        [class*="widescreen monitor only"]:not(.mobile),
+        [class*="or lower hidden"] {
+                display: none !important;
+        }
+
+        // .ant-calendar-picker-container .ant-calendar-picker-container-placement-bottomLeft{
+        //         width: 350px !important
+        // }
+}
+
+@media only screen and (max-width: 580px) {
+        .home  {
+                .searchForm input {
+                        width: 91% !important;
+                }
+        }
+
+}
+
+@media only screen and (max-width: 480px) {
+        #signupForm {
+                .column {
+                        width: 100% !important
+                }
+
+                form{
+                        padding: 5px 0px !important;
+                }
+        }
+
+        #loginForm {
+                .column {
+                        width: 100% !important
+                }
+
+                form{
+                        padding: 5px 0px !important;
+                }
+        }
+
+
+        .howitworks {
+                .step {
+                        display: flex !important;
+                        justify-content: center !important;
+                        flex-direction: column !important;
+                        align-items: center !important;
+                        text-align: center !important;
+                }
+        }
+
+
+
 }

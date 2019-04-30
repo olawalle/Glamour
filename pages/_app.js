@@ -3,9 +3,9 @@ import React from 'react'
 import withReduxStore from '../lib/with-redux-store'
 import { Provider } from 'react-redux'
 
-import '../app.less';
+
 import 'semantic-ui-less/semantic.less';
-// import Head from 'next/head'
+import '../app.less';
 
 
 class Glamour extends App {

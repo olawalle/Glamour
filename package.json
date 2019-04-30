@@ -14,19 +14,28 @@
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-less": "^1.0.1",
+    "antd": "^3.16.6",
     "axios": "^0.18.0",
     "cross-env": "^5.2.0",
+    "element-react": "^1.1.2",
+    "element-theme-default": "^1.4.13",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "express": "^4.16.4",
     "font-awesome": "^4.7.0",
+    "jquery": "^3.4.0",
+    "lodash": "^4.17.11",
     "next": "8.1.0",
     "next-fonts": "^0.17.0",
     "next-nprogress": "^1.4.0",
     "nextjs-progressbar": "0.0.3",
+    "prop-types": "^15.7.2",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-fontawesome": "^1.6.1",
+    "react-hot-loader": "^4.5.3",
+    "react-owl-carousel": "^2.3.1",
+    "react-owl-carousel2": "0.0.2",
     "react-redux": "^5.0.1",
     "redux": "^3.6.0",
     "redux-devtools-extension": "^2.13.2",
@@ -41,6 +50,7 @@
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-jest": "^24.7.1",
+    "babel-plugin-import": "^1.11.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^2.1.1",
@@ -53,8 +63,5 @@
     "sass-loader": "^7.1.0",
     "semantic-ui-less": "^2.4.1",
     "url-loader": "^1.1.2"
-  },
-  "browser": {
-    "faker": false
   }
 }
