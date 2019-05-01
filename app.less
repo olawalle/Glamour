@@ -173,7 +173,16 @@ p{
         }
 }
 
-// SIGN UP PAGE
+
+
+
+// AUTH PAGEs
+.auth {
+    background: #020202 !important;
+    min-height: 100vh !important;
+    background-image: url("/static/images/auth.png") !important;
+    background-size: cover !important;
+}
 .signupForm {
         font-size: 16px !important;
         .dropdown {
@@ -321,6 +330,12 @@ p{
 .forgotPasswordForm {
         font-size: 16px !important;
 
+        .column {
+                background: white;
+                padding: 45px 20px 15px !important;
+                margin-top: 7% !important;
+        }
+
         .ui.header {
                 font-family: freightproblack !important;
                 font-size: 32px !important;
@@ -335,6 +350,10 @@ p{
 
 //  NAVBAR
 .navbar {
+        margin-bottom: 0px !important;
+        border-radius: 0px !important;
+        border: none !important;
+        box-shadow: 0px 5px 10px rgba(99, 115, 129, 0.02) !important;
         a {
                 font-family: sofiapromedium;
                 font-size: 15px !important;
@@ -396,9 +415,10 @@ p{
         width: 500px
 }
 
-// .ant-calendar .ant-calendar-time {
-//         width: 100% !important
-// }
+.logo {
+        height: 50px !important;
+        cursor: pointer !important
+}
 
 
 @media only screen and (min-width: 1200px){
@@ -452,10 +472,6 @@ p{
         [class*="or lower hidden"] {
                 display: none !important;
         }
-
-        // .ant-calendar-picker-container .ant-calendar-picker-container-placement-bottomLeft{
-        //         width: 350px !important
-        // }
 }
 
 @media only screen and (max-width: 580px) {
@@ -468,6 +484,77 @@ p{
 }
 
 @media only screen and (max-width: 480px) {
+
+        p, .termsandconditions p, .privacypolicy p {
+                font-size: 15px !important
+        }
+
+        .privacypolicy {
+                padding: 0px 0% !important;
+        }
+
+        .aboutus--introduction {
+                img {
+                     height:  415px  !important
+                }
+        }
+
+        .home {
+
+                padding: 0px !important;
+                min-height: 560px !important;
+                margin-bottom: 140px !important ;
+
+                .ui.container {
+                        margin: 0px !important;
+                }
+
+                .searchForm {
+                        box-shadow: 0px 4px 20px 0 rgba(34, 36, 38, 0.15) !important;
+                        background: white !important;
+                        z-index: 3;
+                }
+
+                .grid {
+                        height: 380px !important
+                }
+
+                h4 {
+                        margin: 34px 18px !important;
+                }
+
+                .ui.header {
+                        font-family: freightproblack !important;
+                        font-size: 26px !important;
+                        margin: 0px 40px !important;
+                        line-height: 30px !important;
+                }
+
+                .header-container {
+                        margin-bottom: 10px !important;
+                }
+
+                .sub.header {
+                        font-family: sofiapromedium !important;
+                        line-height: 20px !important;
+                        margin: 0px 35px !important;
+                        font-size: 15px !important;
+                }
+
+        }
+
+        .auth {
+                background: none !important;
+        }
+
+        .logo {
+                height: 32px !important;
+        }
+
+        .navbar {
+                box-shadow: 0px 1px 20px 0 rgba(34, 36, 38, 0.15) !important;
+        }
+
         #signupForm {
                 .column {
                         width: 100% !important

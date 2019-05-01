@@ -5,10 +5,6 @@ import * as actions from '../../store/actions';
 
 const styles = {
   Column: {
-    background: 'white',
-    padding: '45px 20px',
-    marginTop: '160px',
-    paddingBottom: '15px'
   },
   Form: {
     padding: '5px 25px'
@@ -67,7 +63,7 @@ const forgotPasswordResetForm = (props) => {
   return (
     <Grid className="forgotPasswordForm" columns={2} centered>
       <Grid.Row>
-        <Grid.Column width="7" style={styles.Column}>
+        <Grid.Column mobile={14} tablet={7} largeScreen={7} widescreen={7}>
           <Header style={styles.Header} textAlign="center" as='h1'>
             Recover password
             <Header.Subheader style={styles.SubHeader}>

@@ -67,7 +67,7 @@ const Navbar = (props) => {
       <Container >
         <Menu.Item>
           <Link href="/home">
-            <Image style={styles.Image} src='/static/images/logo.svg' size='small' />
+            <Image className="logo" src='/static/images/logo.svg' size='small' />
           </Link>
         </Menu.Item>
         <Menu.Menu position='right'>
