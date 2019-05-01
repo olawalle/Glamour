@@ -87,7 +87,7 @@ const styles = {
     margin: '2em 0em'
   },
   RangeCol: {
-    height: '95px',
+    height: '65px',
   },
   RangeCol_: {
     padding: '17px 20px 0 20px'

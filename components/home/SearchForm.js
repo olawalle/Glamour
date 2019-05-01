@@ -7,6 +7,7 @@ const styles = {
   SearchComtainer: {
   },
   Container:{
+    paddingLeft: '10px'
   },
   Button: {
     height: '60px',
