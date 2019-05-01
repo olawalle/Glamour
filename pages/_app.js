@@ -2,10 +2,12 @@ import App, { Container } from 'next/app'
 import React from 'react'
 import withReduxStore from '../lib/with-redux-store'
 import { Provider } from 'react-redux'
+import { PersistGate, pers } from 'redux-persist/integration/react'
 
 
 import 'semantic-ui-less/semantic.less';
 import '../app.less';
+import 'react-input-range/lib/css/index.css'
 
 
 class Glamour extends App {
@@ -24,7 +26,9 @@ class Glamour extends App {
     return (
       <Container>
         <Provider store={reduxStore}>
-          <Component {...pageProps} />
+          {/* <PersistGate loading={null}>         */}
+            <Component {...pageProps} />
+          {/* </PersistGate> */}
         </Provider>
       </Container>
     )

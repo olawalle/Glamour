@@ -28,6 +28,9 @@ export const getTeamMembers = (state) => {
   return state.team.byId.map((id) => state.team.allMembers[id])
 }
 
+export const getProviders = (state) => {
+  return state.serviceProviders.allProviders
+}
 export const getTopTrends = (state) => {
   return state.trend.byId.map((id) => state.trend.allTopTrends[id])
 }
