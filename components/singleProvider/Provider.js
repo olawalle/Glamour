@@ -95,7 +95,7 @@ const styles = {
         height: '40px',
         textAlign: 'center',
         position: 'relative',
-        zIndex: '1000',
+        zIndex: '1',
     },
     instant_: {
         width: '40%',
