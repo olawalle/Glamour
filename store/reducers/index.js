@@ -7,11 +7,13 @@ import teamReducer from '../reducers/team';
 import serviceReducer from '../reducers/service';
 import trendReducer from '../reducers/trend';
 import testimonialReducer from '../reducers/testimonial';
+import serviceProviders from '../reducers/serviceProviders'
 
 let rootReducer = combineReducers({
   user: userReducer,
   auth: authReducer,
   team: teamReducer,
+  serviceProviders: serviceProviders,
   service: serviceReducer,
   trend: trendReducer,
   testimonial: testimonialReducer,
