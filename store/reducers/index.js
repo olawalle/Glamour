@@ -7,6 +7,7 @@ import teamReducer from '../reducers/team';
 import serviceReducer from '../reducers/service';
 import trendReducer from '../reducers/trend';
 import testimonialReducer from '../reducers/testimonial';
+import notificationReducer from '../reducers/notification';
 
 let rootReducer = combineReducers({
   user: userReducer,
@@ -15,6 +16,7 @@ let rootReducer = combineReducers({
   service: serviceReducer,
   trend: trendReducer,
   testimonial: testimonialReducer,
+  notifications: notificationReducer
 });
 
 export default rootReducer;
