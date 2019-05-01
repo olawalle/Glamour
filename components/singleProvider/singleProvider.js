@@ -16,11 +16,10 @@ const styles = {
     },
     cardBanner: {
         position: 'relative',
-        top: '0',
+        top: '-40px',
         width: '100%',
         height: '190px',
-        overflow: 'hidden',
-        backgroundColor: 'green'
+        overflow: 'hidden'
     },
     BannerImage: {
         width: '100%'
@@ -31,7 +30,7 @@ const styles = {
         zIndex: '100',
         position: 'relative',
         border: '3px solid #fff',
-        margin: '-30px auto 0 auto',
+        margin: '-80px auto 0 auto',
         overflow: 'hidden'
     },
     roundImageWrap: {
@@ -40,7 +39,7 @@ const styles = {
         zIndex: '100',
         position: 'relative',
         border: '3px solid #E84671',
-        margin: '-30px auto 0 auto',
+        margin: '-80px auto 0 auto',
         overflow: 'hidden'
     },
     roundImage: {
@@ -72,7 +71,7 @@ const styles = {
     name: {
         color: '#212B36',
         fontSize: '16px',
-        margin: '-40px 0 12px 0',
+        margin: '20px 0 12px 0',
         fontFamily: 'fontfreightproblack',
     },
     jobDesc: {
@@ -96,7 +95,7 @@ const styles = {
         height: '40px',
         textAlign: 'center',
         position: 'relative',
-        top: '-240px',
+        zIndex: '1000',
     },
     instant_: {
         width: '40%',
@@ -105,7 +104,6 @@ const styles = {
         height: '40px',
         textAlign: 'center',
         position: 'relative',
-        top: '-240px'
     }
 }
 
@@ -128,15 +126,15 @@ let empty = (n) => {
 
 const SingleProvider = (props) => (
     <div style={styles.card}>
+        {
+            props.instant ? <div style={styles.instant}>Instant Booking</div> : <div style={styles.instant_}></div>
+        }
         <div style={styles.cardBanner}>
             <img src={props.banner} style={styles.BannerImage}  />
         </div>
 
         {
             props.instant ? <div style={styles.roundImageWrap}><Image src={props.userPhoto} styles={styles.roundImage} /></div> : <div style={styles.roundImageWrap_}><Image src={props.userPhoto} styles={styles.roundImage} /></div> 
-        }
-        {
-            props.instant ? <div style={styles.instant}>Instant Booking</div> : <div style={styles.instant_}></div>
         }
          <div style={styles.textWrap}>
              <h2 style={styles.name}>

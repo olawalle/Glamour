@@ -17,6 +17,14 @@ const styles = {
   Image: {
     height: '50px',
     cursor: 'pointer'
+  },
+  UserIconWrap: {
+    background: '#fafafa',
+    padding: '0.92857143em 2.4em'
+  },
+  UserIcon: {
+    margin: '0 10px',
+    borderRadius: '50%',
   }
 }
 
@@ -41,7 +49,7 @@ const Navbar = () => {
           <Link href="/aboutus">
             <Menu.Item  className="mobile hidden" position='right' as='a'>About Us</Menu.Item>
           </Link>
-          <Link href="/signup/provider">
+          {/* <Link href="/signup/provider">
             <Menu.Item className="mobile hidden" position='right' as='a'>Become a provider</Menu.Item>
           </Link>
           <Link href="/login">
@@ -51,7 +59,10 @@ const Navbar = () => {
             <Menu.Item className="mobile hidden" as='div'>
               <Button style={styles.signUp} size="huge" secondary>Sign up</Button>
             </Menu.Item>
-          </Link>
+          </Link> */}
+          <Menu.Item style={styles.UserIconWrap} as='a'>
+            <Image style={styles.UserIcon} src='/static/images/team/teammember1.png' size='mini' /> Melissa Moe
+          </Menu.Item>
           <Menu.Item className="mobile hidden" as='a'>
             <Image style={styles.basket} src='/static/images/basket.svg' size='mini' />
           </Menu.Item>

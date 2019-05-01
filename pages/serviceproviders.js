@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import Auth from '../components/shared/Auth';
 import SingleProvider from '../components/\/singleProvider/singleProvider'
 import ProvidersForm from '../components/providersForm/providersForm'
+import InnerNav from '../components/shared/InnerNav'
+import Footer from '../components/shared/Footer';
 import withMasterLayout from '../pages/layouts/withMasterLayout';
 import { Container } from 'semantic-ui-react';
 import { connect } from 'react-redux';
@@ -33,6 +35,8 @@ class ServiceProvider extends Component {
 
     render () {
         return (
+            <>
+            <InnerNav />
             <Container>
                 <div style={styles.pageWrap}>
                     <ProvidersForm />
@@ -50,6 +54,8 @@ class ServiceProvider extends Component {
                     </Grid>  
                 </div>
             </Container>
+            <Footer />
+            </>
         );
     }
 }

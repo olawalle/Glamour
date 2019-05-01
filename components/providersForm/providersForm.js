@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import Link from 'next/link';
-import { Grid, Header, Select, Input, Checkbox, Button } from 'semantic-ui-react';
-import { connect } from 'react-redux';
-import * as actions from '../../store/actions';
-import Password from '../../components/shared/Password'
+import { Grid, Select, Input } from 'semantic-ui-react';
 import InputRange from 'react-input-range';
+import { DatePicker } from 'antd';
 
 const styles = {
   pageWrap: {
@@ -37,6 +34,13 @@ const styles = {
     position: 'relative',
     top: '-66px',
     left: '21px',
+    fontSize: '10px',
+    color: '#637381'
+  },
+  dateLabel: {
+    position: 'relative',
+    top: '-50px',
+    left: '37px',
     fontSize: '10px',
     color: '#637381'
   },
@@ -83,10 +87,10 @@ const styles = {
     margin: '2em 0em'
   },
   RangeCol: {
-    height: '95px'
+    height: '95px',
   },
   RangeCol_: {
-    paddingTop: '17px'
+    padding: '17px 20px 0 20px'
   },
   RangeLabel: {
     fontSize: '16px',
@@ -173,14 +177,13 @@ class ProviderForm extends Component {
                     </span>
                 </Grid.Column>
                 <Grid.Column  style={styles.RangeCol}>
-                    <Select
-                    style={styles.Select}
-                    fluid
-                    options={options}
-                    placeholder='Select date and time'
+                    <DatePicker
+                      className="date--picker has-width-95"
+                      showTime
+                      placeholder="When do you want this?"
+                      // suffixIcon={<Image src="../../static/images/calender.png" />}
                     />
-                    <img src="../../static/icons/sort.svg" style={styles.selectIcon} alt=""/>
-                    <span style={styles.selectLabel}>
+                    <span style={styles.dateLabel}>
                       When do you want this?
                     </span>
                 </Grid.Column>
@@ -188,13 +191,13 @@ class ProviderForm extends Component {
                   <div style={styles.RangeCol_}>
                     <span style={styles.RangeLabel}>Price range</span>
                     <span style={styles.RangeValues}>£{this.state.value.min} - £{this.state.value.max}</span>
-                  </div>
                   <InputRange
                     style={styles.Range}
                     maxValue={20}
                     minValue={0}
                     value={this.state.value}
                     onChange={value => this.setState({ value })} />
+                  </div>
                 </Grid.Column>
             </Grid.Row>
         </Grid>
