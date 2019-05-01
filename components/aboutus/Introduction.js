@@ -13,11 +13,11 @@ const styles = {
     fontFamily: 'sofiapro'
   },
   Row: {
-    height: '400px'
+    minHeight: '400px'
   },
   Container: {
     margin: '50px 0px',
-    height: '500px'
+    minHeight: '500px'
   },
   Image: {
     height: '500px'
@@ -27,7 +27,7 @@ const styles = {
 const Introduction = () => {
   return (
     <Container className="aboutus--introduction" style={styles.Container} >
-      <Grid columns={2}>
+      <Grid stackable columns={2}>
         <Grid.Row style={styles.Row}>
           <Grid.Column width="10" style={styles.Column}>
             <p className="mt-0">Did he just throw my cat out of the window? Did he just throw my cat out of the window? This thing comes fully loaded. AM/FM radio, reclining bucket seats, and... power windows. Yeah, but John, if The Pirates of the Caribbean breaks down, the pirates don’t eat the tourists.</p>
