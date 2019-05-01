@@ -1,6 +1,7 @@
 import React from 'react';
 import { Menu, Image, Button, Container } from 'semantic-ui-react';
 import Link from 'next/link';
+import { connect } from 'react-redux';
 
 const styles = {
   signUp: {
@@ -28,7 +29,34 @@ const styles = {
   }
 }
 
-const Navbar = () => {
+
+const showSomeLinks = (props) => {
+  if (!props.isLoggedIn) {
+    return (
+      <>
+        <Link href="/signup/provider">
+          <Menu.Item className="mobile hidden" position='right' as='a'>Become a provider</Menu.Item>
+        </Link>
+        <Link href="/login">
+          <Menu.Item position='right' as='a'>Log in</Menu.Item>
+        </Link>
+        <Link href="/signup">
+          <Menu.Item className="mobile hidden" as='div'>
+            <Button style={styles.signUp} size="huge" secondary>Sign up</Button>
+          </Menu.Item>
+        </Link>
+      </>
+    )
+  } else {
+    return (   
+      <Menu.Item style={styles.UserIconWrap} as='a'>
+        <Image style={styles.UserIcon} src='/static/images/team/teammember1.png' size='mini' /> Melissa Moe
+      </Menu.Item>
+    )
+  }
+}
+
+const Navbar = (props) => {
   return (
     <Menu
       borderless
@@ -49,20 +77,7 @@ const Navbar = () => {
           <Link href="/aboutus">
             <Menu.Item  className="mobile hidden" position='right' as='a'>About Us</Menu.Item>
           </Link>
-          {/* <Link href="/signup/provider">
-            <Menu.Item className="mobile hidden" position='right' as='a'>Become a provider</Menu.Item>
-          </Link>
-          <Link href="/login">
-            <Menu.Item position='right' as='a'>Log in</Menu.Item>
-          </Link>
-          <Link href="/signup">
-            <Menu.Item className="mobile hidden" as='div'>
-              <Button style={styles.signUp} size="huge" secondary>Sign up</Button>
-            </Menu.Item>
-          </Link> */}
-          <Menu.Item style={styles.UserIconWrap} as='a'>
-            <Image style={styles.UserIcon} src='/static/images/team/teammember1.png' size='mini' /> Melissa Moe
-          </Menu.Item>
+          {showSomeLinks(props)}
           <Menu.Item className="mobile hidden" as='a'>
             <Image style={styles.basket} src='/static/images/basket.svg' size='mini' />
           </Menu.Item>
@@ -72,4 +87,8 @@ const Navbar = () => {
   );
 }
 
-export default Navbar;
+const mapStateToProps = (state) => ({
+  isLoggedIn: state.auth.login.isLoggedIn
+})
+
+export default connect(mapStateToProps)(Navbar);

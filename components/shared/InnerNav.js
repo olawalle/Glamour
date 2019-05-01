@@ -27,21 +27,26 @@ const styles = {
       marginTop: '-1px',
       background: '#FAFAFA'
   },
-    ListItem: {
-        display: 'inline-block',
-        width: '20%',
-        textAlign: 'center'
-    },
-    Para: {
-        // marginTop: '-20px'
-    },
-    Notif: {
-        color: '#E84671',
-        fontSize: '60px',
-        position: 'relative',
-        right: '-10px',
-        top: '-8px'
-    }
+  ListItem: {
+    display: 'inline-block',
+    width: '20%',
+    textAlign: 'center',
+    height: '80px',
+  },
+  ListItemContents: {
+    marginTop: '10px'
+  },
+  Para: {
+    // marginTop: '-20px'
+  },
+  Notif: {
+    color: '#E84671',
+    height: '12px',
+    fontSize: '60px',
+    position: 'relative',
+    right: '-10px',
+    top: '-8px'
+  }
 }
 
 
@@ -64,11 +69,13 @@ const activate = (i) => {
 const renderLinks = () => {
     return links.map((link, i) => {
         return <li style={styles.ListItem} key={'list'+i} className={link.is} onClick={() => activate(i)}>
-                    <p style={styles.Para}>
-                        <label style={styles.Notif}>.</label>
-                        <img style={styles.basket} src={link.icon} size='mini' />
-                        {link.link}
-                    </p>
+                    <div style={styles.ListItemContents}>
+                        <span style={styles.Notif}>.</span>
+                        <span style={styles.Para}>
+                            <img style={styles.basket} src={link.icon} size='mini' />
+                            {link.link}
+                        </span>
+                    </div>
                 </li>
     })
 }

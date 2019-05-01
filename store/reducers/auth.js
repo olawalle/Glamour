@@ -1,4 +1,4 @@
-import { UPDATE_SIGNUP_FORM } from '../actions/types';
+import { UPDATE_SIGNUP_FORM, UPDATE_LOGIN_FORM } from '../actions/types';
 
 const INITIAL_STATE = {
   signup: {
@@ -10,6 +10,9 @@ const INITIAL_STATE = {
     referral: null,
     accept: false
   },
+  login: {
+    isLoggedIn: false
+  }
 }
 
 export default function (state = INITIAL_STATE, { type, payload }) {
@@ -20,6 +23,15 @@ export default function (state = INITIAL_STATE, { type, payload }) {
         ...state,
         signup: {
           ...state.signup,
+          ...payload
+        }
+      }
+    }
+    case UPDATE_LOGIN_FORM: {
+      return {
+        ...state,
+        login: {
+          ...state.login,
           ...payload
         }
       }

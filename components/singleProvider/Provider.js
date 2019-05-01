@@ -124,7 +124,7 @@ let empty = (n) => {
     return arr
 }
 
-const SingleProvider = (props) => (
+const Provider = (props) => (
     <div style={styles.card}>
         {
             props.instant ? <div style={styles.instant}>Instant Booking</div> : <div style={styles.instant_}></div>
@@ -164,4 +164,4 @@ const SingleProvider = (props) => (
     </div>
 )
 
-export default SingleProvider
+export default Provider

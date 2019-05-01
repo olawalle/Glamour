@@ -29,7 +29,7 @@ export const getTeamMembers = (state) => {
 }
 
 export const getProviders = (state) => {
-  return state.serviceProviders
+  return state.serviceProviders.allProviders
 }
 export const getTopTrends = (state) => {
   return state.trend.byId.map((id) => state.trend.allTopTrends[id])

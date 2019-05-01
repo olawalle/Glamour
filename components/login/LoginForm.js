@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Grid, Header, Input, Checkbox, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
+import Router from 'next/router';
 
 const styles = {
   Column: {
@@ -60,11 +61,12 @@ const LoginForm = (props) => {
     Object.keys(loginFormData).forEach((item) => {
       if (!loginFormData[item]) {
         _formErrors[item] = true
+      } else {
+        props.updateLoginForm({...loginFormData, isLoggedIn: true})
+        Router.push('/serviceproviders')
       }
     })
-
     setFormErrors(_formErrors)
-
     console.log(loginFormData, formErrors)
 
     // CALL API WITH loginFormData

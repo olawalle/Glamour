@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import Auth from '../components/shared/Auth';
-import SingleProvider from '../components/\/singleProvider/singleProvider'
+import Provider from '../components/singleProvider/Provider'
 import ProvidersForm from '../components/providersForm/providersForm'
 import InnerNav from '../components/shared/InnerNav'
 import Footer from '../components/shared/Footer';
 import withMasterLayout from '../pages/layouts/withMasterLayout';
 import { Container } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { Grid, Header, Select, Input, Checkbox, Button } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
+import { getProviders } from '../store'
 
 
 const styles = {
@@ -30,13 +31,20 @@ class ServiceProvider extends Component {
     }
 
     componentWillMount() {
-        console.log(this.props)
+    }
+
+    showInnerNav = () => {
+        if (this.props.isLoggedIn) {
+            return <InnerNav />
+        }
     }
 
     render () {
         return (
             <>
-            <InnerNav />
+            {
+                this.showInnerNav()
+            }
             <Container>
                 <div style={styles.pageWrap}>
                     <ProvidersForm />
@@ -46,7 +54,7 @@ class ServiceProvider extends Component {
                             {
                                 this.props.serviceProviders.map((provider, i) => (
                                     <Grid.Column >
-                                        <SingleProvider  key={`provider${i}`} {...provider} />
+                                        <Provider  key={`provider${i}`} {...provider} />
                                     </Grid.Column>
                                 ))
                             }
@@ -61,7 +69,8 @@ class ServiceProvider extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    serviceProviders: state.serviceProviders.allProviders
+    serviceProviders: getProviders(state),
+    isLoggedIn: state.auth.login.isLoggedIn
 })
 
 
