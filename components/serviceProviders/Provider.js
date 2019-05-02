@@ -1,5 +1,7 @@
 import React from 'react'
 import { Image, Button } from 'semantic-ui-react'
+import rootReducer from '../../store/reducers';
+import Router from 'next/router';
 
 
 const styles = {
@@ -8,11 +10,11 @@ const styles = {
     },
     card: {
         width: '100%',
-        margin: '0 0 40px 0',
         justifyContent: 'center',
         overflow: 'hidden',
         boxShadow: '0px 0px 10px rgba(99, 115, 129, 0.1)',
-        fontFamily: 'sofiapro'
+        fontFamily: 'sofiapro',
+        margin: '0 0 40px 0'
     },
     cardBanner: {
         position: 'relative',
@@ -124,8 +126,15 @@ let empty = (n) => {
     return arr
 }
 
+let toDetails = (props) => {
+    Router.push({
+        pathname: '/serviceDetails',
+        query: { provider: props.id }
+    })
+}
+
 const Provider = (props) => (
-    <div style={styles.card}>
+    <div style={styles.card} className="providerCard">
         {
             props.instant ? <div style={styles.instant}>Instant Booking</div> : <div style={styles.instant_}></div>
         }
@@ -159,7 +168,7 @@ const Provider = (props) => (
             
             <span style={styles.count}>({props.ratingsCount})</span>
              <br/>
-            <Button style={styles.signUp} size="huge" secondary>View Profile</Button>
+            <Button style={styles.signUp} size="huge" secondary onClick={() => toDetails(props)}>View Profile</Button>
         </div>
     </div>
 )

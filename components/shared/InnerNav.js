@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/InnerNav.less'
+import './less/InnerNav.less'
 
 const styles = {
   signUp: {
@@ -83,7 +83,7 @@ const renderLinks = () => {
 const InnerNav = () => {
   return (
     <>
-        <ul style={styles.List}>
+        <ul style={styles.List} className="innerNav">
             {
                 renderLinks()
             }

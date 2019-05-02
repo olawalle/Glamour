@@ -9,6 +9,7 @@ const INITIAL_STATE = {
       jobDesc: 'Makeup, Massage',
       description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
       stars: 3,
+      id: '1',
       instant: true, ratingsCount: 16
     },
     {
@@ -18,6 +19,7 @@ const INITIAL_STATE = {
       jobDesc: 'Makeup, Massage',
       description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
       stars: 3,
+      id: '2',
       instant: false, ratingsCount: 12
     },
     {
@@ -27,6 +29,7 @@ const INITIAL_STATE = {
       jobDesc: 'Makeup, Massage',
       description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
       stars: 5,
+      id: '3',
       instant: true, ratingsCount: 14
     },
     {
@@ -36,6 +39,7 @@ const INITIAL_STATE = {
       jobDesc: 'Makeup, Massage',
       description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
       stars: 2,
+      id: '4',
       instant: false, ratingsCount: 3
     },
     {
@@ -45,6 +49,7 @@ const INITIAL_STATE = {
       jobDesc: 'Makeup, Massage',
       description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
       stars: 5,
+      id: '5',
       instant: false, ratingsCount: 12
     },
     {
@@ -54,6 +59,7 @@ const INITIAL_STATE = {
       jobDesc: 'Makeup, Massage',
       description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
       stars: 1,
+      id: '6',
       instant: true, ratingsCount: 23
     }
   ]

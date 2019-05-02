@@ -1,16 +1,13 @@
 import React from 'react';
 import { Grid, Container, Segment } from 'semantic-ui-react';
+import './less/Banner.less'
 
 const Banner = (props) => {
 
   const styles = {
     Segment: {
       background: '#020202',
-      backgroundImage: `url(${props.banner})`,
-      backgroundSize: 'cover',
-      height: '400px',
-      margin: '0px',
-      borderRadius: '0px'
+      backgroundImage: `url(${props.banner})`
     },
     Header: {
       fontFamily: 'fontfreightproblack',
@@ -28,7 +25,7 @@ const Banner = (props) => {
   }
 
   return (
-    <Segment style={styles.Segment}>
+    <Segment style={styles.Segment} className="BannerWrap">
       <Container style={styles.Container} fluid>
         <Grid stretched verticalAlign="middle"  className="banner" columns={4} centered>
           <Grid.Row style={styles.Row} stretched>

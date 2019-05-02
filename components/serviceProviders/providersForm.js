@@ -5,8 +5,6 @@ import { DatePicker } from 'antd';
 
 const styles = {
   pageWrap: {
-    border: '1px solid #eee',
-    margin: '20px 0',
     padding: '20px'
   },
   inputIcon: {
@@ -126,7 +124,7 @@ class ProviderForm extends Component {
   render () {
     return (
       <div style={styles.pageWrap} className="providerForm">
-        <Grid columns={3}>
+        <Grid columns={3} stackable>
             <Grid.Row>
                 <Grid.Column  style={styles.RangeCol}>
                     <Select
