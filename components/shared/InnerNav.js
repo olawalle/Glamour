@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/InnerNav.less'
+import './less/InnerNav.less'
 
 const styles = {
   signUp: {

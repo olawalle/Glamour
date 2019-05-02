@@ -1,27 +1,16 @@
 import React from 'react';
 import { Container, Segment, Header, Divider, Grid, Image, List } from 'semantic-ui-react';
 import Link from 'next/link';
-
-const styles = {
-  Image: {},
-  Segment: {
-    backgroundColor: '#212B36',
-    minHeight: '471px',
-    paddingTop: '60px'
-  },
-  Divider: {
-    marginTop: '40px'
-  }
-}
+import './less/footer.less';
 
 const Footer = () => {
   return (
-    <Segment className="footer" style={styles.Segment}>
+    <Segment className="footer">
       <Container>
         <Grid stackable columns={4}>
           <Grid.Row>
             <Grid.Column width="4" >
-              <Image style={styles.Image} src='/static/images/logowhite.svg' size='small' />
+              <Image src='/static/images/logowhite.svg' size='small' />
             </Grid.Column>
             <Grid.Column width="4">
               <List link>
@@ -51,30 +40,22 @@ const Footer = () => {
               </List>
               <List className="social-links" horizontal relaxed>
                 <List.Item >
-                  <a target="_blank" href="http://facebook.com/glamour">
-                    <Image size="tiny" src="static/icons/facebook.svg" />
-                  </a>
+                  <a target="_blank" href="http://facebook.com/glamour"><Image size="tiny" src="static/icons/facebook.svg" /></a>
                 </List.Item>
                 <List.Item>
-                  <a>
-                    <Image size="tiny" src="static/icons/twitter.svg" />
-                  </a>
+                  <a><Image size="tiny" src="static/icons/twitter.svg" /></a>
                 </List.Item>
                 <List.Item>
-                  <a>
-                    <Image size="tiny" src="static/icons/instagram.svg" />
-                  </a>
+                  <a><Image size="tiny" src="static/icons/instagram.svg" /></a>
                 </List.Item>
                 <List.Item>
-                  <a>
-                    <Image size="tiny" src="static/icons/linkedin.svg" />
-                  </a>
+                  <a><Image size="tiny" src="static/icons/linkedin.svg" /></a>
                 </List.Item>
               </List>
             </Grid.Column>
           </Grid.Row>
         </Grid>
-        <Divider style={styles.Divider} />
+        <Divider/>
         <Header className="copyright" textAlign="center" as="h3">
           <Image src="static/icons/copyright.svg" />
           <span>Glamour on Demand 2019</span>

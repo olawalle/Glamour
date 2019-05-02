@@ -12,7 +12,7 @@ import MoreInfo from '../components/home/MoreInfo';
 import dynamic from 'next/dynamic';
 import { Skeleton } from 'antd';
 import { getTestimonials, getBeautyServices, getTopTrends } from '../store';
-import 'antd/lib/skeleton/style/index.css'
+import 'antd/lib/skeleton/style/index.css';
 
 const Testimonials = dynamic(
   () => import('../components/home/Testimonials'),

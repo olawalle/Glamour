@@ -16,7 +16,15 @@ export const ADD_TRENDS = 'add_trends';
 
 export const ADD_TESTIMONIALS = 'add_testimonials';
 
+export const ADD_NOTIFICATIONS = 'add_notifications';
+
 export const SET_LOADING_SERVICES = 'set_loading_services';
+
+export const SET_LOADING_NOTIFICATIONS = 'set_loading_notifications';
+
+export const SET_WRITING_REVIEW = 'set_writing_review';
+
+export const SET_REVIEW = 'set_review';
 
 export const SET_LOADING_TRENDS = 'set_loading_trends';
 

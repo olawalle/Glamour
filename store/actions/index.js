@@ -21,3 +21,17 @@ export const updateLoginForm = (payload) => {
     payload
   }
 }
+
+export const setIsWritingReview = (payload) => {
+  return {
+    type: types.SET_WRITING_REVIEW,
+    payload
+  }
+}
+
+export const updateReview = (payload) => {
+  return {
+    type: types.SET_REVIEW,
+    payload
+  }
+}
