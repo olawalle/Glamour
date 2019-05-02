@@ -2,14 +2,19 @@ import React, { Component } from 'react';
 import withMasterLayout from './layouts/withMasterLayout';
 import Footer from '../components/shared/Footer';
 import { connect } from 'react-redux';
-import Notifications from '../components/notifications';
-import { getNotifications } from '../store';
+import Notifications from '../components/notifications/Notifications';
+import { getNotifications, getNotificationReview, getIsWritingReview } from '../store';
+import InnerNav from '../components/shared/InnerNav';
+import NotificationModal from '../components/notifications/NotificationModal';
+import * as actions from '../store/actions';
 
 class notifications extends Component {
   render () {
     return (
       <>
+        <InnerNav />
         <Notifications {...this.props} />
+        <NotificationModal {...this.props}/>
         <Footer/>
       </>
     );
@@ -18,8 +23,10 @@ class notifications extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    notifications: getNotifications(state)
+    notifications: getNotifications(state),
+    review: getNotificationReview(state),
+    isWritingReview: getIsWritingReview(state),
   }
 }
 
-export default connect(mapStateToProps, null)(withMasterLayout(notifications));
+export default connect(mapStateToProps, actions)(withMasterLayout(notifications));

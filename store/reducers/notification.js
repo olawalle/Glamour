@@ -1,4 +1,4 @@
-import { ADD_NOTIFICATIONS, SET_LOADING_NOTIFICATIONS } from '../actions/types';
+import { ADD_NOTIFICATIONS, SET_LOADING_NOTIFICATIONS, SET_WRITING_REVIEW, SET_REVIEW } from '../actions/types';
 import dayjs from 'dayjs';
 
 const INITIAL_STATE = {
@@ -54,7 +54,17 @@ const INITIAL_STATE = {
       date:  dayjs(15567191334900).format('{YYYY} MM-DDTHH A')
     }
   },
-  loadingNotifications: false
+  review: {
+    stars: 0,
+    experience: '',
+    user: {
+      id: null,
+      name: '',
+      avatar: ''
+    }
+  },
+  loadingNotifications: false,
+  isWritingReview: false
 }
 
 export default function (state = INITIAL_STATE, { type, payload }) {
@@ -65,6 +75,20 @@ export default function (state = INITIAL_STATE, { type, payload }) {
       return {
         ...state,
         loadingNotifications: payload
+      }
+    }
+
+    case SET_REVIEW: {
+      return {
+        ...state,
+        review: payload
+      }
+    }
+
+    case SET_WRITING_REVIEW: {
+      return {
+        ...state,
+        isWritingReview: payload
       }
     }
 

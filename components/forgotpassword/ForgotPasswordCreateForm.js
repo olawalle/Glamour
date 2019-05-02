@@ -3,27 +3,7 @@ import { Grid, Header, Input, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import Password from '../shared/Password';
-
-const styles = {
-  Column: {
-  },
-  Form: {
-    padding: '5px 25px'
-  },
-  FormInput: {
-    margin: '10px 0px',
-    marginBottom: '30px'
-  },
-  Header: {
-  },
-  SubHeader: {
-    marginTop: '10px',
-  },
-  Button: {
-    height: '60px',
-    width: '126px'
-  },
-}
+import './less/index.less';
 
 const forgotPasswordCreateForm = (props) => {
 
@@ -62,21 +42,20 @@ const forgotPasswordCreateForm = (props) => {
 
 
   return (
-    <Grid className="forgotPasswordForm" columns={2} centered>
+    <Grid className="forgotPassword" columns={2} centered>
       <Grid.Row>
         <Grid.Column mobile={14} tablet={7} largeScreen={7} widescreen={7}>
-          <Header style={styles.Header} textAlign="center" as='h1'>
+          <Header className="forgotPassword" textAlign="center" as='h1'>
             Recover password
-            <Header.Subheader style={styles.SubHeader}>
+            <Header.Subheader>
               Create a new password
             </Header.Subheader>
           </Header>
-          <form style={styles.Form}>
+          <form className="forgotPassword-form">
             <Password
               formerror={formErrors['password']}
               handlechange={(e) => handleChange(e, 'password')}
               password={forgotPasswordFormData.password}
-              styles={styles.FormInput}
               size="huge"
               placeholder='Password'
               fluid
@@ -84,7 +63,6 @@ const forgotPasswordCreateForm = (props) => {
             <div className="is-v-centered">
               <Button
                 onClick={submit}
-                style={styles.Button}
                 size="large"
                 content='Create'
                 secondary />

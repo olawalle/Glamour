@@ -89,12 +89,32 @@
         font-family: freightproblack !important;
 }
 
+.has-bg-white {
+        background: white !important;
+}
+
+.m-0 {
+        margin: 0px !important;
+}
+
 .mt-0{
         margin-top: 0px !important;
 }
 
+.mt-7{
+        margin-top: 7px !important;
+}
+
+.mb-0{
+        margin-bottom: 0px !important;
+}
+
 .mt-10 {
         margin: 10px !important;
+}
+
+.mt-15 {
+        margin: 15px !important;
 }
 
 .mt-30 {
@@ -105,12 +125,24 @@
         margin-bottom: 30px !important;
 }
 
+.mb-5 {
+        margin-bottom: 5px !important;
+}
+
+.mr-10 {
+        margin-right: 10px !important;
+}
+
 .mb-70 {
         margin-bottom: 70px !important;
 }
 
 .is-grey {
         color: #637381 !important;
+}
+
+.is-pink {
+        color: #e84671 !important;
 }
 
 .fw100{
@@ -125,8 +157,16 @@
         height: 40px !important;
 }
 
+.h28{
+        height: 28px !important;
+}
+
 .h60{
         height: 60px !important;
+}
+
+.w126 {
+        width: 126px !important;
 }
 
 .is-round {
@@ -148,7 +188,6 @@
 .pl-30 {
         padding: 30px !important;
 }
-
 
 
 // GENERAL STYLING OVERRIDES.
@@ -178,62 +217,7 @@ body ::-webkit-scrollbar-track {
         border-top: none !important;
 }
 
-.footer {
-        color: white;
-        font-family: freightproblack !important;
 
-        .copyright {
-                color: white !important;
-
-                span {
-                        font-weight: 100 !important;
-
-                        font-size: 14px !important;
-                }
-
-                img {
-                        margin-top: 0px !important;
-                        height: 18px !important;
-                        // marginRight: '0px'
-                }
-
-        }
-
-        .social-links {
-
-                margin-left: -12px !important;
-
-                img {
-                        height: 18px !important;
-
-                }
-
-                .item {
-                        width: 40px;
-                        padding: 0px !important;
-                        padding-left: 0px !important;
-                        margin: 0px !important;
-                        margin-left: 0px !important;
-                }
-        }
-
-        .ui.link.list.list a.item:hover, .ui.link.list.list .item a:not(.ui):hover {
-                color: rgba(255, 255, 255, 0.8) !important;
-                margin-bottom: 13px !important;
-                font-size: 16px;
-        }
-
-        .ui.link.list .item, .ui.link.list a.item, .ui.link.list .item a:not(.ui) {
-                color: white !important;
-                margin-bottom: 13px !important;
-                font-size: 16px;
-        }
-
-        .header {
-                margin-bottom: 27px;
-                font-size: 18px;
-        }
-}
 
 
 
@@ -244,314 +228,6 @@ body ::-webkit-scrollbar-track {
     min-height: 100vh !important;
     background-image: url("/static/images/auth.png") !important;
     background-size: cover !important;
-}
-.signupForm {
-        font-size: 16px !important;
-        .dropdown {
-                padding-top: 18px !important;
-        }
-
-        .ui.header {
-                font-family: freightproblack !important;
-                font-size: 32px !important;
-        }
-
-        .sub.header {
-                font-family: sofiapromedium !important;
-        }
-
-}
-
-// HOME
-.home {
-        .ui.header {
-                font-family: freightproblack !important;
-                font-size: 45px !important;
-                margin: 0px !important;
-                line-height: 50px !important;
-        }
-
-        .sub.header {
-                font-family: sofiapromedium !important;
-                line-height: 28px !important;
-        }
-
-        .header-container {
-                margin-bottom: 20px;
-        }
-
-        .subheader-container {
-                margin-bottom: 40px;
-        }
-
-        .searchForm {
-                padding: 0 5px !important;
-                input {
-                        height: 60px;
-                        width: 95% !important;
-                        border: none !important
-                }
-
-                .container {
-                        background: white;
-                }
-
-                img {
-                        width: 17px !important;
-                        height: 17px !important;
-                        position: absolute;
-                        top: 23px;
-                        left: -5px;
-                }
-
-                .date--picker{
-                        img {
-                                top: 28px;
-                                left: -9% !important;
-                                // left: -22px;
-                        }
-                }
-        }
-}
-
-.testimonials {
-        margin-bottom: 60px;
-        .item {
-                // height: 150px !important;
-                background: rgba(232, 70, 113, 0.02) !important;
-                // height: 300px !important;
-                padding: 20px;
-                height: 332px !important;
-                // padding: 20px;
-                padding: 50px 40px !important;
-                // width: 351px !important;
-        }
-
-        .testimonials--testimony{
-                // font-family: freightproblack !important;
-                font-family: sofiapromedium !important;
-                height: 140px !important;
-
-        }
-
-        .testimonials--fullname {
-                margin-bottom: 4px !important;
-        }
-
-        .owl-dots {
-                margin-top: 30px !important;
-        }
-
-        .owl-theme .owl-dots .owl-dot span{
-                background: rgba(232, 70, 113, 0.25) !important;
-        }
-
-        .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
-                background: #E84669 !important;
-                height: 12px !important;
-                width: 12px !important;
-            }
-}
-
-// LOG IN PAGE
-.loginForm {
-        font-size: 16px !important;
-
-        .ui.header {
-                font-family: freightproblack !important;
-                font-size: 32px !important;
-        }
-
-        .sub.header {
-                font-family: sofiapromedium !important;
-        }
-
-        .forgotPassword {
-                font-family: sofiaprosemibold !important;
-                color: #e84671;
-                font-size: 16px;
-                margin-top: 10px !important;
-                margin-bottom: 20px !important;
-                text-align: right !important;
-                display: block !important;
-        }
-
-}
-
-
-
-.termsandconditions, .privacypolicy {
-        p {
-                font-size: 18px !important;
-                font-family: sofiapro !important;
-        }
-}
-
-
-//NOTIFICATIONS PAGE
-
-.notifications {
-
-        .notification-content {
-                padding: 1em 1em 1em 0em !important;
-        }
-
-        .ui.divided.list > .item {
-
-                border-top: none !important;
-
-        }
-
-        .divider {
-                margin: 0px 5%;
-                border-top: 1px solid rgba(196, 205, 213, 0.25) !important;
-                border-bottom: none !important;
-        }
-
-        .notification {
-
-
-
-                h4 {
-                        font-size: 15px !important;
-                        margin-bottom: 0px !important;
-                        font-weight: 100 !important;
-                }
-
-                p {
-                        font-size: 12px !important;
-                        font-weight: 100 !important;
-                        font-family: sofiapromedium !important;
-                        margin: 6px 0px !important;
-                }
-
-                .button {
-                        margin-top: -15px !important;
-                }
-
-                position: relative !important;
-                padding-right: 20px !important;
-        }
-
-        .h2 {
-                // font-family: sofiapromedium !important;
-                font-size: 28px !important;
-                line-height: 30px !important;
-                font-weight: 700 !important;
-        }
-
-        .content {
-                // padding: 3em 1em !important;
-
-        }
-
-        .notifications-card {
-                margin-top: 4% !important;
-                height: 728px !important;
-                box-shadow: 0px 0px 10px rgba(99, 115, 129, 0.1) !important;
-                padding: 5px !important;
-                padding-left: 0px !important;
-
-                .notification-list {
-                        overflow-y: scroll !important;
-                        height: 600px;
-                }
-        }
-
-        .notifications-icon {
-                height: 30px !important
-        }
-
-}
-
-
-// FORGOT PASSWORD PAGE
-.forgotPasswordForm {
-        font-size: 16px !important;
-
-        .column {
-                background: white;
-                padding: 45px 20px 15px !important;
-                margin-top: 7% !important;
-        }
-
-        .ui.header {
-                font-family: freightproblack !important;
-                font-size: 32px !important;
-        }
-
-        .sub.header {
-                font-family: sofiapromedium !important;
-                padding: 0px 40px !important;
-        }
-
-}
-
-//  NAVBAR
-.navbar {
-        margin-bottom: 0px !important;
-        border-radius: 0px !important;
-        border: none !important;
-        box-shadow: 0px 5px 10px rgba(99, 115, 129, 0.02) !important;
-        a {
-                font-family: sofiapromedium;
-                font-size: 15px !important;
-                // font-weight: 600 !important;
-        }
-}
-
-// providerform input Fields
-.providerForm input, .providerForm select {
-        padding-left: 35px !important;
-        padding-top: 17px !important;
-        height: 52px !important;
-        color: #000 !important;
-        width: 100% !important
-}
-.providerForm .dropdown.icon {
-        margin: 0.214286em !important
-}
-.providerForm .input-range__track--active {
-        background-color: #e84671 !important
-}
-.providerForm .input-range__slider {
-        background-color: #e84671 !important;
-        border: 4px solid #e84671 !important;
-}
-.providerForm .input-range {
-        margin-top: 28px !important
-}
-.providerForm .input-range__label--min, .providerForm .input-range__label--max {
-        display: none !important
-}
-.providerForm .ui.dropdown:not(.button) > .default.text, .ui.default.dropdown:not(.button) > .text {
-        color: #000 !important
-}
-.providerForm .input-range__label-container {
-        display: none !important
-}
-.providerForm .input-range__track {
-        background: #e8467140;
-        height: 0.35rem !important
-}
-.providerForm .date--picker input {
-        margin-top: 10px !important;
-        width: 105% !important;
-        border: 1px solid #c4cdd5 !important
-}
-.providerForm .ant-calendar-picker-clear, .ant-calendar-picker-icon {
-        left: 10px !important;
-        font-size: 20px !important
-}
-
-.aboutus--introduction {
-        p {
-                line-height: 25px;
-        }
-}
-
-.moreinfo-text {
-        width: 500px
 }
 
 .logo {
@@ -568,37 +244,6 @@ body ::-webkit-scrollbar-track {
         }
 }
 
-@media only screen and (max-width: 980px) {
-        .moreinfo-text {
-                width: 95%
-        }
-      }
-
-@media only screen and (max-width: 798px) {
-        .home  {
-                min-height: 850px !important;
-                .searchForm .date--picker img {
-                        left: -5px !important;
-                }
-
-                .searchForm .container {
-                        padding: 0px 22px;
-                }
-
-                .header-container {
-                        margin-bottom: 30px;
-                }
-
-                .subheader-container {
-                        margin-bottom: 70px;
-                }
-
-                .searchForm .button {
-                        width: 100% !important;
-                }
-        }
-
-}
 
 /* Mobile */
 
@@ -613,82 +258,12 @@ body ::-webkit-scrollbar-track {
         }
 }
 
-@media only screen and (max-width: 580px) {
-        .home  {
-                .searchForm input {
-                        width: 91% !important;
-                }
-        }
 
-}
 
 @media only screen and (max-width: 480px) {
 
-        p, .termsandconditions p, .privacypolicy p {
+        p {
                 font-size: 15px !important
-        }
-
-        .privacypolicy {
-                padding: 0px 0% !important;
-        }
-
-        .aboutus--introduction {
-                img {
-                     height:  415px  !important
-                }
-        }
-
-        .home {
-
-                padding: 0px !important;
-                min-height: 560px !important;
-                margin-bottom: 140px !important ;
-
-                .ui.container {
-                        margin: 0px !important;
-                }
-
-                .searchForm {
-                        box-shadow: 0px 4px 20px 0 rgba(34, 36, 38, 0.15) !important;
-                        background: white !important;
-                        z-index: 3;
-                }
-
-                .grid {
-                        height: 380px !important
-                }
-
-                h4 {
-                        margin: 34px 18px !important;
-                }
-
-                .ui.header {
-                        font-family: freightproblack !important;
-                        font-size: 26px !important;
-                        margin: 0px 40px !important;
-                        line-height: 30px !important;
-                }
-
-                .header-container {
-                        margin-bottom: 10px !important;
-                }
-
-                .sub.header {
-                        font-family: sofiapromedium !important;
-                        line-height: 20px !important;
-                        margin: 0px 35px !important;
-                        font-size: 15px !important;
-                }
-
-        }
-
-        .notifications {
-                padding: 0 !important;
-
-                .container, .column {
-                        margin: 0 !important;
-                        padding: 0 !important;
-                }
         }
 
         .auth {
@@ -698,42 +273,5 @@ body ::-webkit-scrollbar-track {
         .logo {
                 height: 32px !important;
         }
-
-        .navbar {
-                box-shadow: 0px 1px 20px 0 rgba(34, 36, 38, 0.15) !important;
-        }
-
-        #signupForm {
-                .column {
-                        width: 100% !important
-                }
-
-                form{
-                        padding: 5px 0px !important;
-                }
-        }
-
-        #loginForm {
-                .column {
-                        width: 100% !important
-                }
-
-                form{
-                        padding: 5px 0px !important;
-                }
-        }
-
-
-        .howitworks {
-                .step {
-                        display: flex !important;
-                        justify-content: center !important;
-                        flex-direction: column !important;
-                        align-items: center !important;
-                        text-align: center !important;
-                }
-        }
-
-
 
 }

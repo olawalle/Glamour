@@ -1,6 +1,7 @@
 import React from 'react';
 import { Header, Container, Segment, Grid, Button } from 'semantic-ui-react';
 import Step from './Step';
+import './less/howitworks.less';
 
 const steps = [
   {
@@ -26,36 +27,14 @@ const steps = [
 ];
 
 const HowItWorks = (props) => {
-
-  const styles = {
-    Segment: {
-      backgroundColor: 'rgba(232, 70, 113, 0.02)',
-      paddingBottom: '100px'
-    },
-    Header: {
-      fontFamily: 'fontfreightproblack',
-      margin: '34px 0px',
-      marginBottom: '40px',
-      fontSize: '32px'
-    },
-    Row: {
-      marginBottom: '50px'
-    },
-    Container: {
-    },
-    Button: {
-      height: '60px',
-      width: '197px',
-      margin: '40px 0px 10px 0px'
-    }
-  }
-
   return (
-    <Segment className="howitworks" style={styles.Segment}>
+    <Segment className="howItWorks">
       <Container>
-        <Header style={styles.Header} textAlign="center" as="h4">How it works</Header>
+        <Header className="howItWorks-header" textAlign="center" as="h4">
+          How it works
+        </Header>
         <Grid stackable columns={4}>
-          <Grid.Row  style={styles.Row} columns={4}>
+          <Grid.Row columns={4}>
             {
               steps.map((step, index) => (
                 <Step key={index} {...step} />
@@ -64,7 +43,7 @@ const HowItWorks = (props) => {
           </Grid.Row>
         </Grid>
         <div className="is-v-centered">
-          <Button style={styles.Button} secondary content="Explore services" />
+          <Button secondary content="Explore services" />
         </div>
       </Container>
     </Segment>

@@ -1,54 +1,28 @@
 import React, { useState } from 'react';
 import { Header, Segment, Grid, Container } from 'semantic-ui-react';
 import SearchForm from './SearchForm';
+import './less/banner.less';
 
 const Banner = (props) => {
-
-  const styles = {
-    Segment: {
-      background: '#020202',
-      backgroundImage: 'url(/static/images/homebanner.png)',
-      backgroundSize: 'cover',
-      minHeight: '700px',
-      margin: '0px',
-      borderRadius: '0px'
-    },
-    Header: {
-      fontFamily: 'fontfreightproblack',
-      color: 'white',
-      fontSize: '45px',
-    },
-    SubHeader: {
-      color: 'white',
-      fontSize: '20px',
-    },
-    Column: {
-    },
-    Row: {
-    },
-    Container: {
-    }
-  }
-
   return (
-    <Segment className="home is-v-centered" style={styles.Segment}>
-      <Container style={styles.Container} fluid>
+    <Segment className="is-v-centered home-banner">
+      <Container fluid>
         <Grid stackable stretched verticalAlign="middle"  columns={4} centered>
-          <Grid.Row centered verticalAlign="middle" style={styles.Row} stretched>
-            <Grid.Column className="is-v-centered" textAlign="center" width="10" style={styles.Column}>
+          <Grid.Row centered verticalAlign="middle" stretched>
+            <Grid.Column className="is-v-centered" textAlign="center" mobile={16} tablet={10} largeScreen={10} widescreen={10}>
               <div className="header-container" >
-                <Header as="h3" style={styles.Header}>
+                <Header as="h3">
                   Expert beauty services right when
                 </Header>
-                <Header as="h3" style={styles.Header}>
+                <Header as="h3">
                   you need them
                 </Header>
               </div>
               <div className="subheader-container" >
-                <Header.Subheader style={styles.SubHeader}>
+                <Header.Subheader>
                   Life finds a way. Do you have any idea how long it takes those cups to
                 </Header.Subheader>
-                <Header.Subheader style={styles.SubHeader}>
+                <Header.Subheader>
                   decompose. So you two dig up, dig up dinosaurs?
                 </Header.Subheader>
               </div>
@@ -58,7 +32,7 @@ const Banner = (props) => {
         </Grid>
       </Container>
     </Segment>
-   );
+  );
 }
 
 export default Banner;

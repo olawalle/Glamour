@@ -3,15 +3,15 @@ import { Segment, Container, Grid, Card } from 'semantic-ui-react';
 import EmptyState from './EmptyState';
 import Display from '../shared/Display';
 import NotificationList from './NotificationsList';
+import './less/notifications.less';
 
 const Index = (props) => {
-  console.log(props);
   return (
     <Segment className="notifications">
       <Container>
         <Grid centered columns={1}>
           <Grid.Row>
-            <Grid.Column mobile={16} tablet={11} largeScreen={11} widescreen={11}>
+            <Grid.Column mobile={16} tablet={16} largeScreen={11} widescreen={11}>
               <Card className="notifications-card mb-70" fluid>
                 <Card.Content className="notification-content">
                   <Card.Header>

@@ -6,8 +6,8 @@ import { PersistGate, pers } from 'redux-persist/integration/react'
 
 
 import 'semantic-ui-less/semantic.less';
-import '../app.less';
 import 'react-input-range/lib/css/index.css'
+import '../app.less';
 
 
 class Glamour extends App {

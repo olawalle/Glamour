@@ -43,6 +43,14 @@ export const getNotifications = (state) => {
   return state.notifications.byId.map((id) => state.notifications.allNotifications[id])
 }
 
+export const getNotificationReview = (state) => {
+  return state.notifications.review;
+}
+
+export const getIsWritingReview = (state) => {
+  return state.notifications.isWritingReview;
+}
+
 export const getBeautyServices = (state) => {
   return state.service.beautyServices.byId.map((id) => state.service.beautyServices.allServices[id])
 }
