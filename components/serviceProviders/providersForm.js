@@ -37,10 +37,16 @@ const styles = {
   },
   dateLabel: {
     position: 'relative',
-    top: '-50px',
-    left: '37px',
+    top: '-77px',
+    left: '39px',
     fontSize: '10px',
-    color: '#637381'
+    color: '#637381',
+  },
+  PickerIcon: {
+        position: 'relative',
+        top: '-36px',
+        left: '10px',
+        width: '20px'
   },
   Column: {
     background: 'white',
@@ -179,7 +185,7 @@ class ProviderForm extends Component {
                       className="date--picker has-width-95"
                       showTime
                       placeholder="When do you want this?"
-                      // suffixIcon={<Image src="../../static/images/calender.png" />}
+                      suffixIcon={<img style={styles.PickerIcon} src="../../static/images/calender.png" />}
                     />
                     <span style={styles.dateLabel}>
                       When do you want this?
