@@ -3,55 +3,14 @@ import Link from 'next/link';
 import { Grid, Header, Select, Input, Checkbox, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
-import Password from '../../components/shared/Password'
-
-const styles = {
-  Column: {
-    background: 'white',
-    padding: '45px 20px',
-    margin: '2% 0px',
-    paddingBottom: '15px'
-  },
-  Link: {
-    color: '#e84671'
-  },
-  Form: {
-    padding: '5px 25px'
-  },
-  FormInput: {
-    margin: '10px 0px',
-    marginBottom: '30px'
-  },
-  Header: {
-  },
-  SubHeader: {
-    marginTop: '10px',
-  },
-  Select: {
-    height: '53px',
-    borderRadius: '0px',
-    borderColor: '#C4CDD5',
-    paddingTop: '18px'
-  },
-  Checkbox: {
-    paddingTop: '3px',
-    marginRight: '10px'
-  },
-  Button: {
-    height: '60px',
-    width: '126px'
-  },
-  accept: {
-    margin: '2em 0em'
-  }
-}
+import Password from '../../components/shared/Password';
+import './less/signupForm.less';
 
 const options = [
   { key: '', text: 'Not Applicable', value: '' },
   { key: 'onilne', text: 'Online', value: 'Online' },
   { key: 'offline', text: 'Offline', value: 'offline' },
 ]
-
 
 
 const SignupForm = (props) => {
@@ -107,24 +66,24 @@ const SignupForm = (props) => {
   }, [])
 
   return (
-    <Grid id="signupForm" className="signupForm" columns={2} centered>
+    <Grid id="signup" className="signup" columns={2} centered>
       <Grid.Row>
-        <Grid.Column mobile={14} tablet={11} largeScreen={8} widescreen={7}  style={styles.Column}>
-          <Header style={styles.Header} textAlign="center" as='h1'>
+        <Grid.Column mobile={14} tablet={11} largeScreen={8} widescreen={7}>
+          <Header textAlign="center" as='h1'>
             Sign up
-            <Header.Subheader style={styles.SubHeader}>
+            <Header.Subheader className="mt-10">
               Already have an account? {' '}
               <Link href="/login">
-                <a style={styles.Link}>Log in</a>
+                <a className="is-pink">Log in</a>
               </Link>
             </Header.Subheader>
           </Header>
-          <form style={styles.Form}>
+          <form className="signup-form">
             <Input
               onChange={(e) => handleChange(e, 'fullname')}
               error={formErrors['fullname']}
               value={signupFormData.fullname}
-              style={styles.FormInput}
+              className="signup-form--input"
               size="huge"
               placeholder='Full Name'
               fluid
@@ -134,7 +93,7 @@ const SignupForm = (props) => {
               error={formErrors['email']}
               onChange={(e) => handleChange(e, 'email')}
               value={signupFormData.email}
-              style={styles.FormInput}
+              className="signup-form--input"
               size="huge"
               placeholder='Email address'
               fluid
@@ -144,7 +103,7 @@ const SignupForm = (props) => {
               error={formErrors['mobileNumber']}
               onChange={(e) => handleChange(e, 'mobileNumber')}
               value={signupFormData.mobileNumber}
-              style={styles.FormInput}
+              className="signup-form--input"
               size="huge"
               placeholder='Mobile number'
               fluid
@@ -153,30 +112,29 @@ const SignupForm = (props) => {
               formerror={formErrors['password']}
               handlechange={(e) => handleChange(e, 'password')}
               password={signupFormData.password}
-              styles={styles.FormInput}
               size="huge"
               placeholder='Password'
+              className="signup-form--input"
               fluid
             />
             <Select
               error={formErrors['referral']}
               onChange={(e, data) => handleChange(e, 'referral', data)}
-              style={styles.Select}
+              className="signup-form--select signup-form--input"
               value={signupFormData.referral}
               fluid
               options={options}
               placeholder='How did you hear about Glamour on Demand?'
             />
-            <div className="is-flex" style={styles.accept}>
+            <div className="is-flex">
               <Checkbox
-                checked={signupFormData.accept}
-                style={styles.Checkbox}
+                className="signup-form--checkbox"
                 onChange={(e, data) => handleChange(e, 'accept', data)}
               />
               <span>
                 Yes, I accept the
                 <Link href="/termsandconditions">
-                  <a style={styles.Link}>{' '}Terms and Conditions{' '}</a>
+                  <a className="is-pink">{' '}Terms and Conditions{' '}</a>
                 </Link>
                 of Glamour on Demand
               </span>
@@ -184,7 +142,7 @@ const SignupForm = (props) => {
             <div className="is-v-centered">
               <Button
                 onClick={submit}
-                style={styles.Button}
+                className="mt-30"
                 size="large"
                 content='Sign up'
                 secondary />
@@ -192,7 +150,7 @@ const SignupForm = (props) => {
                 Are you a service provider?
                 {' '}
                 <Link href="/">
-                  <a style={styles.Link}>Get started</a>
+                  <a className="is-pink">Get started</a>
                 </Link>
               </p>
             </div>

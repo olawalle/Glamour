@@ -5,6 +5,7 @@ import { Container, Grid, Button } from 'semantic-ui-react';
 import { getProviders } from '../store'
 import Banner from '../components/shared/Banner'
 import Footer from '../components/shared/Footer'
+import Stars from '../components/shared/stars'
 import Service from '../components/serviceDetails/service'
 import LookBook from '../components/serviceDetails/lookBook'
 import Reviews from '../components/serviceDetails/reviews'
@@ -57,6 +58,23 @@ class ServiceDetails extends Component {
         }
     }
 
+    
+    filled = (n) => {
+        let arr = []
+        for (let index = 0; index < n; index++) {
+            arr.push('o')  
+        }
+        return arr
+    }
+
+    empty = (n) => {
+        let arr = []
+        for (let index = 0; index < n; index++) {
+            arr.push('o')  
+        }
+        return arr
+    }
+
     render () {
         return (
             <>
@@ -80,7 +98,6 @@ class ServiceDetails extends Component {
                                     </p>
                                     <p className="userDetails">
                                         {this.selectedProvider.description}
-                                        {this.selectedProvider.description}
                                     </p>
                                     <div className="serviceWrap">
                                         <span className="serviceWrapTitle">
@@ -94,10 +111,11 @@ class ServiceDetails extends Component {
                                     </div>
                                     <div className="serviceWrap">
                                         <span className="serviceWrapTitle">
-                                            Services
+                                            Look book
                                         </span>
-                                        <span className="lookStars">
-                                            <img src="../static/icons/filled-star.svg" alt=""/>
+                                        <span className="arrows">
+                                            <img src="../static/icons/right-arrow.svg" className="left dim" alt=""/>
+                                            <img src="../static/icons/right-arrow.svg" className="right" alt=""/>
                                         </span>
                                         <LookBook />
                                     </div>
@@ -106,11 +124,10 @@ class ServiceDetails extends Component {
                                             Reviews
                                         </span>
                                         <span className="lookStars">
-                                            <img src="../static/icons/filled-star.svg" alt=""/>
-                                            <img src="../static/icons/filled-star.svg" alt=""/>
-                                            <img src="../static/icons/filled-star.svg" alt=""/>
-                                            <img src="../static/icons/empty-star.svg" alt=""/>
-                                            <img src="../static/icons/empty-star.svg" alt=""/>
+                                            {
+                                                <Stars stars={this.selectedProvider.stars} />
+                                            }      
+                                            ({this.selectedProvider.ratingsCount})                                   
                                         </span>
                                         <Reviews />
                                         <Reviews />

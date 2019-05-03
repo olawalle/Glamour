@@ -17,6 +17,7 @@
     "antd": "^3.16.6",
     "axios": "^0.18.0",
     "cross-env": "^5.2.0",
+    "dayjs": "^1.8.13",
     "element-react": "^1.1.2",
     "element-theme-default": "^1.4.13",
     "enzyme": "^3.9.0",

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container } from 'semantic-ui-react'
+import './less/termsandconditions.less';
 
 const styles = {
   Container: {

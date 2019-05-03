@@ -2,6 +2,7 @@ import React from 'react'
 import { Image, Button } from 'semantic-ui-react'
 import rootReducer from '../../store/reducers';
 import Router from 'next/router';
+import Stars from '../shared/stars'
 
 
 const styles = {
@@ -160,10 +161,7 @@ const Provider = (props) => (
          </div>
          <div style={styles.stars}>
             {
-                filled(props.stars).map((elm, i) => <img key={`filled${i}`} src='../../static/icons/filled-star.svg' />)
-            }
-            {
-                empty(5 - props.stars).map((elm, i) => <img key={`empty${i}`} src='../../static/icons/empty-star.svg' />)
+                <Stars stars={props.stars} />
             }
             
             <span style={styles.count}>({props.ratingsCount})</span>

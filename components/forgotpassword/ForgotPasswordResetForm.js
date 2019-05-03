@@ -2,27 +2,7 @@ import React, { useState } from 'react';
 import { Grid, Header, Input, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
-
-const styles = {
-  Column: {
-  },
-  Form: {
-    padding: '5px 25px'
-  },
-  FormInput: {
-    margin: '10px 0px',
-    marginBottom: '30px'
-  },
-  Header: {
-  },
-  SubHeader: {
-    marginTop: '10px',
-  },
-  Button: {
-    height: '60px',
-    width: '126px'
-  },
-}
+import './less/index.less';
 
 const forgotPasswordResetForm = (props) => {
 
@@ -59,24 +39,22 @@ const forgotPasswordResetForm = (props) => {
     email: ''
   });
 
-
   return (
-    <Grid className="forgotPasswordForm" columns={2} centered>
+    <Grid className="forgotPassword" columns={2} centered>
       <Grid.Row>
         <Grid.Column mobile={14} tablet={7} largeScreen={7} widescreen={7}>
-          <Header style={styles.Header} textAlign="center" as='h1'>
+          <Header textAlign="center" as='h1'>
             Recover password
-            <Header.Subheader style={styles.SubHeader}>
+            <Header.Subheader>
               Enter the email address associated with your account to receive a password reset link
             </Header.Subheader>
           </Header>
-          <form style={styles.Form}>
+          <form className="forgotPassword-form">
             <Input
               type="email"
               error={formErrors['email']}
               onChange={(e) => handleChange(e, 'email')}
               value={forgotPasswordFormData.email}
-              style={styles.FormInput}
               size="huge"
               placeholder='Email address'
               fluid
@@ -84,7 +62,6 @@ const forgotPasswordResetForm = (props) => {
             <div className="is-v-centered">
               <Button
                 onClick={submit}
-                style={styles.Button}
                 size="large"
                 content='Get link'
                 secondary />
