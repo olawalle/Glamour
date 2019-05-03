@@ -1,25 +1,44 @@
-.test {
-    background-color: aqua;
-    height: 80px
-}
+.innerNav {
+    .active {
+        background-color: #212B36 !important;
+        color: #fff;
+        border-radius: 0 !important
+    }
+    .listItem {
+        width: 20%;
+        text-align: center;
+        height: 60px;
+        background: #FAFAFA
+    }
+    .item {
+        margin: 0 !important;
+        font-size: 16px;
+        .linkIcon {
+            width: 18px !important;
+            margin: 0 10px 0 0 !important;
+        }
+    }
+
+    .active img {
+        filter: brightness(0) invert(1)
+    }
 
 
-.active {
-    background-color: #212B36 !important;
-    color: #fff
-}
-
-.active img {
-    filter: brightness(0) invert(1)
-}
-
-.inactive img {
-    filter: brightness(1) invert(1)
-}
-
-ul li:hover {
-    cursor: pointer;
-    transform: scale(1.01);
-    transition: all 0.3s;
-    background-color: #f1f1f1
+    ul li:hover {
+        cursor: pointer;
+        transform: scale(1.01);
+        transition: all 0.3s;
+        background-color: #f1f1f1
+    }
+    .ui.secondary.menu .active.item {
+        color: #fff !important
+    }
+    .notif {
+        color: #E84671;
+        height: 12px;
+        font-size: 87px;
+        position: relative;
+        right: -14px;
+        top: -77px;    
+    }
 }

@@ -1,58 +1,63 @@
-import React from 'react'
-import { DatePicker } from 'antd';
-import {Button}  from 'semantic-ui-react';
+import React, { useState } from 'react'
+import { connect } from 'react-redux';
+import { Button } from 'semantic-ui-react';
 import './less/bookService.less'
-
-const selectInput = () => {
-    inputFocused = true
-    toBeRendered()
-    console.log(inputFocused)
-}
-
-const deFocus = () => {
-    inputFocused = false
-    console.log(inputFocused)
-}
-
-let inputFocused = false
-
-const toBeRendered = (props) => {
- if (inputFocused) {
-    return <p>comethig</p>
- } else {
-     return <>
-      <p className="usersName">
-         Book {props.providerDetails.name}
-     </p>
-     <input type="text" 
-             onFocus={() => selectInput()}
-             placeholder="When do you want this?"
-            className="date--picker has-width-95"/>
-            <img src="../../static/images/calender.png" className="pickerImage"/>
-     <span className="dateLabel">
-         When do you want this?
-     </span>
-      <p className="bookService__title">
-         selected services
-      </p>
-      <ul>
-          <li className="bookService__title__amount">Title of service <span>£80</span></li>
-          <li className="bookService__title__amount">Title of service <span>£80</span></li>
-          <li className="bookService__title__amount_total">Total <span className="bookService__title__amount">£80</span></li>
-      </ul>
-      <Button secondary className="proceedBtn">
-         Proceed to checkout
-      </Button>
-    </>
-  }
-}
+import Display from '../shared/Display'
+import GlamourDatePicker from '../../components/serviceDetails/glamourDatePicker'
 
 const BookService = (props) => {
-  return (
-    <div className="bookService">
-        {toBeRendered(props)}
-    </div>
-  )
+
+    const total = () => {
+        let total = 0
+        props.subscribedServices.forEach(itm => total += parseFloat(itm.price))
+        return total
+    }
+
+    const renderServicesList = () => {
+         return props.subscribedServices.map(item => {
+            return <div className="bookService__title__amount">{item.title} <span>£{item.price}</span></div>
+        })
+    }
+
+    let [ isPickingDate, setPickingStatus ] = useState(true);
+
+    return (
+        <div className="bookService">
+            <p className="usersName">
+                Book {props.providerDetails.name}
+            </p>
+            <Display if={!isPickingDate}>
+                <span onClick={() => setPickingStatus(true)}>close</span>
+                <GlamourDatePicker />
+            </Display>
+            <Display if={isPickingDate}>
+                <input type="text"
+                    onFocus={() => setPickingStatus(false)}
+                    placeholder="When do you want this?"
+                    className="date--picker has-width-95" />
+                <img src="../../static/images/calender.png" className="pickerImage" />
+                <span className="dateLabel">
+                    When do you want this?
+                </span>
+                <p className="bookService__title">
+                    selected services
+                </p>
+                <p>
+                    {renderServicesList()}
+                    <div className="bookService__title__amount_total">Total <span>£{total()}</span></div>
+                </p>
+                <Button secondary className="proceedBtn">
+                    Proceed to checkout
+                </Button>
+            </Display>
+        </div>
+    )
 }
 
-export default BookService
+
+const mapStateToProps = (state) => ({
+    subscribedServices: state.subscribedServices.subscribedServices
+})
+
+
+export default connect(mapStateToProps)(BookService)

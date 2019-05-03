@@ -23,14 +23,6 @@ const styles = {
     },
     Right: {
         // background: 'blue'
-    },
-    mainBtn: {
-      borderRadius: '0px',
-      height: '49px',
-      fontSize: '14px',
-      margin: '10px',
-      paddingLeft: '30px',
-      paddingRight: '30px',
     }
 }
 
@@ -49,7 +41,6 @@ class ServiceDetails extends Component {
     componentWillMount() {
         let id = Router.router.query.provider
         this.selectedProvider = this.props.serviceProviders.find(provider => provider.id === id)
-        console.log(this.selectedProvider)
     }
 
     showInnerNav = () => {
@@ -59,20 +50,8 @@ class ServiceDetails extends Component {
     }
 
     
-    filled = (n) => {
-        let arr = []
-        for (let index = 0; index < n; index++) {
-            arr.push('o')  
-        }
-        return arr
-    }
-
-    empty = (n) => {
-        let arr = []
-        for (let index = 0; index < n; index++) {
-            arr.push('o')  
-        }
-        return arr
+    renderServiceComponent(serviceProvider) {
+        return serviceProvider.servicesRendered.map((service, i) => <Service key={`service${i}`} id={serviceProvider.id} userServices={service} selected={false} />)
     }
 
     render () {
@@ -86,10 +65,12 @@ class ServiceDetails extends Component {
                             <Grid.Column  style={styles.Right} width={10}>
                                 <div className="userDesc">
                                     <img src={this.selectedProvider.userPhoto} className="userPhoto" alt=""/>
-                                    <span className="buttons">
-                                        <Button style={styles.mainBtn} size="huge" className="secondaryBtn">Save</Button>
-                                        <Button style={styles.mainBtn} size="huge" secondary>Send Message</Button>
-                                    </span>
+                                    <div className="buttons">
+                                        <Button size="huge" className="mainBtn secondaryBtn"> 
+                                            <img src="../static/icons/heart.svg" alt=""/> <span>Save</span>
+                                        </Button>
+                                        <Button size="huge"  className="mainBtn" secondary>Send Message</Button>
+                                    </div>
                                     <p className="userName">
                                         {this.selectedProvider.name}
                                     </p>
@@ -99,47 +80,69 @@ class ServiceDetails extends Component {
                                     <p className="userDetails">
                                         {this.selectedProvider.description}
                                     </p>
-                                    <div className="serviceWrap">
-                                        <span className="serviceWrapTitle">
+                                    <div className="serviceWrap lightShadow">
+                                        <div className="serviceWrapTitle">
                                             Services
-                                        </span>
-                                        <Service />
-                                        <Service />
-                                        <Service />
-                                        <Service />
-                                        <Service />
+                                        </div>
+                                        <div className="servicesChildWrap">
+                                            {
+                                                this.renderServiceComponent(this.selectedProvider)
+                                            }
+                                        </div>
                                     </div>
-                                    <div className="serviceWrap">
-                                        <span className="serviceWrapTitle">
-                                            Look book
-                                        </span>
-                                        <span className="arrows">
-                                            <img src="../static/icons/right-arrow.svg" className="left dim" alt=""/>
-                                            <img src="../static/icons/right-arrow.svg" className="right" alt=""/>
-                                        </span>
+                                    <div className="lookBookWrap lightShadow">
+                                        <Grid columns={2}>
+                                            <Grid.Row>
+                                                <Grid.Column  style={styles.Right}>
+                                                    <span className="lookBookWrapTitle">
+                                                        Look book
+                                                    </span>
+                                                </Grid.Column>
+                                                <Grid.Column className="lookStars">
+                                                    <span className="arrows">
+                                                        <img src="../static/icons/right-arrow.svg" className="left dim" alt=""/>
+                                                        <img src="../static/icons/right-arrow.svg" className="right" alt=""/>
+                                                    </span>
+                                                </Grid.Column>
+                                            </Grid.Row>
+                                        </Grid>
                                         <LookBook />
                                     </div>
-                                    <div className="serviceWrap">
-                                        <span className="serviceWrapTitle">
-                                            Reviews
-                                        </span>
-                                        <span className="lookStars">
-                                            {
-                                                <Stars stars={this.selectedProvider.stars} />
-                                            }      
-                                            ({this.selectedProvider.ratingsCount})                                   
-                                        </span>
-                                        <Reviews />
-                                        <Reviews />
-                                        <Reviews />
-                                        <Reviews />
-                                        <Reviews />
-                                        <Reviews />
+                                    <div className="reviewsComponentWrap lightShadow">
+                                        <div className="reviewsWrapTitle">
+                                        <Grid columns={2}>
+                                            <Grid.Row>
+                                                <Grid.Column  style={styles.Right}>
+                                                <span className="serviceWrapTitle">
+                                                    Reviews
+                                                </span>
+                                                </Grid.Column>
+                                                <Grid.Column className="lookStars">
+                                                    <span>
+                                                        {
+                                                            <Stars stars={this.selectedProvider.stars} />
+                                                        }      
+                                                        ({this.selectedProvider.ratingsCount})                                   
+                                                    </span>
+                                                </Grid.Column>
+                                            </Grid.Row>
+                                        </Grid>
+                                        </div>
+                                        <div className="reviewsComponentWrapChild">
+                                            <Reviews />
+                                            <Reviews />
+                                            <Reviews />
+                                            <Reviews />
+                                            <Reviews />
+                                            <Reviews />
+                                            <Reviews />
+                                            <Reviews />
+                                        </div>
                                     </div>
                                 </div>
                             </Grid.Column>
                             <Grid.Column  style={styles.Left} width={6}>
-                                <div className="serviceWrap bookServiceComponent">
+                                <div className="lightShadow bookServiceComponent">
                                     <BookService providerDetails={this.selectedProvider} />
                                 </div>
                             </Grid.Column>

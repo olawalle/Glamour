@@ -35,3 +35,17 @@ export const updateReview = (payload) => {
     payload
   }
 }
+
+export const subscribeToService = (payload) => {
+  return {
+    type: types.SUBSCRIBE_TO_SERVICE,
+    payload
+  }
+}
+
+export const unSubscribeToService = (payload) => {
+  return {
+    type: types.UNSUBSCRIBE_TO_SERVICE,
+    payload
+  }
+}

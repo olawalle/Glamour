@@ -29,3 +29,7 @@ export const SET_REVIEW = 'set_review';
 export const SET_LOADING_TRENDS = 'set_loading_trends';
 
 export const SET_LOADING_TESTIMONIALS = 'set_loading_testimonials';
+
+export const SUBSCRIBE_TO_SERVICE = 'subscribe_to_services';
+
+export const UNSUBSCRIBE_TO_SERVICE = 'unsubscribe_to_service';
