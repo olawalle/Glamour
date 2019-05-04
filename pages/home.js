@@ -26,8 +26,9 @@ const Testimonials = dynamic(
 
 class Home extends Component {
 
-  static async getInitialProps ({ reduxStore, req }) {
-    const isServer = !!req
+  static async getInitialProps (ctx) {
+    // const isServer = !!req
+    // console.log('sjdkshdkj');
     // DISPATCH ACTIONS HERE ONLY WITH `reduxStore.dispatch`
     return {}
   }

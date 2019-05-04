@@ -3,7 +3,9 @@
   input {
     height: 60px;
     width: 95% !important;
-    border: none !important
+    border: none !important;
+    font-size: 16px;
+    // color: red
   }
 
 
@@ -69,6 +71,13 @@
 
 }
 
+@media only screen and (min-width: 796px) {
+  .searchForm .date--picker img.ui.image {
+    left: -2% !important;
+  }
+
+}
+
 @media only screen and (max-width: 480px) {
 
   .searchForm {
@@ -83,6 +92,12 @@
       img.ui.image {
         left: -2% !important;
       }
+    }
+
+    .ant-input {
+      padding-left: 0px;
+      font-size: 16px;
+      font-family: sofiaproregular
     }
 
     .container{
