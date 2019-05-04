@@ -40,16 +40,16 @@ const Footer = () => {
               </List>
               <List className="social-links" horizontal relaxed>
                 <List.Item >
-                  <a target="_blank" href="http://facebook.com/glamour"><Image size="tiny" src="static/icons/facebook.svg" /></a>
+                  <a target="_blank" href="http://facebook.com/glamour"><Image size="tiny" src="/static/icons/facebook.svg" /></a>
                 </List.Item>
                 <List.Item>
-                  <a><Image size="tiny" src="static/icons/twitter.svg" /></a>
+                  <a><Image size="tiny" src="/static/icons/twitter.svg" /></a>
                 </List.Item>
                 <List.Item>
-                  <a><Image size="tiny" src="static/icons/instagram.svg" /></a>
+                  <a><Image size="tiny" src="/static/icons/instagram.svg" /></a>
                 </List.Item>
                 <List.Item>
-                  <a><Image size="tiny" src="static/icons/linkedin.svg" /></a>
+                  <a><Image size="tiny" src="/static/icons/linkedin.svg" /></a>
                 </List.Item>
               </List>
             </Grid.Column>
@@ -57,7 +57,7 @@ const Footer = () => {
         </Grid>
         <Divider/>
         <Header className="copyright" textAlign="center" as="h3">
-          <Image src="static/icons/copyright.svg" />
+          <Image src="/static/icons/copyright.svg" />
           <span>Glamour on Demand 2019</span>
         </Header>
       </Container>

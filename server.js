@@ -16,6 +16,11 @@ app.prepare()
       app.render(req, res, '/forgotpassword/reset', {})
     })
 
+    server.get('/messages/:threadId/thread', (req, res) => {
+      console.log('err');
+      app.render(req, res, '/messages', { threadId: req.params.threadId })
+    })
+
     server.get('*', (req, res) => {
       return handler(req, res);
     })
