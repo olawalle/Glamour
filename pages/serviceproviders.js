@@ -29,6 +29,10 @@ class ServiceProvider extends Component {
       }
     }
 
+    state = {
+        pos: ''
+    }
+
     componentWillMount() {
     }
 
@@ -38,12 +42,27 @@ class ServiceProvider extends Component {
         }
     }
 
+    log = () => {
+        if (window.pageYOffset > 77) {
+            this.setState({ pos : 'fixed'}) 
+        } else {
+            this.setState({ pos : 'uu'}) 
+        }
+    }
+
+    componentDidMount = () => {
+        // hadling cover parallax 
+         window.addEventListener('scroll', this.log)
+     }
+
     render () {
         return (
             <>
+            <div className={this.state.pos}>
             {
                 this.showInnerNav()
             }
+            </div>
             <Container>
                 <div style={styles.pageWrap} className="serviceProviders">
                     <ProvidersForm />
