@@ -1,11 +1,11 @@
 import React from 'react';
 import { Segment, Container, Grid, Card } from 'semantic-ui-react';
-import EmptyState from './EmptyState';
+import EmptyState from '../shared/EmptyState';
 import Display from '../shared/Display';
 import NotificationList from './NotificationsList';
 import './less/notifications.less';
 
-const Index = (props) => {
+const Notifications = (props) => {
   return (
     <Segment className="notifications">
       <Container>
@@ -19,7 +19,7 @@ const Index = (props) => {
                   </Card.Header>
 
                   <Display if={!props.notifications.length}>
-                    <EmptyState />
+                    <EmptyState icon="/static/images/appointment_reminders.svg" text="No notifications yet" />
                   </Display>
                   <Display if={props.notifications.length}>
                     <NotificationList { ...props } />
@@ -35,4 +35,4 @@ const Index = (props) => {
   );
 }
 
-export default Index;
+export default Notifications;

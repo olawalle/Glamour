@@ -1,0 +1,40 @@
+#__next .cartlist {
+  margin-top: 50px;
+  .ant-table-thead{
+    display: none;
+  }
+
+  .ant-table-thead > tr > th,
+  .ant-table-tbody > tr > td {
+    padding: 40px 16px;
+  }
+
+
+  .ant-table-tbody > tr.ant-table-row-selected td {
+    background: #fbfbfb;
+  }
+
+  .actions {
+    min-width: 35%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .checkout-btn {
+    min-width: 35%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .total {
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .text {
+      color: white !important;
+      font-weight: 100;
+    }
+  }
+
+}

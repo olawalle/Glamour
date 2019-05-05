@@ -1,0 +1,109 @@
+#__next .threadblock-card {
+  .threadblock-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    min-height: 10%;
+  }
+
+  .description {
+    min-height: 50%;
+    padding: 20px 10px;
+    overflow-y: scroll;
+  }
+
+  .ant-input, .ant-input:focus {
+    border: none;
+    box-shadow: none;
+  }
+
+  textarea {
+    width: 85%;
+    min-width: 85%;
+    max-width: 85%;
+  }
+
+  .threadblock-message--actions {
+    width: 15%;
+
+
+    .actions {
+      padding-right: 8%;
+      padding-left: 2%;
+      cursor: pointer
+    }
+  }
+
+  .extra {
+    padding-top: 3%;
+    padding-bottom: 10px;
+    min-height: 10% !important;
+  }
+
+  //
+
+  .text-msg {
+    p.from, p.to {
+      min-height: 10px;
+      min-width: 10%;
+      max-width: 80%;
+      color: white;
+      margin: 0.5px;
+      position: relative
+    }
+
+    p.to {
+      float: right;
+      background: #FAFAFA;
+      color: #637381;
+      border-bottom-right-radius: 6px;
+      clear: both;
+      padding: 10px 20px;
+
+      .meta {
+        position: absolute;
+        right: 0;
+        bottom: -22px;
+
+        img {
+          margin-top: -5px;
+        }
+      }
+    }
+
+    p.from {
+      float: left;
+      border-top-left-radius: 6px;
+      background: #212B36;
+      clear: both;
+      padding: 10px 20px ;
+
+      .meta {
+        position: absolute;
+        right: 0;
+        bottom: -22px;
+
+        img {
+          margin-top: -5px;
+        }
+
+      }
+    }
+
+
+  }
+
+}
+
+@media only screen and (max-width: 480px) {
+
+  .threadblock-message--actions {
+    margin-left: 5%;
+  }
+
+  p.from, p.to {
+
+    .meta span {
+      font-size: 12px;
+    }
+  }
+
+}

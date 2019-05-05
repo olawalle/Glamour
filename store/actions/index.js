@@ -49,3 +49,9 @@ export const unSubscribeToService = (payload) => {
     payload
   }
 }
+export const removeCartItem = (payload) => {
+  return {
+    type: types.REMOVE_CART_ITEM,
+    payload
+  }
+}

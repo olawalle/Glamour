@@ -54,3 +54,11 @@ export const getIsWritingReview = (state) => {
 export const getBeautyServices = (state) => {
   return state.service.beautyServices.byId.map((id) => state.service.beautyServices.allServices[id])
 }
+
+export const getCartItems = (state) => {
+  return state.cart.cartItemIds.map(id => state.cart.cartItems[id])
+}
+
+export const getBookings = (state) => {
+  return state.bookings.bookedItemIds.map(id => state.bookings.bookedItems[id])
+}
