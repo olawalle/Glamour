@@ -6,6 +6,9 @@ const EmptyState = (props) => {
     <div className="is-v-centered full">
       <Image className="h40" size="tiny" src={props.icon} />
       <p className="mt-10">{props.text}</p>
+      {
+        props.children
+      }
     </div>
   );
 }

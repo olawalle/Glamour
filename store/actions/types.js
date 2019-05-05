@@ -29,3 +29,9 @@ export const SET_REVIEW = 'set_review';
 export const SET_LOADING_TRENDS = 'set_loading_trends';
 
 export const SET_LOADING_TESTIMONIALS = 'set_loading_testimonials';
+
+export const ADD_CART_ITEM = 'add_cart_item';
+
+export const ADD_CART_ITEMS = 'add_cart_items';
+
+export const REMOVE_CART_ITEM = 'remove_cart_item';
