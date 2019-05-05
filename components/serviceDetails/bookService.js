@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import { Button } from 'semantic-ui-react';
 import './less/bookService.less'
+import Link from 'next/link';
 import Display from '../shared/Display'
 import GlamourDatePicker from '../../components/serviceDetails/glamourDatePicker'
 
@@ -47,7 +48,7 @@ const BookService = (props) => {
                     <div className="bookService__title__amount_total">Total <span>£{total()}</span></div>
                 </p>
                 <Button secondary className="proceedBtn">
-                    Proceed to checkout
+                    <Link href='/checkout'>Proceed to checkout</Link>
                 </Button>
             </Display>
         </div>
