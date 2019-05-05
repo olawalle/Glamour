@@ -1,6 +1,3 @@
-
-// FONTS
-
 @font-face {
         font-family: sofiaproblack;
         src: url(/static/fonts/sofiapro/Sofia\ Pro\ Black.ttf);
@@ -33,8 +30,27 @@
 
 @font-face {
         font-family: fontfreightproblack;
-        src: url(/static/fonts/Freight\ Big\ Pro/Freight\ Big\ Pro\ Black.otf);
+        src: url(/static/fonts/Freight\ Big\ Pro/Freight\ Big\_Pro\ Black.otf);
 }
+
+@font-face {
+        font-family: fontfreightbigproblack;
+        src: url(/static/fonts/Freight\ Big\ Pro/Freight\_Big\_Pro\ Bold.otf);
+}
+
+body ::-webkit-scrollbar-track {
+        // background: rgba(0, 0, 0, 0.01) !important;
+        background: transparent !important;
+        border-radius: 10px !important;
+        cursor: pointer !important;
+}
+
+
+#__next {
+
+// FONTS
+
+
 
 
 // UTILITIES
@@ -44,6 +60,12 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+}
+
+.is-lv-centered {
+  display: flex;
+  justify-content: left;
+  align-items: center;
 }
 
 .is-h-centered {
@@ -56,16 +78,48 @@
         padding-right: 0px !important
 }
 
+.pr-10{
+        padding-right: 10px !important
+}
+
+.pl-2{
+        padding-left: 2px !important
+}
+
+.pr-20{
+        padding-right: 20px !important
+}
+
 .pl-0{
         padding-left: 0px !important
+}
+
+.pb-0{
+        padding-bottom: 0px !important
+}
+
+.pb-15{
+        padding-bottom: 15px !important
 }
 
 .pl-10{
         padding-left: 10px !important
 }
 
+.pt-3{
+        padding-top: 3px !important
+}
+
+.pt-10{
+        padding-top: 10px !important
+}
+
 .pl-20{
         padding-left: 20px !important
+}
+
+.has-text-aligned-right {
+        text-align: end !important;
 }
 
 .is-flex {
@@ -81,12 +135,32 @@
         width: 100% !important;
 }
 
+.has-height-80{
+        height: 80% !important;
+}
+
+.has-height-10{
+        height: 10% !important;
+}
+
 .has-width-95{
         width: 95% !important;
 }
 
 .has-font-freight {
         font-family: freightproblack !important;
+}
+
+.has-font-freightbigpro {
+        font-family: fontfreightbigproblack !important;
+}
+
+.no-border {
+        border: none !important;
+}
+
+.no-box-shadow {
+        box-shadow: none !important;
 }
 
 .has-bg-white {
@@ -129,8 +203,20 @@
         margin-bottom: 5px !important;
 }
 
+.mb-10 {
+        margin-bottom: 10px !important;
+}
+
+.mb-20 {
+        margin-bottom: 20px !important;
+}
+
 .mr-10 {
         margin-right: 10px !important;
+}
+
+.mr-15 {
+        margin-right: 15px !important;
 }
 
 .mb-70 {
@@ -145,12 +231,21 @@
         color: #e84671 !important;
 }
 
+.is-hidden {
+        display: none !important;
+}
+
 .fw100{
         font-weight: 100 !important;
 }
 
 .fw900{
         font-weight: 900 !important;
+}
+
+.fw600{
+        font-weight: 600 !important;
+        font-family: sofiaproregular !important
 }
 
 .h40{
@@ -165,8 +260,24 @@
         height: 60px !important;
 }
 
+.h720{
+        min-height: 720px !important;
+}
+
+.h760{
+        min-height: 760px !important;
+}
+
+.h690{
+        min-height: 690px !important;
+}
+
 .w126 {
         width: 126px !important;
+}
+
+.w215 {
+        width: 215px !important;
 }
 
 .is-round {
@@ -175,6 +286,10 @@
 
 .h30{
         height: 30px !important;
+}
+
+.h10{
+        height: 10px !important;
 }
 
 .p0{
@@ -189,21 +304,41 @@
         padding: 30px !important;
 }
 
-
-// GENERAL STYLING OVERRIDES.
-p{
-        margin: 2em 0em !important;
+.progress-btn,
+.completed-btn {
+        height: 40px !important;
+        width: 160px !important;
+        border: none !important;
 }
 
+.progress-btn {
+        background: rgba(235, 200, 17, 0.05) !important;
+        color: #EBC811 !important;
+}
+
+.completed-btn {
+        background: rgba(38, 189, 35, 0.05) !important;
+        color: #26BD23 !important;
+}
+
+
+// GENERAL STYLING OVERRIDES.
+.ant-table-thead > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td,
+.ant-table-tbody > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td,
+.ant-table-thead > tr:hover:not(.ant-table-expanded-row) > td,
+.ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
+        background: #eeeeee;
+}
+
+.card {
+        box-shadow: 0px 0px 10px rgba(99, 115, 129, 0.1) ;
+}
 
  .text{
     color:    #637381 !important
 }
 
-body ::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.01) !important;
-        border-radius: 10px !important;
-}
+
 
 .ui.divided.list > .item {
         border-top: 1px solid rgba(196, 205, 213, 0.25) !important;
@@ -283,4 +418,5 @@ body ::-webkit-scrollbar-track {
                 height: 32px !important;
         }
 
+}
 }

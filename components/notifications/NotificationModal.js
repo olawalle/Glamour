@@ -1,7 +1,8 @@
 import React from 'react';
-import { Modal } from 'antd';
+import { Modal, Input } from 'antd';
 import 'antd/lib/modal/style/index.css';
-import { Header, TextArea, Button, Image, Form } from 'semantic-ui-react';
+import 'antd/lib/input/style/index.css';
+import { Header, Button, Image, Form } from 'semantic-ui-react';
 import './less/notificationModal.less';
 
 const STARS_COUNT = 5;
@@ -26,8 +27,8 @@ const NotificationModal = (props) => {
       <Header className="has-font-freight mb-5" as="h2" textAlign="center">
         Review
       </Header>
-      <div className="is-h-centered mt-15">
-        <Image className="is-round h28 mr-10" src={props.review.user.avatar} />
+      <div className="info-box mt-15">
+        <Image className="avatar mr-10" src={props.review.user.avatar} />
         <span className="fw900">{props.review.user.name}</span>
       </div>
 
@@ -41,11 +42,11 @@ const NotificationModal = (props) => {
           })
         }
       </div>
-      <Form className="mb-30">
-        <TextArea rows={9} placeholder='How was your experience' />
+      <Form>
+        <Input.TextArea rows={9} autosize={{ minRows: 9, maxRows: 9 }} placeholder='How was your experience' />
       </Form>
-      <div className="is-v-centered">
-        <Button className="h60 w126" secondary content="Submit" />
+      <div className="btn-container">
+        <Button className="" secondary content="Submit" />
       </div>
     </Modal>
   );

@@ -1,0 +1,50 @@
+#__next .message {
+  display: flex !important;
+  flex-direction: column !important;
+
+  .message-header {
+    display: flex;
+    justify-content: space-between;
+
+    p {
+      margin: 2px !important;
+    }
+
+  }
+
+  .message-snippet {
+    padding: 20px 0px;
+  }
+
+  .message-time {
+    font-size: 12px;
+    font-weight: 100;
+    color: rgba(99, 115, 129, 1);
+    padding-right: 5px;
+  }
+
+  .ui.divider.message-divider {
+    border-top: 1px solid rgba(196, 205, 213, 0.25) !important;
+    width: 100%;
+    margin: 0px !important;
+    // margin-left: -8%;
+    // position: absolute;
+  }
+
+
+
+}
+
+@media only screen and (max-width: 480px) {
+  .message {
+    p {
+      font-size: 13px !important;
+
+    }
+
+    .message-snippet {
+      padding-bottom: 30px;
+      padding-top: 17px;
+    }
+  }
+}
