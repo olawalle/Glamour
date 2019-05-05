@@ -30,7 +30,12 @@
 
 @font-face {
         font-family: fontfreightproblack;
-        src: url(/static/fonts/Freight\ Big\ Pro/Freight\ Big\ Pro\ Black.otf);
+        src: url(/static/fonts/Freight\ Big\ Pro/Freight\ Big\_Pro\ Black.otf);
+}
+
+@font-face {
+        font-family: fontfreightbigproblack;
+        src: url(/static/fonts/Freight\ Big\ Pro/Freight\_Big\_Pro\ Bold.otf);
 }
 
 body ::-webkit-scrollbar-track {
@@ -146,6 +151,10 @@ body ::-webkit-scrollbar-track {
         font-family: freightproblack !important;
 }
 
+.has-font-freightbigpro {
+        font-family: fontfreightbigproblack !important;
+}
+
 .no-border {
         border: none !important;
 }
@@ -194,8 +203,20 @@ body ::-webkit-scrollbar-track {
         margin-bottom: 5px !important;
 }
 
+.mb-10 {
+        margin-bottom: 10px !important;
+}
+
+.mb-20 {
+        margin-bottom: 20px !important;
+}
+
 .mr-10 {
         margin-right: 10px !important;
+}
+
+.mr-15 {
+        margin-right: 15px !important;
 }
 
 .mb-70 {
@@ -283,11 +304,31 @@ body ::-webkit-scrollbar-track {
         padding: 30px !important;
 }
 
+.progress-btn,
+.completed-btn {
+        height: 40px !important;
+        width: 160px !important;
+        border: none !important;
+}
+
+.progress-btn {
+        background: rgba(235, 200, 17, 0.05) !important;
+        color: #EBC811 !important;
+}
+
+.completed-btn {
+        background: rgba(38, 189, 35, 0.05) !important;
+        color: #26BD23 !important;
+}
+
 
 // GENERAL STYLING OVERRIDES.
-// p{
-//         margin: 2em 0em !important;
-// }
+.ant-table-thead > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td,
+.ant-table-tbody > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td,
+.ant-table-thead > tr:hover:not(.ant-table-expanded-row) > td,
+.ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
+        background: #eeeeee;
+}
 
 .card {
         box-shadow: 0px 0px 10px rgba(99, 115, 129, 0.1) ;

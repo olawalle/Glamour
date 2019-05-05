@@ -10,6 +10,7 @@ import testimonialReducer from '../reducers/testimonial';
 import notificationReducer from '../reducers/notification';
 import serviceProviders from '../reducers/serviceProviders';
 import cartReducer from '../reducers/cart';
+import bookingsReducer from '../reducers/bookings';
 
 let rootReducer = combineReducers({
   user: userReducer,
@@ -20,7 +21,8 @@ let rootReducer = combineReducers({
   trend: trendReducer,
   testimonial: testimonialReducer,
   notifications: notificationReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  bookings: bookingsReducer,
 });
 
 export default rootReducer;

@@ -2,11 +2,13 @@ import { ADD_CART_ITEM, ADD_CART_ITEMS, REMOVE_CART_ITEM } from '../actions/type
 
 
 const INITIAL_STATE = {
-  cartItemIds: [ 1, 2, 3 ],
-  cartItems: {
+  bookedItemIds: [ 1, 2, 3 ],
+  bookedItems: {
     1: {
         id: 1,
         key: '1',
+        status: 'running',
+        progressText: 'In progress',
         providerInfo: {
           avatar: '/static/images/team/teammember1.png',
           name: 'Britanny McDavidson',
@@ -17,6 +19,8 @@ const INITIAL_STATE = {
     2: {
         id: 2,
         key: '2',
+        progressText: 'Completed',
+        status: 'completed',
         providerInfo: {
           avatar: '/static/images/team/teammember4.png',
           name: 'Mary Jane',
@@ -27,6 +31,8 @@ const INITIAL_STATE = {
     3: {
         id: 3,
         key: '3',
+        status: 'completed',
+        progressText: 'Completed',
         providerInfo: {
           avatar: '/static/images/team/teammember3.png',
           name: 'Joe Black',
