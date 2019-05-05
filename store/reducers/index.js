@@ -9,6 +9,7 @@ import trendReducer from '../reducers/trend';
 import testimonialReducer from '../reducers/testimonial';
 import notificationReducer from '../reducers/notification';
 import serviceProviders from '../reducers/serviceProviders';
+import subscribedServicesReducer from '../reducers/subscribedServices'
 import cartReducer from '../reducers/cart';
 import bookingsReducer from '../reducers/bookings';
 
@@ -21,6 +22,7 @@ let rootReducer = combineReducers({
   trend: trendReducer,
   testimonial: testimonialReducer,
   notifications: notificationReducer,
+  subscribedServices: subscribedServicesReducer,
   cart: cartReducer,
   bookings: bookingsReducer,
 });

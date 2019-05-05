@@ -30,6 +30,9 @@ export const SET_LOADING_TRENDS = 'set_loading_trends';
 
 export const SET_LOADING_TESTIMONIALS = 'set_loading_testimonials';
 
+export const SUBSCRIBE_TO_SERVICE = 'subscribe_to_services';
+
+export const UNSUBSCRIBE_TO_SERVICE = 'unsubscribe_to_service';
 export const ADD_CART_ITEM = 'add_cart_item';
 
 export const ADD_CART_ITEMS = 'add_cart_items';

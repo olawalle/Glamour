@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import Auth from '../components/shared/Auth';
-import Provider from '../components/singleProvider/Provider'
-import ProvidersForm from '../components/providersForm/providersForm'
+import Provider from '../components/serviceProviders/Provider'
+import ProvidersForm from '../components/serviceProviders/providersForm'
 import InnerNav from '../components/shared/InnerNav'
 import Footer from '../components/shared/Footer';
 import withMasterLayout from '../pages/layouts/withMasterLayout';
@@ -9,11 +8,11 @@ import { Container } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { Grid } from 'semantic-ui-react';
 import { getProviders } from '../store'
+import './less/serviceProvider.less'
 
 
 const styles = {
     pageWrap: {
-    margin: '20px',
     // padding: '20px'
     }
 }
@@ -46,10 +45,10 @@ class ServiceProvider extends Component {
                 this.showInnerNav()
             }
             <Container>
-                <div style={styles.pageWrap}>
+                <div style={styles.pageWrap} className="serviceProviders">
                     <ProvidersForm />
 
-                    <Grid columns={3}>
+                    <Grid columns={3} stackable>
                         <Grid.Row>
                             {
                                 this.props.serviceProviders.map((provider, i) => (
