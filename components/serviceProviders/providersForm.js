@@ -2,113 +2,7 @@ import React, { Component } from 'react';
 import { Grid, Select, Input } from 'semantic-ui-react';
 import InputRange from 'react-input-range';
 import { DatePicker } from 'antd';
-
-const styles = {
-  pageWrap: {
-    padding: '20px'
-  },
-  inputIcon: {
-    top: '-63px',
-    position: 'relative',
-    left: '12px',
-    zIndex: '100',
-    width: '20px'
-  },  
-  selectIcon: {
-    top: '-45px',
-    position: 'relative',
-    left: '12px',
-    zIndex: '100',
-    width: '20px'
-  },
-  myLabel: {
-    position: 'relative',
-    top: '-88px',
-    left: '17px',
-    fontSize: '10px',
-    color: '#637381'
-  },
-  selectLabel: {
-    position: 'relative',
-    top: '-66px',
-    left: '21px',
-    fontSize: '10px',
-    color: '#637381'
-  },
-  dateLabel: {
-    position: 'relative',
-    top: '-77px',
-    left: '39px',
-    fontSize: '10px',
-    color: '#637381',
-  },
-  PickerIcon: {
-        position: 'relative',
-        top: '-36px',
-        left: '10px',
-        width: '20px'
-  },
-  Column: {
-    background: 'white',
-    padding: '45px 20px',
-    margin: '30px 0px',
-    paddingBottom: '15px'
-  },
-  Link: {
-    color: '#e84671'
-  },
-  Form: {
-    padding: '5px 25px'
-  },
-  FormInput: {
-    margin: '10px 0px',
-    marginBottom: '30px'
-  },
-  Header: {
-  },
-  SubHeader: {
-    marginTop: '10px',
-  },
-  Select: {
-    margin: '10px 0px',
-    height: '52px',
-    borderRadius: '0px',
-    borderColor: '#C4CDD5',
-    paddingTop: '24px',
-    fontSize: '16px',
-    color: '#000',
-    paddingLeft: '40px'
-  },
-  Checkbox: {
-    paddingTop: '3px',
-    marginRight: '10px'
-  },
-  Button: {
-    height: '60px',
-    width: '126px'
-  },
-  accept: {
-    margin: '2em 0em'
-  },
-  RangeCol: {
-    height: '65px',
-  },
-  RangeCol_: {
-    padding: '17px 20px 0 20px'
-  },
-  RangeLabel: {
-    fontSize: '16px',
-    color: '#212B36',
-    fontWeight: '500',
-    float: 'left',
-  },
-  RangeValues: {
-    float: 'right',
-    fontWeight: '600',
-    fontSize: '18px',
-    color: '#E84671'
-  }
-}
+import "./less/providerForm.less"
 
 const options = [
   { key: '', text: 'Not Applicable', value: '' },
@@ -129,74 +23,74 @@ class ProviderForm extends Component {
 
   render () {
     return (
-      <div style={styles.pageWrap} className="providerForm">
+      <div className="providerForm pageWrap">
         <Grid columns={3} stackable>
             <Grid.Row>
-                <Grid.Column  style={styles.RangeCol}>
+                <Grid.Column  className="RangeCol">
                     <Select
-                    style={styles.Select}
+                    className="Select"
                     fluid
                     options={options}
                     />
-                    <img src="../../static/icons/sort.svg" style={styles.selectIcon} alt=""/>
-                    <span style={styles.selectLabel}>
+                    <img src="../../static/icons/sort.svg" className="selectIcon" alt=""/>
+                    <span className="selectLabel">
                         Sort by
                     </span>
                 </Grid.Column>
-                <Grid.Column  style={styles.RangeCol}>
+                <Grid.Column  className="RangeCol">
                     <Input
                     type="text"
-                    style={styles.FormInput}
+                    className="FormInput"
                     size="huge"
                     placeholder='Search term goes here'
                     fluid
                     />
-                    <img src="../../static/icons/search.svg" style={styles.inputIcon} alt=""/>
-                    <span style={styles.myLabel}>
+                    <img src="../../static/icons/search.svg" className="inputIcon" alt=""/>
+                    <span className="myLabel">
                         Search for
                     </span>
                 </Grid.Column>
-                <Grid.Column  style={styles.RangeCol}>
+                <Grid.Column  className="RangeCol">
                     <Input
                     type="text"
-                    style={styles.FormInput}
+                    className="FormInput"
                     size="huge"
                     placeholder='WC1A 1AA'
                     fluid
                     />
-                    <img src="../../static/icons/mile.svg" style={styles.inputIcon} alt=""/>
-                    <span style={styles.myLabel}>
+                    <img src="../../static/icons/mile.svg" className="inputIcon" alt=""/>
+                    <span className="myLabel">
                         Post code
                     </span>
                 </Grid.Column>
-                <Grid.Column  style={styles.RangeCol}>
+                <Grid.Column  className="RangeCol">
                     <Select
-                    style={styles.Select}
+                    className="Select"
                     fluid
                     options={options}
                     />
-                    <img src="../../static/icons/mile.svg" style={styles.selectIcon} alt=""/>
-                    <span style={styles.selectLabel}>
+                    <img src="../../static/icons/mile.svg" className="selectIcon" alt=""/>
+                    <span className="selectLabel">
                       Distance
                     </span>
                 </Grid.Column>
-                <Grid.Column  style={styles.RangeCol}>
+                <Grid.Column  className="RangeCol date--picker">
                     <DatePicker
-                      className="date--picker has-width-95"
+                      className=""
                       showTime
                       placeholder="When do you want this?"
-                      suffixIcon={<img style={styles.PickerIcon} src="../../static/images/calender.png" />}
+                      suffixIcon={<img className="PickerIcon" src="../../static/images/calender.png" />}
                     />
-                    <span style={styles.dateLabel}>
+                    <span className="dateLabel">
                       When do you want this?
                     </span>
                 </Grid.Column>
-                <Grid.Column style={styles.RangeCol}>
-                  <div style={styles.RangeCol_}>
-                    <span style={styles.RangeLabel}>Price range</span>
-                    <span style={styles.RangeValues}>£{this.state.value.min} - £{this.state.value.max}</span>
+                <Grid.Column className="RangeCol">
+                  <div className="RangeCol_">
+                    <span className="RangeLabel">Price range</span>
+                    <span className="RangeValues">£{this.state.value.min} - £{this.state.value.max}</span>
                   <InputRange
-                    style={styles.Range}
+                    classNames="Range"
                     maxValue={20}
                     minValue={0}
                     value={this.state.value}

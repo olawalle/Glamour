@@ -30,7 +30,7 @@ class ServiceProvider extends Component {
     }
 
     state = {
-        pos: ''
+        position: ''
     }
 
     componentWillMount() {
@@ -42,23 +42,22 @@ class ServiceProvider extends Component {
         }
     }
 
-    log = () => {
+    switchPosition = () => {
         if (window.pageYOffset > 77) {
-            this.setState({ pos : 'fixed'}) 
+            this.setState({ position : 'fixed'}) 
         } else {
-            this.setState({ pos : 'uu'}) 
+            this.setState({ position : 'uu'}) 
         }
     }
 
     componentDidMount = () => {
-        // hadling cover parallax 
-         window.addEventListener('scroll', this.log)
-     }
+        window.addEventListener('scroll', this.switchPosition)
+    }
 
     render () {
         return (
             <>
-            <div className={this.state.pos}>
+            <div className={this.state.position}>
             {
                 this.showInnerNav()
             }
