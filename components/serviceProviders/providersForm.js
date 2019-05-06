@@ -74,9 +74,9 @@ class ProviderForm extends Component {
                       Distance
                     </span>
                 </Grid.Column>
-                <Grid.Column  className="RangeCol date--picker">
+                <Grid.Column  className="RangeCol">
                     <DatePicker
-                      className=""
+                      className="date--picker"
                       showTime
                       placeholder="When do you want this?"
                       suffixIcon={<img className="PickerIcon" src="../../static/images/calender.png" />}
