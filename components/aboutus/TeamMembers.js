@@ -3,7 +3,7 @@ import { Grid } from 'semantic-ui-react';
 
 const TeamMembers = (props) => {
   return (
-    <Grid  stackable columns={props.size}>
+    <Grid  columns={props.size}>
       {props.children}
     </Grid>
    );

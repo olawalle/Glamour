@@ -47,7 +47,7 @@ const LoginForm = (props) => {
   return (
     <Grid id="login" className="login" columns={2} centered>
       <Grid.Row>
-        <Grid.Column mobile={14} tablet={9} computer={6}>
+        <Grid.Column mobile={14} tablet={9} computer={7} largeScreen={6} widescreen={5}>
           <Header textAlign="center" as='h1'>
             Log in
             <Header.Subheader className="mt-10">

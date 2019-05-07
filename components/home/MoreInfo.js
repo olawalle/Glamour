@@ -8,7 +8,7 @@ const MoreInfo = (props) => {
       <Grid stackable className="p0" verticalAlign="middle" columns={2}>
         <Grid.Row className="p0" centered verticalAlign="middle">
           <Grid.Column className="p0" width="8">
-            <Image className="has-full-width" src="/static/images/moreinfo.png" />
+            <Image className="has-full-width more-info-img" src="/static/images/moreinfo.png" />
           </Grid.Column>
           <Grid.Column className="is-h-centered" textAlign="left" width="8" verticalAlign="middle">
             <div className="moreinfo-text">

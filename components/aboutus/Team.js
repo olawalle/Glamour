@@ -9,7 +9,7 @@ import './less/team.less';
 const Team = (props) => {
   return (
     <Segment className="team">
-      <Container className="m-0">
+      <Container className="">
         <Header className="team-header" textAlign="center" as="h2">
           The Team
         </Header>
