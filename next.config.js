@@ -2,6 +2,7 @@
 const withCSS = require('@zeit/next-css')
 const withLess = require('@zeit/next-less')
 const webpack = require('webpack');
+const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
 
 const withFonts = require('next-fonts');
 module.exports = withFonts(withLess(withCSS(
@@ -23,6 +24,14 @@ module.exports = withFonts(withLess(withCSS(
         jQuery: 'jquery',
         'window.jQuery': 'jquery'
       }))
+
+      config.plugins.push(
+        new FilterWarningsPlugin({
+          exclude: /mini-css-extract-plugin[^]*Conflicting order between:/
+        })
+      )
+
+
 
       return config
     }

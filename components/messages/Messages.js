@@ -57,7 +57,12 @@ const Messages = (props) => {
               >
                 <Card className="messages-card h720 mb-70" fluid>
                   <Card.Content
-                    className={isInMobileView ? 'p0 message-content pr-0' : 'message-content pr-0' }
+                    className={isInMobileView
+                      ? 'p0 message-content pr-0'
+                      : isInTabletView
+                        ? 'message-content pr-0 pl-0'
+                        : 'message-content pr-0'
+                    }
                   >
                     <Card.Header className="is-flex">
                       <Icon
