@@ -17,8 +17,8 @@ const Cart = (props) => {
               <Grid.Column
                 mobile={16}
                 tablet={14}
-                largeScreen={13}
-                widescreen={13}
+                largeScreen={9}
+                widescreen={11}
               >
                 <Card className="cart-card h690 mb-30" fluid>
                   <Card.Content

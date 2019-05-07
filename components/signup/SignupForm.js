@@ -68,7 +68,7 @@ const SignupForm = (props) => {
   return (
     <Grid id="signup" className="signup" columns={2} centered>
       <Grid.Row>
-        <Grid.Column mobile={14} tablet={11} largeScreen={8} widescreen={7}>
+        <Grid.Column mobile={14} tablet={11} computer={9} largeScreen={8} widescreen={5}>
           <Header textAlign="center" as='h1'>
             Sign up
             <Header.Subheader className="mt-10">
