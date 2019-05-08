@@ -47,7 +47,14 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case (ADD_CART_ITEM): {
-
+      let { cartItems, cartItemIds } = state;
+      let bookedItemIds =  [...cartItemIds ,action.payload.id]
+      let bookedItems = [...cartItems, action.payload]
+      return {
+        ...state,
+        bookedItems,
+        bookedItemIds
+      }
     }
     case (REMOVE_CART_ITEM): {
       let { cartItems, cartItemIds } = state;

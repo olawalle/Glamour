@@ -338,6 +338,13 @@ body ::-webkit-scrollbar-track {
     color:    #637381 !important
 }
 
+.modalContents {
+        width: 100%;
+        text-align: center !important
+}
+.dimmed.dimmable > .ui.animating.dimmer, .dimmed.dimmable > .ui.visible.dimmer, .ui.active.dimmer {
+        z-index: 10000000 !important;
+}
 
 
 .ui.divided.list > .item {
@@ -374,7 +381,7 @@ body ::-webkit-scrollbar-track {
 .fixed {
         position: fixed !important;
         top: 0 !important;
-        z-index: 10000;
+        // z-index: 10000;
         width: 100% !important;
         box-shadow: 0px 0px 10px rgba(99, 115, 129, 0.1) !important;
 }

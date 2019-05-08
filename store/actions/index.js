@@ -49,9 +49,24 @@ export const unSubscribeToService = (payload) => {
     payload
   }
 }
+
+export const selectProvider = (payload) => {
+  return {
+    type: types.SELECTED_PROVIDER,
+    payload
+  }
+}
+
 export const removeCartItem = (payload) => {
   return {
     type: types.REMOVE_CART_ITEM,
+    payload
+  }
+}
+
+export const addCartItem = (payload) => {
+  return {
+    type: types.ADD_CART_ITEM,
     payload
   }
 }

@@ -5,61 +5,100 @@ import _ from 'lodash'
 import './less/InnerNav.less'
 
 
-export default class MenuExampleSecondary extends Component {
-  state = { activeItem: 'Home' }
+export default class InnerNav extends Component {
+  state = { 
+    activeItem: 'Home',
+    links: [
+      {
+        text: 'Home',
+        image: '/static/icons/home.svg',
+        to: '',
+        hasNotif: false
+      },
+      {
+        text: 'Notifications',
+        image: '/static/icons/bell.svg',
+        to: '',
+        hasNotif: false
+      },
+      {
+        text: 'Messages',
+        image: '/static/icons/messages.svg',
+        to: '',
+        hasNotif: false
+      },
+      {
+        text: 'My Bookings',
+        image: '/static/icons/bookings.svg',
+        to: '',
+        hasNotif: false
+      },
+      {
+        text: 'Account',
+        image: '/static/icons/account.svg',
+        to: '',
+        hasNotif: false
+      }
+    ]
+  }
+
+  // componentWillMount() {
+  //   if(props.isProvider) {
+  //     this.state.links = [
+  //       {
+  //         text: 'Home',
+  //         image: '/static/icons/home.svg',
+  //         to: ''
+  //       },
+  //       {
+  //         text: 'Notifications',
+  //         image: '/static/icons/bell.svg',
+  //         to: ''
+  //       },
+  //       {
+  //         text: 'Messages',
+  //         image: '/static/icons/messages.svg',
+  //         to: ''
+  //       },
+  //       {
+  //         text: 'My Bookings',
+  //         image: '/static/icons/bookings.svg',
+  //         to: ''
+  //       },
+  //       {
+  //         text: 'Account',
+  //         image: '/static/icons/account.svg',
+  //         to: ''
+  //       }
+  //     ]
+  //   }
+  // }
+
+  renderLinks = () => {
+    return this.state.links.map((link, i) => {
+      return <Menu.Item  
+      className="is-h-centered listItem" 
+      name={link.text} 
+      key={`key${i}`}
+      active={this.state.activeItem === link.text} 
+      onClick={this.handleItemClick}
+      >
+        <span className="notif">.</span>
+        <img src={link.image} className="linkIcon" alt=""/> <span className="mobile hidden">{link.text}</span>
+      </Menu.Item>
+    })
+  }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-  render() {
-    const { activeItem } = this.state
 
+  render() {
     return (
       <div className="innerNav">
-      
         <Sticky>
           <Menu secondary>
-            <Menu.Item  
-              className="is-h-centered listItem" 
-              name='Home' 
-              active={activeItem === 'Home'} 
-              onClick={this.handleItemClick}
-            >
-              <img src="/static/icons/home.svg" className="linkIcon" alt=""/> <span className="mobile hidden"> Home</span>
-            </Menu.Item>
-            <Menu.Item
-              name='Notifications'
-              className="is-h-centered listItem"
-              active={activeItem === 'Notifications'}
-              onClick={this.handleItemClick}
-            >
-              <span className="notif">.</span>
-              <img src="/static/icons/bell.svg" className="linkIcon" alt=""/> <span className="mobile hidden">Notifications</span>
-            </Menu.Item>
-            <Menu.Item
-              name='Messages'
-              className="is-h-centered listItem"
-              active={activeItem === 'Messages'}
-              onClick={this.handleItemClick}
-            >
-              <span className="notif">.</span>
-              <img src="/static/icons/messages.svg" className="linkIcon" alt=""/>  <span className="mobile hidden">Messages</span>
-            </Menu.Item>
-            <Menu.Item
-              name='My Bookings'
-              className="is-h-centered listItem"
-              active={activeItem === 'My Bookings'}
-              onClick={this.handleItemClick}
-            >
-              <span className="notif">.</span>
-              <img src="/static/icons/bookings.svg" className="linkIcon" alt=""/>  <span className="mobile hidden">My Bookings</span>
-            </Menu.Item>
-            <Menu.Item
-              name='Account'
-              className="is-h-centered listItem"
-              active={activeItem === 'Account'}
-              onClick={this.handleItemClick}
-            >
-              <img src="/static/icons/account.svg" className="linkIcon" alt=""/> <span className="mobile hidden"> Account</span>
-            </Menu.Item>
+            {
+              this.renderLinks()
+            }
           </Menu>
         </Sticky>
       </div>

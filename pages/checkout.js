@@ -1,23 +1,82 @@
 import React, { Component, useState } from 'react'
 
-import { Grid, Image, Container, Button } from 'semantic-ui-react'
+import { Grid, Image, Container, Button, Modal } from 'semantic-ui-react'
 import Checkoutform from '../components/checkout/checkoutform'
 import BookingDetails from '../components/checkout/bookingDetails'
 import Navbar from '../components/shared/Navbar';
 import Link from 'next/link';
+import { connect } from 'react-redux';
+import * as actions from '../store/actions'
 import './less/checkout.less'
 
-export default class Checkout extends Component {
+class Checkout extends Component {
 
     state = {
-      step: 1
+      step: 1,
+      open: false
+    }
+
+    styles = {
+      modalContents: {
+        textAlign: 'center',
+        padding: '80px 20px'
+      },
+      modalImage: {
+        marginBotton: '30px'
+      },
+      modalHeading: {
+        fontSize: '30px',
+        fontWeight: '600',
+        marginTop: '20px',
+        fontFamily: 'freightproblack'
+      },
+      modalText: {
+        fontSize: '15px',
+        color: '#637381'
+      },
+      button: {
+        height: '52px',
+        marginTop: '13px',
+        width: '60%'
+      }
     }
 
     updateState = (n) => {
-      console.log(this)
       this.setState({step: n})
+    }
+
+    // updateCart = () => {
+
+    // }
+
+    show = () => {
+      this.setState({ open: true })
       console.log(this.state)
     }
+
+    getRandomInt = (min, max) => {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    updateCart = () => {
+      let id = this.getRandomInt(200, 38725654542)
+      console.log(this.props)
+      let data = {
+        id: id,
+        key: id.toString(),
+        providerInfo: {
+          avatar: this.props.providerDetails.userPhoto,
+          name: this.props.providerDetails.name,
+          formattedTime: '21:00 am, Today',
+        },
+        services: this.props.subscribedServices
+      }
+      this.props.addCartItem(data)
+    }
+
+    close = () => this.setState({ open: false })
 
   render() {
 
@@ -27,8 +86,8 @@ export default class Checkout extends Component {
             Continue
         </Button>
     } else {
-        return <Button if={this.state.step === 2} secondary className="proceedBtn" onClick={() => this.updateState(1)}>
-            Make payment
+        return <Button secondary className="proceedBtn" onClick={() => this.updateCart()}>
+          <div> <img src='/static/icons/lock.svg' />  Make payment</div>
         </Button>
       }
     }
@@ -49,8 +108,32 @@ export default class Checkout extends Component {
                 </Grid.Column>
             </Grid.Row>
         </Grid>
+      <Modal size='tiny' open={this.state.open} onClose={this.close}>
+          <Modal.Content>
+            <div className="modalContents" style={this.styles.modalContents}>
+              <img src="/static/icons/green-check.svg" style={this.styles.modalImage} alt=""/>
+              <p style={this.styles.modalHeading}>Successful</p>
+              <p style={this.styles.modalText}>
+                Your payment has been held securely and will be released once the vendor has completed their service
+              </p>
+              <Link href="/serviceProviders">
+                <Button  secondary style={this.styles.button}>
+                    Go to dashboard
+                </Button>
+              </Link>
+            </div>
+          </Modal.Content>
+        </Modal>
       </Container>
       </>
     )
   }
 }
+
+
+const mapStateToProps = (state) => ({
+  subscribedServices: state.subscribedServices.subscribedServices,
+  providerDetails: state.subscribedServices.selectedProvider
+})
+
+export default connect(mapStateToProps, actions)(Checkout)

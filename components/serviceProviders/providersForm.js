@@ -90,7 +90,7 @@ class ProviderForm extends Component {
                     <span className="RangeLabel">Price range</span>
                     <span className="RangeValues">£{this.state.value.min} - £{this.state.value.max}</span>
                   <InputRange
-                    classNames="Range"
+                    className="Range"
                     maxValue={20}
                     minValue={0}
                     value={this.state.value}

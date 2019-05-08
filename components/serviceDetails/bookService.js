@@ -32,11 +32,11 @@ const BookService = (props) => {
                 <GlamourDatePicker />
             </Display>
             <Display if={isPickingDate}>
+                <img src="../../static/images/calender.png" className="pickerImage" />
                 <input type="text"
                     onFocus={() => setPickingStatus(false)}
                     placeholder="When do you want this?"
-                    className="date--picker has-width-95" />
-                <img src="../../static/images/calender.png" className="pickerImage" />
+                    className="date--picker" />
                 <span className="dateLabel">
                     When do you want this?
                 </span>

@@ -11,6 +11,7 @@ import LookBook from '../components/serviceDetails/lookBook'
 import Reviews from '../components/serviceDetails/reviews'
 import BookService from '../components/serviceDetails/bookService'
 import Router from 'next/router';
+import * as actions from '../store/actions'
 import './less/serviceDetails.less'
 
 
@@ -41,6 +42,8 @@ class ServiceDetails extends Component {
     componentWillMount() {
         let id = Router.router.query.provider
         this.selectedProvider = this.props.serviceProviders.find(provider => provider.id === id)
+        console.log('called')
+        this.props.selectProvider(this.selectedProvider)
     }
 
     showInnerNav = () => {
@@ -162,4 +165,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps)(withMasterLayout(ServiceDetails));
+export default connect(mapStateToProps, actions)(withMasterLayout(ServiceDetails));

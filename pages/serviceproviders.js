@@ -71,7 +71,7 @@ class ServiceProvider extends Component {
                             {
                                 this.props.serviceProviders.map((provider, i) => (
                                     <Grid.Column >
-                                        <Provider  key={`provider${i}`} {...provider} />
+                                        <Provider  key={i} {...provider} />
                                     </Grid.Column>
                                 ))
                             }

@@ -2,26 +2,38 @@ import React from 'react'
 
 import './less/bookingDetails.less'
 import { Button, Grid } from 'semantic-ui-react';
+import { getProviders } from '../../store'
+import { connect } from 'react-redux';
 
 function BookingDetails(props) {
-  const kk = () => {
-    console.log(props)
+
+  const renderList = (list) => {
+    return list.map((item, i) => <div key={i} className="bookService__title__amount">{item.title} <span>£{item.price}</span></div>)
   }
+
+  const total = (list) => {
+    let total = 0
+    list.forEach(item => {
+      total += parseFloat(item.price)
+    });
+    return total
+  }
+
   return (
     <>
     <div className="bookingDetails">
       <p className="usersName">
           Booking Details
       </p>
-      <p>
+      <div>
       <Grid className="userDetailsWrap">
         <Grid.Row>
           <Grid.Column width={3}>
-            <img src="/static/images/team/teammember1.png" className="userImage" alt=""/>
+            <img src={props.providerDetails.userPhoto} className="userImage" alt=""/>
           </Grid.Column>
           <Grid.Column width={13}>
             <p className="name">
-              Mary Jane
+              {props.providerDetails.name}
             </p>
             <p className="userDetails">
               <img src="/static/icons/clock.svg" alt=""/> 08:00pm Today
@@ -29,11 +41,11 @@ function BookingDetails(props) {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-      <div className="bookService__title__amount">Title of service <span>£34</span></div>
-      <div className="bookService__title__amount">Title of service <span>£34</span></div>
-      <div className="bookService__title__amount">Title of service <span>£34</span></div>
-          <div className="bookService__title__amount_total">Total <span>£100</span></div>
-      </p>
+      {
+        renderList(props.subscribedServices)
+      }
+      <div className="bookService__title__amount_total">Total <span>£{total(props.subscribedServices)}</span></div>
+      </div>
       {
         props.children
       }
@@ -45,4 +57,10 @@ function BookingDetails(props) {
   )
 }
 
-export default BookingDetails
+
+const mapStateToProps = (state) => ({
+  subscribedServices: state.subscribedServices.subscribedServices,
+  providerDetails: state.subscribedServices.selectedProvider
+})
+
+export default connect(mapStateToProps)(BookingDetails)
