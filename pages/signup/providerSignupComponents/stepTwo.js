@@ -65,7 +65,7 @@ export default function StepTwo(props) {
 
   return (
     <div>
-      <Grid id="stepOne" className="stepOne" centered>
+      <Grid id="stepOne" className="stepOne" columns>
       <Grid.Row>
         <Grid.Column width={16}>
           <Header textAlign="center" className="header" as='h1'>
@@ -93,7 +93,7 @@ export default function StepTwo(props) {
               options={options}
               placeholder='Within mile radius'
             />
-            <div className="is-flex mt-10">
+            <div className="is-flex checkboxWrap">
               <Checkbox
                 className="stepOne-form--checkbox"
                 onChange={(e, data) => handleChange(e, 'accept', data)}
@@ -103,14 +103,12 @@ export default function StepTwo(props) {
               </span>
             </div>
             
-            <p className="sectHeading">
+            <p className="sectHeading_">
                 Availability
             </p>
 
-            <Grid columns>
-                <Grid.Row>
-                    <Timing />
-                </Grid.Row>
+            <Grid columns className='timingWrap'>
+              <Timing />
             </Grid>
             <div className="is-v-centered">
                 {props.children}

@@ -1,4 +1,84 @@
 .datePickerWrap {
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(99, 115, 129, 0.1);
+    .month {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px !important;
+        .month-left-chevron {
+            margin: 0 12px;
+            cursor: pointer;
+        }
+    }
+    .daysInner {
+        min-width: 90%;
+        
+    }
+    
+    .kard::-webkit-scrollbar {
+        display: none !important;
+    }
+    .kard {
+        display: flex;
+        min-width: 100%;
+        overflow-x: auto;
+        margin-bottom: 20px;
+        scroll-behavior: smooth;
+        .card--content {
+            // padding: 15px !important;
+            color: #637381;
+            border: 1px solid rgba(196, 205, 213, 0.5);
+            min-width: 12% !important;
+            max-width: 12% !important;
+            height: 60px !important;
+            line-height: 60px !important;
+            display: inline-block;
+            margin: 0 1.2% 0 1.2%;
+            text-align: center;
+            cursor: pointer;
+            scroll-behavior: smooth;
+        }
+    }
+    .days {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        scroll-behavior: smooth;
+        .right-chevron {
+            position: relative;
+            top: -10px;
+            right: 0
+        }
+        .left-chevron {
+            position: relative;
+            top: -10px;
+            left: 0px;
+            // opacity: 0.5;
+        }
+    }
+    .turn {
+        transform: rotate(180deg);
+    }
+    .time {
+        .timeRow {
+            padding-left: 19px !important;
+            padding-right: 18px !important;
+            .column {
+                padding: 2px !important
+            }
+        }
+        .singleTime {
+            width: 100%;
+            border: 1px solid rgba(196, 205, 213, 0.5);
+            height: 80px !important;
+            line-height: 80px !important;
+            text-align: center;
+            color: #637381
+        }
+    }
+    .active {
+        background-color: #E84671;
+        color: #fff !important;
+        border: 0 !important
+    }
 }

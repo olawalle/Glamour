@@ -5,6 +5,8 @@ import withMasterLayout from './layouts/withMasterLayout';
 import './less/account.less'
 import BusinessDetails from './account/BusinessDetails';
 import PersonalDetails from './account/PersonalDetails';
+import ManageSubscriptions from './account/ManageSubscriptions';
+import ManagePayments from './account/ManagePayments';
 
 
 const Account = () => {
@@ -44,13 +46,13 @@ const Account = () => {
     },
     {
         text: 'Manage subscriptions',
-        component: '',
+        component: <ManageSubscriptions />,
         active: 'inactive',
         icon: '/static/icons/subscriptions.svg'
     },
     {
         text: 'Manage payments',
-        component: '',
+        component: <ManagePayments />,
         active: 'inactive',
         icon: '/static/icons/card.svg'
     },
@@ -68,7 +70,7 @@ const Account = () => {
       <Container>
         <Grid>
             <Grid.Row>
-            <Grid.Column width={5} textAlign="center">
+            <Grid.Column  mobile={16} tablet={16} largeScreen={5} widescreen={5} textAlign="center">
                 <div className="lightShadow leftWing">
                     <div className="leftWingTop">
                         <div className="userPhoto">
@@ -91,7 +93,7 @@ const Account = () => {
                     </ul>
                 </div>
             </Grid.Column>
-            <Grid.Column width={11}>
+            <Grid.Column  mobile={16} tablet={16} largeScreen={11} widescreen={11}>
                 <div className="lightShadow rightWing">
                     {
                         activeComponent

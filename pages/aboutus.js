@@ -19,7 +19,7 @@ class Aboutus extends Component {
     return (
       <Info text="About us" banner="/static/images/aboutusbanner.png">
         <Introduction />
-        <Team />
+        {/* <Team /> */}
       </Info>
     )
   }

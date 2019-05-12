@@ -20,7 +20,7 @@ const BookService = (props) => {
         })
     }
 
-    let [ isPickingDate, setPickingStatus ] = useState(true);
+    let [ isPickingDate, setPickingStatus ] = useState(false);
 
     return (
         <div className="bookService">

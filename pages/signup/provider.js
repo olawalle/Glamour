@@ -50,7 +50,7 @@ class ProviderSignup extends Component {
                     <Grid.Column mobile={14} tablet={11} largeScreen={8} widescreen={7}>
                         <Grid Column>
                             <Grid.Row>
-                                <Grid.Column className="indicatorsWrap" width={5}>
+                                <Grid.Column className="indicatorsWrap_"  mobile={16} tablet={11}>
                                     <div className="indicatorsWrapInner">
                                         <ul className="indicators">
                                             {
@@ -62,7 +62,19 @@ class ProviderSignup extends Component {
                                         </ul>
                                     </div>
                                 </Grid.Column>
-                                <Grid.Column className="formWrap" textAlign="center" width={11}>
+                                <Grid.Column className="indicatorsWrap" mobile={5} tablet={5} largeScreen={5} widescreen={5}>
+                                    <div className="indicatorsWrapInner">
+                                        <ul className="indicators">
+                                            {
+                                                this.state.steps.map((step, i) => {
+                                                    if (i <= this.state.step) return <li onClick={() => this.setState({...this.state, step: i})} className={step.active}><div className="listContent"><p>{step.text}</p></div></li>
+                                                    if (i > this.state.step) return <li className={step.active}><div className="listContent"><p>{step.text}</p></div></li>
+                                                })
+                                            }
+                                        </ul>
+                                    </div>
+                                </Grid.Column>
+                                <Grid.Column className="formWrap" textAlign="center"  mobile={16} tablet={11} largeScreen={11} widescreen={11}>
                                     {
                                         this.whatStep()
                                     }

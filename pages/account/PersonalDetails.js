@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid, Input } from 'semantic-ui-react';
 import './less/personalDetails.less'
+import Password from '../../components/shared/Password';
 export default function PersonalDetails() {
   return (
     <div className="personalDetails">
@@ -48,12 +49,18 @@ export default function PersonalDetails() {
                   </p>
               </Grid.Column>
               <Grid.Column width={9}>
-                  <Input 
-                    placeholder="Old password"
-                  />
-                  <Input 
-                    placeholder="New password"
-                  />
+                <Password
+                  size="huge"
+                  placeholder='Password'
+                  className="stepOne-form--input"
+                  fluid
+                />
+                <Password
+                  size="huge"
+                  placeholder='Password'
+                  className="stepOne-form--input"
+                  fluid
+                />
               </Grid.Column>
           </Grid.Row>
       </Grid>

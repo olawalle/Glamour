@@ -5,7 +5,7 @@ import './less/upcomingBookings.less'
 export default function UpcomingBookings() {
   return (
     <div className="upcomingBookings">
-        <Grid>
+        <Grid stackable>
             <Grid.Row>
                 <Grid.Column width={8}>
                     <p className="customerName">
