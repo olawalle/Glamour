@@ -11,7 +11,7 @@ const Notifications = (props) => {
       <Container>
         <Grid centered columns={1}>
           <Grid.Row>
-            <Grid.Column mobile={16} tablet={16} largeScreen={11} widescreen={11}>
+            <Grid.Column mobile={16} tablet={16} computer={13} largeScreen={10} widescreen={10}>
               <Card className="notifications-card mb-70" fluid>
                 <Card.Content className="notification-content">
                   <Card.Header>

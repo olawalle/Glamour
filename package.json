@@ -50,7 +50,8 @@
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-icon": "^2.3.3",
     "semantic-ui-react": "^0.86.0",
-    "semantic-ui-sass": "^2.4.1"
+    "semantic-ui-sass": "^2.4.1",
+    "webpack-filter-warnings-plugin": "^1.2.1"
   },
   "license": "ISC",
   "devDependencies": {

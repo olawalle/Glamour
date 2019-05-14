@@ -33,8 +33,12 @@
     padding: 20px;
     height: 332px !important;
     // padding: 20px;
-    padding: 50px 40px !important;
+    padding: 50px 27px !important;
+    // padding: 50px 4 0px !important;
     // width: 351px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
   }
 
 
@@ -43,7 +47,10 @@
     // font-family: freightproblack !important;
     font-family: sofiapromedium !important;
     height: 140px !important;
-
+    min-height: 140px;
+    max-height: 180px;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
   }
 
   .testimonials--fullname {
@@ -63,5 +70,27 @@
     background: #E84669 !important;
     height: 12px !important;
     width: 12px !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .testimonials .item {
+    padding: 50px 50px !important;
+ }
+}
+
+@media only screen and (min-width: 1440px) {
+  #__next .testimonials {
+    .item {
+      margin: 0px 2%;
+      height: 400px !important;
+      padding: 60px 55px !important;
+
+      .testimonials--testimony {
+        line-height: 1.4em;
+      }
+
+    }
+
   }
 }
