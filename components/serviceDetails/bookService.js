@@ -20,20 +20,35 @@ const BookService = (props) => {
         })
     }
 
-    let [ isPickingDate, setPickingStatus ] = useState(false);
+    let [ isPickingDate, setPickingStatus ] = useState(true);
+    let [ selectedDate, setSelectedDate ] = useState('');
+    let [ selectedTime, setSelectedTime ] = useState('');
+
+    const pickDate = (date) => {
+        setSelectedDate(date)
+    }
+
+    const pickTime = (time) => {
+        setSelectedTime(time)
+    }
 
     return (
         <div className="bookService">
             <p className="usersName">
                 Book {props.providerDetails.name}
             </p>
+
             <Display if={!isPickingDate}>
-                <span onClick={() => setPickingStatus(true)}>close</span>
-                <GlamourDatePicker />
+                <span onClick={() => setPickingStatus(true)}>
+                    <img src="/static/icons/close.svg" className="close" title="close" alt=""/>
+                </span>
+                <GlamourDatePicker pickTime={pickTime} selectedTime={selectedTime} selectedDate={selectedDate} pickDate={pickDate}/>
             </Display>
+
             <Display if={isPickingDate}>
                 <img src="../../static/images/calender.png" className="pickerImage" />
                 <input type="text"
+                    value={`${selectedDate} ${selectedTime}`}
                     onFocus={() => setPickingStatus(false)}
                     placeholder="When do you want this?"
                     className="date--picker" />

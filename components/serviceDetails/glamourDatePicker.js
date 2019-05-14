@@ -17,7 +17,7 @@ export default class glamourDatePicker extends Component {
       prev: true
     },
     allDates: [],
-    monthNames: [ 
+    monthNames: [
       {name: "January", position: 1},
       {name: "February", position: 2},
       {name: "March", position: 3},
@@ -30,6 +30,59 @@ export default class glamourDatePicker extends Component {
       {name: "October", position: 10},
       {name: "November", position: 11},
       {name: "December", position: 12}
+    ],
+    pickedDate: '',
+    userAvailableTimes: { from: '09:00 am', to: '05:00 pm' },
+    userAvailableTimesArray: [],
+    times: [
+        {time: '00:00 am' , selected: ''},
+        {time: '00:30 am' , selected: ''},
+        {time: '01:00 am' , selected: ''},
+        {time: '01:30 am' , selected: ''},
+        {time: '02:00 am' , selected: ''},
+        {time: '02:30 am' , selected: ''},
+        {time: '03:00 am' , selected: ''},
+        {time: '03:30 am' , selected: ''},
+        {time: '04:00 am' , selected: ''},
+        {time: '04:30 am' , selected: ''},
+        {time: '05:00 am' , selected: ''},
+        {time: '05:30 am' , selected: ''},
+        {time: '06:00 am' , selected: ''},
+        {time: '06:30 am' , selected: ''},
+        {time: '07:00 am' , selected: ''},
+        {time: '07:30 am' , selected: ''},
+        {time: '08:00 am' , selected: ''},
+        {time: '08:30 am' , selected: ''},
+        {time: '09:00 am' , selected: ''},
+        {time: '09:30 am' , selected: ''},
+        {time: '10:00 am' , selected: ''},
+        {time: '10:30 am' , selected: ''},
+        {time: '11:00 am' , selected: ''},
+        {time: '11:30 am' , selected: ''},
+        {time: '12:00 pm', selected: ''},
+        {time: '12:30 pm', selected: ''},
+        {time: '01:00 pm', selected: ''},
+        {time: '01:30 pm', selected: ''},
+        {time: '02:00 pm', selected: ''},
+        {time: '02:30 pm', selected: ''},
+        {time: '03:00 pm', selected: ''},
+        {time: '03:30 pm', selected: ''},
+        {time: '04:00 pm', selected: ''},
+        {time: '04:30 pm', selected: ''},
+        {time: '05:00 pm', selected: ''},
+        {time: '05:30 pm', selected: ''},
+        {time: '06:00 pm', selected: ''},
+        {time: '06:30 pm', selected: ''},
+        {time: '07:00 pm', selected: ''},
+        {time: '07:30 pm', selected: ''},
+        {time: '08:00 pm', selected: ''},
+        {time: '08:30 pm', selected: ''},
+        {time: '09:00 pm', selected: ''},
+        {time: '09:30 pm', selected: ''},
+        {time: '10:00 pm', selected: ''},
+        {time: '10:30 pm', selected: ''},
+        {time: '11:00 pm', selected: ''},
+        {time: '11:30 pm', selected: ''},
     ]
   }
 
@@ -40,19 +93,21 @@ export default class glamourDatePicker extends Component {
     return arr;
   };
   
-  
-  getDates = () => {
+  getDates = (previouslySelectedDate) => {
     const start = dayjs().format('YYYY-MM-DD')
     const end = dayjs().add(1, 'year').format('YYYY-MM-DD')
     var daylist = this.getDaysArray(new Date(start),new Date(end));
     let arr = []
-    daylist.map((v) => {
+    daylist.map((v, i) => {
       let date = dayjs(v).format('DD MMMM YYYY').split(" ")
       let reshapedDate = {}
       reshapedDate.month = `${date[1]}, ${date[2]}`
       reshapedDate.day = date[0]
+      i === 0 ? reshapedDate.active = 'active' : reshapedDate.active = ''
       arr.push(reshapedDate)
     })
+
+    this.setState({pickedDate: `${arr[0].day} ${arr[0].month}`})
 
     this.setState({dateLimits: {
       min: arr[0],
@@ -67,37 +122,44 @@ export default class glamourDatePicker extends Component {
     let currentYear = dayjs().format('YYYY')
 
     this.setState({datesDictionary: datesDictionary})
-    this.setState({allDates: datesDictionary[`${currentMonth}, ${currentYear}`]})
-  }
 
-  disableBtnMethod = () => {
-    let split = this.getMonth().split(',')
-    let currentMonth = this.state.monthNames[this.state.monthNames.find((mnth, i) => mnth.name === split[0]).position]
-    // if (this.state.dateLimits.min === this.getMonth) {
-    //   this.setState({dateLimits: {min: true, max: false}}) 
-    // console.log(this.state.dateLimits)
-    // } else {
-    //   this.setState({
-    //     dateLimits: {min: false, max: false}}) 
-    // console.log(this.state.dateLimits)
-    // }
-    if (this.state.dateLimits.min.month === currentMonth) {
-      // this.setState({dateLimits: {min: false, max: true}}) 
-      console.log('min reached')
-    } 
-    if (this.state.dateLimits.max.month === currentMonth) {
-      // this.setState({dateLimits: {min: false, max: false}}) 
-      console.log('max reached')
+    
+    if (previouslySelectedDate !== '') {
+      let day = previouslySelectedDate.split(",")[0].split(" ")[0]
+      let month = previouslySelectedDate.split(",")[0].split(" ")[1]
+      let year = previouslySelectedDate.split(",")[1].replace(/\s/g,'')
+      let selectedDatesPosition = 0
+      let fullPreviouslySelectedDate = datesDictionary[`${month}, ${year}`].map((date, i) => {
+        if (day === date.day) {
+          selectedDatesPosition = i
+          return  {... date, active: 'active'}
+         } else {
+          return {...date, active: ''}
+         }
+      })
+      this.moveDatesLeft(selectedDatesPosition)
+      this.setState({allDates: fullPreviouslySelectedDate})
+    } else {
+      this.setState({allDates: datesDictionary[`${currentMonth}, ${currentYear}`]})
     }
   }
 
-  moveDatesLeft = () => {
-    let position = this.refs.section.scrollLeft
-    let dayWidth = this.refs.section.clientWidth / 7
-    this.refs.section.scrollLeft = position + dayWidth
+  moveDatesLeft = (n) => {
+    console.log(n)
+    // settimeout needed because there a time lag from when component is mounted before refs are defined
+    setTimeout(() => {
+      let position = this.refs.section.scrollLeft
+      let dayWidth = this.refs.section.clientWidth / 7
+      if (!n) {
+        this.refs.section.scrollLeft = position + dayWidth
+      } else if (n && n > 6) {
+          // scroll to the selected date
+          // ***** 3px added coz there is a smallfraction of the first timewrap showing
+          this.refs.section.scrollLeft = position + (dayWidth * n - 7) + 3   
+      }
+    }, 100);
   }
 
-  
   moveDatesRight = () => {
     let position = this.refs.section.scrollLeft
     let dayWidth = this.refs.section.clientWidth / 7
@@ -106,13 +168,22 @@ export default class glamourDatePicker extends Component {
 
   renderDates = () => {
     return this.state.allDates.map((day, i) => {
-      return i === 0 ? <div key={`date${i}`} className="card--content active" title={`Book for ${ day.day } ${day.month}`}>
+      return i === 0 ? <div key={`date${i}`} onClick={() => this.pick(i)} className={`card--content ${day.active}`} title={`Book for ${ day.day } ${day.month}`}>
               {day.day}
             </div>
             :
-            <div key={`date${i}`} className="card--content"  title={`Book for ${ day.day } ${day.month}`}>
+            <div key={`date${i}`} onClick={() => this.pick(i)} className={`card--content ${day.active}`}  title={`Book for ${ day.day } ${day.month}`}>
               {day.day}
             </div>
+    })
+  }
+
+  pick = (i) => {
+    let newDates = this.state.allDates.map((date, j) => i === j ? {...date, active: 'active'} : {...date, active: ''})
+    let pickedDate = `${newDates[i].day} ${newDates[i].month}`
+    this.setState({allDates: newDates})
+    this.setState({pickedDate: pickedDate}, () => {
+      this.props.pickDate(pickedDate)
     })
   }
 
@@ -124,6 +195,28 @@ export default class glamourDatePicker extends Component {
       console.log('max')
     }
     return this.state.allDates[0] ? this.state.allDates[0].month : ''
+  }
+
+  pickTime = (i, selectedTime) => {
+    if (i === null) {
+      // console.log(this.state.userAvailableTimesArray)
+      let reshapedTimes = this.state.userAvailableTimesArray.map((time, j) => {
+        if (selectedTime === time.time) {
+          this.props.pickTime(this.state.userAvailableTimesArray[j].time)
+          return {...time, selected: 'active'}
+        }  else {
+            return {...time, selected: ''}
+          }
+      })
+      this.setState({userAvailableTimesArray: reshapedTimes})
+    } else {
+      let reshapedTimes = this.state.userAvailableTimesArray.map((time, j) => {
+        return i === j ? {...time, selected: 'active'} : {...time, selected: ''}
+      })
+      this.setState({userAvailableTimesArray: reshapedTimes}, () => {
+        this.props.pickTime(this.state.userAvailableTimesArray[i].time)
+      })
+    }
   }
 
   switchMonth = (n) => {
@@ -139,7 +232,6 @@ export default class glamourDatePicker extends Component {
         })
       } else {
         let newYear = parseFloat(currentYear.replace(/\s/g,'')) + 1
-        console.log(this.state.monthNames[0].name+", "+newYear)
         this.setState({
           allDates: this.state.datesDictionary[this.state.monthNames[0].name+", "+newYear]
         })
@@ -148,7 +240,6 @@ export default class glamourDatePicker extends Component {
       // switch to previous month
       if (active === 1) {
         let newYear = parseFloat(currentYear.replace(/\s/g,'')) - 1
-        console.log(this.state.monthNames[11].name+", "+newYear)
         this.setState({
           allDates: this.state.datesDictionary[this.state.monthNames[11].name+", "+newYear]
         })
@@ -159,15 +250,29 @@ export default class glamourDatePicker extends Component {
         })
       }
     }
-    this.disableBtnMethod()
   }
 
   componentWillMount() {
-    let arr = this.state.monthNames.map((month, i) => { 
-      return {month: month, position: i + 1}
+    this.getDates(this.props.selectedDate)
+
+    let limits = {}
+    this.state.times.find((time, i) => {
+      if (time.time === this.state.userAvailableTimes.from) {
+        limits.min = i
+      }
+      if (time.time === this.state.userAvailableTimes.to) {
+        limits.max = i
+      }
     })
-    console.log(arr)
-    this.getDates()
+
+    let userAvailableTimesArray = this.state.times.filter((time, i) => {
+      if (i >= limits.min && limits.max >= i) {
+        return time
+      }
+    })
+    this.setState({userAvailableTimesArray: userAvailableTimesArray}, () => {
+      this.pickTime(null, this.props.selectedTime)  
+    })
   }
 
   render () {
@@ -189,46 +294,15 @@ export default class glamourDatePicker extends Component {
         </div>
         <Grid className="time">
           <Grid.Row className="timeRow">
-            <Grid.Column width={4}>
-              <div className="singleTime">
-                6am
-              </div>
-            </Grid.Column>
-            <Grid.Column width={4}>
-              <div className="singleTime active">
-                6am
-              </div>
-            </Grid.Column>
-            <Grid.Column width={4}>
-              <div className="singleTime">
-                6am
-              </div>
-            </Grid.Column>
-            <Grid.Column width={4}>
-              <div className="singleTime">
-                6am
-              </div>
-            </Grid.Column>
-            <Grid.Column width={4}>
-              <div className="singleTime">
-                6am
-              </div>
-            </Grid.Column>
-            <Grid.Column width={4}>
-              <div className="singleTime">
-                6am
-              </div>
-            </Grid.Column>
-            <Grid.Column width={4}>
-              <div className="singleTime">
-                6am
-              </div>
-            </Grid.Column>
-            <Grid.Column width={4}>
-              <div className="singleTime">
-                6am
-              </div>
-            </Grid.Column>
+            {
+             this.state.userAvailableTimesArray.map((time, i) => {
+               return <Grid.Column width={4}>
+                        <div className={`singleTime ${time.selected}`} onClick={() => this.pickTime(i)}>
+                          {time.time}
+                        </div>
+                      </Grid.Column>
+              }) 
+            }
           </Grid.Row>
         </Grid>
       </div>

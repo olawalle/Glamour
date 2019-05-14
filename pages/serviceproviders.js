@@ -33,9 +33,6 @@ class ServiceProvider extends Component {
         position: ''
     }
 
-    componentWillMount() {
-    }
-
     showInnerNav = () => {
         if (this.props.isLoggedIn) {
             return <InnerNav />
@@ -71,7 +68,21 @@ class ServiceProvider extends Component {
                             {
                                 this.props.serviceProviders.map((provider, i) => (
                                     <Grid.Column >
-                                        <Provider  key={i} {...provider} />
+                                        <Provider  key={`provider${i}`} {...provider} />
+                                    </Grid.Column>
+                                ))
+                            }
+                            {
+                                this.props.serviceProviders.map((provider, i) => (
+                                    <Grid.Column >
+                                        <Provider  key={`providuuer${i}`} {...provider} />
+                                    </Grid.Column>
+                                ))
+                            }
+                            {
+                                this.props.serviceProviders.map((provider, i) => (
+                                    <Grid.Column >
+                                        <Provider  key={`prbbovider${i}`} {...provider} />
                                     </Grid.Column>
                                 ))
                             }

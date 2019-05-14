@@ -38,6 +38,9 @@
         src: url(/static/fonts/Freight\ Big\ Pro/Freight\_Big\_Pro\ Bold.otf);
 }
 
+body {
+        font-family: sofiaproregular !important
+}
 body ::-webkit-scrollbar-track {
         // background: rgba(0, 0, 0, 0.01) !important;
         background: transparent !important;
@@ -359,6 +362,10 @@ body ::-webkit-scrollbar-track {
         border-top: none !important;
 }
 
+.ui.sticky {
+        z-index: 1000000000000;
+}
+
 
 
 
@@ -387,13 +394,13 @@ body ::-webkit-scrollbar-track {
 }
 
 
-@media only screen and (min-width: 1200px){
-        .ui.container {
-                width: 94%;
-                margin-left: auto !important;
-                margin-right: auto !important;
-        }
-}
+// @media only screen and (min-width: 1200px){
+//         .ui.container {
+//                 width: 94%;
+//                 margin-left: auto !important;
+//                 margin-right: auto !important;
+//         }
+// }
 
 
 /* Mobile */

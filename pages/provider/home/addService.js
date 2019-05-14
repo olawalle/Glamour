@@ -2,32 +2,12 @@ import React, { useState } from 'react'
 import { Grid, Input, TextArea, Select, Button } from 'semantic-ui-react';
 // import ImageUploader from 'react-images-upload';
 import './less/addService.less'
+import CustomImageUploader from '../../../components/shared/CustomImageUploader';
 
 export default function AddService() {
   
-  const [userPhoto, pickPhoto] = useState({})
   const [imgPlaceholder, updatePlaceholder] = useState(true)
   const [imageSrc, updateImageSrc] = useState({image: ''})
-
-  const dropdown = (e) => {
-    let file = e.target.files[0]
-    getBase64(file)
-    updatePlaceholder(false)
-    let data = {userPhoto: file}
-    pickPhoto(data)
-    console.log(userPhoto)
-  }
-
-  function getBase64(file) {
-    var reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function () {
-        updateImageSrc({image: reader.result});
-    };
-    reader.onerror = function (error) {
-      console.log('Error: ', error);
-    };
- }
 
  const switchPlaceholder = () => {
     if (imgPlaceholder) {
@@ -38,6 +18,14 @@ export default function AddService() {
     } else {
         return <div></div>
     }
+ }
+
+ const getImageString_ = (imageString) => {
+  updateImageSrc({image: imageString});
+  updatePlaceholder(false)
+ }
+ const getImageFile = () => {
+
  }
 
  const styles = {
@@ -68,12 +56,13 @@ export default function AddService() {
                 <Input placeholder="Amount"/>
               </Grid.Column>
               <Grid.Column width={14}>
-                <div className="upload" style={styles.Upload}>
-                  {
-                    switchPlaceholder()
-                  }
-                  <input type="file" title="Click to upload image" onDrop={() => dropdown(event)} onChange={() => dropdown(event)} id="test" multiple />
-                </div>
+                <CustomImageUploader getImageString={getImageString_} getImageFile={getImageFile}>
+                  <div className="upload" style={styles.Upload}>
+                    {
+                      switchPlaceholder()
+                    }
+                  </div>
+                </CustomImageUploader>
               </Grid.Column>
               <Grid.Column width={14} textAlign="center" className="myButtons">
                 <Button size="huge"  className="mainBtn" secondary>Save as draft</Button>

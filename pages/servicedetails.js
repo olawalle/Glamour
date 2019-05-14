@@ -72,7 +72,9 @@ class ServiceDetails extends Component {
                                         <Button size="huge" className="mainBtn secondaryBtn"> 
                                             <img src="../static/icons/heart.svg" alt=""/> <span>Save</span>
                                         </Button>
-                                        <Button size="huge"  className="mainBtn" secondary>Send Message</Button>
+                                        <Button size="huge"  className="mainBtn" secondary>
+                                            <img src="../static/icons/heart.svg" alt=""/>Send Message
+                                        </Button>
                                     </div>
                                     <p className="userName">
                                         {this.selectedProvider.name}

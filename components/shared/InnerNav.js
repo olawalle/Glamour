@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import { Input, Menu, Sticky } from 'semantic-ui-react'
-import _ from 'lodash'
+import { Menu, Sticky } from 'semantic-ui-react'
+import Router from 'next/router';
+import Link from 'next/link';
 
 import './less/InnerNav.less'
+import Display from './Display';
 
 
 export default class InnerNav extends Component {
@@ -12,84 +14,64 @@ export default class InnerNav extends Component {
       {
         text: 'Home',
         image: '/static/icons/home.svg',
-        to: '',
+        to: '/provider/home',
         hasNotif: false
       },
       {
         text: 'Notifications',
         image: '/static/icons/bell.svg',
-        to: '',
-        hasNotif: false
+        to: '/notifications',
+        hasNotif: true
       },
       {
         text: 'Messages',
         image: '/static/icons/messages.svg',
-        to: '',
-        hasNotif: false
+        to: '/messages',
+        hasNotif: true
       },
       {
         text: 'My Bookings',
         image: '/static/icons/bookings.svg',
-        to: '',
-        hasNotif: false
+        to: '/bookings',
+        hasNotif: true
       },
       {
         text: 'Account',
         image: '/static/icons/account.svg',
-        to: '',
+        to: '/account',
         hasNotif: false
       }
     ]
   }
 
-  // componentWillMount() {
-  //   if(props.isProvider) {
-  //     this.state.links = [
-  //       {
-  //         text: 'Home',
-  //         image: '/static/icons/home.svg',
-  //         to: ''
-  //       },
-  //       {
-  //         text: 'Notifications',
-  //         image: '/static/icons/bell.svg',
-  //         to: ''
-  //       },
-  //       {
-  //         text: 'Messages',
-  //         image: '/static/icons/messages.svg',
-  //         to: ''
-  //       },
-  //       {
-  //         text: 'My Bookings',
-  //         image: '/static/icons/bookings.svg',
-  //         to: ''
-  //       },
-  //       {
-  //         text: 'Account',
-  //         image: '/static/icons/account.svg',
-  //         to: ''
-  //       }
-  //     ]
-  //   }
-  // }
+  componentDidMount() {
+    this.setState({ activeItem: this.state.links.find(link => link.to === Router.router.route).text})
+  }
 
   renderLinks = () => {
     return this.state.links.map((link, i) => {
-      return <Menu.Item  
-      className="is-h-centered listItem" 
-      name={link.text} 
-      key={`key${i}`}
-      active={this.state.activeItem === link.text} 
-      onClick={this.handleItemClick}
-      >
-        <span className="notif">.</span>
-        <img src={link.image} className="linkIcon" alt=""/> <span className="mobile hidden">{link.text}</span>
-      </Menu.Item>
+      return <Link href={link.to}
+              key={`link${i}`}> 
+              <Menu.Item 
+                className="is-h-centered listItem" 
+                name={link.text} 
+                key={`key${i}`}
+                active={this.state.activeItem === link.text} 
+                onClick={() => this.handleItemClick(link.text)}
+                >
+                <Display if={link.hasNotif}>
+                  <span className="notif">.</span>
+                </Display>
+                <img src={link.image} className="linkIcon" alt=""/> 
+                <span className="mobile hidden">{link.text}</span>
+              </Menu.Item>
+            </Link>
     })
   }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleItemClick = (name) => {
+    this.setState({ activeItem: name })
+  }
 
   render() {
     return (

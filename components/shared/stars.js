@@ -24,7 +24,7 @@ export default function stars(props) {
         filled(props.stars).map((elm, i) => <img key={`filled${i}`} src='/static/icons/filled-star.svg' />)
       }
       {
-        empty(5 - props.stars).map((elm, i) => <img key={`filled${i}`} src='/static/icons/filled-star.svg' />)
+        empty(5 - props.stars).map((elm, i) => <img key={`empty${i}`} src='/static/icons/filled-star.svg' />)
     }
     </>
   )
