@@ -8,8 +8,8 @@ jobs:
       - run:
           name: Install jest gloablly
           command: |
-            sudo chown -R $USER /usr/local
-            npm install -g jest
+
+            sudo npm install -g jest
       - run:
           name: Install dependencies
           command: npm install
