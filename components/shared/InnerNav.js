@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Input, Menu, Sticky } from 'semantic-ui-react'
+import { Menu, Sticky } from 'semantic-ui-react'
 import _ from 'lodash'
 
-// import './less/innerNav.less'
+import './less/innerNav.less';
 
 
 export default class MenuExampleSecondary extends Component {
