@@ -7,7 +7,12 @@ jobs:
       - checkout
       - run:
           name: Install jest gloablly
-          command: npm install -g jest
+          command: |
+            sudo chown -R $USER /usr/local
+            npm install -g jest
+      - run:
+          name: Install dependencies
+          command: npm install
       - run:
           name: Run tests
           command: npm run test
