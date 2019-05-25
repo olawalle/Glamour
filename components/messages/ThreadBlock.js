@@ -3,7 +3,7 @@ import { Card, Image } from 'semantic-ui-react';
 import { Input } from 'antd';
 import 'antd/lib/input/style/index.css';
 import 'antd/lib/icon/style/index.css';
-import './less/threadblock.less';
+import './less/threadBlock.less';
 
 const ThreadBlock = (props) => {
   let prev;
