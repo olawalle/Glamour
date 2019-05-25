@@ -14,9 +14,9 @@ jobs:
   Deploy:
     docker:
       - image: circleci/node:9.9
-          environment:
-            HEROKU_API_KEY: 194d0430-242a-49d0-bc7d-8f0da38841ae
-            HEROKU_APP_NAME: glamourng
+        environment:
+          HEROKU_API_KEY: 194d0430-242a-49d0-bc7d-8f0da38841ae
+          HEROKU_APP_NAME: glamourng
     steps:
       - checkout
       - run:
