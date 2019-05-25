@@ -5,7 +5,7 @@ import _ from 'lodash'
 import './less/innerNav.less';
 
 
-export default class MenuExampleSecondary extends Component {
+export default class InnerNav extends Component {
   state = { activeItem: 'Home' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
