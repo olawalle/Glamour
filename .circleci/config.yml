@@ -25,10 +25,10 @@ jobs:
 workflows:
   my_workflow:
     jobs:
-      -Test
-      -Deploy:
-        requires:
-          -Test
-        # filters:
-        #   branches:
-        #     only: master
+      - Test
+      - Deploy:
+          requires:
+            -Test
+          # filters:
+          #   branches:
+          #     only: master
