@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Menu, Sticky } from 'semantic-ui-react'
 import _ from 'lodash'
 
-import '../shared/less/innerNav.less';
+import './less/nav.less';
 
 
 export default class InnerNav extends Component {
