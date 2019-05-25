@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Input, Menu, Sticky } from 'semantic-ui-react'
 import _ from 'lodash'
 
-import './less/InnerNav.less'
+import './less/innerNav.less'
 
 
 export default class MenuExampleSecondary extends Component {
@@ -14,13 +14,13 @@ export default class MenuExampleSecondary extends Component {
 
     return (
       <div className="innerNav">
-      
+
         <Sticky>
           <Menu secondary>
-            <Menu.Item  
-              className="is-h-centered listItem" 
-              name='Home' 
-              active={activeItem === 'Home'} 
+            <Menu.Item
+              className="is-h-centered listItem"
+              name='Home'
+              active={activeItem === 'Home'}
               onClick={this.handleItemClick}
             >
               <img src="/static/icons/home.svg" className="linkIcon" alt=""/> <span className="mobile hidden"> Home</span>
