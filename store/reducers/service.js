@@ -2,32 +2,8 @@ import { ADD_SERVICES, SET_LOADING_SERVICES } from '../actions/types';
 
 const INITIAL_STATE = {
   beautyServices: {
-    byId: [1, 2, 3, 4, 5, 6],
+    byId: [],
     allServices: {
-      1: {
-        img: '/static/images/services/hair.png',
-        name: 'Hair',
-      },
-      2: {
-        img: '/static/images/services/hair removal.png',
-        name: 'Hair Removal',
-      },
-      3: {
-        img: '/static/images/services/massage.png',
-        name: 'Massage',
-      },
-      4: {
-        img: '/static/images/services/nails.png',
-        name: 'Nails',
-      },
-      5: {
-        img: '/static/images/services/face.png',
-        name: 'Face',
-      },
-      6: {
-        img: '/static/images/services/body.png',
-        name: 'Body',
-      }
     },
     loadingServices: false
   }
@@ -51,15 +27,9 @@ export default function (state = INITIAL_STATE, { type, payload }) {
       let byId = [];
       let allServices = {};
 
-      payload.forEach((service) => {
-        byId = [
-          ...byId,
-          service.id
-        ]
-        allServices = {
-          ...allServices,
-          [service.id]: service
-        }
+      payload.forEach((service, i) => {
+        byId.push(i)
+        allServices[i] = {...service, img: service.pictureUrl, name: service.serviceName}
       })
 
       return {

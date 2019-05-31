@@ -12,7 +12,7 @@ class notifications extends Component {
   render () {
     return (
       <>
-        <InnerNav />
+        <InnerNav userRole={'client'} />
         <Notifications {...this.props} />
         <NotificationModal {...this.props}/>
         <Footer/>

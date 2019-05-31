@@ -15,42 +15,56 @@ export default class InnerNav extends Component {
         text: 'Home',
         image: '/static/icons/home.svg',
         to: '/provider/home',
-        hasNotif: false
+        hasNotif: false,
+        for: 'serviceprovider'
+      },
+      {
+        text: 'Home',
+        image: '/static/icons/home.svg',
+        to: '/serviceproviders',
+        hasNotif: false,
+        for: 'client'
       },
       {
         text: 'Notifications',
         image: '/static/icons/bell.svg',
         to: '/notifications',
-        hasNotif: true
+        hasNotif: true,
+        for: 'all'
       },
       {
         text: 'Messages',
         image: '/static/icons/messages.svg',
         to: '/messages',
-        hasNotif: true
+        hasNotif: true,
+        for: 'all'
       },
       {
         text: 'My Bookings',
         image: '/static/icons/bookings.svg',
         to: '/bookings',
-        hasNotif: true
+        hasNotif: true,
+        for: 'all'
       },
       {
         text: 'Account',
         image: '/static/icons/account.svg',
         to: '/account',
-        hasNotif: false
+        hasNotif: false,
+        for: 'all'
       }
     ]
   }
 
   componentDidMount() {
+    console.log(Router.router.route)
     this.setState({ activeItem: this.state.links.find(link => link.to === Router.router.route).text})
   }
 
   renderLinks = () => {
     return this.state.links.map((link, i) => {
-      return <Link href={link.to}
+      if (link.for === this.props.userRole || link.for === 'all') {
+        return <Link href={link.to}
               key={`link${i}`}> 
               <Menu.Item 
                 className="is-h-centered listItem" 
@@ -66,6 +80,7 @@ export default class InnerNav extends Component {
                 <span className="mobile hidden">{link.text}</span>
               </Menu.Item>
             </Link>
+      }
     })
   }
 

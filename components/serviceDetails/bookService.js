@@ -15,8 +15,8 @@ const BookService = (props) => {
     }
 
     const renderServicesList = () => {
-         return props.subscribedServices.map(item => {
-            return <div className="bookService__title__amount">{item.title} <span>£{item.price}</span></div>
+         return props.subscribedServices.map((item, i) => {
+            return <div className="bookService__title__amount" key={'item'+i}>{item.title} <span>£{item.price}</span></div>
         })
     }
 
@@ -58,10 +58,10 @@ const BookService = (props) => {
                 <p className="bookService__title">
                     selected services
                 </p>
-                <p>
+                <div>
                     {renderServicesList()}
                     <div className="bookService__title__amount_total">Total <span>£{total()}</span></div>
-                </p>
+                </div>
                 <Button secondary className="proceedBtn">
                     <Link href='/checkout'>Proceed to checkout</Link>
                 </Button>

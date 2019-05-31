@@ -72,8 +72,8 @@
         .singleTime {
             width: 100%;
             border: 1px solid rgba(196, 205, 213, 0.5);
-            height: 80px !important;
-            line-height: 80px !important;
+            height: 80px;
+            line-height: 80px;
             text-align: center;
             cursor: pointer;
             color: #637381
@@ -83,5 +83,12 @@
         background-color: #E84671;
         color: #fff !important;
         border: 0 !important
+    }
+    @media (max-width: 767px) {
+        .singleTime {
+            font-size: 10px !important;
+            height: 60px !important;
+            line-height: 60px !important
+        }
     }
 }

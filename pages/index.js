@@ -13,6 +13,7 @@ import dynamic from 'next/dynamic';
 import { Skeleton } from 'antd';
 import { getTestimonials, getBeautyServices, getTopTrends } from '../store';
 import 'antd/lib/skeleton/style/index.css'
+import { getAllServices } from '../services/generatData.ts'
 
 const Testimonials = dynamic(
   () => import('../components/home/Testimonials'),
@@ -32,8 +33,14 @@ class Home extends Component {
     return {}
   }
 
-  componentDidMount () {
-    // console.log(this.props);
+  componentWillMount () {
+    getAllServices()
+    .then(res => {
+      this.props.saveServices(res.data.services)
+    })
+    .catch(err => {
+      console.log(err)
+    })
   }
 
   render () {

@@ -34,11 +34,35 @@ class ProviderSignup extends Component {
 
   whatStep = () => {
     if (this.state.step === 0) {
-        return <StepOne />
+        return <StepOne>
+                    <Button
+                        className="mt-30 nxt-btn"
+                        size="large"
+                        onClick={() => this.jump()}
+                        secondary>
+                        Next
+                    </Button>
+                </StepOne>
     } else if (this.state.step === 1) {
-        return <StepTwo />
+        return <StepTwo>
+                    <Button
+                        className="mt-30 nxt-btn"
+                        size="large"
+                        onClick={() => this.jump()}
+                        secondary>
+                        Next
+                    </Button>
+                </StepTwo>
     } else {
-        return <StepThree />
+        return <StepThree>
+                    <Button
+                        className="mt-30 nxt-btn"
+                        size="large"
+                        onClick={() => this.jump()}
+                        secondary>
+                        Next
+                    </Button>
+                </StepThree>
     }
   }
 
@@ -47,10 +71,10 @@ class ProviderSignup extends Component {
         <Auth>
             <Grid id="signup" className="providerSignup" columns={2} centered>
                 <Grid.Row>
-                    <Grid.Column mobile={14} tablet={11} largeScreen={8} widescreen={7}>
-                        <Grid Column>
-                            <Grid.Row>
-                                <Grid.Column className="indicatorsWrap_"  mobile={16} tablet={11}>
+                    <Grid.Column mobile={14} tablet={11} computer={10} largeScreen={8} widescreen={7}>
+                        {/* <Grid Column> */}
+                            {/* <Grid.Row> */}
+                                <div className="indicatorsWrap_"  mobile={16} tablet={11}>
                                     <div className="indicatorsWrapInner">
                                         <ul className="indicators">
                                             {
@@ -61,8 +85,8 @@ class ProviderSignup extends Component {
                                             }
                                         </ul>
                                     </div>
-                                </Grid.Column>
-                                <Grid.Column className="indicatorsWrap" mobile={5} tablet={5} largeScreen={5} widescreen={5}>
+                                </div>
+                                <div className="indicatorsWrap">
                                     <div className="indicatorsWrapInner">
                                         <ul className="indicators">
                                             {
@@ -73,21 +97,14 @@ class ProviderSignup extends Component {
                                             }
                                         </ul>
                                     </div>
-                                </Grid.Column>
-                                <Grid.Column className="formWrap" textAlign="center"  mobile={16} tablet={11} largeScreen={11} widescreen={11}>
+                                </div>
+                                <div className="formWrap">
                                     {
                                         this.whatStep()
                                     }
-                                    <Button
-                                        className="mt-30"
-                                        size="large"
-                                        onClick={() => this.jump()}
-                                        secondary>
-                                        Next
-                                    </Button>
-                                </Grid.Column>
-                            </Grid.Row>
-                        </Grid>
+                                </div>
+                            {/* </Grid.Row> */}
+                        {/* </Grid> */}
                     </Grid.Column>
                 </Grid.Row>
             </Grid>

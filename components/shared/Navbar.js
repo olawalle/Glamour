@@ -55,7 +55,7 @@ const Navbar = (props) => {
     >
       <Container >
         <Menu.Item>
-          <Link href="/home">
+          <Link href="/">
             <Image className="logo" src='/static/icons/logo.svg' size='small' />
           </Link>
         </Menu.Item>

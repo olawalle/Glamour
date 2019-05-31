@@ -8,6 +8,14 @@ import * as types from './types'
 export const serverRenderAction = () => {
 }
 
+export const saveServices = (payload) => {
+  return {
+    type: types.ADD_SERVICES,
+    payload
+  }
+  
+}
+
 export const updateSignupForm = (payload) => {
   return {
     type: types.UPDATE_SIGNUP_FORM,

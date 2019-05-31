@@ -3,6 +3,8 @@ import {Grid, Header, Select, Input, Checkbox, Button} from 'semantic-ui-react'
 import Link from 'next/link';
 import Password from '../../../components/shared/Password';
 import './less/stepOne.less'
+
+
 export default function StepOne(props) {
     
   const options = [
@@ -61,10 +63,10 @@ export default function StepOne(props) {
   }, [])
 
   return (
-    <div>
-      <Grid id="stepOne" className="stepOne" centered>
+    <div id="stepOne" className="stepOne">
+      {/* <Grid  centered>
       <Grid.Row>
-        <Grid.Column width={16}>
+        <Grid.Column width={16}> */}
           <Header textAlign="center" as='h1'>
             Sign up
             <Header.Subheader className="mt-10">
@@ -140,9 +142,9 @@ export default function StepOne(props) {
             </div>
 
           </form>
-        </Grid.Column>
+        {/* </Grid.Column>
       </Grid.Row>
-    </Grid>
+    </Grid> */}
     </div>
   )
 }

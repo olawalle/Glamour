@@ -19,7 +19,6 @@ const Service = (props) => {
   }
 
   const showAdd = () => {
-    console.log(serviceSelected)
     if (serviceSelected) {
       return <img src="../static/icons/success.svg" onClick={() => removeSubscribedServices(props.userServices)} className="addService" alt=""/>
     } else {
@@ -29,9 +28,9 @@ const Service = (props) => {
 
   return (
     <div className="service">
-      <Grid stackable>
+      <Grid>
         <Grid.Row>
-            <Grid.Column width={10}>
+            <Grid.Column  mobile={16} tablet={10} computer={10} largeScreen={10} widescreen={10}>
               <p className="serviceTitle">
                 {props.userServices.title}
               </p>
@@ -42,12 +41,12 @@ const Service = (props) => {
                 <img src="../static/icons/clock.svg" alt=""/> {props.userServices.duration}
               </p>
             </Grid.Column>
-            <Grid.Column width={3}>
+            <Grid.Column mobile={8} tablet={8} computer={3} largeScreen={3} widescreen={3}>
               <p className="serviceCost">
                 £{props.userServices.price}
               </p>
             </Grid.Column>
-            <Grid.Column width={3}>
+            <Grid.Column mobile={8} tablet={8} computer={3} largeScreen={3} widescreen={3}>
               {
                 showAdd()
               }

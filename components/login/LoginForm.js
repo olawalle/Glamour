@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Grid, Header, Input, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import {login} from '../../services/auth.ts'
 import * as actions from '../../store/actions';
 import Router from 'next/router';
 import './less/loginForm.less';
@@ -31,9 +32,19 @@ const LoginForm = (props) => {
       }
     })
     setFormErrors(_formErrors)
-    console.log(loginFormData, formErrors)
+    console.log(loginFormData, formErrors)  
+    let data = {
+      email: loginFormData.email,
+      password: loginFormData.password
+    }
 
-    // CALL API WITH loginFormData
+    login(data)
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
   }
 
   const [ formErrors, setFormErrors ] = useState({})

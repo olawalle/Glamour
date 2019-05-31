@@ -7,11 +7,11 @@ export default function SelectedServices() {
   const renderServices = () => {
     return services.map((service, i) => {
         if (service.selected) {              
-            return <Grid.Column width={8}>
+            return <Grid.Column width={8} key={'box'+(Math.random() * 10) + (Math.random() * 10)}>
                 <div className="box selectedBox" onClick={() => selectService(i)}>{service.title}</div>
             </Grid.Column>
         } else {       
-            return <Grid.Column width={8}>
+            return <Grid.Column width={8} key={'box'+(Math.random() * 10) + (Math.random() * 10)}>
                 <div className="box" onClick={() => selectService(i)}>{service.title}</div>
             </Grid.Column>
         }

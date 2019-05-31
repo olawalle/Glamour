@@ -30925,43 +30925,14 @@ var INITIAL_STATE = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/toConsumableArray */ "./node_modules/@babel/runtime-corejs2/helpers/esm/toConsumableArray.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/objectSpread */ "./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js");
-/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/types */ "./store/actions/types.js");
-
-
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/objectSpread */ "./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js");
+/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/types */ "./store/actions/types.js");
 
 
 var INITIAL_STATE = {
   beautyServices: {
-    byId: [1, 2, 3, 4, 5, 6],
-    allServices: {
-      1: {
-        img: '/static/images/services/hair.png',
-        name: 'Hair'
-      },
-      2: {
-        img: '/static/images/services/hair removal.png',
-        name: 'Hair Removal'
-      },
-      3: {
-        img: '/static/images/services/massage.png',
-        name: 'Massage'
-      },
-      4: {
-        img: '/static/images/services/nails.png',
-        name: 'Nails'
-      },
-      5: {
-        img: '/static/images/services/face.png',
-        name: 'Face'
-      },
-      6: {
-        img: '/static/images/services/body.png',
-        name: 'Body'
-      }
-    },
+    byId: [],
+    allServices: {},
     loadingServices: false
   }
 };
@@ -30973,25 +30944,28 @@ var INITIAL_STATE = {
       payload = _ref.payload;
 
   switch (type) {
-    case _actions_types__WEBPACK_IMPORTED_MODULE_3__["SET_LOADING_SERVICES"]:
+    case _actions_types__WEBPACK_IMPORTED_MODULE_1__["SET_LOADING_SERVICES"]:
       {
-        return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_2__["default"])({}, state, {
-          beautyServices: Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_2__["default"])({}, state.beautyServices, {
+        return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state, {
+          beautyServices: Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state.beautyServices, {
             loadingServices: payload
           })
         });
       }
 
-    case _actions_types__WEBPACK_IMPORTED_MODULE_3__["ADD_SERVICES"]:
+    case _actions_types__WEBPACK_IMPORTED_MODULE_1__["ADD_SERVICES"]:
       {
         var byId = [];
         var allServices = {};
-        payload.forEach(function (service) {
-          byId = [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(byId), [service.id]);
-          allServices = Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_2__["default"])({}, allServices, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])({}, service.id, service));
+        payload.forEach(function (service, i) {
+          byId.push(i);
+          allServices[i] = Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, service, {
+            img: service.pictureUrl,
+            name: service.serviceName
+          });
         });
-        return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_2__["default"])({}, state, {
-          beautyServices: Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_2__["default"])({}, state.beautyServices, {
+        return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state, {
+          beautyServices: Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state.beautyServices, {
             byId: byId,
             allServices: allServices
           })

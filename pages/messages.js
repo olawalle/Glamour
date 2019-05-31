@@ -22,7 +22,7 @@ class messages extends Component {
   render () {
     return (
       <>
-        <InnerNav />
+        <InnerNav userRole={'client'} />
         <Messages {...this.props}/>
         <Footer/>
       </>

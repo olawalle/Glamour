@@ -64,10 +64,10 @@ export default function StepTwo(props) {
   }, [])
 
   return (
-    <div>
-      <Grid id="stepOne" className="stepOne" columns>
+    <div id="stepOne" className="stepOne">
+      {/* <Grid columns>
       <Grid.Row>
-        <Grid.Column width={16}>
+        <Grid.Column width={16}> */}
           <Header textAlign="center" className="header" as='h1'>
           Set coverage & availability
           </Header>
@@ -115,9 +115,9 @@ export default function StepTwo(props) {
             </div>
 
           </form>
-        </Grid.Column>
+        {/* </Grid.Column>
       </Grid.Row>
-    </Grid>
+    </Grid> */}
     </div>
   )
 }

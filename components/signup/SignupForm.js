@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Grid, Header, Select, Input, Checkbox, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
+import {clientRegister} from '../../services/signup.ts'
 import Password from '../../components/shared/Password';
 import './less/signupForm.less';
 
@@ -38,7 +39,30 @@ const SignupForm = (props) => {
 
     setFormErrors(_formErrors)
 
-    console.log(signupFormData, formErrors)
+  
+  // let form = new FormData()
+  let data = {
+    fullnames: signupFormData.fullname,
+    email: signupFormData.email,
+    password: signupFormData.password,
+    phone: signupFormData.mobileNumber,
+    meta: 'nothing here'
+  }
+
+  // Object.keys(data).forEach(itm => {
+  //   console.log(data)
+  //   console.log(itm, data[itm])
+  //   form.append(itm, data[itm])
+  // })
+  
+  // console.log(...form)
+  clientRegister(data)
+  .then(res => {
+    console.log(res)
+  })
+  .catch(err => {
+    console.log(err)
+  })
 
     // CALL API WITH signupFormData
   }
@@ -48,14 +72,14 @@ const SignupForm = (props) => {
   const [signupFormData, setSignupData] = useState({
     fullname: '',
     email: '',
-    address: '',
     mobileNumber: '',
     password: '',
     referral: '',
-    accept: false
+    accept: ''
   });
 
   useEffect(() => {
+    console.log(formErrors)
     let store = null
     if (store = JSON.parse(localStorage.getItem('store'))) {
       if (store.auth) {
@@ -129,6 +153,7 @@ const SignupForm = (props) => {
             <div className="is-flex">
               <Checkbox
                 className="signup-form--checkbox"
+                error={formErrors['accept']}
                 onChange={(e, data) => handleChange(e, 'accept', data)}
               />
               <span>

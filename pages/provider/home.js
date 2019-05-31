@@ -154,7 +154,7 @@ const ProviderHome = () => {
     return (
         <>
         <Display if={showNav}>
-            <InnerNav />
+            <InnerNav userRole={'client'} />
         </Display>
         <div className="outerBannerWrap">
             <CustomImageUploader getImageString={getImageString} getImageFile={getImageFile}>

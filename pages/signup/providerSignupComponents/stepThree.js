@@ -37,34 +37,25 @@ export default function StepThree(props) {
 
   const [ formErrors, setFormErrors ] = useState({})
   return (
-    <div>
-      <Grid id="stepOne" className="stepOne stepThree" centered>
-        <Grid.Row>
-          <Grid.Column width={16}>
-            <Header textAlign="center" className="header" as='h1'>
-            Complete profile
-            </Header>
-          </Grid.Column>
-          <Grid.Column width={16}>
-              <p className="sectHeading">
-              Select the services you offer
-              </p>
-          </Grid.Column>
-        </Grid.Row>
-
-        <SelectedServices />
-
-        <Grid.Row>
-          <Grid.Column width={16}>
-              <p className="sectHeading">
-              Add a brief description of your business
-              </p>
-          </Grid.Column>
-          <Grid.Column width={16}>
-              <TextArea rows="10" className="textArea" />
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+    <div id="stepOne" className="stepOne stepThree">
+      <Header textAlign="center" className="header" as='h1'>
+        Complete profile
+      </Header>
+        <Grid centered>
+        <p className="sectHeading">
+        Select the services you offer
+        </p>
+          <SelectedServices />
+          <div className="txt-wrap">
+            <p className="sectHeading">
+            Add a brief description of your business
+            </p>
+            <TextArea rows="10" className="textArea" />
+            {
+              props.children
+            }
+          </div>
+        </Grid>
     </div>
   )
 }

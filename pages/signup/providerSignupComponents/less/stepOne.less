@@ -1,5 +1,7 @@
 #__next .stepOne {
     font-size: 16px !important;
+    height: 100% !important;
+    width: 100% !important;
   
     .ui.header {
       font-family: freightproblack;
@@ -39,12 +41,6 @@
 
     .timingWrap {
       padding-top: 0px !important
-    }
-
-    
-    //Step 3 specific styles 
-    .stepThree {
-      padding: 0 20px !important
     }
   
     .stepOne-form--select {
@@ -91,12 +87,28 @@
         font-weight: 600;
         margin-top: 40px !important
     }
+    .textArea {
+      width: 100%
+    }
     
     .caveat {
-        color: #637381
-    }  
+      color: #637381
+    }
+    
   }
   
+    //Step 3 specific styles 
+  .stepThree {
+    padding: 0 !important;
+    .ui.centered.grid {
+      margin: 0 !important
+    }
+
+    .txt-wrap {
+      width: 100%;
+      padding: 0 15px !important
+    }
+  }
   @media only screen and (max-width: 480px) {
   
     #__next #stepOne {

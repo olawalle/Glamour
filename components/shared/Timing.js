@@ -5,7 +5,7 @@ import './less/timing.less'
 export default class Timing extends Component {
     state = {
         days: [
-            {day: 'Sun', active: 'active'},
+            {day: 'Sun', active: 'activeDay'},
             {day: 'Mon', active: ''}, 
             {day: 'Tue', active: ''}, 
             {day: 'Wed', active: ''}, 
@@ -64,55 +64,43 @@ export default class Timing extends Component {
             '11:30 pm',
         ]
     }
+    pickDay = (i) => {
+        let newDays = [...this.state.days]
+        let newDays_ = newDays.map((day, j) => {
+            if (i === j) {
+                return day.active === '' ? {...day, active: 'activeDay'} : {...day, active: ''} 
+            } else {
+                return day
+            }
+        })
+        this.setState({days: newDays_})
+    }
     render () {
         return (
             <>
             <span className="timesWrap">
                 {
                     this.state.days.map((day, i) =>  {
-                        if (day.active === 'active') {
-                            return <div className="myRow" key={`key${i}`}>
-                                        <div className="myCol">
-                                            <div className="days activeDay">{day.day}</div>
-                                        </div>
-                                        <div className="myCol times">
-                                            <select>
-                                                {
-                                                    this.state.times.map(time => <option key={`option${i}`} value={time}>{time}</option>)
-                                                }
-                                            </select>
-                                        </div>
-                                        <div className="myCol_ to">to</div>
-                                        <div className="myCol times">
-                                            <select>
-                                                {
-                                                    this.state.times.map(time => <option key={`option${i}`} value={time}>{time}</option>)
-                                                }
-                                            </select>
-                                        </div>
+                        return <div className="myRow" key={`key${i}`}>
+                                    <div className="myCol">
+                                        <div className={`days ${day.active}`} onClick={() => this.pickDay(i)}>{day.day}</div>
                                     </div>
-                        } else {
-                            return <div className="myRow" key={`key${i}`}>
-                                        <div className="myCol">
-                                            <div className="days">{day.day}</div>
-                                        </div>
-                                        <div className="myCol times">
-                                            <select>
-                                                {
-                                                    this.state.times.map(time => <option key={`option${i}`} value={time}>{time}</option>)
-                                                }
-                                            </select>
-                                        </div>
-                                        <div className="myCol_ to">to</div>
-                                        <div className="myCol times">
-                                            <select>
-                                                {
-                                                    this.state.times.map(time => <option key={`option${i}`} value={time}>{time}</option>)
-                                                }
-                                            </select>
-                                        </div>
+                                    <div className="myCol times">
+                                        <select>
+                                            {
+                                                this.state.times.map(time => <option key={'time'+(Math.random() * 10) + (Math.random() * 10)} value={time}>{time}</option>)
+                                            }
+                                        </select>
                                     </div>
-                        }
+                                    <div className="myCol_ to">to</div>
+                                    <div className="myCol times">
+                                        <select>
+                                            {
+                                                this.state.times.map(time => <option key={'time'+(Math.random() * 10) + (Math.random() * 10)} value={time}>{time}</option>)
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
                     })
                 }
             </span>
