@@ -2,6 +2,7 @@ import React from 'react';
 import { Menu, Image, Button, Container } from 'semantic-ui-react';
 import Link from 'next/link';
 import { connect } from 'react-redux';
+import { getUserData } from '../../store'
 import './less/navbar.less';
 
 const styles = {
@@ -19,9 +20,8 @@ const styles = {
   }
 }
 
-
 const showSomeLinks = (props) => {
-  if (!props.isLoggedIn) {
+  if (!props.userData.isLoggedIn) {
     return (
       <>
         <Link href="/signup/provider">
@@ -40,7 +40,7 @@ const showSomeLinks = (props) => {
   } else {
     return (
       <Menu.Item style={styles.UserIconWrap} as='a'>
-        <Image style={styles.UserIcon} src='/static/images/team/teammember1.png' size='mini' /> Melissa Moe
+        <Image style={styles.UserIcon} src='/static/images/team/teammember1.png' size='mini' /> {props.userData.user.fullname}
       </Menu.Item>
     )
   }
@@ -67,9 +67,13 @@ const Navbar = (props) => {
             <Menu.Item  className="mobile hidden" position='right' as='a'>About us</Menu.Item>
           </Link>
           {showSomeLinks(props)}
-          <Menu.Item className="mobile hidden" as='a'>
-            <Image className="navbar-basket-img h28" src='/static/images/basket.svg' size='mini' />
-          </Menu.Item>
+          
+          {
+            props.userData.isLoggedIn? <Menu.Item className="mobile hidden" as='a'>
+              <Image className="navbar-basket-img h28" src='/static/images/basket.svg' size='mini' />
+            </Menu.Item> : null
+          }
+          
         </Menu.Menu>
       </Container>
     </Menu>
@@ -77,7 +81,7 @@ const Navbar = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  isLoggedIn: state.auth.login.isLoggedIn
+  userData: getUserData(state)
 })
 
 export default connect(mapStateToProps)(Navbar);

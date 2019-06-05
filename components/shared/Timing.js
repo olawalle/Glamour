@@ -5,27 +5,27 @@ import './less/timing.less'
 export default class Timing extends Component {
     state = {
         days: [
-            {day: 'Sun', active: 'activeDay'},
-            {day: 'Mon', active: ''}, 
-            {day: 'Tue', active: ''}, 
-            {day: 'Wed', active: ''}, 
-            {day: 'Thr', active: ''}, 
-            {day: 'Fri', active: ''}, 
-            {day: 'Sat', active: ''}
+            {day: 'Sun', active: '', from: '', to: ''},
+            {day: 'Mon', active: '', from: '', to: ''}, 
+            {day: 'Tue', active: '', from: '', to: ''}, 
+            {day: 'Wed', active: '', from: '', to: ''}, 
+            {day: 'Thr', active: '', from: '', to: ''}, 
+            {day: 'Fri', active: '', from: '', to: ''}, 
+            {day: 'Sat', active: '', from: '', to: ''}
         ],
         times: [
-            '00:00 am',
-            '00:30 am',
-            '01:00 am',
-            '01:30 am',
-            '02:00 am',
-            '02:30 am',
-            '03:00 am',
-            '03:30 am',
-            '04:00 am',
-            '04:30 am',
-            '05:00 am',
-            '05:30 am',
+            // '00:00 am',
+            // '00:30 am',
+            // '01:00 am',
+            // '01:30 am',
+            // '02:00 am',
+            // '02:30 am',
+            // '03:00 am',
+            // '03:30 am',
+            // '04:00 am',
+            // '04:30 am',
+            // '05:00 am',
+            // '05:30 am',
             '06:00 am',
             '06:30 am',
             '07:00 am',
@@ -68,13 +68,62 @@ export default class Timing extends Component {
         let newDays = [...this.state.days]
         let newDays_ = newDays.map((day, j) => {
             if (i === j) {
-                return day.active === '' ? {...day, active: 'activeDay'} : {...day, active: ''} 
+                return day.active === '' ? {...day, active: 'activeDay', from: this.state.times[0], to: this.state.times[0]} : {...day, active: ''} 
             } else {
                 return day
             }
         })
-        this.setState({days: newDays_})
+        this.setState({days: newDays_}, () => {
+            let active = newDays_.filter(day => day.active === 'activeDay')
+            .map(d => {
+                return {day: d.day, from: d.from, to: d.to}
+            })
+            this.props.getTiming(
+                active
+            )
+        })        
     }
+
+    updateFrom = (e, i) => {
+        let days = [...this.state.days]
+        let days_ = days.map((day, j) => {
+            if (i === j) {
+                return {...day, from: e.target.value}
+            } else {
+                return day
+            }
+        })
+        this.setState({ days: days_ }, () => {
+            this.props.getTiming(
+                days_.filter(day => day.active === 'activeDay')
+                .map(d => {
+                    return {day: d.day, from: d.from, to: d.to}
+                })
+            )
+        })
+    }
+
+    
+    updateTo = (e, i) => {
+        let days = [...this.state.days]
+        let days_ = days.map((day, j) => {
+            if (i === j) {
+                return {...day, to: e.target.value}
+            } else {
+                return day
+            }
+        })
+        this.setState({ days: days_ }, () => {
+            let active = days_.filter(day => day.active === 'activeDay')
+            .map(d => {
+                return {day: d.day, from: d.from, to: d.to}
+            })
+            this.props.getTiming(
+                active
+            )
+        })
+    }
+
     render () {
         return (
             <>
@@ -86,7 +135,7 @@ export default class Timing extends Component {
                                         <div className={`days ${day.active}`} onClick={() => this.pickDay(i)}>{day.day}</div>
                                     </div>
                                     <div className="myCol times">
-                                        <select>
+                                        <select value={day.from} onChange={($event) => this.updateFrom($event, i)}>
                                             {
                                                 this.state.times.map(time => <option key={'time'+(Math.random() * 10) + (Math.random() * 10)} value={time}>{time}</option>)
                                             }
@@ -94,7 +143,7 @@ export default class Timing extends Component {
                                     </div>
                                     <div className="myCol_ to">to</div>
                                     <div className="myCol times">
-                                        <select>
+                                        <select value={day.to} onChange={($event) => this.updateTo($event, i)}>
                                             {
                                                 this.state.times.map(time => <option key={'time'+(Math.random() * 10) + (Math.random() * 10)} value={time}>{time}</option>)
                                             }

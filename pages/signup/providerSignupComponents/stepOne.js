@@ -5,13 +5,14 @@ import Password from '../../../components/shared/Password';
 import './less/stepOne.less'
 
 
+const options = [
+  { key: '', text: 'Not Applicable', value: '' },
+  { key: 'onilne', text: 'Online', value: 'Online' },
+  { key: 'offline', text: 'Offline', value: 'offline' },
+]
+
 export default function StepOne(props) {
     
-  const options = [
-    { key: '', text: 'Not Applicable', value: '' },
-    { key: 'onilne', text: 'Online', value: 'Online' },
-    { key: 'offline', text: 'Offline', value: 'offline' },
-  ]
   const handleChange = (e, key, {value = null, checked = null } = {}) => {
     let newState = {
       ...signupFormData,
@@ -25,6 +26,7 @@ export default function StepOne(props) {
   }
 
   const submit = (e) => {
+    console.log(signupFormData)
     e.preventDefault();
     let  _formErrors = {};
     Object.keys(signupFormData).forEach((item) => {
@@ -34,33 +36,33 @@ export default function StepOne(props) {
     })
 
     setFormErrors(_formErrors)
-
-    console.log(signupFormData, formErrors)
+    if (Object.keys(_formErrors).length === 0) {
+      props.jump(signupFormData, 1)
+    }
 
     // CALL API WITH signupFormData
   }
+
 
   const [ formErrors, setFormErrors ] = useState({})
 
   const [signupFormData, setSignupData] = useState({
     fullname: '',
     email: '',
-    address: '',
     mobileNumber: '',
     password: '',
     referral: '',
     accept: false
   });
 
-  useEffect(() => {
-    let store = null
-    if (store = JSON.parse(localStorage.getItem('store'))) {
-      if (store.auth) {
-        setSignupData(store.auth.signup)
-      }
-
-    }
-  }, [])
+  // useEffect(() => {
+  //   let store = null
+  //   if (store = JSON.parse(localStorage.getItem('store'))) {
+  //     if (store.auth) {
+  //       setSignupData(store.auth.signup)
+  //     }
+  //   }
+  // }, [])
 
   return (
     <div id="stepOne" className="stepOne">
@@ -138,7 +140,14 @@ export default function StepOne(props) {
               </span>
             </div>
             <div className="is-v-centered">
-                {props.children}
+                {/* {props.children} */}
+                <Button
+                    className="mt-30 nxt-btn"
+                    size="large"
+                    onClick={submit}
+                    secondary>
+                    Next
+                </Button>
             </div>
 
           </form>

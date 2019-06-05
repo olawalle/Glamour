@@ -28,7 +28,6 @@ const LoginForm = (props) => {
         _formErrors[item] = true
       } else {
         props.updateLoginForm({...loginFormData, isLoggedIn: true})
-        Router.push('/serviceproviders')
       }
     })
     setFormErrors(_formErrors)
@@ -40,7 +39,9 @@ const LoginForm = (props) => {
 
     login(data)
     .then(res => {
-      console.log(res)
+      props.saveUserData({...res.data.data, isLoggedIn: true})
+      window.sessionStorage.setItem('glamourToken', res.data.data.token)
+      Router.push('/serviceproviders')
     })
     .catch(err => {
       console.log(err)

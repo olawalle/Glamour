@@ -24,6 +24,10 @@ export function initStore (initialState = INITIAL_STATE) {
 
 
 // GETTERS
+export const getUserData = (state) => {
+  return state.user
+}
+
 export const getTeamMembers = (state) => {
   return state.team.byId.map((id) => state.team.allMembers[id])
 }

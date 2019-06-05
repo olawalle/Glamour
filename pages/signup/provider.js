@@ -6,6 +6,7 @@ import StepOne from './providerSignupComponents/stepOne';
 import Auth from '../../components/shared/Auth';
 import StepTwo from './providerSignupComponents/stepTwo';
 import StepThree from './providerSignupComponents/stepThree';
+import { providerRegister } from '../../services/signup.ts'
 
 class ProviderSignup extends Component {
   state= {
@@ -14,12 +15,45 @@ class ProviderSignup extends Component {
         {text: 'Enter Details', no: 1, active: 'activeStep'},
         {text: 'Set Availability', no: 2, active: 'inactiveStep'},
         {text: 'Complete Profile', no: 3, active: 'inactiveStep'}
-    ]
+    ],
+    stepOne: {},
+    stepTwo: {},
+    stepThree: {}
   };
-  
 
-  jump = () => {
-    console.log(this.state)
+//   componentDidMount() {
+//     this.jump({}, this.state.step)
+//   }
+
+  jump = (data, n) => {
+    if (n === 1) {
+        this.setState({
+            stepOne: data
+        })
+    } else if (n === 2) {
+        this.setState({
+            stepTwo: data
+        })
+    } else {
+        this.setState({
+            stepThree: data
+        }, () => {
+            let data = {
+                ...this.state.stepOne,
+                ...this.state.stepTwo,
+                ...this.state.stepThree
+            }
+            console.log(data)
+            providerRegister(data)
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        })
+    }
+
     if (this.state.step + 1 < this.state.steps.length) {
         let newState = this.state.steps.map((step, i) => {
             if (i <= this.state.step + 1) {
@@ -34,35 +68,11 @@ class ProviderSignup extends Component {
 
   whatStep = () => {
     if (this.state.step === 0) {
-        return <StepOne>
-                    <Button
-                        className="mt-30 nxt-btn"
-                        size="large"
-                        onClick={() => this.jump()}
-                        secondary>
-                        Next
-                    </Button>
-                </StepOne>
+        return <StepOne jump={this.jump} />
     } else if (this.state.step === 1) {
-        return <StepTwo>
-                    <Button
-                        className="mt-30 nxt-btn"
-                        size="large"
-                        onClick={() => this.jump()}
-                        secondary>
-                        Next
-                    </Button>
-                </StepTwo>
+        return <StepTwo jump={this.jump} />
     } else {
-        return <StepThree>
-                    <Button
-                        className="mt-30 nxt-btn"
-                        size="large"
-                        onClick={() => this.jump()}
-                        secondary>
-                        Next
-                    </Button>
-                </StepThree>
+        return <StepThree jump={this.jump} />
     }
   }
 

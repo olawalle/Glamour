@@ -49,7 +49,7 @@ class ProviderForm extends Component {
                     <Select
                     className="Select"
                     fluid
-                    // options={options}
+                    options={options}
                     />
                     <img src="../../static/icons/sort.svg" className="selectIcon" alt=""/>
                     <span className="selectLabel">

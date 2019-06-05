@@ -84,7 +84,7 @@ class ServiceProvider extends Component {
 
 const mapStateToProps = (state) => ({
     serviceProviders: getProviders(state),
-    isLoggedIn: state.auth.login.isLoggedIn
+    isLoggedIn: state.user.user.isLoggedIn
 })
 
 

@@ -3,6 +3,7 @@ import React from 'react'
 import withReduxStore from '../lib/with-redux-store'
 import { Provider } from 'react-redux'
 import 'semantic-ui-less/semantic.less';
+
 import '../app.less';
 
 

@@ -4,6 +4,10 @@ export const UPDATE_SIGNUP_FORM = 'update_signup_form';
 
 export const UPDATE_LOGIN_FORM = 'update_login_form';
 
+export const SAVE_USER_DATA = 'save_user_data';
+
+export const SAVE_LOGGEDIN_STATUS = 'save_loggedin_status';
+
 export const ADD_TEAM_MEMBERS = 'add_team_members';
 
 export const SET_LOADING_MEMBERS = 'set_loading_members';

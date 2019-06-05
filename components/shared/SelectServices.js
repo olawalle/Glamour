@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {Grid} from 'semantic-ui-react'
 import './less/SelectedServices.less'
 
-export default function SelectedServices() {    
+export default function SelectedServices(props) {    
   
   const renderServices = () => {
     return services.map((service, i) => {
@@ -38,6 +38,11 @@ export default function SelectedServices() {
         }
     })
     updateServices(newServicesArray)
+
+    props.pickedServices(
+        newServicesArray.filter(service => service.selected === true)
+        .map(ser => ser.title)
+    )
   }
 
   return (

@@ -7,11 +7,23 @@ let clientRegister = (data) => {
         url: apiUrls.clientRegister,
         data: data,
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'application/json',
+        }
+    })
+}
+
+let providerRegister = (data) => {
+    return axios({
+        method: 'POST',
+        url: apiUrls.providerRegister,
+        data: data,
+        headers: {
+            'Content-Type': 'application/json',
         }
     })
 }
 
 export {
-    clientRegister
+    clientRegister,
+    providerRegister
 }

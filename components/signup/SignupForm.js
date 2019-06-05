@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import {clientRegister} from '../../services/signup.ts'
 import Password from '../../components/shared/Password';
+import Router from 'next/router';
 import './less/signupForm.less';
 
 const options = [
@@ -37,34 +38,30 @@ const SignupForm = (props) => {
       }
     })
 
+    console.log(_formErrors)
+
     setFormErrors(_formErrors)
 
-  
-  // let form = new FormData()
-  let data = {
-    fullnames: signupFormData.fullname,
-    email: signupFormData.email,
-    password: signupFormData.password,
-    phone: signupFormData.mobileNumber,
-    meta: 'nothing here'
-  }
-
-  // Object.keys(data).forEach(itm => {
-  //   console.log(data)
-  //   console.log(itm, data[itm])
-  //   form.append(itm, data[itm])
-  // })
-  
-  // console.log(...form)
-  clientRegister(data)
-  .then(res => {
-    console.log(res)
-  })
-  .catch(err => {
-    console.log(err)
-  })
-
     // CALL API WITH signupFormData
+    if (Object.keys(_formErrors).length <= 0) {
+      // let form = new FormData()
+      let data = {
+        fullnames: signupFormData.fullname,
+        email: signupFormData.email,
+        password: signupFormData.password,
+        phone: signupFormData.mobileNumber,
+        meta: 'nothing here'
+      }
+      clientRegister(data)
+      .then(res => {
+        console.log(res)
+        Router.push('/login')
+        // return <Snackbar message={res.data.message} actionText="dismiss" />
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    }
   }
 
   const [ formErrors, setFormErrors ] = useState({})
@@ -79,7 +76,7 @@ const SignupForm = (props) => {
   });
 
   useEffect(() => {
-    console.log(formErrors)
+    // console.log(formErrors)
     let store = null
     if (store = JSON.parse(localStorage.getItem('store'))) {
       if (store.auth) {
