@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { connect } from 'react-redux';
 import { getUserData } from '../../store'
 import './less/navbar.less';
+import Display from './Display';
 
 const styles = {
   Image: {
@@ -20,31 +21,6 @@ const styles = {
   }
 }
 
-const showSomeLinks = (props) => {
-  if (!props.userData.isLoggedIn) {
-    return (
-      <>
-        <Link href="/signup/provider">
-          <Menu.Item className="mobile hidden" position='right' as='a'>Become a provider</Menu.Item>
-        </Link>
-        <Link href="/login">
-          <Menu.Item position='right' as='a'>Log in</Menu.Item>
-        </Link>
-        <Link href="/signup">
-          <Menu.Item className="mobile hidden" as='div'>
-            <Button className="navbar-signup-btn" size="huge" secondary>Sign up</Button>
-          </Menu.Item>
-        </Link>
-      </>
-    )
-  } else {
-    return (
-      <Menu.Item style={styles.UserIconWrap} as='a'>
-        <Image style={styles.UserIcon} src='/static/images/team/teammember1.png' size='mini' /> {props.userData.user.fullname}
-      </Menu.Item>
-    )
-  }
-}
 
 const Navbar = (props) => {
   return (
@@ -66,13 +42,48 @@ const Navbar = (props) => {
           <Link href="/aboutus">
             <Menu.Item  className="mobile hidden" position='right' as='a'>About us</Menu.Item>
           </Link>
-          {showSomeLinks(props)}
+
+          {/* links to be shown if user is not logged in */}
+          <Display if={!props.userData.isLoggedIn}>
+              <Link href="/signup/provider">
+                <Menu.Item className="mobile hidden" position='right' as='a'>Become a provider</Menu.Item>
+              </Link>
+              <Link href="/login">
+                <Menu.Item position='right' as='a'>Log in</Menu.Item>
+              </Link>
+              <Link href="/signup">
+                <Menu.Item className="mobile hidden" as='div'>
+                  <Button className="navbar-signup-btn" size="huge" secondary>Sign up</Button>
+                </Menu.Item>
+              </Link>
+          </Display>
+
+          {/* links to be shown if a client is logged in */}
+          <Display if={props.userData.isLoggedIn && props.userData.role === 'client'}>
+            <Link href="/account">
+              <Menu.Item className="mobile hidden cursor" as='div'>
+                <Image style={styles.UserIcon} src={props.userData.pictureUrl} size='mini' /> { props.userData.fullname }
+              </Menu.Item>
+            </Link>
+            
+            <Link href="/cart">
+              <Menu.Item className="mobile hidden cursor" as='div'>
+                <Image style={styles.UserIcon} src='/static/images/basket.svg' size='mini' />
+              </Menu.Item>
+            </Link>
+
+          </Display>
+
+          {/* links to be shown if a provider logs in */}
+          <Display if={props.userData.isLoggedIn && props.userData.role !== 'client'}>
           
-          {
-            props.userData.isLoggedIn? <Menu.Item className="mobile hidden" as='a'>
-              <Image className="navbar-basket-img h28" src='/static/images/basket.svg' size='mini' />
-            </Menu.Item> : null
-          }
+            <Link href="/provider/home">
+              <Menu.Item className="mobile hidden" as='div'>
+                <Image style={styles.UserIcon} src={props.userData.pictureUrl} size='mini' /> { props.userData.fullname }
+              </Menu.Item>
+            </Link> 
+                        
+          </Display> 
           
         </Menu.Menu>
       </Container>

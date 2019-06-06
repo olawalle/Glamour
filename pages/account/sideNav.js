@@ -4,15 +4,18 @@ import ManagePayments from '../account/ManagePayments';
 import PersonalDetails from '../account/PersonalDetails';
 import BusinessDetails from '../account/BusinessDetails'
 import AddressForm from '../../components/shared/AddressForm';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions';
 import { Grid } from 'semantic-ui-react';
 import AddressBook from './addressBook';
 import SavedServiceProviders from './savedServiceProviders';
+import Router from 'next/router';
 import UserCards from './UserCards';
 
-export default function SideNav(props) {    
+const SideNav = (props) => {    
     
   const [activeComponent, updateActiveComponent ] = useState(<PersonalDetails role={props.role} />)
-  const [providers, updateproviders] = useState(
+  const [savedProviders, updateproviders] = useState(
     [
     {
         banner: '/static/images/services/hair.png',
@@ -135,7 +138,7 @@ export default function SideNav(props) {
     },
     {
         text: 'Saved service providers',
-        component: <SavedServiceProviders providers={providers} />,
+        component: <SavedServiceProviders providers={savedProviders} />,
         active: 'inactive',
         icon: '/static/icons/filled-heart.svg'
     }
@@ -177,12 +180,23 @@ export default function SideNav(props) {
     props.updateActiveComponent(sideLinks_[i].component)
   }
 
+  const logout = () => {
+    let payload = {
+      isLoggedIn: false
+    }
+    console.log(payload)
+    props.saveUserData(payload)
+    Router.push('/')
+  }
+
   return (
     <>
       <ul className="sidelinks">
           {renderLinks()}
-          <li className="logout"><img src='/static/icons/logout.svg' alt=""/>Log out</li>
+          <li className="logout" onClick={() => logout()}><img src='/static/icons/logout.svg' alt=""/>Log out</li>
       </ul>            
     </>
   )
 }
+
+export default connect(null, actions)(SideNav)

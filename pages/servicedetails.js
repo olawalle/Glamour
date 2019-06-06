@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import withMasterLayout from '../pages/layouts/withMasterLayout';
 import { connect } from 'react-redux';
 import { Container, Grid, Button } from 'semantic-ui-react';
-import { getProviders } from '../store'
+import { getProviders, getUserData } from '../store'
 import Banner from '../components/shared/Banner'
 import Footer from '../components/shared/Footer'
 import Stars from '../components/shared/stars'
@@ -55,7 +55,7 @@ class ServiceDetails extends Component {
                         <Grid.Row>
                             <Grid.Column width={10}>
                                 <div className="userDesc">
-                                    <img src={this.state.selectedProvider.userPhoto} className={this.state.selectedProvider.userPhoto ? "userPhoto_" : "userPhoto"} alt=""/>
+                                    <img src={this.props.userData.pictureUrl} className={this.state.selectedProvider.userPhoto ? "userPhoto_" : "userPhoto"} alt=""/>
                                     <div className="buttons">
                                         <Button size="huge" className="mainBtn secondaryBtn"> 
                                             <img src="../static/icons/heart.svg" alt=""/> <span>Save</span>
@@ -65,7 +65,7 @@ class ServiceDetails extends Component {
                                         </Button>
                                     </div>
                                     <p className="userName">
-                                        {this.state.selectedProvider.name}
+                                        {this.props.userData.fullname}
                                     </p>
                                     <p className="userJob">
                                         {this.state.selectedProvider.jobDesc}
@@ -152,7 +152,8 @@ class ServiceDetails extends Component {
 
 const mapStateToProps = (state) => ({
     serviceProviders: getProviders(state),
-    isLoggedIn: state.auth.login.isLoggedIn
+    userData: getUserData(state),
+    isLoggedIn: state.user.isLoggedIn
 })
 
 

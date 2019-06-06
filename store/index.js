@@ -35,8 +35,9 @@ export const getTeamMembers = (state) => {
 export const getProviders = (state) => {
   return state.serviceProviders.allProviders
 }
+
 export const getTopTrends = (state) => {
-  return state.trend.byId.map((id) => state.trend.allTopTrends[id])
+  return state.trend.beautyTrends.byId.map((id) => state.trend.beautyTrends.allTrends[id])
 }
 
 export const getTestimonials = (state) => {

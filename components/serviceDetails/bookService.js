@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import { Button } from 'semantic-ui-react';
+import {getUserData} from '../../store'
 import './less/bookService.less'
 import Link from 'next/link';
 import Display from '../shared/Display'
@@ -35,7 +36,7 @@ const BookService = (props) => {
     return (
         <div className="bookService">
             <p className="usersName">
-                Book {props.providerDetails.name}
+                Book {props.userData.fullname}
             </p>
 
             <Display if={!isPickingDate}>
@@ -72,7 +73,8 @@ const BookService = (props) => {
 
 
 const mapStateToProps = (state) => ({
-    subscribedServices: state.subscribedServices.subscribedServices
+    subscribedServices: state.subscribedServices.subscribedServices,
+    userData: getUserData(state),
 })
 
 

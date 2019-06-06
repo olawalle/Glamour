@@ -8,6 +8,14 @@ let getAllServices = () => {
     })
 }
 
+let getAllTrends = () => {
+    return axios({
+        method: 'GET',
+        url: apiUrls.trendsUrl
+    })
+}
+
 export {
-    getAllServices
+    getAllServices,
+    getAllTrends
 }

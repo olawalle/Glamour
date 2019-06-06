@@ -97,10 +97,10 @@ export default function AddressForm(props) {
                 <img src="/static/icons/grey-compass.svg" className="inputImage" alt=""/>
             </Grid.Column>
         </Grid.Row>
-        <Button secondary className="proceedBtn" 
+        {/* <Button secondary className="proceedBtn" 
                 onClick={submit}>
           <div> <img src='/static/icons/lock.svg' />  Validate</div>
-        </Button>
+        </Button> */}
     </>
   )
 }

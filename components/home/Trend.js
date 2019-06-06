@@ -14,9 +14,9 @@ const Trend = (props) => {
   return (
     <>
       <Grid.Column  style={styles.Column}>
-        <Image className="has-full-width" src={props.img} />
+        <Image className="has-full-width" src={props.pictureUrl} />
         <Header style={styles.Header} as='h4'>
-          {props.name}
+          {props.serviceName}
         </Header>
       </Grid.Column>
     </>

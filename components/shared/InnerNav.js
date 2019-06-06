@@ -2,12 +2,15 @@ import React, { Component } from 'react'
 import { Menu, Sticky } from 'semantic-ui-react'
 import Router from 'next/router';
 import Link from 'next/link';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions'
 
 import './less/InnerNav.less'
 import Display from './Display';
+import { getUserData } from '../../store';
 
 
-export default class InnerNav extends Component {
+class InnerNav extends Component {
   state = { 
     activeItem: 'Home',
     links: [
@@ -57,13 +60,12 @@ export default class InnerNav extends Component {
   }
 
   componentDidMount() {
-    console.log(Router.router.route)
     this.setState({ activeItem: this.state.links.find(link => link.to === Router.router.route).text})
   }
 
   renderLinks = () => {
     return this.state.links.map((link, i) => {
-      if (link.for === this.props.userRole || link.for === 'all') {
+      if (link.for === this.props.userData.role || link.for === 'all') {
         return <Link href={link.to}
               key={`link${i}`}> 
               <Menu.Item 
@@ -102,3 +104,10 @@ export default class InnerNav extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  userData: getUserData(state)
+})
+
+
+export default connect(mapStateToProps, actions)(InnerNav);

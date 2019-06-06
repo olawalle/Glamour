@@ -1,9 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Grid, Input, Select, Checkbox, TextArea, Button } from 'semantic-ui-react';
 import './less/businessDetails.less'
 import Timing from '../../components/shared/Timing';
 import SelectServices from '../../components/shared/SelectServices';
-export default function BusinessDetails() {
+
+
+
+export default function BusinessDetails(props) {
+  
+  const options = [
+    // { key: '', text: 'Not Applicable', value: '' },
+    { key: 'onilne', text: 'Online', value: 'Online' },
+    { key: 'offline', text: 'Offline', value: 'offline' },
+  ]
+  const [timing, setTiming] = useState([])
+  const [ services, setServices ] = useState([])
+
+  const getTiming_ = (e) => {
+    setTiming(e)
+  }
+  
+  const pickedServices = (e) => {
+    setServices(e)
+  }
+
   return (
     <>
       <Grid stackable className="businessDetails">
@@ -21,6 +41,7 @@ export default function BusinessDetails() {
                             </Grid.Column>
                             <Grid.Column width={15} className="leftCols">
                                 <Select 
+                                    options={options}
                                     className="stepOne-form--select signup-form--input"
                                 />
                             </Grid.Column>
@@ -37,10 +58,10 @@ export default function BusinessDetails() {
                             </Grid.Column>
                             <Grid.Column width={15} className="leftCols">
                                 <p className="sectTitle lowerSectTitle">
-                                Select the services you offer
+                                    Select the services you offer
                                 </p>
                                 <Grid columns>
-                                    <SelectServices />
+                                    <SelectServices pickedServices={pickedServices} />
                                 </Grid>
                             </Grid.Column>
                         </Grid.Row>
@@ -53,7 +74,7 @@ export default function BusinessDetails() {
                         <p className="sectTitle">
                             Availability
                         </p>
-                        <Timing />
+                        <Timing getTiming={getTiming_} />
                     </Grid.Column>
                     <Grid.Column width={15} className="rightCols textareaWrap">
                         <p className="sectTitle lowerSectTitle">

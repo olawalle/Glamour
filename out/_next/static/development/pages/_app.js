@@ -30320,13 +30320,15 @@ function (_App) {
 /*!********************************!*\
   !*** ./store/actions/types.js ***!
   \********************************/
-/*! exports provided: UPDATE_SIGNUP_FORM, UPDATE_LOGIN_FORM, ADD_TEAM_MEMBERS, SET_LOADING_MEMBERS, SAVE_SERVICE_PROVIDERS, ADD_SERVICES, ADD_TRENDS, ADD_TESTIMONIALS, ADD_NOTIFICATIONS, SET_LOADING_SERVICES, SET_LOADING_NOTIFICATIONS, SET_WRITING_REVIEW, SET_REVIEW, SET_LOADING_TRENDS, SET_LOADING_TESTIMONIALS, SUBSCRIBE_TO_SERVICE, UNSUBSCRIBE_TO_SERVICE, SELECTED_PROVIDER, ADD_CART_ITEM, ADD_CART_ITEMS, REMOVE_CART_ITEM */
+/*! exports provided: UPDATE_SIGNUP_FORM, UPDATE_LOGIN_FORM, SAVE_USER_DATA, SAVE_LOGGEDIN_STATUS, ADD_TEAM_MEMBERS, SET_LOADING_MEMBERS, SAVE_SERVICE_PROVIDERS, ADD_SERVICES, ADD_TRENDS, ADD_TESTIMONIALS, ADD_NOTIFICATIONS, SET_LOADING_SERVICES, SET_LOADING_NOTIFICATIONS, SET_WRITING_REVIEW, SET_REVIEW, SET_LOADING_TRENDS, SET_LOADING_TESTIMONIALS, SUBSCRIBE_TO_SERVICE, UNSUBSCRIBE_TO_SERVICE, SELECTED_PROVIDER, ADD_CART_ITEM, ADD_CART_ITEMS, REMOVE_CART_ITEM */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_SIGNUP_FORM", function() { return UPDATE_SIGNUP_FORM; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_LOGIN_FORM", function() { return UPDATE_LOGIN_FORM; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SAVE_USER_DATA", function() { return SAVE_USER_DATA; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SAVE_LOGGEDIN_STATUS", function() { return SAVE_LOGGEDIN_STATUS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_TEAM_MEMBERS", function() { return ADD_TEAM_MEMBERS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_LOADING_MEMBERS", function() { return SET_LOADING_MEMBERS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SAVE_SERVICE_PROVIDERS", function() { return SAVE_SERVICE_PROVIDERS; });
@@ -30349,6 +30351,8 @@ __webpack_require__.r(__webpack_exports__);
 // ACTION TYPES STAYS HERE
 var UPDATE_SIGNUP_FORM = 'update_signup_form';
 var UPDATE_LOGIN_FORM = 'update_login_form';
+var SAVE_USER_DATA = 'save_user_data';
+var SAVE_LOGGEDIN_STATUS = 'save_loggedin_status';
 var ADD_TEAM_MEMBERS = 'add_team_members';
 var SET_LOADING_MEMBERS = 'set_loading_members';
 var SAVE_SERVICE_PROVIDERS = 'save_service_providers';
@@ -30375,12 +30379,13 @@ var REMOVE_CART_ITEM = 'remove_cart_item';
 /*!************************!*\
   !*** ./store/index.js ***!
   \************************/
-/*! exports provided: initStore, getTeamMembers, getProviders, getTopTrends, getTestimonials, getNotifications, getNotificationReview, getIsWritingReview, getBeautyServices, getCartItems, getBookings */
+/*! exports provided: initStore, getUserData, getTeamMembers, getProviders, getTopTrends, getTestimonials, getNotifications, getNotificationReview, getIsWritingReview, getBeautyServices, getCartItems, getBookings */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initStore", function() { return initStore; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUserData", function() { return getUserData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTeamMembers", function() { return getTeamMembers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProviders", function() { return getProviders; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTopTrends", function() { return getTopTrends; });
@@ -30410,6 +30415,9 @@ function initStore() {
   return Object(redux__WEBPACK_IMPORTED_MODULE_3__["createStore"])(_reducers__WEBPACK_IMPORTED_MODULE_4__["default"], initialState, Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_0__["composeWithDevTools"])(Object(redux__WEBPACK_IMPORTED_MODULE_3__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], redux_promise__WEBPACK_IMPORTED_MODULE_2___default.a)));
 } // GETTERS
 
+var getUserData = function getUserData(state) {
+  return state.user;
+};
 var getTeamMembers = function getTeamMembers(state) {
   return state.team.byId.map(function (id) {
     return state.team.allMembers[id];
@@ -30419,8 +30427,8 @@ var getProviders = function getProviders(state) {
   return state.serviceProviders.allProviders;
 };
 var getTopTrends = function getTopTrends(state) {
-  return state.trend.byId.map(function (id) {
-    return state.trend.allTopTrends[id];
+  return state.trend.beautyTrends.byId.map(function (id) {
+    return state.trend.beautyTrends.allTrends[id];
   });
 };
 var getTestimonials = function getTestimonials(state) {
@@ -30477,9 +30485,6 @@ var INITIAL_STATE = {
     password: null,
     referral: null,
     accept: false
-  },
-  login: {
-    isLoggedIn: false
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (function () {
@@ -30744,7 +30749,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _reducers_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reducers/auth */ "./store/reducers/auth.js");
 /* harmony import */ var _reducers_team__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../reducers/team */ "./store/reducers/team.js");
 /* harmony import */ var _reducers_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../reducers/service */ "./store/reducers/service.js");
-/* harmony import */ var _reducers_trend__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../reducers/trend */ "./store/reducers/trend.js");
+/* harmony import */ var _reducers_trends__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../reducers/trends */ "./store/reducers/trends.js");
 /* harmony import */ var _reducers_testimonial__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../reducers/testimonial */ "./store/reducers/testimonial.js");
 /* harmony import */ var _reducers_notification__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../reducers/notification */ "./store/reducers/notification.js");
 /* harmony import */ var _reducers_serviceProviders__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../reducers/serviceProviders */ "./store/reducers/serviceProviders.js");
@@ -30770,7 +30775,7 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
   team: _reducers_team__WEBPACK_IMPORTED_MODULE_3__["default"],
   serviceProviders: _reducers_serviceProviders__WEBPACK_IMPORTED_MODULE_8__["default"],
   service: _reducers_service__WEBPACK_IMPORTED_MODULE_4__["default"],
-  trend: _reducers_trend__WEBPACK_IMPORTED_MODULE_5__["default"],
+  trend: _reducers_trends__WEBPACK_IMPORTED_MODULE_5__["default"],
   testimonial: _reducers_testimonial__WEBPACK_IMPORTED_MODULE_6__["default"],
   notifications: _reducers_notification__WEBPACK_IMPORTED_MODULE_7__["default"],
   subscribedServices: _reducers_subscribedServices__WEBPACK_IMPORTED_MODULE_9__["default"],
@@ -31447,52 +31452,25 @@ var INITIAL_STATE = {
 
 /***/ }),
 
-/***/ "./store/reducers/trend.js":
-/*!*********************************!*\
-  !*** ./store/reducers/trend.js ***!
-  \*********************************/
+/***/ "./store/reducers/trends.js":
+/*!**********************************!*\
+  !*** ./store/reducers/trends.js ***!
+  \**********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/toConsumableArray */ "./node_modules/@babel/runtime-corejs2/helpers/esm/toConsumableArray.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/objectSpread */ "./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js");
-/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/types */ "./store/actions/types.js");
-
-
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/objectSpread */ "./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js");
+/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/types */ "./store/actions/types.js");
 
 
 var INITIAL_STATE = {
-  byId: [1, 2, 3, 4, 5, 6],
-  allTopTrends: {
-    1: {
-      img: '/static/images/trends/trend1.png',
-      name: 'Trend One'
-    },
-    2: {
-      img: '/static/images/trends/trend2.png',
-      name: 'Trend Two'
-    },
-    3: {
-      img: '/static/images/trends/trend3.png',
-      name: 'Trend Three'
-    },
-    4: {
-      img: '/static/images/trends/trend4.png',
-      name: 'Trend Four'
-    },
-    5: {
-      img: '/static/images/trends/trend5.png',
-      name: 'Trend Five'
-    },
-    6: {
-      img: '/static/images/trends/trend6.png',
-      name: 'Trend Six'
-    }
-  },
-  loadingTrends: false
+  beautyTrends: {
+    byId: [],
+    allTrends: {},
+    loadingTrends: false
+  }
 };
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
@@ -31502,25 +31480,33 @@ var INITIAL_STATE = {
       payload = _ref.payload;
 
   switch (type) {
-    case _actions_types__WEBPACK_IMPORTED_MODULE_3__["SET_LOADING_TRENDS"]:
+    case _actions_types__WEBPACK_IMPORTED_MODULE_1__["SET_LOADING_TRENDS"]:
       {
-        return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_2__["default"])({}, state, {
-          loadingTrends: payload
+        return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state, {
+          beautyTrends: Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state.beautyTrends, {
+            loadingTrends: payload
+          })
         });
       }
 
-    case _actions_types__WEBPACK_IMPORTED_MODULE_3__["ADD_TRENDS"]:
+    case _actions_types__WEBPACK_IMPORTED_MODULE_1__["ADD_TRENDS"]:
       {
+        console.log(payload);
         var byId = [];
-        var allTopTrends = {};
-        payload.forEach(function (trend) {
-          byId = [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(byId), [trend.id]);
-          allTopTrends = Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_2__["default"])({}, allTopTrends, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])({}, trend.id, trend));
+        var allTrends = {};
+        payload.forEach(function (trends, i) {
+          byId.push(i);
+          allTrends[i] = Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, trends, {
+            img: trends.pictureUrl,
+            name: trends.trendName
+          });
         });
-        return {
-          byId: byId,
-          allTopTrends: allTopTrends
-        };
+        return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state, {
+          beautyTrends: Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state.beautyTrends, {
+            byId: byId,
+            allTrends: allTrends
+          })
+        });
       }
 
     default:
@@ -31539,11 +31525,39 @@ var INITIAL_STATE = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var INITIAL_STATE = {};
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/objectSpread */ "./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js");
+/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/types */ "./store/actions/types.js");
+
+
+var INITIAL_STATE = {
+  // token: '',
+  createdAt: "",
+  email: "",
+  fullname: "",
+  phone: "",
+  pictureUrl: '',
+  role: "",
+  isLoggedIn: false
+};
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  return state;
+
+  switch (action.type) {
+    case _actions_types__WEBPACK_IMPORTED_MODULE_1__["SAVE_USER_DATA"]:
+      // console.log(action.payload)
+      return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, action.payload);
+    // case SAVE_LOGGEDIN_STATUS: {
+    //   console.log(action.payload)
+    //   return {
+    //     ...state,
+    //     isLoggedIn: action.payload
+    //   }
+    // }
+
+    default:
+      return state;
+  }
 });
 
 /***/ }),

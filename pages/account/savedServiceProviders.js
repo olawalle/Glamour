@@ -7,12 +7,12 @@ export default function SavedServiceProviders(props) {
         <>
             <Grid stackable>
                 <Grid.Row>
-                    hjh
-                        {/* {
-                            props.providers.map((provider, i) =>  <Grid.Column key={`providuuer${i}`} width={8}>
-                                                                    <Provider {...provider} />
-                                                                </Grid.Column>)
-                        } */}
+                    {
+                        props.providers ? 
+                        props.providers.map((provider, i) =>  <Grid.Column key={`providuuer${i}`} width={8}>
+                                                                <Provider {...provider} />
+                                                            </Grid.Column>) : null
+                    }
                 </Grid.Row>
             </Grid>
         </>

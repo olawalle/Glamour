@@ -2,35 +2,39 @@ import React, { useState } from 'react'
 import { Grid, Container } from 'semantic-ui-react';
 import InnerNav from '../components/shared/InnerNav';
 import withMasterLayout from './layouts/withMasterLayout';
+import * as actions from '../store/actions'
+import { connect } from 'react-redux';
 import './less/account.less'
 import SideNav from './account/sideNav';
 import PersonalDetails from './account/PersonalDetails';
 import Display from '../components/shared/Display';
 
 
-const Account = () => {
+const Account = (props) => {
 
-  const [userRole, updateUserRole] = useState('serviceprovider')
-  const [activeComponent, updateActiveComponent ] = useState(<PersonalDetails role={userRole} />)
+//   const [userRole, updateUserRole] = useState('serviceprovider')
+  const [activeComponent, updateActiveComponent ] = useState(<PersonalDetails role={props.userRole} />)
   const updateActiveComponent_ = (component) => {
     updateActiveComponent(component)
   }
   return (
     <div className="accountComponent">
-      <InnerNav userRole={userRole}/>
+      <InnerNav userRole={props.userRole}/>
       <Container>
         <Grid>
             <Grid.Row>
             <Grid.Column  mobile={16} tablet={16} largeScreen={5} widescreen={5} textAlign="center">
                 <div className="lightShadow leftWing">
-                    <Display if={userRole === 'serviceprovider'}>
+                    <Display if={props.userRole === 'serviceprovider'}>
                         <div className="leftWingTop">
                             <div className="userPhoto">
                                 <img src="/static/icons/edit_.svg" className="edit" alt=""/>
-                                <img className="userFace" src="/static/images/team/teammember1.png" alt=""/>
+                                <img className="userFace" src={props.user.pictureUrl} alt=""/>
                             </div>
                             <p className="userName">
-                                Mary Jane
+                                {
+                                    props.user.fullname
+                                }
                             </p>
                             <p className="jobDesc">
                                 Massage, Make up
@@ -41,25 +45,27 @@ const Account = () => {
                         </div>
                     </Display>
                     
-                    <Display if={userRole === 'client'}>
+                    <Display if={props.userRole === 'client'}>
                         <div className="leftWingTop">
                             <div className="userPhoto">
                                 <img src="/static/icons/edit_.svg" className="edit" alt=""/>
-                                <img className="userFace" src="/static/images/team/teammember1.png" alt=""/>
+                                <img className="userFace" src={props.user.pictureUrl} alt=""/>
                             </div>
                             <p className="userName">
-                                Melissa McCarthy
+                                {
+                                    props.user.fullname
+                                }
                             </p>
-                            <p className="userDesc">
+                            {/* <p className="userDesc">
                                 Hey, you know how I'm, like, always trying to save the planet? Here's my chance. Life finds a way. 
-                            </p>
+                            </p> */}
                             <p className="location">
                                 <img src="/static/icons/grey-map-marker.svg" alt=""/> South East London
                             </p>
                         </div>
                     </Display>
 
-                    <SideNav role={userRole} updateActiveComponent={updateActiveComponent_} />
+                    <SideNav role={props.userRole} updateActiveComponent={updateActiveComponent_} />
                 </div>
             </Grid.Column>
             <Grid.Column  mobile={16} tablet={16} largeScreen={11} widescreen={11}>
@@ -76,4 +82,11 @@ const Account = () => {
   )
 }
 
-export default (withMasterLayout)(Account)
+const mapStateToProps = (state) => {
+    return {
+        userRole: state.user.role,
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps, actions)(withMasterLayout(Account))

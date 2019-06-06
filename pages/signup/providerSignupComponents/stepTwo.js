@@ -38,7 +38,6 @@ export default function StepTwo(props) {
 
     console.log(signupFormData, _formErrors)
     if (Object.keys(_formErrors).length === 0) {
-      console.log(timing)
       props.jump( {...signupFormData, schedule: timing }, 2)
     }
   }

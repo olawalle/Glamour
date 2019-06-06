@@ -1,0 +1,41 @@
+import React, { PureComponent } from 'react';
+import './less/snackbar.less'
+
+export class Snackbar extends PureComponent {
+  state = {
+    isActive: false,
+  }
+
+  openSnackBar = () => {
+    // this.message = message;
+    this.setState({ isActive: true }, () => {
+      setTimeout(() => {
+        this.setState({ isActive: false });
+      }, this.props.duration ? this.props.duration : 3000);
+    });
+  }
+
+  close = () => {
+    this.setState({ isActive: false });
+  }
+
+  componentWillMount() {
+  }
+
+  render() {
+    return (
+        <> 
+            <div className={ this.state.isActive ? `snackbar show ${this.props.type} ${this.props.position}` : 'snackbar hide' }>
+                <div className="message">
+                    { this.props.message }
+                </div>
+
+                {
+                    this.props.showClose ? 
+                    <div onClick={() => this.close()} className="close">Close</div> : null
+                }                
+            </div>
+        </>
+    )
+  }
+}

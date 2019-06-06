@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from '../../components/shared/Navbar';
+import axios from 'axios'
 
 export default (Page) => {
   return class extends Component {
@@ -11,6 +12,10 @@ export default (Page) => {
       }
 
       return { ...pageProps };
+    }
+
+    componentDidMount() {
+      axios.defaults.headers.common['x-access-token'] =  `${window.sessionStorage.getItem('glamourToken')}`
     }
 
     render () {

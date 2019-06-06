@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Grid, Header, Select, Input, Checkbox, Button } from 'semantic-ui-react';
+import { Grid, Header, Select, Input, Checkbox, Button, Loader } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import {clientRegister} from '../../services/signup.ts'
 import Password from '../../components/shared/Password';
 import Router from 'next/router';
 import './less/signupForm.less';
+import Display from '../shared/Display';
 
 const options = [
   { key: '', text: 'Not Applicable', value: '' },
@@ -45,6 +46,7 @@ const SignupForm = (props) => {
     // CALL API WITH signupFormData
     if (Object.keys(_formErrors).length <= 0) {
       // let form = new FormData()
+      setsigningUp(true)
       let data = {
         fullnames: signupFormData.fullname,
         email: signupFormData.email,
@@ -55,10 +57,12 @@ const SignupForm = (props) => {
       clientRegister(data)
       .then(res => {
         console.log(res)
+        setsigningUp(false)
         Router.push('/login')
         // return <Snackbar message={res.data.message} actionText="dismiss" />
       })
       .catch(err => {
+        setsigningUp(false)
         console.log(err)
       })
     }
@@ -74,17 +78,19 @@ const SignupForm = (props) => {
     referral: '',
     accept: ''
   });
+  
+  const [signingUp, setsigningUp] = useState(false)
 
-  useEffect(() => {
-    // console.log(formErrors)
-    let store = null
-    if (store = JSON.parse(localStorage.getItem('store'))) {
-      if (store.auth) {
-        setSignupData(store.auth.signup)
-      }
+  // useEffect(() => {
+  //   // console.log(formErrors)
+  //   let store = null
+  //   if (store = JSON.parse(localStorage.getItem('store'))) {
+  //     if (store.auth) {
+  //       setSignupData(store.auth.signup)
+  //     }
 
-    }
-  }, [])
+  //   }
+  // }, [])
 
   return (
     <Grid id="signup" className="signup" columns={2} centered>
@@ -166,8 +172,14 @@ const SignupForm = (props) => {
                 onClick={submit}
                 className="mt-30"
                 size="large"
-                content='Sign up'
-                secondary />
+                secondary>
+                  <Display if={signingUp}>
+                    <Loader active inline='centered' />
+                  </Display>
+                  <Display if={!signingUp}>
+                    Sign up
+                  </Display>
+                </Button>
               <p>
                 Are you a service provider?
                 {' '}

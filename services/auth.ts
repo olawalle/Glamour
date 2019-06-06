@@ -12,6 +12,17 @@ let login = (data) => {
     })
 }
 
+let getCurrentUser = () => {
+    return axios({
+        method: 'GET',
+        url: apiUrls.getCurrentUser,
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+}
+
 export {
-    login
+    login,
+    getCurrentUser
 }

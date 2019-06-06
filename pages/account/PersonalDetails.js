@@ -1,12 +1,17 @@
 import React from 'react'
 import { Grid, Input, TextArea } from 'semantic-ui-react';
 import './less/personalDetails.less'
+import * as actions from '../../store/actions'
+import { connect } from 'react-redux';
 import Password from '../../components/shared/Password';
 import Display from '../../components/shared/Display';
-export default function PersonalDetails(props) {
+
+
+
+const PersonalDetails = (props) => {
   return (
     <>
-      <Display if={props.role === 'client'}>
+      <Display if={props.user.role === 'client'}>
         <div className="personalDetails">
           <Grid stackable>
               <Grid.Row>
@@ -20,7 +25,7 @@ export default function PersonalDetails(props) {
                   </Grid.Column>
                   <Grid.Column width={9}>
                       <Input 
-                        value="Mary Jane"
+                        value={props.user.fullname}
                       />
                       <TextArea 
                         rows="5"
@@ -42,10 +47,10 @@ export default function PersonalDetails(props) {
                   </Grid.Column>
                   <Grid.Column width={9}>
                       <Input 
-                        value="marymary@mail.com"
+                        value={props.user.email}
                       />
                       <Input 
-                        value="09286653541"
+                        value={props.user.phone}
                       />
                   </Grid.Column>
               </Grid.Row>
@@ -77,7 +82,7 @@ export default function PersonalDetails(props) {
         </div>
       </Display>
       
-      <Display if={props.role === 'serviceprovider'}>
+      <Display if={props.user.role === 'serviceprovider'}>
         <div className="personalDetails">
           <Grid stackable>
               <Grid.Row>
@@ -143,3 +148,11 @@ export default function PersonalDetails(props) {
     </>
   )
 }
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
+export default  connect(mapStateToProps, actions)(PersonalDetails)
