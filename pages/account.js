@@ -2,95 +2,70 @@ import React, { useState } from 'react'
 import { Grid, Container } from 'semantic-ui-react';
 import InnerNav from '../components/shared/InnerNav';
 import withMasterLayout from './layouts/withMasterLayout';
+import * as actions from '../store/actions'
+import { connect } from 'react-redux';
 import './less/account.less'
-import BusinessDetails from './account/BusinessDetails';
+import SideNav from './account/sideNav';
 import PersonalDetails from './account/PersonalDetails';
-import ManageSubscriptions from './account/ManageSubscriptions';
-import ManagePayments from './account/ManagePayments';
+import Display from '../components/shared/Display';
 
 
-const Account = () => {
-  
-  const renderLinks = () => {
-    return sideLinks.map((link, i) => {
-        return <li className={link.active} key={`link${i}`} onClick={() => activateLink(i)}><img src={link.icon} alt=""/> {link.text}</li>
-    })
+const Account = (props) => {
+
+//   const [userRole, updateUserRole] = useState('serviceprovider')
+  const [activeComponent, updateActiveComponent ] = useState(<PersonalDetails role={props.userRole} />)
+  const updateActiveComponent_ = (component) => {
+    updateActiveComponent(component)
   }
-
-  const activateLink = (i) => {
-    let newLinks = sideLinks.map((link, n) => {
-        if (n === i) {
-            return {...link, active: 'active'}
-        } else {
-            return {...link, active: ''}
-        }
-    })
-    updateSideLinks(newLinks)
-    updateActiveComponent(sideLinks[i].component)
-  }
-
-  const [activeComponent, updateActiveComponent ] = useState(<PersonalDetails />)
-
-  const [sideLinks, updateSideLinks] = useState([
-    {
-        text: 'Personal details',
-        component: <PersonalDetails />,
-        active: 'active',
-        icon: '/static/icons/personalDetails.svg'
-    },
-    {
-        text: 'Busines details',
-        component: <BusinessDetails />,
-        active: 'inactive',
-        icon: '/static/icons/briefcase.svg'
-    },
-    {
-        text: 'Manage subscriptions',
-        component: <ManageSubscriptions />,
-        active: 'inactive',
-        icon: '/static/icons/subscriptions.svg'
-    },
-    {
-        text: 'Manage payments',
-        component: <ManagePayments />,
-        active: 'inactive',
-        icon: '/static/icons/card.svg'
-    },
-    // {
-    //     text: 'Log out',
-    //     component: '',
-    //     active: 'inactive',
-    //     icon: '/static/icons/logout.svg'
-    // },
-  ])
-
   return (
     <div className="accountComponent">
-      <InnerNav />
+      <InnerNav userRole={props.userRole}/>
       <Container>
         <Grid>
             <Grid.Row>
             <Grid.Column  mobile={16} tablet={16} largeScreen={5} widescreen={5} textAlign="center">
                 <div className="lightShadow leftWing">
-                    <div className="leftWingTop">
-                        <div className="userPhoto">
-                            <img src="/static/images/team/teammember1.png" alt=""/>
+                    <Display if={props.userRole === 'serviceprovider'}>
+                        <div className="leftWingTop">
+                            <div className="userPhoto">
+                                <img src="/static/icons/edit_.svg" className="edit" alt=""/>
+                                <img className="userFace" src={props.user.pictureUrl} alt=""/>
+                            </div>
+                            <p className="userName">
+                                {
+                                    props.user.fullname
+                                }
+                            </p>
+                            <p className="jobDesc">
+                                Massage, Make up
+                            </p>
+                            <p className="userDesc">
+                                Hey, you know how I'm, like, always trying to save the planet? Here's my chance. Life finds a way. 
+                            </p>
                         </div>
-                        <p className="userName">
-                            Mary Jane
-                        </p>
-                        <p className="jobDesc">
-                            Massage, Make up
-                        </p>
-                        <p className="userDesc">
-                            Hey, you know how I'm, like, always trying to save the planet? Here's my chance. Life finds a way. 
-                        </p>
-                    </div>
+                    </Display>
+                    
+                    <Display if={props.userRole === 'client'}>
+                        <div className="leftWingTop">
+                            <div className="userPhoto">
+                                <img src="/static/icons/edit_.svg" className="edit" alt=""/>
+                                <img className="userFace" src={props.user.pictureUrl} alt=""/>
+                            </div>
+                            <p className="userName">
+                                {
+                                    props.user.fullname
+                                }
+                            </p>
+                            {/* <p className="userDesc">
+                                Hey, you know how I'm, like, always trying to save the planet? Here's my chance. Life finds a way. 
+                            </p> */}
+                            <p className="location">
+                                <img src="/static/icons/grey-map-marker.svg" alt=""/> South East London
+                            </p>
+                        </div>
+                    </Display>
 
-                    <ul className="sidelinks">
-                        {renderLinks()}
-                        <li className="logout"><img src='/static/icons/logout.svg' alt=""/>Log out</li>
-                    </ul>
+                    <SideNav role={props.userRole} updateActiveComponent={updateActiveComponent_} />
                 </div>
             </Grid.Column>
             <Grid.Column  mobile={16} tablet={16} largeScreen={11} widescreen={11}>
@@ -107,4 +82,11 @@ const Account = () => {
   )
 }
 
-export default (withMasterLayout)(Account)
+const mapStateToProps = (state) => {
+    return {
+        userRole: state.user.role,
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps, actions)(withMasterLayout(Account))

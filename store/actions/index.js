@@ -5,7 +5,35 @@ import * as types from './types'
 
 // ACTION CREATORS GOES HERE../../services/post
 
+export const saveUserData = (payload) => {
+  return {
+    type: types.SAVE_USER_DATA,
+    payload
+  }
+}
+
+export const saveLoggedinStatus = (payload) => {
+  return {
+    type: types.SAVE_LOGGEDIN_STATUS,
+    payload
+  }
+}
+
 export const serverRenderAction = () => {
+}
+
+export const saveServices = (payload) => {
+  return {
+    type: types.ADD_SERVICES,
+    payload
+  }  
+}
+
+export const saveTrends = (payload) => {
+  return {
+    type: types.ADD_TRENDS,
+    payload
+  }  
 }
 
 export const updateSignupForm = (payload) => {

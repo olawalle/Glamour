@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Link from 'next/link';
-import { Grid, Header, Input, Button } from 'semantic-ui-react';
+import { Grid, Header, Input, Button, Loader } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import { login, getCurrentUser} from '../../services/auth.ts'
 import * as actions from '../../store/actions';
 import Router from 'next/router';
 import './less/loginForm.less';
+import Display from '../shared/Display';
+import { Snackbar } from '../shared/SnackBar';
 
 const LoginForm = (props) => {
 
@@ -25,15 +28,50 @@ const LoginForm = (props) => {
     Object.keys(loginFormData).forEach((item) => {
       if (!loginFormData[item]) {
         _formErrors[item] = true
-      } else {
-        props.updateLoginForm({...loginFormData, isLoggedIn: true})
-        Router.push('/serviceproviders')
       }
     })
     setFormErrors(_formErrors)
-    console.log(loginFormData, formErrors)
 
-    // CALL API WITH loginFormData
+    if (Object.keys(_formErrors).length === 0) {
+      setlogginIn(true)
+      let data = {
+        email: loginFormData.email,
+        password: loginFormData.password
+      }
+
+      login(data)
+      .then(res => {
+        // props.saveLoggedinStatus( true )
+        setlogginIn(false)
+        window.sessionStorage.setItem('glamourToken', res.data.data.token)
+        getCurrentUser()
+        .then(response => {
+          // setMessage('sucessful login')
+          // setSnackType('success')
+          // _showSnackbarHandler()
+          let payload = {
+            ...response.data.me,
+            isLoggedIn: true
+          }
+          // console.log(payload)
+          props.saveUserData(payload)
+          Router.push('/serviceproviders')
+        })
+      })
+      .catch(err => {
+        setlogginIn(false)
+        setMessage('error on login')
+        setSnackType('error')
+        _showSnackbarHandler()
+        console.log({...err})
+      })
+    }
+  }
+
+  const snackbarRef = useRef(null);
+
+  const _showSnackbarHandler = () => {
+    snackbarRef.current.openSnackBar();
   }
 
   const [ formErrors, setFormErrors ] = useState({})
@@ -43,63 +81,81 @@ const LoginForm = (props) => {
     password: '',
   });
 
+  const [logginIn, setlogginIn] = useState(false)
+  const [snackType, setSnackType] = useState('')
+  const [message, setMessage] = useState('')
+ 
 
   return (
-    <Grid id="login" className="login" columns={2} centered>
-      <Grid.Row>
-        <Grid.Column mobile={14} tablet={9} computer={7} largeScreen={6} widescreen={5}>
-          <Header textAlign="center" as='h1'>
-            Log in
-            <Header.Subheader className="mt-10">
-              Don't have an account? {' '}
-              <Link href="/signup">
-                <a className="is-pink">Sign up</a>
-              </Link>
-            </Header.Subheader>
-          </Header>
-          <form className="login-form">
-            <Input
-              type="email"
-              error={formErrors['email']}
-              onChange={(e) => handleChange(e, 'email')}
-              value={loginFormData.email}
-              className="login-form--input1"
-              size="huge"
-              placeholder='Email address'
-              fluid
-            />
-            <Input
-              type="password"
-              error={formErrors['password']}
-              onChange={(e) => handleChange(e, 'password')}
-              value={loginFormData.password}
-              className="login-form--input2"
-              size="huge"
-              placeholder='Password'
-              fluid
-            />
-            <Link href="/forgotpassword/reset">
-              <a className="forgotPassword">Forgot password ?</a>
-            </Link>
-            <div className="is-v-centered">
-              <Button
-                onClick={submit}
-                size="large"
-                content='Log in'
-                secondary />
-              <p>
-                Are you a service provider?
-                {' '}
-                <Link href="/">
-                  <a className="is-pink">Get started</a>
+    <>
+      <Snackbar ref = {snackbarRef} 
+        type={snackType} 
+        position={'top'} 
+        showClose={false} 
+        duration={3000} 
+        message={message} />
+      <Grid id="login" className="login" columns={2} centered>
+        <Grid.Row>
+          <Grid.Column mobile={14} tablet={9} computer={7} largeScreen={6} widescreen={5}>
+            <Header textAlign="center" as='h1'>
+              Log in
+              <Header.Subheader className="mt-10">
+                Don't have an account? {' '}
+                <Link href="/signup">
+                  <a className="is-pink">Sign up</a>
                 </Link>
-              </p>
-            </div>
+              </Header.Subheader>
+            </Header>
+            <form className="login-form">
+              <Input
+                type="email"
+                error={formErrors['email']}
+                onChange={(e) => handleChange(e, 'email')}
+                value={loginFormData.email}
+                className="login-form--input1"
+                size="huge"
+                placeholder='Email address'
+                fluid
+              />
+              <Input
+                type="password"
+                error={formErrors['password']}
+                onChange={(e) => handleChange(e, 'password')}
+                value={loginFormData.password}
+                className="login-form--input2"
+                size="huge"
+                placeholder='Password'
+                fluid
+              />
+              <Link href="/forgotpassword/reset">
+                <a className="forgotPassword">Forgot password ?</a>
+              </Link>
+              <div className="is-v-centered">
+                <Button
+                  onClick={submit}
+                  size="large"
+                  secondary >
+                    <Display if={logginIn}>
+                      <Loader active inline='centered' />
+                    </Display>
+                    <Display if={!logginIn}>
+                      Log in
+                    </Display>
+                  </Button>
+                <p>
+                  Are you a service provider?
+                  {' '}
+                  <Link href="/">
+                    <a className="is-pink">Get started</a>
+                  </Link>
+                </p>
+              </div>
 
-          </form>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
+            </form>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </>
   );
 }
 

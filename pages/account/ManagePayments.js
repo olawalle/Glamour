@@ -1,35 +1,40 @@
 import React, { useState } from 'react'
 import { Grid, Table, Input, Button } from 'semantic-ui-react'
 import './less/managePayments.less'
+import UserCards from './UserCards';
+import UserBankAccount from './UserBankAccount';
 
 export default function ManagePayments() {
+  const [isAddingAccount, updateIsAddingAccount] = useState(false)
   const [isAddingCard, updateIsAddingCard] = useState(false)
 
   const showAddingForm = () => {
-    updateIsAddingCard(true)
+    updateIsAddingAccount(true)
+  }
+  
+  const showAddingCard = () => {
   }
 
-  const renderForm = () => {
-    if (!isAddingCard) {
+  const toggleCard = (val) => {
+    updateIsAddingCard(val)
+  }
+
+  const renderAccount = () => {
+    if (isAddingCard) {
+        return null
+    } else if (!isAddingAccount) {
         return <>
         <Grid.Column width={8}>
           <p className="sectionTitle">
           Nominated bank account
           </p>
-          <div className="emptyCardFrame" onClick={() => showAddingForm()}>
+        <UserBankAccount showAdd={false} />
+          {/* <div className="emptyCardFrame" onClick={() => showAddingForm()}>
               <img src="/static/icons/add.svg" alt=""/> Add bank account
-          </div>
+          </div> */}
           <p className="acctCaveat">
               Your service earnings will be paid out to this account
           </p>
-        </Grid.Column>
-        <Grid.Column width={8}>
-          <p className="sectionTitle">
-             Card
-          </p>
-          <div className="emptyCardFrame">
-              <img src="/static/icons/add.svg" alt=""/> Add card 
-          </div>
         </Grid.Column>
       </>
     } else {
@@ -39,25 +44,37 @@ export default function ManagePayments() {
                 Nominated bank account
                 </p>
             </Grid.Column>
-            <Grid.Column width={10}>
-                <Input
-                    placeholder="Account name"
-                />
-            </Grid.Column>
-            <Grid.Column width={10}>
-                <Input 
-                    placeholder="Account number"
-                />
-            </Grid.Column>
-            <Grid.Column width={10}>
-                <Input 
-                    placeholder="Sort code"/>
-            </Grid.Column>
-            <Grid.Column width={10}>
-                <Button size="huge" secondary onClick={() => updateIsAddingCard(false)}>Save bank account</Button>
+            <Grid.Column width={12}>
+            <UserBankAccount showAdd={true} />
             </Grid.Column>
         </>
     }
+  }
+
+
+  const renderCard = () => {
+    if (isAddingAccount) {
+        return null 
+    } else if (!isAddingCard) {
+        return <>
+                    <Grid.Column width={8}>
+                    <p className="sectionTitle">
+                        Card
+                    </p>
+                        <UserCards showAdd={true} toggleCardView={toggleCard} />
+                    </Grid.Column>
+                </>        
+    } else {
+        return <>
+                    <Grid.Column width={16}>
+                        <p className="sectionTitle">
+                            Card
+                        </p>
+                        <UserCards showAdd={false} toggleCardView={toggleCard} />
+                    </Grid.Column>
+                </>  
+    }
+
   }
 
   return (
@@ -65,7 +82,10 @@ export default function ManagePayments() {
       <Grid stackable>
           <Grid.Row>
             {
-                renderForm()
+                renderAccount()
+            }
+            {
+                renderCard()
             }
               <Grid.Column width={12} className="paymentSection">
                 <p className="sectionTitle">

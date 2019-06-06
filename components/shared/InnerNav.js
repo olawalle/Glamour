@@ -1,12 +1,63 @@
 import React, { Component } from 'react'
 import { Menu, Sticky } from 'semantic-ui-react'
-import _ from 'lodash'
+import Router from 'next/router';
+import Link from 'next/link';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions'
 
-import './less/nav.less';
+import './less/InnerNav.less'
+import Display from './Display';
+import { getUserData } from '../../store';
 
 
-export default class InnerNav extends Component {
-  state = { activeItem: 'Home' }
+class InnerNav extends Component {
+  state = { 
+    activeItem: 'Home',
+    links: [
+      {
+        text: 'Home',
+        image: '/static/icons/home.svg',
+        to: '/provider/home',
+        hasNotif: false,
+        for: 'serviceprovider'
+      },
+      {
+        text: 'Home',
+        image: '/static/icons/home.svg',
+        to: '/serviceproviders',
+        hasNotif: false,
+        for: 'client'
+      },
+      {
+        text: 'Notifications',
+        image: '/static/icons/bell.svg',
+        to: '/notifications',
+        hasNotif: true,
+        for: 'all'
+      },
+      {
+        text: 'Messages',
+        image: '/static/icons/messages.svg',
+        to: '/messages',
+        hasNotif: true,
+        for: 'all'
+      },
+      {
+        text: 'My Bookings',
+        image: '/static/icons/bookings.svg',
+        to: '/bookings',
+        hasNotif: true,
+        for: 'all'
+      },
+      {
+        text: 'Account',
+        image: '/static/icons/account.svg',
+        to: '/account',
+        hasNotif: false,
+        for: 'all'
+      }
+    ]
+  }
 
   componentDidMount() {
     this.setState({ activeItem: this.state.links.find(link => link.to === Router.router.route).text})
@@ -14,7 +65,8 @@ export default class InnerNav extends Component {
 
   renderLinks = () => {
     return this.state.links.map((link, i) => {
-      return <Link href={link.to}
+      if (link.for === this.props.userData.role || link.for === 'all') {
+        return <Link href={link.to}
               key={`link${i}`}> 
               <Menu.Item 
                 className="is-h-centered listItem" 
@@ -30,6 +82,7 @@ export default class InnerNav extends Component {
                 <span className="mobile hidden">{link.text}</span>
               </Menu.Item>
             </Link>
+      }
     })
   }
 
@@ -40,55 +93,21 @@ export default class InnerNav extends Component {
   render() {
     return (
       <div className="innerNav">
-
         <Sticky>
           <Menu secondary>
-            <Menu.Item
-              className="is-h-centered listItem"
-              name='Home'
-              active={activeItem === 'Home'}
-              onClick={this.handleItemClick}
-            >
-              <img src="/static/icons/home.svg" className="linkIcon" alt=""/> <span className="mobile hidden"> Home</span>
-            </Menu.Item>
-            <Menu.Item
-              name='Notifications'
-              className="is-h-centered listItem"
-              active={activeItem === 'Notifications'}
-              onClick={this.handleItemClick}
-            >
-              <span className="notif">.</span>
-              <img src="/static/icons/bell.svg" className="linkIcon" alt=""/> <span className="mobile hidden">Notifications</span>
-            </Menu.Item>
-            <Menu.Item
-              name='Messages'
-              className="is-h-centered listItem"
-              active={activeItem === 'Messages'}
-              onClick={this.handleItemClick}
-            >
-              <span className="notif">.</span>
-              <img src="/static/icons/messages.svg" className="linkIcon" alt=""/>  <span className="mobile hidden">Messages</span>
-            </Menu.Item>
-            <Menu.Item
-              name='My Bookings'
-              className="is-h-centered listItem"
-              active={activeItem === 'My Bookings'}
-              onClick={this.handleItemClick}
-            >
-              <span className="notif">.</span>
-              <img src="/static/icons/bookings.svg" className="linkIcon" alt=""/>  <span className="mobile hidden">My Bookings</span>
-            </Menu.Item>
-            <Menu.Item
-              name='Account'
-              className="is-h-centered listItem"
-              active={activeItem === 'Account'}
-              onClick={this.handleItemClick}
-            >
-              <img src="/static/icons/account.svg" className="linkIcon" alt=""/> <span className="mobile hidden"> Account</span>
-            </Menu.Item>
+            {
+              this.renderLinks()
+            }
           </Menu>
         </Sticky>
       </div>
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  userData: getUserData(state)
+})
+
+
+export default connect(mapStateToProps, actions)(InnerNav);

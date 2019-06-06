@@ -5,6 +5,13 @@
             width: 130px;
             border: 3px solid #fff;
             border-radius: 50%;
+            background-color: #fff !important
+        }
+        .userPhoto_ {
+            width: 130px;
+            border: 3px solid #e84671;
+            border-radius: 50%;
+            background-color: #fff !important
         }
     }
     .buttons {
@@ -60,7 +67,7 @@
         box-shadow: 0px 0px 10px rgba(99, 115, 129, 0.1);
     }
     .serviceWrap {
-        margin: 30px 0;
+        margin: 30px 0 30px 0;
         max-height: 509px;
         overflow: hidden;
     }
@@ -129,9 +136,81 @@
         overflow-y: auto
     }
     .bookServiceComponent {
-        margin-top: -60px !important;
+        margin-top: -260px !important;
         background-color: #fff;
         padding: 30px;
         height: auto
+    }
+    @media (max-width: 767px) {
+        .userDesc {
+            padding: 10px !important
+        }
+        .buttons {
+            padding-top: 10px !important;
+            width: 100%
+        }
+        .mainBtn {
+            margin: 10px !important;
+            padding-left: 15px !important;
+            padding-right: 15px !important;
+            // img {
+            //     margin-top: -4px;
+            //     display: none;
+            //     margin-left: -20px !important;
+            // }
+        }
+        .serviceDetails .serviceWrap {
+            box-shadow: unset !important
+        }
+        .bookServiceComponent {
+            margin-top: 0 !important
+        }
+        .userName {
+            font-size: 16px !important;
+            text-align: left !important
+        }
+        .serviceWrap {
+            // margin-top: 0 !important
+        }
+        .lightShadow {
+            // box-shadow: unset !important;
+            margin: 15px 0 !important;
+            padding: 1rem !important
+        }
+        .serviceWrapTitle {
+            margin-top: 0px !important;
+            font-size: 24px !important;
+            padding: 0 !important
+        } 
+        .lookBookWrapTitle, .reviewsWrapTitle {
+            margin-top: 0px !important;
+            font-size: 24px !important;
+            padding: 0 15px !important
+        } 
+        .servicesChildWrap {
+            padding: 0 !important
+        }
+        .servicesChildWrap, .serviceWrap, .reviewsComponentWrapChild, .reviewsComponentWrap {
+            height: auto !important;
+            padding: 15px !important;
+            max-height: unset;
+            overflow: hidden;
+        }
+        .ui.stackable.grid > .row > .column {
+            padding: 0 !important
+        }
+        .lookBookWrap .ui.stackable.grid > .row > .column {
+            padding: 15px !important
+        }
+        .lookStars {
+            font-size: 13px !important;
+            text-align: right;
+            span {
+                padding: 0 !important
+            }
+            .arrows {
+                padding: 0 15px !important
+            }
+        }
     }
 }

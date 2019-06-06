@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import withMasterLayout from '../../pages/layouts/withMasterLayout';
 import { connect } from 'react-redux';
 import { Container, Grid, Button, Modal } from 'semantic-ui-react';
-import { getProviders } from '../../store'
+import { getProviders, getUserData } from '../../store'
 import Banner from '../../components/shared/Banner'
 import Footer from '../../components/shared/Footer'
 import Service from '../../components/serviceDetails/service'
@@ -16,7 +16,7 @@ import CustomImageUploader from '../../components/shared/CustomImageUploader';
 import Display from '../../components/shared/Display';
 
 
-const ProviderHome = () => {
+const ProviderHome = (props) => {
 
 
     const showInnerNav = () => {
@@ -42,7 +42,7 @@ const ProviderHome = () => {
 
     const styles = {
         UserPhoto: {
-            backgroundImage: `url(${userPhoto.image})`
+            backgroundImage: `url(${props.userData.pictureUrl})`
         },
         imgWrap: {
             width: '130px',
@@ -154,7 +154,7 @@ const ProviderHome = () => {
     return (
         <>
         <Display if={showNav}>
-            <InnerNav />
+            <InnerNav userRole={'client'} />
         </Display>
         <div className="outerBannerWrap">
             <CustomImageUploader getImageString={getImageString} getImageFile={getImageFile}>
@@ -292,7 +292,8 @@ const ProviderHome = () => {
 
 const mapStateToProps = (state) => ({
     serviceProviders: getProviders(state),
-    isLoggedIn: state.auth.login.isLoggedIn
+    userData: getUserData(state),
+    isLoggedIn: state.user.isLoggedIn
 })
 
 

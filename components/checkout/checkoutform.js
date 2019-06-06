@@ -1,32 +1,25 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './less/checkoutform.less'
 import { Grid, Input, Button  } from 'semantic-ui-react';
 import CardDetailsForm from '../shared/CardDetailsForm';
 import AddressForm from '../shared/AddressForm';
 
-const toBeRenderer = (props) => {
-    if (props.step === 1) {
-        return <div className="checkoutFormWrap">
-        <Grid className="gridWrap">
-            <Grid.Row className="topIndicator">
-                <div className="edge"></div>
-                <div className="divider"></div>
-                <div className="edge inactive"></div>
-            </Grid.Row>
+export default function Checkoutform(props) {
 
-            <Grid.Row  className="topIndicatorText" columns={2}>
-                <Grid.Column>
-                    <p className="indicatorText">
-                        Confirm Address
-                    </p>
-                </Grid.Column>
-                <Grid.Column>
-                    <p className="indicatorText inactive">
-                        Payment Details
-                    </p>
-                </Grid.Column>
-            </Grid.Row>
-        </Grid>
+  const getAddressFormData = (e) => {
+    console.log(e)
+    props.addressForm(e)
+  }
+
+  const submit = (e) => {
+    console.log(e)
+  }
+
+  const toBeRendered = () => {
+      
+    if (props.step === 1) {
+      return <div className="checkoutFormWrap">
+        {props.children}
         <Grid className="gridWrap" stackable>         
             <Grid.Row  className="inputWrap">
                 <Grid.Column width={16} className="rowHeading">
@@ -34,68 +27,46 @@ const toBeRenderer = (props) => {
                 </Grid.Column> 
             </Grid.Row>
 
-            <AddressForm />
+            <AddressForm submit={submit} formData={getAddressFormData} />
      
-            <Grid.Row  className="inputWrap">
-                <Grid.Column width={16}>
-                    <Input
-                        placeholder="Instructions" />
-                    <img src="/static/icons/grey-compass.svg" className="inputImage" alt=""/>
-                </Grid.Column>
-            </Grid.Row>
+            {/* <Grid.Row  className="inputWrap">
+            </Grid.Row> */}
         </Grid>
-    </div>
+      </div>
     } else {
-        return <div className="checkoutFormWrap" if={props.step === 2}>
-             <Grid className="gridWrap">
-            <Grid.Row className="topIndicator">
-                <div className="edge inactive"></div>
-                <div className="divider"></div>
-                <div className="edge"></div>
-            </Grid.Row>
+        return <div className="checkoutFormWrap">
+                {props.children}
+                <Grid className="gridWrap" stackable>            
+                    <Grid.Row  className="inputWrap">
+                        <Grid.Column width={16} className="rowHeading">
+                            Payment Details
+                        </Grid.Column>   
+                    </Grid.Row>
 
-            <Grid.Row  className="topIndicatorText" columns={2}>
-                <Grid.Column>
-                    <p className="indicatorText inactive">
-                        Confirm Address
-                    </p>
-                </Grid.Column>
-                <Grid.Column>
-                    <p className="indicatorText">
-                        Payment Details
-                    </p>
-                </Grid.Column>
-            </Grid.Row>
-        </Grid>
-        <Grid className="gridWrap" stackable>            
-            <Grid.Row  className="inputWrap">
-                <Grid.Column width={16} className="rowHeading">
-                    Payment Details
-                </Grid.Column>   
-            </Grid.Row>
+                    <CardDetailsForm  showBtn={true} />    
 
-            <CardDetailsForm />    
-
-            <Grid.Row  className="inputWrap">
-                <Grid.Column width={4}>
-                </Grid.Column>
-                <Grid.Column width={8}>
-                    <Button  secondary className="proceedBtn">
-                        Save card for future use
-                    </Button>
-                </Grid.Column>
-                <Grid.Column width={4}>
-                </Grid.Column>
-            </Grid.Row>
-        </Grid>
-        </div>
+                    {/* <Grid.Row  className="inputWrap">
+                        <Grid.Column width={4}>
+                        </Grid.Column>
+                        <Grid.Column width={8}>
+                            <Button  secondary className="proceedBtn">
+                                Save card for future use
+                            </Button>
+                        </Grid.Column>
+                        <Grid.Column width={4}>
+                        </Grid.Column>
+                    </Grid.Row> */}
+                </Grid>
+            </div>
     }
-}
+  }
 
-export default function Checkoutform(props) {
+
+  
+
   return (
     <>
-        {toBeRenderer(props)}
+        {toBeRendered(props)}
     </>
   )
 }

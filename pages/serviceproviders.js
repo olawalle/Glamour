@@ -35,30 +35,16 @@ class ServiceProvider extends Component {
 
     showInnerNav = () => {
         if (this.props.isLoggedIn) {
-            return <InnerNav />
+            return <InnerNav userRole={'client'} />
         }
-    }
-
-    switchPosition = () => {
-        if (window.pageYOffset > 77) {
-            this.setState({ position : 'fixed'}) 
-        } else {
-            this.setState({ position : 'uu'}) 
-        }
-    }
-
-    componentDidMount = () => {
-        window.addEventListener('scroll', this.switchPosition)
     }
 
     render () {
         return (
             <>
-            <div className={this.state.position}>
             {
                 this.showInnerNav()
             }
-            </div>
             <Container>
                 <div style={styles.pageWrap} className="serviceProviders">
                     <ProvidersForm />
@@ -98,7 +84,7 @@ class ServiceProvider extends Component {
 
 const mapStateToProps = (state) => ({
     serviceProviders: getProviders(state),
-    isLoggedIn: state.auth.login.isLoggedIn
+    isLoggedIn: state.user.isLoggedIn
 })
 
 

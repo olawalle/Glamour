@@ -9,9 +9,6 @@ const INITIAL_STATE = {
     password: null,
     referral: null,
     accept: false
-  },
-  login: {
-    isLoggedIn: false
   }
 }
 

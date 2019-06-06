@@ -1,8 +1,13 @@
 .providerSignup {
     margin-top: 0px !important;
+    min-height: 80vh;
     .indicatorsWrap {
         background-color: #fafafa;
-        min-height: 70vh;
+        display: inline-flex;
+        height: 100%;
+        width: 30%;
+        position: relative;
+        top: 0px;
         // display: block !important;
         .indicatorsWrapInner {
             height: 600px;
@@ -25,10 +30,10 @@
             box-sizing: border-box;
             content: '';
             height: 100%;
-            left: 43px;
+            left: 28px;
             position: absolute;
             top: 0;
-            width: 1px;
+            width: 0.5px;
             z-index: 1;
         }
         .activeStep {
@@ -149,8 +154,14 @@
     }
 
     .formWrap {
+        display: inline-flex;
         background-color: #fff !important;
         padding-top: 0 !important;
+        height: 100%;
+        width: 70%;
+        position: relative;
+        top: -44px;
+        overflow: hidden;
         .jumpBtn {
             margin: 0 auto
         }
@@ -167,9 +178,14 @@
         }
         .indicatorsWrap_ {
             display: block !important;
+            min-height: 88px !important;
             p {
                 font-size: 10px !important
             }
+        }
+        .formWrap {
+            width: 100%;
+            padding: 15px
         }
     }
 }

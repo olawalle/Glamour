@@ -21,7 +21,7 @@ class bookings extends Component {
   render () {
     return (
       <>
-        <InnerNav />
+        <InnerNav userRole={'client'} />
         <Bookings {...this.props}/>
         <Footer/>
       </>

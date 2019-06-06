@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import withMasterLayout from '../pages/layouts/withMasterLayout';
 import { connect } from 'react-redux';
 import { Container, Grid, Button } from 'semantic-ui-react';
-import { getProviders } from '../store'
+import { getProviders, getUserData } from '../store'
 import Banner from '../components/shared/Banner'
 import Footer from '../components/shared/Footer'
 import Stars from '../components/shared/stars'
@@ -14,22 +14,6 @@ import Router from 'next/router';
 import * as actions from '../store/actions'
 import './less/serviceDetails.less'
 
-
-const styles = {
-    pageWrap: {
-    // padding: '20px'
-    },
-    Left: {
-        // background: 'red'
-    },
-    Right: {
-        // background: 'blue'
-    }
-}
-
-
-
-
 class ServiceDetails extends Component {
     static async getInitialProps ({ reduxStore, req }) {
         this.test = reduxStore
@@ -39,35 +23,39 @@ class ServiceDetails extends Component {
       }
     }
 
-    componentWillMount() {
+    state = {
+        selectedProvider: {}
+    }
+
+    componentDidMount() {
         let id = Router.router.query.provider
-        this.selectedProvider = this.props.serviceProviders.find(provider => provider.id === id)
-        console.log('called')
-        this.props.selectProvider(this.selectedProvider)
+        this.setState({selectedProvider: this.props.serviceProviders.find(provider => provider.id === id)}, () => {
+            console.log(this.state.selectedProvider)
+        })
     }
 
     showInnerNav = () => {
         if (this.props.isLoggedIn) {
-            return <InnerNav />
+            return <InnerNav userRole={'client'} />
         }
     }
 
     
     renderServiceComponent(serviceProvider) {
-        return serviceProvider.servicesRendered.map((service, i) => <Service key={`service${i}`} id={serviceProvider.id} userServices={service} selected={false} />)
+        if (this.state.selectedProvider.servicesRendered) return serviceProvider.servicesRendered.map((service, i) => <Service key={`service${i}`} id={serviceProvider.id} userServices={service} selected={false} />)
     }
 
     render () {
         return (
             <>
-            <Banner banner={this.selectedProvider.banner}  text={''} />
+            <Banner banner={this.state.selectedProvider.banner}  text={''} />
             <Container>
-                <div style={styles.pageWrap} className="serviceDetails">
+                <div className="serviceDetails">
                     <Grid stackable>
                         <Grid.Row>
-                            <Grid.Column  style={styles.Right} width={10}>
+                            <Grid.Column width={10}>
                                 <div className="userDesc">
-                                    <img src={this.selectedProvider.userPhoto} className="userPhoto" alt=""/>
+                                    <img src={this.props.userData.pictureUrl} className={this.state.selectedProvider.userPhoto ? "userPhoto_" : "userPhoto"} alt=""/>
                                     <div className="buttons">
                                         <Button size="huge" className="mainBtn secondaryBtn"> 
                                             <img src="../static/icons/heart.svg" alt=""/> <span>Save</span>
@@ -77,28 +65,39 @@ class ServiceDetails extends Component {
                                         </Button>
                                     </div>
                                     <p className="userName">
-                                        {this.selectedProvider.name}
+                                        {this.props.userData.fullname}
                                     </p>
                                     <p className="userJob">
-                                        {this.selectedProvider.jobDesc}
+                                        {this.state.selectedProvider.jobDesc}
                                     </p>
                                     <p className="userDetails">
-                                        {this.selectedProvider.description}
+                                        {this.state.selectedProvider.description}
                                     </p>
+                                </div>
+                            </Grid.Column>
+                            <Grid.Column width={10}>
                                     <div className="serviceWrap lightShadow">
                                         <div className="serviceWrapTitle">
                                             Services
                                         </div>
                                         <div className="servicesChildWrap">
                                             {
-                                                this.renderServiceComponent(this.selectedProvider)
+                                                this.renderServiceComponent(this.state.selectedProvider)
                                             }
                                         </div>
                                     </div>
+                                </Grid.Column>
+                                
+                                <Grid.Column width={6} className="forBig">
+                                    <div className="lightShadow bookServiceComponent">
+                                        <BookService providerDetails={this.state.selectedProvider} />
+                                    </div>
+                                </Grid.Column>  
+                                <Grid.Column width={10}>
                                     <div className="lookBookWrap lightShadow">
                                         <Grid columns={2}>
                                             <Grid.Row>
-                                                <Grid.Column  style={styles.Right}>
+                                                <Grid.Column>
                                                     <span className="lookBookWrapTitle">
                                                         Look book
                                                     </span>
@@ -111,23 +110,24 @@ class ServiceDetails extends Component {
                                                 </Grid.Column>
                                             </Grid.Row>
                                         </Grid>
+                                        
                                         <LookBook />
                                     </div>
                                     <div className="reviewsComponentWrap lightShadow">
                                         <div className="reviewsWrapTitle">
                                         <Grid columns={2}>
                                             <Grid.Row>
-                                                <Grid.Column  style={styles.Right}>
-                                                <span className="serviceWrapTitle">
-                                                    Reviews
-                                                </span>
+                                                <Grid.Column mobile={6} tablet={8} computer={8} largeScreen={8}>
+                                                    <span className="serviceWrapTitle">
+                                                        Reviews
+                                                    </span>
                                                 </Grid.Column>
-                                                <Grid.Column className="lookStars">
+                                                <Grid.Column  mobile={10} tablet={8} computer={8} largeScreen={8} className="lookStars">
                                                     <span>
                                                         {
-                                                            <Stars stars={this.selectedProvider.stars} />
+                                                            <Stars stars={this.state.selectedProvider.stars} />
                                                         }      
-                                                        ({this.selectedProvider.ratingsCount})                                   
+                                                        ({this.state.selectedProvider.ratingsCount})                                   
                                                     </span>
                                                 </Grid.Column>
                                             </Grid.Row>
@@ -137,20 +137,9 @@ class ServiceDetails extends Component {
                                             <Reviews />
                                             <Reviews />
                                             <Reviews />
-                                            <Reviews />
-                                            <Reviews />
-                                            <Reviews />
-                                            <Reviews />
-                                            <Reviews />
                                         </div>
                                     </div>
-                                </div>
-                            </Grid.Column>
-                            <Grid.Column  style={styles.Left} width={6}>
-                                <div className="lightShadow bookServiceComponent">
-                                    <BookService providerDetails={this.selectedProvider} />
-                                </div>
-                            </Grid.Column>
+                            </Grid.Column>                       
                         </Grid.Row>
                     </Grid>
                 </div>
@@ -163,7 +152,8 @@ class ServiceDetails extends Component {
 
 const mapStateToProps = (state) => ({
     serviceProviders: getProviders(state),
-    isLoggedIn: state.auth.login.isLoggedIn
+    userData: getUserData(state),
+    isLoggedIn: state.user.isLoggedIn
 })
 
 

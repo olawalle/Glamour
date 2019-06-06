@@ -9,7 +9,7 @@ import Timing from '../../../components/shared/Timing';
 export default function StepTwo(props) {
     
   const options = [
-    { key: '', text: 'Not Applicable', value: '' },
+    // { key: '', text: 'Not Applicable', value: '' },
     { key: 'onilne', text: 'Online', value: 'Online' },
     { key: 'offline', text: 'Offline', value: 'offline' },
   ]
@@ -36,59 +36,51 @@ export default function StepTwo(props) {
 
     setFormErrors(_formErrors)
 
-    console.log(signupFormData, formErrors)
-
-    // CALL API WITH signupFormData
+    console.log(signupFormData, _formErrors)
+    if (Object.keys(_formErrors).length === 0) {
+      props.jump( {...signupFormData, schedule: timing }, 2)
+    }
+  }
+  
+  const [timing, setTiming] = useState([])
+  const getTiming_ = (e) => {
+    setTiming(e)
+    console.log(e, timing)
   }
 
   const [ formErrors, setFormErrors ] = useState({})
-
   const [signupFormData, setSignupData] = useState({
-    fullname: '',
-    email: '',
-    address: '',
-    mobileNumber: '',
-    password: '',
-    referral: '',
-    accept: false
+    postCode: '',
+    mileRadius: '',
+    location: false
   });
 
-  useEffect(() => {
-    let store = null
-    if (store = JSON.parse(localStorage.getItem('store'))) {
-      if (store.auth) {
-        setSignupData(store.auth.signup)
-      }
-
-    }
-  }, [])
-
   return (
-    <div>
-      <Grid id="stepOne" className="stepOne" columns>
+    <div id="stepOne" className="stepOne">
+      {/* <Grid columns>
       <Grid.Row>
-        <Grid.Column width={16}>
+        <Grid.Column width={16}> */}
           <Header textAlign="center" className="header" as='h1'>
           Set coverage & availability
           </Header>
           <form className="stepOne-form">
             <p className="sectHeading">
-                Coverage area
+              Coverage area
             </p>
             <Input
-              onChange={(e) => handleChange(e, 'fullname')}
-              error={formErrors['fullname']}
-              value={signupFormData.fullname}
+              onChange={(e) => handleChange(e, 'postCode')}
+              error={formErrors['postCode']}
+              value={signupFormData.postCode}
               className="stepOne-form--input"
               size="huge"
               placeholder='Postcode'
               fluid
             />
             <Select
-              error={formErrors['referral']}
-              onChange={(e, data) => handleChange(e, 'referral', data)}
+              error={formErrors['mileRadius']}
+              onChange={(e, data) => handleChange(e, 'mileRadius', data)}
               className="stepOne-form--select signup-form--input"
-              value={signupFormData.referral}
+              value={signupFormData.mileRadius}
               fluid
               options={options}
               placeholder='Within mile radius'
@@ -96,7 +88,7 @@ export default function StepTwo(props) {
             <div className="is-flex checkboxWrap">
               <Checkbox
                 className="stepOne-form--checkbox"
-                onChange={(e, data) => handleChange(e, 'accept', data)}
+                onChange={(e, data) => handleChange(e, 'location', data)}
               />
               <span className="caveat">
                 <b>Use my location.</b> This enables us to match you effectively to nearby clients
@@ -108,16 +100,23 @@ export default function StepTwo(props) {
             </p>
 
             <Grid columns className='timingWrap'>
-              <Timing />
+              <Timing getTiming={getTiming_} />
             </Grid>
             <div className="is-v-centered">
-                {props.children}
+                {/* {props.children} */}
+                <Button
+                    className="mt-30 nxt-btn"
+                    size="large"
+                    onClick={submit}
+                    secondary>
+                    Next
+                </Button>
             </div>
 
           </form>
-        </Grid.Column>
+        {/* </Grid.Column>
       </Grid.Row>
-    </Grid>
+    </Grid> */}
     </div>
   )
 }

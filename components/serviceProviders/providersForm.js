@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import { Grid, Select, Input } from 'semantic-ui-react';
-import InputRange from 'react-input-range';
+// import InputRange from 'react-input-range';
+// import {RangeSlider, Slider} from 'reactrangeslider';
+// import Slider from 'range-sliders';
+
+import Slider, { Range } from 'rc-slider';
+import 'rc-slider/assets/index.css';
+import 'rc-tooltip/assets/bootstrap.css';
+import Tooltip from 'rc-tooltip';
+
 import { DatePicker } from 'antd';
 import "./less/providerForm.less"
 
@@ -12,13 +20,24 @@ const options = [
 
 // const ProviderForm = (props) => 
 class ProviderForm extends Component {
+  state = {
+    value: { min: 2, max: 10 },
+    styles: {},
+    value: { start: 20, end: 80 },
+    selectedValues: {min: 0, max: 5}
+  }
 
-  constructor(props) {
-    super(props);
- 
-    this.state = {
-      value: { min: 2, max: 10 },
-    };
+  onChange = (event) => {
+    console.log(event)
+    this.setState(
+      {
+        selectedValues: {
+        min: event[0],
+        max: event[1]
+      }
+    }, () => {
+      console.log(this.state.selectedValues)
+    })
   }
 
   render () {
@@ -88,13 +107,9 @@ class ProviderForm extends Component {
                 <Grid.Column className="RangeCol">
                   <div className="RangeCol_">
                     <span className="RangeLabel">Price range</span>
-                    <span className="RangeValues">£{this.state.value.min} - £{this.state.value.max}</span>
-                  <InputRange
-                    className="Range"
-                    maxValue={20}
-                    minValue={0}
-                    value={this.state.value}
-                    onChange={value => this.setState({ value })} />
+                    <span className="RangeValues">£{this.state.selectedValues.min} - £{this.state.selectedValues.max}</span>
+                      
+                    <Range min={0} max={20} className="slider_" defaultValue={[this.state.selectedValues.min, this.state.selectedValues.max]} onChange={(event) => this.onChange(event)}  />
                   </div>
                 </Grid.Column>
             </Grid.Row>
