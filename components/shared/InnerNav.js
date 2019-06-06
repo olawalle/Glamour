@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions'
 
-import './less/InnerNav.less'
+import './less/nav.less'
 import Display from './Display';
 import { getUserData } from '../../store';
 
