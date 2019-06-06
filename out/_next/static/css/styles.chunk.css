@@ -60691,6 +60691,42 @@ body ::-webkit-scrollbar-track {
   top: -77px;
 }
 
+.navbar {
+  margin-bottom: 0px !important;
+  border-radius: 0px !important;
+  border: none !important;
+  box-shadow: 0px 5px 10px rgba(99, 115, 129, 0.02) !important;
+}
+.navbar a {
+  font-family: sofiapromedium;
+  font-size: 15px !important;
+}
+.navbar .navbar-signup-btn {
+  border-radius: 0px !important;
+  height: 49px !important;
+  width: 120px !important;
+}
+.navbar .cursor {
+  cursor: pointer;
+}
+@media only screen and (max-width: 480px) {
+  .navbar {
+    box-shadow: 0px 1px 20px 0 rgba(34, 36, 38, 0.15) !important;
+  }
+}
+
+.BannerWrap {
+  background-position: 0% 10% !important;
+  height: 400px !important;
+  background-repeat: no-repeat !important;
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important;
+  background-size: cover !important;
+  margin: 0px !important;
+  border-radius: 0px !important;
+}
+
 .footer {
   color: white !important;
   font-family: freightproblack !important;
@@ -60743,205 +60779,6 @@ body ::-webkit-scrollbar-track {
   font-size: 18px;
 }
 
-.navbar {
-  margin-bottom: 0px !important;
-  border-radius: 0px !important;
-  border: none !important;
-  box-shadow: 0px 5px 10px rgba(99, 115, 129, 0.02) !important;
-}
-.navbar a {
-  font-family: sofiapromedium;
-  font-size: 15px !important;
-}
-.navbar .navbar-signup-btn {
-  border-radius: 0px !important;
-  height: 49px !important;
-  width: 120px !important;
-}
-.navbar .cursor {
-  cursor: pointer;
-}
-@media only screen and (max-width: 480px) {
-  .navbar {
-    box-shadow: 0px 1px 20px 0 rgba(34, 36, 38, 0.15) !important;
-  }
-}
-
-#__next .login {
-  font-size: 16px !important;
-}
-#__next .login .ui.header {
-  font-family: freightproblack !important;
-  font-size: 32px !important;
-}
-#__next .login .sub.header {
-  font-family: sofiapromedium !important;
-}
-#__next .login .login-form {
-  padding: 5px 25px !important;
-}
-#__next .login .login-form--input1 {
-  margin: 10px 0px !important;
-  margin-bottom: 30px !important;
-}
-#__next .login .login-form--input2 {
-  margin: 10px 0px !important;
-}
-#__next .login .forgotPassword {
-  font-family: sofiaprosemibold !important;
-  color: #e84671;
-  font-size: 16px;
-  margin-top: 10px !important;
-  margin-bottom: 20px !important;
-  text-align: right !important;
-  display: block !important;
-}
-#__next .login .column {
-  background: white !important;
-  padding: 45px 20px !important;
-  margin-top: 4% !important;
-  padding-bottom: 70px !important;
-}
-#__next .login .button {
-  height: 60px !important;
-  width: 126px !important;
-  margin-bottom: 20px;
-}
-@media only screen and (max-width: 480px) {
-  #__next #login .column {
-    width: 100% !important;
-  }
-  #__next #login form {
-    padding: 5px 0px !important;
-  }
-}
-
-.snackbar {
-  width: 40%;
-  margin: 0 auto !important;
-  text-align: center;
-  border-radius: 2px;
-  padding: 16px;
-  position: fixed;
-  z-index: 1000000;
-  opacity: 0;
-  left: 30% !important;
-  opacity: 1;
-  font-size: 1rem;
-}
-.snackbar.show.top {
-  -webkit-animation: fadein 1.2s !important;
-  top: 20px !important;
-  animation: fadein 1.2s;
-}
-.snackbar.show.bottom {
-  -webkit-animation: fadeinBottom 1.2s !important;
-  bottom: 20px !important;
-  animation: fadein_ 1.2s;
-}
-.bottom {
-  bottom: 20px !important;
-}
-.snackbar.hide {
-  top: -100px !important;
-  -webkit-animation: fadeout 1.2s;
-  animation: fadeout 1.2s;
-}
-.success {
-  background-color: #71ab71;
-  color: #fff;
-}
-.error {
-  background-color: #e84671;
-  color: #fff;
-}
-.info {
-  background-color: #454545;
-  color: #fff;
-}
-.message {
-  display: inline;
-  min-width: 80%;
-  max-width: 80%;
-}
-.close {
-  color: #fff;
-  display: inline;
-  min-width: 20%;
-  max-width: 20%;
-  font-weight: 600;
-  margin-right: 20px !important;
-}
-.success .close {
-  padding: 5px 20px !important;
-  border-radius: 5px;
-}
-.close:hover {
-  transform: scale(1.1);
-  cursor: pointer;
-}
-/* Animations to fade the snackbar in and out */
-@-webkit-keyframes fadein {
-  from {
-    top: -20px;
-    opacity: 0;
-  }
-  to {
-    top: 20px;
-    opacity: 1;
-  }
-}
-@keyframes fadein {
-  from {
-    top: -20px;
-    opacity: 0;
-  }
-  to {
-    top: 20px;
-    opacity: 1;
-  }
-}
-@-webkit-keyframes fadeinBottom {
-  from {
-    bottom: -20px;
-    opacity: 0;
-  }
-  to {
-    bottom: 20px;
-    opacity: 1;
-  }
-}
-@keyframes fadeinBottom {
-  from {
-    bottom: -20px;
-    opacity: 0;
-  }
-  to {
-    bottom: 20px;
-    opacity: 1;
-  }
-}
-@-webkit-keyframes fadeout {
-  from {
-    top: 20px;
-    opacity: 1;
-  }
-  to {
-    top: -100px;
-    opacity: 0;
-  }
-}
-@keyframes fadeout {
-  from {
-    top: 20px;
-    opacity: 1;
-  }
-  to {
-    top: -100px;
-    opacity: 0;
-  }
-}
-
 .providerForm {
   margin: 20px 0;
   border: 1px solid #eee;
@@ -60978,6 +60815,485 @@ body ::-webkit-scrollbar-track {
   }
   .providerCard {
     margin: 0 !important;
+  }
+}
+
+.service {
+  padding-top: 25px;
+  border-bottom: 1px solid rgba(196, 205, 213, 0.25);
+}
+.service p {
+  margin: 0 0 10px 0 !important;
+}
+.service .serviceTitle {
+  font-family: freightproblack !important;
+  color: #212B36;
+  font-size: 18px;
+  font-weight: 600;
+}
+.service .serviceDesc,
+.service .serviceDuration {
+  color: #637381;
+}
+.service .serviceCost {
+  color: #E84671;
+  font-size: 15px;
+  font-weight: 600;
+  height: 100%;
+  padding-top: 50px;
+}
+.service .addService {
+  margin-top: 30px;
+}
+@media (max-width: 767px) {
+  .service {
+    padding-top: 0 !important;
+  }
+  .serviceCost {
+    margin: 12px 0 !important;
+  }
+  .addService {
+    float: right;
+    margin: 0 0 12px 0 !important;
+  }
+  .serviceCost {
+    padding-top: 0 !important;
+  }
+  .ui.grid > .row > .column {
+    padding: 0 !important;
+  }
+}
+
+.lookBook {
+  width: 100% !important;
+}
+.lookBook .lookColumn {
+  overflow: hidden !important;
+  margin-bottom: 10px !important;
+  padding: 0 10px !important;
+  height: 200px;
+}
+.lookBook .ui.grid {
+  margin: 0 !important;
+}
+.lookBook .ui.grid > .row > .column > img {
+  max-width: 142% !important;
+}
+.lookBook .look {
+  margin: 0 !important;
+}
+@media (max-width: 767px) {
+  .lookBook .ui.grid > .row > .column > img {
+    max-width: 100% !important;
+  }
+}
+
+.reviews {
+  padding: 30px 0 0 0;
+  border-bottom: 1px solid rgba(196, 205, 213, 0.25);
+}
+.reviews p {
+  margin: 0 0 10px 0 !important;
+}
+.reviews .reviewBody {
+  color: #212B36;
+  margin-bottom: 20px !important;
+}
+.reviews .reviewerPhoto {
+  border-radius: 50% !important;
+  width: 60px !important;
+}
+.reviews .reviewerName {
+  color: #212B36;
+  font-weight: 600;
+  font-family: freightproblack !important;
+}
+.reviews .reviewDate {
+  color: #637381;
+}
+
+.bookService p {
+  margin: 0 !important;
+}
+.bookService .usersName {
+  font-size: 30px;
+  font-family: freightproblack !important;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 20px !important;
+}
+.bookService .dateLabel {
+  position: relative;
+  top: -55px;
+  left: 42px;
+  font-size: 10px;
+  color: #637381;
+}
+.bookService .close {
+  width: 14px;
+  position: relative;
+  top: 40px;
+  left: 92%;
+  cursor: pointer;
+}
+.bookService .pickerImage {
+  position: relative;
+  top: 50px;
+  left: 10px;
+  width: 20px;
+}
+.bookService .date--picker {
+  margin-top: 10px !important;
+  width: 100% !important;
+  padding: 10px 0 0 40px !important;
+  border: 1px solid #c4cdd5 !important;
+}
+.bookService ul {
+  padding: 0 !important;
+  list-style: none;
+}
+.bookService li {
+  padding: 20px 0 !important;
+  border-bottom: 1px solid #c4cdd540;
+}
+.bookService .bookService__title {
+  font-size: 20px;
+  margin-top: 20px !important;
+  font-weight: 600;
+}
+.bookService .bookService__title__amount {
+  font-size: 14px;
+  color: #637381;
+  padding: 20px 0 !important;
+  border-bottom: 1px solid #c4cdd5 !important;
+}
+.bookService .bookService__title__amount_total {
+  font-size: 18px;
+  color: #637381;
+  padding: 20px 0 !important;
+  font-weight: 600;
+}
+.bookService .bookService__title__amount_total span {
+  font-size: 18px;
+  color: #E84671 !important;
+  float: right;
+}
+.bookService .bookService__title__amount span {
+  float: right;
+}
+.bookService .proceedBtn {
+  height: 45px !important;
+  width: 100% !important;
+}
+.bookService .proceedBtn a {
+  color: #fff !important;
+}
+@media (max-width: 767px) {
+  .bookService .usersName {
+    font-size: 24px;
+    font-family: freightproblack !important;
+    font-weight: 600;
+    text-align: left;
+    margin: 0px !important;
+  }
+  .bookService .ui.stackable.grid > .row > .column {
+    padding: 0 !important;
+  }
+}
+
+.datePickerWrap {
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(99, 115, 129, 0.1);
+}
+.datePickerWrap .month {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px !important;
+}
+.datePickerWrap .month .month-left-chevron {
+  margin: 0 12px;
+  cursor: pointer;
+}
+.datePickerWrap .daysInner {
+  min-width: 90%;
+}
+.datePickerWrap .kard::-webkit-scrollbar {
+  display: none !important;
+}
+.datePickerWrap .kard {
+  display: flex;
+  min-width: 100%;
+  overflow-x: auto;
+  margin-bottom: 20px;
+  scroll-behavior: smooth;
+}
+.datePickerWrap .kard .card--content {
+  color: #637381;
+  border: 1px solid rgba(196, 205, 213, 0.5);
+  min-width: 12% !important;
+  max-width: 12% !important;
+  height: 55px !important;
+  line-height: 55px !important;
+  display: inline-block;
+  margin: 0 1.2% 0 1.2%;
+  text-align: center;
+  cursor: pointer;
+  scroll-behavior: smooth;
+}
+.datePickerWrap .days {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  scroll-behavior: smooth;
+}
+.datePickerWrap .days .right-chevron {
+  position: relative;
+  top: -10px;
+  right: 0;
+}
+.datePickerWrap .days .left-chevron {
+  position: relative;
+  top: -10px;
+  left: 0px;
+}
+.datePickerWrap .turn {
+  transform: rotate(180deg);
+}
+.datePickerWrap .time .timeRow {
+  padding-left: 19px !important;
+  padding-right: 18px !important;
+  height: 190px;
+  overflow: scroll;
+}
+.datePickerWrap .time .timeRow .column {
+  padding: 2px !important;
+}
+.datePickerWrap .time .singleTime {
+  width: 100%;
+  border: 1px solid rgba(196, 205, 213, 0.5);
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+  cursor: pointer;
+  color: #637381;
+}
+.datePickerWrap .active {
+  background-color: #E84671;
+  color: #fff !important;
+  border: 0 !important;
+}
+@media (max-width: 767px) {
+  .datePickerWrap .singleTime {
+    font-size: 10px !important;
+    height: 60px !important;
+    line-height: 60px !important;
+  }
+}
+
+.serviceDetails .userDesc {
+  margin-top: -65px !important;
+}
+.serviceDetails .userDesc .userPhoto {
+  width: 130px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background-color: #fff !important;
+}
+.serviceDetails .userDesc .userPhoto_ {
+  width: 130px;
+  border: 3px solid #e84671;
+  border-radius: 50%;
+  background-color: #fff !important;
+}
+.serviceDetails .buttons {
+  float: right;
+  padding-top: 70px !important;
+}
+.serviceDetails .secondaryBtn {
+  border-radius: 0px;
+  font-size: 14px;
+  padding: 0 !important;
+  margin: 10px;
+  background-color: #fff;
+  color: #212B36;
+  border: 1px solid #212B36;
+}
+.serviceDetails .mainBtn {
+  border-radius: 0px !important;
+  height: 49px !important;
+  font-size: 14px !important;
+  margin: 10px !important;
+  padding-left: 30px !important;
+  display: inline-flex;
+  padding-right: 30px !important;
+}
+.serviceDetails .mainBtn img {
+  margin-top: -4px;
+  margin-right: 6px !important;
+}
+.serviceDetails .mainBtn p {
+  justify-content: center;
+  align-items: center;
+  margin: 0 !important;
+}
+.serviceDetails .userName {
+  margin: 10px 0 0 0 !important;
+  font-family: freightproblack !important;
+  font-size: 30px;
+  font-weight: 600;
+}
+.serviceDetails .userJob {
+  margin: 10px 0 0 0 !important;
+  font-family: sofiapromedium !important;
+}
+.serviceDetails .userDetails {
+  margin: 10px 0 0 0 !important;
+  font-family: sofiapromedium !important;
+  color: #637381;
+}
+.serviceDetails .lightShadow {
+  box-shadow: 0px 0px 10px rgba(99, 115, 129, 0.1);
+}
+.serviceDetails .serviceWrap {
+  margin: 30px 0 30px 0;
+  max-height: 509px;
+  overflow: hidden;
+}
+.serviceDetails .servicesChildWrap {
+  padding: 0 30px !important;
+  height: 420px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.serviceDetails .serviceWrapTitle {
+  font-size: 30px;
+  padding: 30px !important;
+  font-family: freightproblack !important;
+  font-weight: 600;
+  width: 100%;
+}
+.serviceDetails .lookBookWrap {
+  background-color: #fff;
+  padding: 30px;
+  margin-bottom: 30px;
+  height: auto;
+}
+.serviceDetails .lookBookWrapTitle {
+  font-size: 30px;
+  padding: 30px 10px !important;
+  font-family: freightproblack !important;
+  font-weight: 600;
+  width: 100%;
+}
+.serviceDetails .lookStars {
+  text-align: right !important;
+}
+.serviceDetails .lookStars span {
+  padding-right: 30px !important;
+}
+.serviceDetails .lookStars .arrows {
+  padding-right: 0 !important;
+}
+.serviceDetails .lookStars .arrows img {
+  margin-left: 12px;
+  cursor: pointer;
+}
+.serviceDetails .lookStars .arrows .left {
+  transform: rotate(180deg);
+}
+.serviceDetails .lookStars .arrows .dim {
+  opacity: 0.3;
+}
+.serviceDetails .reviewsComponentWrap {
+  background-color: #fff;
+  padding: 0px;
+  height: 580px;
+  overflow: hidden;
+}
+.serviceDetails .reviewsWrapTitle {
+  padding: 30px 0 !important;
+  font-family: freightproblack !important;
+  font-weight: 600;
+  width: 100%;
+}
+.serviceDetails .reviewsComponentWrapChild {
+  background-color: #fff;
+  padding: 0 30px;
+  height: 490px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.serviceDetails .bookServiceComponent {
+  margin-top: -260px !important;
+  background-color: #fff;
+  padding: 30px;
+  height: auto;
+}
+@media (max-width: 767px) {
+  .serviceDetails .userDesc {
+    padding: 10px !important;
+  }
+  .serviceDetails .buttons {
+    padding-top: 10px !important;
+    width: 100%;
+  }
+  .serviceDetails .mainBtn {
+    margin: 10px !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+  .serviceDetails .serviceDetails .serviceWrap {
+    box-shadow: unset !important;
+  }
+  .serviceDetails .bookServiceComponent {
+    margin-top: 0 !important;
+  }
+  .serviceDetails .userName {
+    font-size: 16px !important;
+    text-align: left !important;
+  }
+  .serviceDetails .lightShadow {
+    margin: 15px 0 !important;
+    padding: 1rem !important;
+  }
+  .serviceDetails .serviceWrapTitle {
+    margin-top: 0px !important;
+    font-size: 24px !important;
+    padding: 0 !important;
+  }
+  .serviceDetails .lookBookWrapTitle,
+  .serviceDetails .reviewsWrapTitle {
+    margin-top: 0px !important;
+    font-size: 24px !important;
+    padding: 0 15px !important;
+  }
+  .serviceDetails .servicesChildWrap {
+    padding: 0 !important;
+  }
+  .serviceDetails .servicesChildWrap,
+  .serviceDetails .serviceWrap,
+  .serviceDetails .reviewsComponentWrapChild,
+  .serviceDetails .reviewsComponentWrap {
+    height: auto !important;
+    padding: 15px !important;
+    max-height: unset;
+    overflow: hidden;
+  }
+  .serviceDetails .ui.stackable.grid > .row > .column {
+    padding: 0 !important;
+  }
+  .serviceDetails .lookBookWrap .ui.stackable.grid > .row > .column {
+    padding: 15px !important;
+  }
+  .serviceDetails .lookStars {
+    font-size: 13px !important;
+    text-align: right;
+  }
+  .serviceDetails .lookStars span {
+    padding: 0 !important;
+  }
+  .serviceDetails .lookStars .arrows {
+    padding: 0 15px !important;
   }
 }
 

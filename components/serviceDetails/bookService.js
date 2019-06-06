@@ -33,10 +33,14 @@ const BookService = (props) => {
         setSelectedTime(time)
     }
 
+    const logg = () => {
+        console.log(props)
+    }
+
     return (
         <div className="bookService">
-            <p className="usersName">
-                Book {props.userData.fullname}
+            <p className="usersName" onClick={() => logg()}>
+                Book {props.providerDetails.name}
             </p>
 
             <Display if={!isPickingDate}>
