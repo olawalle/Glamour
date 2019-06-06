@@ -1,0 +1,40 @@
+version: 2
+jobs:
+  Test:
+    docker:
+      - image: circleci/node:9.9
+    steps:
+      - checkout
+      - run:
+          name: Install jest gloablly
+          command: |
+
+            sudo npm install -g jest
+      - run:
+          name: Install dependencies
+          command: npm install
+      - run:
+          name: Run tests
+          command: npm run test
+  Deploy:
+    docker:
+      - image: circleci/node:9.9
+    steps:
+      - checkout
+      - run:
+          name: Deploy to heroku
+          environment:
+            HEROKU_API_KEY: 194d0430-242a-49d0-bc7d-8f0da38841ae
+            HEROKU_APP_NAME: glamourng
+          command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master -f
+workflows:
+  version: 2
+  test-deploy:
+    jobs:
+      - Test
+      - Deploy:
+          requires:
+            - Test
+          # filters:
+          #   branches:
+          #     only: master

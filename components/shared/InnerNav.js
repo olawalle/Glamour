@@ -1,48 +1,12 @@
 import React, { Component } from 'react'
 import { Menu, Sticky } from 'semantic-ui-react'
-import Router from 'next/router';
-import Link from 'next/link';
+import _ from 'lodash'
 
-import './less/InnerNav.less'
-import Display from './Display';
+import './less/nav.less';
 
 
 export default class InnerNav extends Component {
-  state = { 
-    activeItem: 'Home',
-    links: [
-      {
-        text: 'Home',
-        image: '/static/icons/home.svg',
-        to: '/provider/home',
-        hasNotif: false
-      },
-      {
-        text: 'Notifications',
-        image: '/static/icons/bell.svg',
-        to: '/notifications',
-        hasNotif: true
-      },
-      {
-        text: 'Messages',
-        image: '/static/icons/messages.svg',
-        to: '/messages',
-        hasNotif: true
-      },
-      {
-        text: 'My Bookings',
-        image: '/static/icons/bookings.svg',
-        to: '/bookings',
-        hasNotif: true
-      },
-      {
-        text: 'Account',
-        image: '/static/icons/account.svg',
-        to: '/account',
-        hasNotif: false
-      }
-    ]
-  }
+  state = { activeItem: 'Home' }
 
   componentDidMount() {
     this.setState({ activeItem: this.state.links.find(link => link.to === Router.router.route).text})
@@ -76,11 +40,52 @@ export default class InnerNav extends Component {
   render() {
     return (
       <div className="innerNav">
+
         <Sticky>
           <Menu secondary>
-            {
-              this.renderLinks()
-            }
+            <Menu.Item
+              className="is-h-centered listItem"
+              name='Home'
+              active={activeItem === 'Home'}
+              onClick={this.handleItemClick}
+            >
+              <img src="/static/icons/home.svg" className="linkIcon" alt=""/> <span className="mobile hidden"> Home</span>
+            </Menu.Item>
+            <Menu.Item
+              name='Notifications'
+              className="is-h-centered listItem"
+              active={activeItem === 'Notifications'}
+              onClick={this.handleItemClick}
+            >
+              <span className="notif">.</span>
+              <img src="/static/icons/bell.svg" className="linkIcon" alt=""/> <span className="mobile hidden">Notifications</span>
+            </Menu.Item>
+            <Menu.Item
+              name='Messages'
+              className="is-h-centered listItem"
+              active={activeItem === 'Messages'}
+              onClick={this.handleItemClick}
+            >
+              <span className="notif">.</span>
+              <img src="/static/icons/messages.svg" className="linkIcon" alt=""/>  <span className="mobile hidden">Messages</span>
+            </Menu.Item>
+            <Menu.Item
+              name='My Bookings'
+              className="is-h-centered listItem"
+              active={activeItem === 'My Bookings'}
+              onClick={this.handleItemClick}
+            >
+              <span className="notif">.</span>
+              <img src="/static/icons/bookings.svg" className="linkIcon" alt=""/>  <span className="mobile hidden">My Bookings</span>
+            </Menu.Item>
+            <Menu.Item
+              name='Account'
+              className="is-h-centered listItem"
+              active={activeItem === 'Account'}
+              onClick={this.handleItemClick}
+            >
+              <img src="/static/icons/account.svg" className="linkIcon" alt=""/> <span className="mobile hidden"> Account</span>
+            </Menu.Item>
           </Menu>
         </Sticky>
       </div>

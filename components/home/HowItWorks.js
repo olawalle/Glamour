@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header, Container, Segment, Grid, Button } from 'semantic-ui-react';
 import Step from './Step';
-import './less/howitworks.less';
+import './less/howItWorks.less';
 
 const steps = [
   {
