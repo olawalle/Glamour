@@ -24,18 +24,18 @@ export class Snackbar extends PureComponent {
 
   render() {
     return (
-        <> 
-            <div className={ this.state.isActive ? `snackbar show ${this.props.type} ${this.props.position}` : 'snackbar hide' }>
-                <div className="message">
-                    { this.props.message }
-                </div>
+      <div className="snackbar_wrapper"> 
+        <div className={ this.state.isActive ? `snackbar show ${this.props.type} ${this.props.position}` : `snackbar hide ${this.props.type}` }>
+          <div className="message">
+              { this.props.message }
+          </div>
 
-                {
-                    this.props.showClose ? 
-                    <div onClick={() => this.close()} className="close">Close</div> : null
-                }                
-            </div>
-        </>
+          {
+              this.props.showClose ? 
+              <button onClick={() => this.close()} className="close">Close</button> : null
+          }                
+        </div>
+      </div>
     )
   }
 }

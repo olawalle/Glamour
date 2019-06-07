@@ -47,9 +47,9 @@ export default function StepOne(props) {
   const [ formErrors, setFormErrors ] = useState({})
 
   const [signupFormData, setSignupData] = useState({
-    fullname: '',
+    fullnames: '',
     email: '',
-    mobileNumber: '',
+    phone: '',
     password: '',
     referral: '',
     accept: false
@@ -80,9 +80,9 @@ export default function StepOne(props) {
           </Header>
           <form className="stepOne-form">
             <Input
-              onChange={(e) => handleChange(e, 'fullname')}
-              error={formErrors['fullname']}
-              value={signupFormData.fullname}
+              onChange={(e) => handleChange(e, 'fullnames')}
+              error={formErrors['fullnames']}
+              value={signupFormData.fullnames}
               className="stepOne-form--input"
               size="huge"
               placeholder='Full Name'
@@ -100,9 +100,9 @@ export default function StepOne(props) {
             />
             <Input
               type="number"
-              error={formErrors['mobileNumber']}
-              onChange={(e) => handleChange(e, 'mobileNumber')}
-              value={signupFormData.mobileNumber}
+              error={formErrors['phone']}
+              onChange={(e) => handleChange(e, 'phone')}
+              value={signupFormData.phone}
               className="stepOne-form--input"
               size="huge"
               placeholder='Mobile number'
@@ -124,7 +124,7 @@ export default function StepOne(props) {
               value={signupFormData.referral}
               fluid
               options={options}
-              placeholder='How did you hear about Glamour on Demand?'
+              placeholder='How did you hear about Glamour?'
             />
             <div className="is-flex mt-10">
               <Checkbox

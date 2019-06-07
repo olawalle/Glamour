@@ -18,8 +18,8 @@ export default function StepThree(props) {
     })
 
     props.jump({
-      services: services,
-      desc: desc
+      service: services,
+      description: desc
     }, 3)
   }
 

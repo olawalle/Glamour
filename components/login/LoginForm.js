@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { Grid, Header, Input, Button, Loader } from 'semantic-ui-react';
 import { connect } from 'react-redux';
@@ -34,6 +34,7 @@ const LoginForm = (props) => {
 
     if (Object.keys(_formErrors).length === 0) {
       setlogginIn(true)
+
       let data = {
         email: loginFormData.email,
         password: loginFormData.password
@@ -41,26 +42,21 @@ const LoginForm = (props) => {
 
       login(data)
       .then(res => {
-        // props.saveLoggedinStatus( true )
         setlogginIn(false)
         window.sessionStorage.setItem('glamourToken', res.data.data.token)
         getCurrentUser()
         .then(response => {
-          // setMessage('sucessful login')
-          // setSnackType('success')
-          // _showSnackbarHandler()
           let payload = {
             ...response.data.me,
             isLoggedIn: true
           }
-          // console.log(payload)
           props.saveUserData(payload)
           Router.push('/serviceproviders')
         })
       })
       .catch(err => {
         setlogginIn(false)
-        setMessage('error on login')
+        setMessage('Error on login')
         setSnackType('error')
         _showSnackbarHandler()
         console.log({...err})
@@ -85,14 +81,16 @@ const LoginForm = (props) => {
   const [snackType, setSnackType] = useState('')
   const [message, setMessage] = useState('')
  
-
+  useEffect(() => {
+    window.sessionStorage.removeItem('glamourToken')
+  }, [])
   return (
     <>
       <Snackbar ref = {snackbarRef} 
         type={snackType} 
         position={'top'} 
-        showClose={false} 
-        duration={3000} 
+        showClose={true} 
+        duration={5000} 
         message={message} />
       <Grid id="login" className="login" columns={2} centered>
         <Grid.Row>

@@ -9,7 +9,7 @@ import Timing from '../../../components/shared/Timing';
 export default function StepTwo(props) {
     
   const options = [
-    // { key: '', text: 'Not Applicable', value: '' },
+    { key: '', text: 'Not Applicable', value: '' },
     { key: 'onilne', text: 'Online', value: 'Online' },
     { key: 'offline', text: 'Offline', value: 'offline' },
   ]
@@ -38,7 +38,7 @@ export default function StepTwo(props) {
 
     console.log(signupFormData, _formErrors)
     if (Object.keys(_formErrors).length === 0) {
-      props.jump( {...signupFormData, schedule: timing }, 2)
+      props.jump( {...signupFormData, schedules: timing }, 2)
     }
   }
   

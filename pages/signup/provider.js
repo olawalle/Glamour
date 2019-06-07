@@ -41,7 +41,8 @@ class ProviderSignup extends Component {
             let data = {
                 ...this.state.stepOne,
                 ...this.state.stepTwo,
-                ...this.state.stepThree
+                ...this.state.stepThree,
+                meta: 'nothing here'
             }
             console.log(data)
             providerRegister(data)

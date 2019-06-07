@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
-import { Grid, Header, Select, Input, Checkbox, Button, Loader } from 'semantic-ui-react';
+import { Grid, Header, Select, Input, Checkbox, Button, Loader, Modal } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import {clientRegister} from '../../services/signup.ts'
@@ -8,15 +8,42 @@ import Password from '../../components/shared/Password';
 import Router from 'next/router';
 import './less/signupForm.less';
 import Display from '../shared/Display';
+import { Snackbar } from '../shared/SnackBar';
 
 const options = [
-  { key: '', text: 'Not Applicable', value: '' },
-  { key: 'onilne', text: 'Online', value: 'Online' },
-  { key: 'offline', text: 'Offline', value: 'offline' },
+  { key: 'Referred by a friend', text: 'Referred by a friend', value: 'Referred by a friend' },
+  { key: 'onilne search', text: 'Online search', value: 'Online search' },
+  { key: 'other', text: 'other', value: 'other' },
 ]
 
 
 const SignupForm = (props) => {
+
+  
+const styles = {
+  modalContents: {
+    textAlign: 'center',
+    padding: '80px 20px'
+  },
+  modalImage: {
+    marginBotton: '30px'
+  },
+  modalHeading: {
+    fontSize: '30px',
+    fontWeight: '600',
+    marginTop: '20px',
+    fontFamily: 'freightproblack'
+  },
+  modalText: {
+    fontSize: '15px',
+    color: '#637381'
+  },
+  button: {
+    height: '52px',
+    marginTop: '13px',
+    width: '60%'
+  }
+}
 
   const handleChange = (e, key, {value = null, checked = null } = {}) => {
     let newState = {
@@ -58,12 +85,16 @@ const SignupForm = (props) => {
       .then(res => {
         console.log(res)
         setsigningUp(false)
-        Router.push('/login')
+        setModal(true) 
+        // Router.push('/login')
         // return <Snackbar message={res.data.message} actionText="dismiss" />
       })
       .catch(err => {
         setsigningUp(false)
-        console.log(err)
+        setMessage(err.response.data.message)
+        setSnackType('error')
+        _showSnackbarHandler()
+        console.log({...err})
       })
     }
   }
@@ -80,6 +111,14 @@ const SignupForm = (props) => {
   });
   
   const [signingUp, setsigningUp] = useState(false)
+  const [modal, setModal] = useState(false)
+  const [snackType, setSnackType] = useState('')
+  const [message, setMessage] = useState('')
+  const snackbarRef = useRef(null);
+
+  const _showSnackbarHandler = () => {
+    snackbarRef.current.openSnackBar();
+  }
 
   // useEffect(() => {
   //   // console.log(formErrors)
@@ -93,6 +132,15 @@ const SignupForm = (props) => {
   // }, [])
 
   return (
+    <>
+    <Snackbar
+      ref = {snackbarRef} 
+      message={message}
+      type={snackType}
+      showClose={false}
+      position='top'
+      duration={5000}
+     />
     <Grid id="signup" className="signup" columns={2} centered>
       <Grid.Row>
         <Grid.Column mobile={14} tablet={11} computer={9} largeScreen={8} widescreen={5}>
@@ -193,6 +241,24 @@ const SignupForm = (props) => {
         </Grid.Column>
       </Grid.Row>
     </Grid>
+    
+      <Modal size='tiny' open={modal} onClose={() => setModal(false) }>
+        <Modal.Content>
+          <div className="modalContents" style={styles.modalContents}>
+            <img src="/static/icons/green-check.svg" style={styles.modalImage} alt=""/>
+            <p style={styles.modalHeading}>Successful</p>
+            <p style={styles.modalText}>
+              Your account has been sucessfully created
+            </p>
+            <Link href="/login">
+              <Button  secondary style={styles.button}>
+                Proceed to Login
+              </Button>
+            </Link>
+          </div>
+        </Modal.Content>
+      </Modal>
+    </>
   );
 }
 

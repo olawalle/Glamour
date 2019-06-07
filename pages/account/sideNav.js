@@ -184,7 +184,7 @@ const SideNav = (props) => {
     let payload = {
       isLoggedIn: false
     }
-    console.log(payload)
+    window.sessionStorage.removeItem('glamourToken')
     props.saveUserData(payload)
     Router.push('/')
   }
