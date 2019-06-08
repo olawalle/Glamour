@@ -64,6 +64,14 @@ export default class Timing extends Component {
             '11:30 pm',
         ]
     }
+
+    componentDidMount() {
+        console.log(this.props.setTimimg)
+    }
+    
+    componentWillUpdate() {
+        console.log(this.props.setTimimg)
+    }
     pickDay = (i) => {
         let newDays = [...this.state.days]
         let newDays_ = newDays.map((day, j) => {

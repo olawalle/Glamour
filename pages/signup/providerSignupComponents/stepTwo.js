@@ -8,11 +8,13 @@ import Timing from '../../../components/shared/Timing';
 
 export default function StepTwo(props) {
     
-  const options = [
-    { key: '', text: 'Not Applicable', value: '' },
-    { key: 'onilne', text: 'Online', value: 'Online' },
-    { key: 'offline', text: 'Offline', value: 'offline' },
+  const distance = [
+    { key: 'less than 1 mile', text: 'less than 1 mile', value: 'less than 1 mile' },
+    { key: '1 - 5 miles', text: '1 - 5 miles', value: '1 - 5 miles' },
+    { key: '6 - 10 miles', text: '6 - 10 miles', value: '6 - 10 miles' },
+    { key: 'Over 10 miles', text: 'Over 10 miles', value: 'Over 10 miles' }
   ]
+
   const handleChange = (e, key, {value = null, checked = null } = {}) => {
     let newState = {
       ...signupFormData,
@@ -43,6 +45,7 @@ export default function StepTwo(props) {
   }
   
   const [timing, setTiming] = useState([])
+
   const getTiming_ = (e) => {
     setTiming(e)
     console.log(e, timing)
@@ -50,10 +53,28 @@ export default function StepTwo(props) {
 
   const [ formErrors, setFormErrors ] = useState({})
   const [signupFormData, setSignupData] = useState({
-    postCode: '',
+    postcode: '',
     mileRadius: '',
     location: false
   });
+  
+  useEffect(() => {
+    let store = null
+    if (store = JSON.parse(localStorage.getItem('store'))) {
+      if (store.auth) {
+        let obj = {}
+        console.log(store.auth.providerSignup.schedules)
+        setTiming(store.auth.providerSignup.schedules)
+        Object.keys(store.auth.providerSignup).forEach(key => {
+          if (signupFormData[key] !== undefined) {
+            obj[key] = store.auth.providerSignup[key]
+            setSignupData(obj)
+          }
+        })
+        // console.log(timing)
+      }
+    }
+  }, [])
 
   return (
     <div id="stepOne" className="stepOne">
@@ -68,9 +89,9 @@ export default function StepTwo(props) {
               Coverage area
             </p>
             <Input
-              onChange={(e) => handleChange(e, 'postCode')}
-              error={formErrors['postCode']}
-              value={signupFormData.postCode}
+              onChange={(e) => handleChange(e, 'postcode')}
+              error={formErrors['postcode']}
+              value={signupFormData.postcode}
               className="stepOne-form--input"
               size="huge"
               placeholder='Postcode'
@@ -82,7 +103,7 @@ export default function StepTwo(props) {
               className="stepOne-form--select signup-form--input"
               value={signupFormData.mileRadius}
               fluid
-              options={options}
+              options={distance}
               placeholder='Within mile radius'
             />
             <div className="is-flex checkboxWrap">
@@ -100,7 +121,7 @@ export default function StepTwo(props) {
             </p>
 
             <Grid columns className='timingWrap'>
-              <Timing getTiming={getTiming_} />
+              <Timing setTimimg={timing} getTiming={getTiming_} />
             </Grid>
             <div className="is-v-centered">
                 {/* {props.children} */}

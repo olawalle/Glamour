@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { Grid, Select, Input } from 'semantic-ui-react';
-// import InputRange from 'react-input-range';
-// import {RangeSlider, Slider} from 'reactrangeslider';
-// import Slider from 'range-sliders';
+import { connect } from 'react-redux';
 
-import Slider, { Range } from 'rc-slider';
+import { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import 'rc-tooltip/assets/bootstrap.css';
-import Tooltip from 'rc-tooltip';
+import * as actions from '../../store/actions';
 
 import { DatePicker } from 'antd';
 import "./less/providerForm.less"
+import { getAllServices, getAllTrends } from '../../services/generatData.ts'
 
 const options = [
   { key: '', text: 'Not Applicable', value: '' },
@@ -24,7 +23,14 @@ class ProviderForm extends Component {
     value: { min: 2, max: 10 },
     styles: {},
     value: { start: 20, end: 80 },
-    selectedValues: {min: 0, max: 5}
+    selectedValues: {min: 0, max: 5},
+    options: [],
+    distance: [
+      { key: 'less than 1 mile', text: 'less than 1 mile', value: 'less than 1 mile' },
+      { key: '1 - 5 miles', text: '1 - 5 miles', value: '1 - 5 miles' },
+      { key: '6 - 10 miles', text: '6 - 10 miles', value: '6 - 10 miles' },
+      { key: 'Over 10 miles', text: 'Over 10 miles', value: 'Over 10 miles' }
+    ]
   }
 
   onChange = (event) => {
@@ -39,6 +45,39 @@ class ProviderForm extends Component {
       console.log(this.state.selectedValues)
     })
   }
+  
+  
+  componentWillMount () {
+    getAllServices()
+    .then(res => {
+      this.props.saveServices(res.data.services)
+      let options = []
+      Object.keys(res.data.services).forEach(key => {
+          let obj = {}
+          obj.text = res.data.services[key].serviceName
+          obj.key = res.data.services[key].serviceName
+          obj.value = res.data.services[key].serviceName   
+          options.push(obj)         
+      })
+      this.setState({options}, () => {
+          // console.log(this.state)
+      })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+
+    getAllTrends()
+    .then(res => {
+      this.props.saveTrends(res.data.services)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+
+  componentDidMount() {}
 
   render () {
     return (
@@ -49,7 +88,7 @@ class ProviderForm extends Component {
                     <Select
                     className="Select"
                     fluid
-                    options={options}
+                    options={this.state.options}
                     />
                     <img src="../../static/icons/sort.svg" className="selectIcon" alt=""/>
                     <span className="selectLabel">
@@ -86,7 +125,7 @@ class ProviderForm extends Component {
                     <Select
                     className="Select"
                     fluid
-                    options={options}
+                    options={this.state.distance}
                     />
                     <img src="../../static/icons/mile.svg" className="selectIcon" alt=""/>
                     <span className="selectLabel">
@@ -120,4 +159,8 @@ class ProviderForm extends Component {
 }
 
 
-export default ProviderForm
+const mapStateToProps = (state) => ({
+  services: state.service.beautyServices.allServices
+})
+
+export default  connect(mapStateToProps, actions)(ProviderForm)

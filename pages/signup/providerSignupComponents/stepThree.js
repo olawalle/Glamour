@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import {Grid, Header, Select, Input, Checkbox, Button, TextArea} from 'semantic-ui-react'
+import {Grid, Header, Select, Input, Checkbox, Button, TextArea, Loader} from 'semantic-ui-react'
 import './less/stepOne.less'
 import SelectedServices from '../../../components/shared/SelectServices';
+import Display from '../../../components/shared/Display';
 
 
 export default function StepThree(props) {
@@ -11,6 +12,17 @@ export default function StepThree(props) {
 
   const [desc, updateDesc] = useState('')
     
+  useEffect(() => {
+    console.log(props)
+    let store = null
+    if (store = JSON.parse(localStorage.getItem('store'))) {
+      if (store.auth) {
+        setServices(store.auth.providerSignup.service)
+        setServices(store.auth.providerSignup.description)
+      }
+    }
+  }, [])
+
   const jump = () => {
     console.log({
       services: services,
@@ -24,8 +36,8 @@ export default function StepThree(props) {
   }
 
   const pickedServices = (e) => {
-    console.log(e)
-    setServices(e)
+    console.log(e.toString())
+    setServices(e.toString())
   }
 
   return (
@@ -47,13 +59,18 @@ export default function StepThree(props) {
               onChange={(e) => updateDesc(e.target.value)}
               className="textArea" />
             
-            <Button
+              <Button
               className="mt-30 nxt-btn"
               size="large"
               onClick={() => jump()}
               secondary>
-              Submit
-            </Button>
+                  <Display if={props.signingUp}>
+                      <Loader active inline='centered' />
+                  </Display>
+                  <Display if={!props.signingUp}>
+                      Submit
+                  </Display>
+              </Button>
           </div>
         </Grid>
     </div>

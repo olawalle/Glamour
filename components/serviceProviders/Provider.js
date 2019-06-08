@@ -8,7 +8,7 @@ import './less/provider.less'
 let toDetails = (props) => {
     Router.push({
         pathname: '/servicedetails',
-        query: { provider: props.id }
+        query: { provider: props._id }
     })
 }
 
@@ -19,22 +19,22 @@ const Provider = (props) => {
                 props.instant ? <div className="instant">Instant Booking</div> : <div className="instant_"></div>
             }
             <div className="cardBanner">
-                <img src={props.banner} className="BannerImage"  />
+                <img src='/static/images/services/body.png' className="BannerImage"  />
             </div>
 
             {
                 props.instant ? 
-                    <div className="roundImageWrap"><Image src={props.userPhoto} /></div> : 
-                    <div className="roundImageWrap_"><Image src={props.userPhoto} /></div> 
+                    <div className="roundImageWrap"><Image src={props.pictureUrl} /></div> : 
+                    <div className="roundImageWrap_"><Image src={props.pictureUrl} /></div> 
             }
             <div className="textWrap">
                 <h2 className="name">
                     <b>
-                        {props.name}
+                        {props.fullname}
                     </b>
                 </h2>
                 <h2 className="jobDesc">
-                    {props.jobDesc}
+                    {props.jobDesc ? props.jobDesc: 'Massage'}
                 </h2>
                 <h3 className="desc">
                     {props.description}

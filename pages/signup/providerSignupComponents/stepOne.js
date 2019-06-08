@@ -47,22 +47,28 @@ export default function StepOne(props) {
   const [ formErrors, setFormErrors ] = useState({})
 
   const [signupFormData, setSignupData] = useState({
-    fullnames: '',
-    email: '',
-    phone: '',
-    password: '',
-    referral: '',
+    fullnames: 'fullnames',
+    email: 'email',
+    phone: 'phone',
+    password: 'password',
+    referral: 'online',
     accept: false
   });
 
-  // useEffect(() => {
-  //   let store = null
-  //   if (store = JSON.parse(localStorage.getItem('store'))) {
-  //     if (store.auth) {
-  //       setSignupData(store.auth.signup)
-  //     }
-  //   }
-  // }, [])
+  useEffect(() => {
+    let store = null
+    if (store = JSON.parse(localStorage.getItem('store'))) {
+      if (store.auth) {
+        let obj = {}
+        Object.keys(store.auth.providerSignup).forEach(key => {
+          if (signupFormData[key] !== undefined) {
+            obj[key] = store.auth.providerSignup[key]
+            setSignupData(obj)
+          }
+        })
+      }
+    }
+  }, [])
 
   return (
     <div id="stepOne" className="stepOne">

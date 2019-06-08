@@ -1,6 +1,14 @@
 import axios from 'axios'
 import * as apiUrls from './apiUrls'
 
+
+let getAllProviders = () => {
+    return axios({
+        method: 'GET',
+        url: apiUrls.allProvidersUrl
+    })
+}
+
 let getAllServices = () => {
     return axios({
         method: 'GET',
@@ -16,6 +24,7 @@ let getAllTrends = () => {
 }
 
 export {
+    getAllProviders,
     getAllServices,
     getAllTrends
 }

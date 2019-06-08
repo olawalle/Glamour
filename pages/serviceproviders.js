@@ -30,7 +30,8 @@ class ServiceProvider extends Component {
     }
 
     state = {
-        position: ''
+        position: '',
+        options: []
     }
 
     showInnerNav = () => {
@@ -84,6 +85,7 @@ class ServiceProvider extends Component {
 
 const mapStateToProps = (state) => ({
     serviceProviders: getProviders(state),
+    services: state.service.beautyServices.allServices,
     isLoggedIn: state.user.isLoggedIn
 })
 

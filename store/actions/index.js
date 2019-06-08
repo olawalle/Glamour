@@ -36,9 +36,23 @@ export const saveTrends = (payload) => {
   }  
 }
 
+export const saveProviders = (payload) => {
+  return {
+    type: types.SAVE_SERVICE_PROVIDERS,
+    payload
+  }
+}
+
 export const updateSignupForm = (payload) => {
   return {
     type: types.UPDATE_SIGNUP_FORM,
+    payload
+  }
+}
+
+export const updateProviderSignupForm = (payload) => {
+  return {
+    type: types.UPDATE_PROVIDER_SIGNUP_FORM,
     payload
   }
 }

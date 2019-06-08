@@ -11,10 +11,10 @@ const SearchForm = () => {
         <Grid className="has-bg-white" stackable columns={4}>
           <Grid.Row>
             <Grid.Column mobile={4} tablet={4} largeScreen={4} widescreen={4}>
-              <Input className="has-width-95" icon={<Image src="/static/images/search.png" />} placeholder='Try “Make Up”' />
+              <Input className="has-width-95" icon={<Image src="/static/icons/search.svg" />} placeholder='Try “Make Up”' />
             </Grid.Column>
             <Grid.Column mobile={4} tablet={4} largeScreen={4} widescreen={4}>
-              <Input className="has-width-95" icon={<Image src="/static/images/poscode.png" />} placeholder='Postcode' />
+              <Input className="has-width-95" icon={<Image src="/static/icons/grey-map-marker.svg" />} placeholder='Postcode' />
             </Grid.Column>
             <Grid.Column mobile={4} tablet={4} largeScreen={4} widescreen={4}>
               <DatePicker

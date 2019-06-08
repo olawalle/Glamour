@@ -29,7 +29,7 @@ class ServiceDetails extends Component {
 
     componentDidMount() {
         let id = Router.router.query.provider
-        this.setState({selectedProvider: this.props.serviceProviders.find(provider => provider.id === id)}, () => {
+        this.setState({selectedProvider: this.props.serviceProviders.find(provider => provider._id === id)}, () => {
             // console.log(this.state.selectedProvider)
         })
     }
@@ -55,7 +55,7 @@ class ServiceDetails extends Component {
                         <Grid.Row>
                             <Grid.Column width={10}>
                                 <div className="userDesc">
-                                    <img src={this.state.selectedProvider.userPhoto } className={this.state.selectedProvider.instant ? "userPhoto_" : "userPhoto"} alt=""/>
+                                    <img src={this.state.selectedProvider.pictureUrl } className={this.state.selectedProvider.instant ? "userPhoto_" : "userPhoto"} alt=""/>
                                     <div className="buttons">
                                         <Button size="huge" className="mainBtn secondaryBtn"> 
                                             <img src="../static/icons/heart.svg" alt=""/> <span>Save</span>
@@ -65,7 +65,7 @@ class ServiceDetails extends Component {
                                         </Button>
                                     </div>
                                     <p className="userName">
-                                        {this.state.selectedProvider.name }
+                                        {this.state.selectedProvider.fullname }
                                     </p>
                                     <p className="userJob">
                                         {this.state.selectedProvider.jobDesc}

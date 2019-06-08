@@ -24,7 +24,6 @@ export default function (state = INITIAL_STATE, { type, payload }) {
       }
     }
     case ADD_TRENDS: {
-      console.log(payload)
       let byId = [];
       let allTrends = {};
 

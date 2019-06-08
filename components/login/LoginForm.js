@@ -44,7 +44,7 @@ const LoginForm = (props) => {
       .then(res => {
         setlogginIn(false)
         window.sessionStorage.setItem('glamourToken', res.data.data.token)
-        getCurrentUser()
+        getCurrentUser(res.data.data.token)
         .then(response => {
           let payload = {
             ...response.data.me,

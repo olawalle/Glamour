@@ -2,6 +2,8 @@
 
 export const UPDATE_SIGNUP_FORM = 'update_signup_form';
 
+export const UPDATE_PROVIDER_SIGNUP_FORM = 'update_provider_signup_form'
+
 export const UPDATE_LOGIN_FORM = 'update_login_form';
 
 export const SAVE_USER_DATA = 'save_user_data';

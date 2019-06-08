@@ -12,12 +12,13 @@ let login = (data) => {
     })
 }
 
-let getCurrentUser = () => {
+let getCurrentUser = (token) => {
     return axios({
         method: 'GET',
         url: apiUrls.getCurrentUser,
         headers: {
             'Content-Type': 'application/json',
+            'x-access-token': token
         }
     })
 }
