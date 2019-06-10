@@ -34,6 +34,7 @@ class Home extends Component {
   }
 
   componentWillMount () {
+    // get list of service categories, trends and serviceProviders
     getAllServices()
     .then(res => {
       this.props.saveServices(res.data.services)
@@ -52,7 +53,6 @@ class Home extends Component {
 
     getAllProviders()
     .then(res => {
-      // console.log(res)
       this.props.saveProviders(res.data.users)
     })
     .catch(err => {

@@ -8,7 +8,7 @@ import './less/provider.less'
 let toDetails = (props) => {
     Router.push({
         pathname: '/servicedetails',
-        query: { provider: props._id }
+        query: { provider: props.id }
     })
 }
 
@@ -34,7 +34,7 @@ const Provider = (props) => {
                     </b>
                 </h2>
                 <h2 className="jobDesc">
-                    {props.jobDesc ? props.jobDesc: 'Massage'}
+                    {props.service ? props.service : '---'}
                 </h2>
                 <h3 className="desc">
                     {props.description}
@@ -42,10 +42,10 @@ const Provider = (props) => {
             </div>
             <div className="stars">
                 {
-                    <Stars stars={props.stars} />
+                    <Stars stars={props.stars ? props.stars : 0} />
                 }
                 
-                <span className="count">({props.ratingsCount})</span>
+                <span className="count">({props.ratingsCount ? props.ratingsCount : 0})</span>
                 <br/>
                 <Button className="signUp" size="huge" secondary onClick={() => toDetails(props)}>View Profile</Button>
             </div>

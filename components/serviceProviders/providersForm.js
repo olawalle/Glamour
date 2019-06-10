@@ -17,7 +17,6 @@ const options = [
   { key: 'offline', text: 'Offline', value: 'offline' },
 ]
 
-// const ProviderForm = (props) => 
 class ProviderForm extends Component {
   state = {
     value: { min: 2, max: 10 },
@@ -30,7 +29,15 @@ class ProviderForm extends Component {
       { key: '1 - 5 miles', text: '1 - 5 miles', value: '1 - 5 miles' },
       { key: '6 - 10 miles', text: '6 - 10 miles', value: '6 - 10 miles' },
       { key: 'Over 10 miles', text: 'Over 10 miles', value: 'Over 10 miles' }
-    ]
+    ],
+    formFields: {
+      sortBy: '',
+      searchFor: '',
+      postcode: '',
+      distance: '',
+      when: '',
+      priceRange: ''
+    }
   }
 
   onChange = (event) => {
@@ -42,8 +49,16 @@ class ProviderForm extends Component {
         max: event[1]
       }
     }, () => {
-      console.log(this.state.selectedValues)
+      let fields = {...this.state.formFields}
+      fields.priceRange = `${this.state.selectedValues.min} - ${this.state.selectedValues.max}`
+      this.setState({formFields: fields})
     })
+  }
+
+  updateForm = (e, data, type) => {
+    let fields = {...this.state.formFields}
+    e.target.value ? fields[type] = e.target.value : fields[type] = data.value
+    this.setState({formFields: fields})
   }
   
   
@@ -79,6 +94,10 @@ class ProviderForm extends Component {
 
   componentDidMount() {}
 
+  componentDidUpdate() {
+    this.props.getFormData(this.state.formFields)
+  }
+
   render () {
     return (
       <div className="providerForm pageWrap">
@@ -87,6 +106,8 @@ class ProviderForm extends Component {
                 <Grid.Column  className="RangeCol">
                     <Select
                     className="Select"
+                    onChange={(e, data) => this.updateForm(e, data, 'sortBy')}
+                    value={this.state.formFields.sortBy}
                     fluid
                     options={this.state.options}
                     />
@@ -99,6 +120,8 @@ class ProviderForm extends Component {
                     <Input
                     type="text"
                     className="FormInput"
+                    onChange={(e, data) => this.updateForm(e, data, 'searchFor')}
+                    value={this.state.formFields.searchFor}
                     size="huge"
                     placeholder='Search term goes here'
                     fluid
@@ -113,6 +136,8 @@ class ProviderForm extends Component {
                     type="text"
                     className="FormInput"
                     size="huge"
+                    onChange={(e, data) => this.updateForm(e, data, 'postcode')}
+                    value={this.state.formFields.postcode}
                     placeholder='WC1A 1AA'
                     fluid
                     />
@@ -124,6 +149,8 @@ class ProviderForm extends Component {
                 <Grid.Column  className="RangeCol">
                     <Select
                     className="Select"
+                    onChange={(e, data) => this.updateForm(e, data, 'distance')}
+                    value={this.state.formFields.distance}
                     fluid
                     options={this.state.distance}
                     />
@@ -135,6 +162,8 @@ class ProviderForm extends Component {
                 <Grid.Column  className="RangeCol">
                     <DatePicker
                       className="date--picker"
+                    onChange={(e, data) => this.updateForm(e, data, 'when')}
+                      value={this.state.formFields.when}
                       showTime
                       placeholder="When do you want this?"
                       suffixIcon={<img className="PickerIcon" src="../../static/images/calender.png" />}

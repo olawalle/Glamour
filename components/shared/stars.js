@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 
     
@@ -17,15 +17,18 @@ const empty = (n) => {
     }
     return arr
 }
+
+
 export default function stars(props) {
+
   return (
     <>
       {   
         filled(props.stars).map((elm, i) => <img key={`filled${i}`} src='/static/icons/filled-star.svg' />)
       }
       {
-        empty(5 - props.stars).map((elm, i) => <img key={`empty${i}`} src='/static/icons/filled-star.svg' />)
-    }
+        empty(5 - props.stars).map((elm, i) => <img key={`empty${i}`} src='/static/icons/empty-star.svg' />)
+     }
     </>
   )
 }

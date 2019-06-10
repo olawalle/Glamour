@@ -9,6 +9,9 @@ import { connect } from 'react-redux';
 import { Grid } from 'semantic-ui-react';
 import { getProviders } from '../store'
 import './less/serviceProvider.less'
+import * as actions from '../store/actions'
+import { getAllProviders } from '../services/generatData.ts'
+import Display from '../components/shared/Display';
 
 
 const styles = {
@@ -31,45 +34,51 @@ class ServiceProvider extends Component {
 
     state = {
         position: '',
-        options: []
+        options: [],
+        allProviders: []
     }
 
-    showInnerNav = () => {
-        if (this.props.isLoggedIn) {
-            return <InnerNav userRole={'client'} />
-        }
+    getFormData = (e) => {
+        // filter list of providers based on user preferences
+        let newArray = this.props.serviceProviders.filter(provider => {
+            return provider.description.toLowerCase().includes(e.searchFor.toLowerCase())
+                    && (provider.service ? provider.service.toLowerCase().includes(e.sortBy.toLowerCase()) : provider)
+        })
+        this.setState({allProviders: newArray})
+    }
+
+    componentDidMount() {
+        // set the list of providers in the state
+        this.setState({allProviders: this.props.serviceProviders})
+    }
+
+    componentWillMount() {
+        //API call to get all available providers
+        getAllProviders()
+        .then(res => {
+          this.props.saveProviders(res.data.users)
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
 
     render () {
         return (
             <>
-            {
-                this.showInnerNav()
-            }
+            <Display if={this.props.isLoggedIn}>
+                <InnerNav userRole={this.props.user.role} />
+            </Display>
             <Container>
                 <div style={styles.pageWrap} className="serviceProviders">
-                    <ProvidersForm />
+                    <ProvidersForm getFormData={this.getFormData} />
 
                     <Grid columns={3} stackable>
                         <Grid.Row>
                             {
-                                this.props.serviceProviders.map((provider, i) => (
+                                this.state.allProviders.map((provider, i) => (
                                     <Grid.Column >
                                         <Provider  key={`provider${i}`} {...provider} />
-                                    </Grid.Column>
-                                ))
-                            }
-                            {
-                                this.props.serviceProviders.map((provider, i) => (
-                                    <Grid.Column >
-                                        <Provider  key={`providuuer${i}`} {...provider} />
-                                    </Grid.Column>
-                                ))
-                            }
-                            {
-                                this.props.serviceProviders.map((provider, i) => (
-                                    <Grid.Column >
-                                        <Provider  key={`prbbovider${i}`} {...provider} />
                                     </Grid.Column>
                                 ))
                             }
@@ -86,8 +95,9 @@ class ServiceProvider extends Component {
 const mapStateToProps = (state) => ({
     serviceProviders: getProviders(state),
     services: state.service.beautyServices.allServices,
-    isLoggedIn: state.user.isLoggedIn
+    isLoggedIn: state.user.isLoggedIn,
+    user: state.user
 })
 
 
-export default connect(mapStateToProps)(withMasterLayout(ServiceProvider));
+export default connect(mapStateToProps, actions)(withMasterLayout(ServiceProvider));

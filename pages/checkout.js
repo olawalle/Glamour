@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React, { Component, useRef } from 'react'
 
 import { Grid, Image, Container, Button, Modal } from 'semantic-ui-react'
 import Checkoutform from '../components/checkout/checkoutform'
@@ -92,6 +92,10 @@ class Checkout extends Component {
     console.log(e)
   }
 
+  componentDidMount() {
+    console.log(this.refs)
+  }
+
   render() {
 
     const bttn = () => {
@@ -113,7 +117,7 @@ class Checkout extends Component {
         <Grid columns={2} stackable>
           <Grid.Row>
             <Grid.Column width={11}>
-              <Checkoutform step={this.state.step} log={this.log} addressForm={this.getAddressFormData}> 
+              <Checkoutform ref='checkoutform' step={this.state.step} log={this.log} addressForm={this.getAddressFormData}> 
 
                 <Display if={this.state.step === 1}>
                   <Grid className="gridWrap">
@@ -130,7 +134,7 @@ class Checkout extends Component {
                               </p>
                           </Grid.Column>
                           <Grid.Column>
-                              <p className="indicatorText inactive">
+                              <p className="indicatorText inactive" ref="something">
                                   Payment Details
                               </p>
                           </Grid.Column>

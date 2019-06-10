@@ -30320,12 +30320,13 @@ function (_App) {
 /*!********************************!*\
   !*** ./store/actions/types.js ***!
   \********************************/
-/*! exports provided: UPDATE_SIGNUP_FORM, UPDATE_LOGIN_FORM, SAVE_USER_DATA, SAVE_LOGGEDIN_STATUS, ADD_TEAM_MEMBERS, SET_LOADING_MEMBERS, SAVE_SERVICE_PROVIDERS, ADD_SERVICES, ADD_TRENDS, ADD_TESTIMONIALS, ADD_NOTIFICATIONS, SET_LOADING_SERVICES, SET_LOADING_NOTIFICATIONS, SET_WRITING_REVIEW, SET_REVIEW, SET_LOADING_TRENDS, SET_LOADING_TESTIMONIALS, SUBSCRIBE_TO_SERVICE, UNSUBSCRIBE_TO_SERVICE, SELECTED_PROVIDER, ADD_CART_ITEM, ADD_CART_ITEMS, REMOVE_CART_ITEM */
+/*! exports provided: UPDATE_SIGNUP_FORM, UPDATE_PROVIDER_SIGNUP_FORM, UPDATE_LOGIN_FORM, SAVE_USER_DATA, SAVE_LOGGEDIN_STATUS, ADD_TEAM_MEMBERS, SET_LOADING_MEMBERS, SAVE_SERVICE_PROVIDERS, ADD_SERVICES, ADD_TRENDS, ADD_TESTIMONIALS, ADD_NOTIFICATIONS, SET_LOADING_SERVICES, SET_LOADING_NOTIFICATIONS, SET_WRITING_REVIEW, SET_REVIEW, SET_LOADING_TRENDS, SET_LOADING_TESTIMONIALS, SUBSCRIBE_TO_SERVICE, UNSUBSCRIBE_TO_SERVICE, SELECTED_PROVIDER, ADD_CART_ITEM, ADD_CART_ITEMS, REMOVE_CART_ITEM */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_SIGNUP_FORM", function() { return UPDATE_SIGNUP_FORM; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_PROVIDER_SIGNUP_FORM", function() { return UPDATE_PROVIDER_SIGNUP_FORM; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_LOGIN_FORM", function() { return UPDATE_LOGIN_FORM; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SAVE_USER_DATA", function() { return SAVE_USER_DATA; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SAVE_LOGGEDIN_STATUS", function() { return SAVE_LOGGEDIN_STATUS; });
@@ -30350,6 +30351,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_CART_ITEM", function() { return REMOVE_CART_ITEM; });
 // ACTION TYPES STAYS HERE
 var UPDATE_SIGNUP_FORM = 'update_signup_form';
+var UPDATE_PROVIDER_SIGNUP_FORM = 'update_provider_signup_form';
 var UPDATE_LOGIN_FORM = 'update_login_form';
 var SAVE_USER_DATA = 'save_user_data';
 var SAVE_LOGGEDIN_STATUS = 'save_loggedin_status';
@@ -30485,6 +30487,19 @@ var INITIAL_STATE = {
     password: null,
     referral: null,
     accept: false
+  },
+  providerSignup: {
+    description: "",
+    email: "",
+    fullnames: "",
+    meta: "",
+    mileRadius: "",
+    password: "",
+    phone: "",
+    postcode: "",
+    referral: "",
+    schedules: [],
+    service: []
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (function () {
@@ -30499,6 +30514,13 @@ var INITIAL_STATE = {
       {
         return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state, {
           signup: Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state.signup, payload)
+        });
+      }
+
+    case _actions_types__WEBPACK_IMPORTED_MODULE_1__["UPDATE_PROVIDER_SIGNUP_FORM"]:
+      {
+        return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state, {
+          providerSignup: Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state.providerSignup, payload)
         });
       }
 
@@ -30993,9 +31015,7 @@ var INITIAL_STATE = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/objectSpread */ "./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js");
-/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/types */ "./store/actions/types.js");
-
+/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/types */ "./store/actions/types.js");
 
 var INITIAL_STATE = {
   allProviders: [{
@@ -31194,9 +31214,12 @@ var INITIAL_STATE = {
       payload = _ref.payload;
 
   switch (type) {
-    case _actions_types__WEBPACK_IMPORTED_MODULE_1__["SAVE_SERVICE_PROVIDERS"]:
+    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["SAVE_SERVICE_PROVIDERS"]:
       {
-        return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state);
+        console.log(payload);
+        return {
+          allProviders: payload
+        };
       }
 
     default:
@@ -31491,7 +31514,6 @@ var INITIAL_STATE = {
 
     case _actions_types__WEBPACK_IMPORTED_MODULE_1__["ADD_TRENDS"]:
       {
-        console.log(payload);
         var byId = [];
         var allTrends = {};
         payload.forEach(function (trends, i) {
