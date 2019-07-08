@@ -3,8 +3,7 @@ import { ADD_SERVICES, SET_LOADING_SERVICES } from '../actions/types';
 const INITIAL_STATE = {
   beautyServices: {
     byId: [],
-    allServices: {
-    },
+    allServices: [],
     loadingServices: false
   }
 }

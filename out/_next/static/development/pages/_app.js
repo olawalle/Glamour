@@ -30251,6 +30251,11 @@ function (_App) {
   }
 
   Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_3__["default"])(Glamour, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      console.log('from app');
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -30926,9 +30931,10 @@ var INITIAL_STATE = {
       {
         var byId = [];
         var allNotifications = {};
+        console.log(payload);
         payload.forEach(function (notification) {
-          byId = [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(byId), [notification.id]);
-          allNotifications = Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_2__["default"])({}, allNotifications, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])({}, notification.id, notification));
+          byId = [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(byId), [notification._id]);
+          allNotifications = Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_2__["default"])({}, allNotifications, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])({}, notification._id, notification));
         });
         return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_2__["default"])({}, state, {
           byId: byId,
@@ -31018,193 +31024,229 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/types */ "./store/actions/types.js");
 
 var INITIAL_STATE = {
-  allProviders: [{
-    banner: '/static/images/services/hair.png',
-    userPhoto: '/static/images/team/teammember1.png',
-    name: 'Mary Sullivan',
-    jobDesc: 'Makeup, Massage',
-    description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
-    stars: 3,
-    id: '1',
-    instant: true,
-    ratingsCount: 16,
-    servicesRendered: [{
-      title: 'something nice',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '1hr',
-      price: '40'
-    }, {
-      title: 'another nice',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '30mins - 1hr',
-      price: '30'
-    }, {
-      title: 'hair rolls tasks',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '1hr',
-      price: '55'
-    }, {
-      title: 'Basket making',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '1hr',
-      price: '80'
-    }]
-  }, {
-    banner: '/static/images/services/hair.png',
-    userPhoto: '/static/images/team/teammember3.png',
-    name: 'Joy Koke',
-    jobDesc: 'Makeup, Massage',
-    description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
-    stars: 3,
-    id: '2',
-    instant: false,
-    ratingsCount: 12,
-    servicesRendered: [{
-      title: 'something nice',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '1hr',
-      price: '40'
-    }, {
-      title: 'another nice',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '30mins - 1hr',
-      price: '30'
-    }]
-  }, {
-    banner: '/static/images/services/massage.png',
-    userPhoto: '/static/images/team/teammember5.png',
-    name: 'Joan Mariam',
-    jobDesc: 'Makeup, Massage',
-    description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
-    stars: 5,
-    id: '3',
-    instant: true,
-    ratingsCount: 14,
-    servicesRendered: [{
-      title: 'something nice',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '1hr',
-      price: '40'
-    }, {
-      title: 'another nice',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '30mins - 1hr',
-      price: '30'
-    }, {
-      title: 'hair rolls tasks',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '1hr',
-      price: '55'
-    }, {
-      title: 'Basket making',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '1hr',
-      price: '80'
-    }, {
-      title: 'hair rolls tasks',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '1hr',
-      price: '55'
-    }, {
-      title: 'Basket making',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '1hr',
-      price: '80'
-    }]
-  }, {
-    banner: '/static/images/services/nails.png',
-    userPhoto: '/static/images/team/teammember2.png',
-    name: 'Tom Hanks',
-    jobDesc: 'Makeup, Massage',
-    description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
-    stars: 2,
-    id: '4',
-    instant: false,
-    ratingsCount: 3,
-    servicesRendered: [{
-      title: 'hair rolls tasks',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '1hr',
-      price: '55'
-    }, {
-      title: 'Basket making',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '1hr',
-      price: '80'
-    }, {
-      title: 'hair rolls tasks',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '1hr',
-      price: '55'
-    }]
-  }, {
-    banner: '/static/images/services/hair.png',
-    userPhoto: '/static/images/team/teammember4.png',
-    name: 'Femi Alade',
-    jobDesc: 'Makeup, Massage',
-    description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
-    stars: 5,
-    id: '5',
-    instant: false,
-    ratingsCount: 12,
-    servicesRendered: [{
-      title: 'something nice',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '1hr',
-      price: '40'
-    }, {
-      title: 'another nice',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '30mins - 1hr',
-      price: '30'
-    }, {
-      title: 'Basket making',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '1hr',
-      price: '80'
-    }, {
-      title: 'hair rolls tasks',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '1hr',
-      price: '55'
-    }, {
-      title: 'Basket making',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '1hr',
-      price: '80'
-    }]
-  }, {
-    banner: '/static/images/services/body.png',
-    userPhoto: '/static/images/team/teammember1.png',
-    name: 'Juile Fraser',
-    jobDesc: 'Makeup, Massage',
-    description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
-    stars: 1,
-    id: '6',
-    instant: true,
-    ratingsCount: 23,
-    servicesRendered: [{
-      title: 'hair rolls tasks',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '1hr',
-      price: '55'
-    }, {
-      title: 'Basket making',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '1hr',
-      price: '80'
-    }, {
-      title: 'hair rolls tasks',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '1hr',
-      price: '55'
-    }, {
-      title: 'Basket making',
-      desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-      duration: '1hr',
-      price: '80'
-    }]
-  }]
+  allProviders: [// {
+    //   banner: '/static/images/services/hair.png',
+    //   userPhoto: '/static/images/team/teammember1.png',
+    //   name: 'Mary Sullivan',
+    //   jobDesc: 'Makeup, Massage',
+    //   description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
+    //   stars: 3,
+    //   id: '1',
+    //   instant: true, 
+    //   ratingsCount: 16,
+    //   servicesRendered: [
+    //     {
+    //       title: 'something nice',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '1hr',
+    //       price: '40'
+    //     },
+    //     {
+    //       title: 'another nice',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '30mins - 1hr',
+    //       price: '30'
+    //     },
+    //     {
+    //       title: 'hair rolls tasks',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '1hr',
+    //       price: '55'
+    //     },
+    //     {
+    //       title: 'Basket making',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '1hr',
+    //       price: '80'
+    //     }
+    //   ]
+    // },
+    // {
+    //   banner: '/static/images/services/hair.png',
+    //   userPhoto: '/static/images/team/teammember3.png',
+    //   name: 'Joy Koke',
+    //   jobDesc: 'Makeup, Massage',
+    //   description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
+    //   stars: 3,
+    //   id: '2',
+    //   instant: false, 
+    //   ratingsCount: 12,
+    //   servicesRendered: [
+    //     {
+    //       title: 'something nice',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '1hr',
+    //       price: '40'
+    //     },
+    //     {
+    //       title: 'another nice',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '30mins - 1hr',
+    //       price: '30'
+    //     }
+    //   ]
+    // },
+    // {
+    //   banner: '/static/images/services/massage.png',
+    //   userPhoto: '/static/images/team/teammember5.png',
+    //   name: 'Joan Mariam',
+    //   jobDesc: 'Makeup, Massage',
+    //   description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
+    //   stars: 5,
+    //   id: '3',
+    //   instant: true, 
+    //   ratingsCount: 14,
+    //   servicesRendered: [
+    //     {
+    //       title: 'something nice',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '1hr',
+    //       price: '40'
+    //     },
+    //     {
+    //       title: 'another nice',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '30mins - 1hr',
+    //       price: '30'
+    //     },
+    //     {
+    //       title: 'hair rolls tasks',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '1hr',
+    //       price: '55'
+    //     },
+    //     {
+    //       title: 'Basket making',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '1hr',
+    //       price: '80'
+    //     },
+    //     {
+    //       title: 'hair rolls tasks',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '1hr',
+    //       price: '55'
+    //     },
+    //     {
+    //       title: 'Basket making',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '1hr',
+    //       price: '80'
+    //     }
+    //   ]
+    // },
+    // {
+    //   banner: '/static/images/services/nails.png',
+    //   userPhoto: '/static/images/team/teammember2.png',
+    //   name: 'Tom Hanks',
+    //   jobDesc: 'Makeup, Massage',
+    //   description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
+    //   stars: 2,
+    //   id: '4',
+    //   instant: false, 
+    //   ratingsCount: 3,
+    //   servicesRendered: [
+    //     {
+    //       title: 'hair rolls tasks',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '1hr',
+    //       price: '55'
+    //     },
+    //     {
+    //       title: 'Basket making',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '1hr',
+    //       price: '80'
+    //     },
+    //     {
+    //       title: 'hair rolls tasks',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '1hr',
+    //       price: '55'
+    //     }
+    //   ]
+    // },
+    // {
+    //   banner: '/static/images/services/hair.png',
+    //   userPhoto: '/static/images/team/teammember4.png',
+    //   name: 'Femi Alade',
+    //   jobDesc: 'Makeup, Massage',
+    //   description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
+    //   stars: 5,
+    //   id: '5',
+    //   instant: false, 
+    //   ratingsCount: 12,
+    //   servicesRendered: [
+    //     {
+    //       title: 'something nice',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '1hr',
+    //       price: '40'
+    //     },
+    //     {
+    //       title: 'another nice',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '30mins - 1hr',
+    //       price: '30'
+    //     },
+    //     {
+    //       title: 'Basket making',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '1hr',
+    //       price: '80'
+    //     },
+    //     {
+    //       title: 'hair rolls tasks',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '1hr',
+    //       price: '55'
+    //     },
+    //     {
+    //       title: 'Basket making',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '1hr',
+    //       price: '80'
+    //     }
+    //   ]
+    // },
+    // {
+    //   banner: '/static/images/services/body.png',
+    //   userPhoto: '/static/images/team/teammember1.png',
+    //   name: 'Juile Fraser',
+    //   jobDesc: 'Makeup, Massage',
+    //   description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
+    //   stars: 1,
+    //   id: '6',
+    //   instant: true, 
+    //   ratingsCount: 23,
+    //   servicesRendered: [
+    //     {
+    //       title: 'hair rolls tasks',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '1hr',
+    //       price: '55'
+    //     },
+    //     {
+    //       title: 'Basket making',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '1hr',
+    //       price: '80'
+    //     },
+    //     {
+    //       title: 'hair rolls tasks',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '1hr',
+    //       price: '55'
+    //     },
+    //     {
+    //       title: 'Basket making',
+    //       desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
+    //       duration: '1hr',
+    //       price: '80'
+    //     }
+    //   ]
+    // }
+  ]
 };
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;

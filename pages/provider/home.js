@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import withMasterLayout from '../../pages/layouts/withMasterLayout';
 import { connect } from 'react-redux';
 import { Container, Grid, Button, Modal } from 'semantic-ui-react';
@@ -14,6 +14,9 @@ import HomeService from './home/homeService';
 import UpcomingBookings from './home/upcomingBookings';
 import CustomImageUploader from '../../components/shared/CustomImageUploader';
 import Display from '../../components/shared/Display';
+import { getCurrentUser } from '../../services/auth.ts'
+import { getProviderServices } from '../../services/providerServices.ts'
+import { uploadImage, uploadBanner } from '../../services/generatData.ts'
 
 
 const ProviderHome = (props) => {
@@ -25,10 +28,25 @@ const ProviderHome = (props) => {
         // }
     }
 
+    useEffect(() => {
+        console.log(props.userData)
+        
+
+        getProviderServices()
+        .then(res => {
+          console.log(res)
+          let services = res.data.data.services
+          props.saveProviderServices(services)
+        })
+        .catch(err => {
+          console.log({...err})
+        })
+
+    }, [])
+
     const [bannerSrc, updateBannerSrc] = useState({image: '/static/images/EmptyBanner.png'})
-    const [userPhoto, updateUserPhoto] = useState({image: ''})
+    const [userPhoto, updateUserPhoto] = useState(props.userData.pictureUrl)
     const [showNav, updateShowNav] = useState(true)
-    const [servicesEmpty, updateServiceEmpty] = useState(false)
     const [bookingsEmpty, updateBookingsEmpty] = useState(false)
     const [bookingStatus, updateBookingStatus] = useState([
         {
@@ -42,20 +60,7 @@ const ProviderHome = (props) => {
 
     const styles = {
         UserPhoto: {
-            backgroundImage: `url(${props.userData.pictureUrl})`
-        },
-        imgWrap: {
-            width: '130px',
-            height: '130px',      
-            'border-radius':' 50%',      
-            border: '3px solid #fff',
-            'background-size': 'cover',
-            'background-position-y': 'center',
-            'background-color': '#637381',
-            overflow: 'hidden',
-            display: 'flex',
-            'justify-content': 'center',
-            cursor: 'pointer'
+            backgroundImage: `url(${userPhoto})`
         },
         img: {
             width: '30px'
@@ -88,7 +93,7 @@ const ProviderHome = (props) => {
                 updateBannerSrc({image: reader.result})
                 console.log('banner')
             } else {
-                updateUserPhoto({image: reader.result})
+                updateUserPhoto(reader.result)
                 console.log('photo')
             }
         };
@@ -98,17 +103,56 @@ const ProviderHome = (props) => {
     }
     
 
-    const getImageString = (imageString) => {
+    const getUserbannerImageString = (imageString) => {
         updateBannerSrc({image: imageString})
         console.log('banner')
     }
-    const getImageString_ = (imageString) => {
-        updateUserPhoto({image: imageString})
+
+    const getUserphotoImageString = (imageString) => {
+        updateUserPhoto(imageString)
         console.log('userphoto')
     }
 
+    
+    const getBannerFile = (imageFile) => {
+        console.log('imageFile', imageFile)
+        let formData = new FormData()
+        formData.append('picture', imageFile)
+        uploadBanner(formData)
+        .then(res => {
+            console.log(res)
+            getUserDetails()
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
     const getImageFile = (imageFile) => {
-        console.log(imageFile)
+        console.log('imageFile', imageFile)
+        let formData = new FormData()
+        formData.append('picture', imageFile)
+        uploadImage(formData)
+        .then(res => {
+            console.log(res)
+            getUserDetails()
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
+    const getUserDetails = () => {
+        getCurrentUser()
+        .then(response => {
+          let payload = {
+            ...response.data.me
+          }
+          props.saveUserData(payload)
+        })
+        .catch(err => {
+            console.log({...err})
+        })
     }
     
     const renderServiceComponent = (serviceProvider) => {
@@ -157,7 +201,7 @@ const ProviderHome = (props) => {
             <InnerNav userRole={'client'} />
         </Display>
         <div className="outerBannerWrap">
-            <CustomImageUploader getImageString={getImageString} getImageFile={getImageFile}>
+            <CustomImageUploader getImageString={getUserbannerImageString} getImageFile={getImageFile}>
                 <Banner banner={bannerSrc.image}  text={''} />  
                 <img src='/static/icons/camera.svg' className="bannerChange" alt=""/>
             </CustomImageUploader>          
@@ -168,21 +212,21 @@ const ProviderHome = (props) => {
                     <Grid.Row>
                         <Grid.Column width={8}>
                             <div className="userDesc">
-                                    <CustomImageUploader getImageString={getImageString_} getImageFile={getImageFile}>
-                                        <div className="imgWrap" style={styles.UserPhoto}>
-                                            <img src='/static/icons/camera.svg' className="camera" alt=""/>
+                                    <CustomImageUploader getImageString={getUserphotoImageString} getImageFile={getImageFile}>
+                                        <div style={{height: '100%', position: 'relative', zIndex: 20}}>
+                                            <div className="imgWrap" style={styles.UserPhoto}>
+                                                <img src='/static/icons/camera.svg' className="camera" alt=""/>
+                                            </div>
                                         </div>
                                     </CustomImageUploader>
                                 <p className="userName">
-                                    Mary Jane
+                                    {props.user.fullname}
                                 </p>
                                 <p className="userJob">
                                     Makeup, Massage
                                 </p>
                                 <p className="userDetails">
-                                    Hey, you know how I'm, like, always trying to save the 
-                                    planet? Here's my chance. Life finds a way. Do you have 
-                                    any idea how long it takes those cups to decompose.
+                                    {props.user.description}
                                 </p>
                             </div>
                         </Grid.Column>
@@ -204,7 +248,7 @@ const ProviderHome = (props) => {
                         </Grid.Row>
                         <Grid.Row>
                             <Grid.Column width={8}>
-                                <Display if={servicesEmpty}>
+                                <Display if={props.providersServices.length === 0}>
                                     <div className="serviceWrap lightShadow">
                                         <div className="serviceWrapTitle">
                                           Your Services
@@ -223,7 +267,7 @@ const ProviderHome = (props) => {
                                         </div>
                                     </div>
                                 </Display>
-                                <Display if={!servicesEmpty}>
+                                <Display if={props.providersServices.length > 0}>
                                     <div className="serviceWrap lightShadow">
                                         <div className="serviceWrapTitle">
                                         <span>
@@ -236,14 +280,11 @@ const ProviderHome = (props) => {
                                         </span>
                                         </div>
                                         <div className="servicesChildWrap">
-                                            <HomeService />
-                                            <HomeService />
-                                            <HomeService />
-                                            <HomeService />
-                                            <HomeService />
-                                            <HomeService />
-                                            <HomeService />
-                                            <HomeService />
+                                            {
+                                                props.providersServices.map((service, i) => {
+                                                    return <HomeService service={service} key={'service'+i} />
+                                                })
+                                            }
                                         </div>
                                     </div>
                                 </Display>
@@ -292,7 +333,9 @@ const ProviderHome = (props) => {
 
 const mapStateToProps = (state) => ({
     serviceProviders: getProviders(state),
+    providersServices: state.providerServices,
     userData: getUserData(state),
+    user: state.user,
     isLoggedIn: state.user.isLoggedIn
 })
 

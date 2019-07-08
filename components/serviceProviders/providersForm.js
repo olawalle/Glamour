@@ -10,6 +10,7 @@ import * as actions from '../../store/actions';
 import { DatePicker } from 'antd';
 import "./less/providerForm.less"
 import { getAllServices, getAllTrends } from '../../services/generatData.ts'
+import dayjs from 'dayjs'
 
 const options = [
   { key: '', text: 'Not Applicable', value: '' },
@@ -35,11 +36,20 @@ class ProviderForm extends Component {
       searchFor: '',
       postcode: '',
       distance: '',
-      when: '',
+      // when: null,
       priceRange: ''
-    }
+    },
+    when: null,
   }
 
+
+  updateForm_ = (a, b) => {
+    this.setState({when: a}, () => {
+      let day = dayjs(b).$d.toString().split(' ')[0]
+      this.props.getWhenServiceNeeded(day)
+    })
+  }
+  
   onChange = (event) => {
     console.log(event)
     this.setState(
@@ -63,32 +73,16 @@ class ProviderForm extends Component {
   
   
   componentWillMount () {
-    getAllServices()
-    .then(res => {
-      this.props.saveServices(res.data.services)
-      let options = []
-      Object.keys(res.data.services).forEach(key => {
-          let obj = {}
-          obj.text = res.data.services[key].serviceName
-          obj.key = res.data.services[key].serviceName
-          obj.value = res.data.services[key].serviceName   
-          options.push(obj)         
+    if (this.props.services && this.props.services.length > 0) {
+      let options = this.props.services.map(service => {
+        return {
+          text: service.serviceName,
+          key: service._id,
+          value: service._id  
+        }  
       })
-      this.setState({options}, () => {
-          // console.log(this.state)
-      })
-    })
-    .catch(err => {
-      console.log(err)
-    })
-
-    getAllTrends()
-    .then(res => {
-      this.props.saveTrends(res.data.services)
-    })
-    .catch(err => {
-      console.log(err)
-    })
+      this.setState({options})
+    }
   }
 
 
@@ -162,8 +156,8 @@ class ProviderForm extends Component {
                 <Grid.Column  className="RangeCol">
                     <DatePicker
                       className="date--picker"
-                    onChange={(e, data) => this.updateForm(e, data, 'when')}
-                      value={this.state.formFields.when}
+                      onChange={(e, data) => this.updateForm_(e, data)}
+                      value={this.state.when}
                       showTime
                       placeholder="When do you want this?"
                       suffixIcon={<img className="PickerIcon" src="../../static/images/calender.png" />}
@@ -189,7 +183,8 @@ class ProviderForm extends Component {
 
 
 const mapStateToProps = (state) => ({
-  services: state.service.beautyServices.allServices
+  services: state.service.beautyServices.allServices,
+  serviceProviders: state.serviceProviders.allProviders
 })
 
 export default  connect(mapStateToProps, actions)(ProviderForm)

@@ -9,6 +9,12 @@ const INITIAL_STATE = {
 
 }
 
+
+// const r = () => {
+//   return window.localStorageocalStorage.getItem('store') ? JSON.parse(localStorage.getItem('store')) : {}
+// }
+
+
 export function initStore (initialState = INITIAL_STATE) {
   return createStore(
     rootReducer,

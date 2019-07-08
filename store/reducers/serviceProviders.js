@@ -231,7 +231,6 @@ export default function (state = INITIAL_STATE, { type, payload }) {
 
   switch (type) {
     case SAVE_SERVICE_PROVIDERS: {
-      console.log(payload)
       return {
         allProviders: payload
       }

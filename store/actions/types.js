@@ -47,3 +47,9 @@ export const ADD_CART_ITEM = 'add_cart_item';
 export const ADD_CART_ITEMS = 'add_cart_items';
 
 export const REMOVE_CART_ITEM = 'remove_cart_item';
+
+export const SAVE_PROVIDER_SERVICES = 'save_provider_services';
+
+export const SAVE_ADDRESSES = 'save_addresses';
+
+export const SELECT_ACTIVE_ADDRESS = 'save_active_address'

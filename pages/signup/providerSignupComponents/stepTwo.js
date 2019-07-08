@@ -60,20 +60,20 @@ export default function StepTwo(props) {
   
   useEffect(() => {
     let store = null
-    if (store = JSON.parse(localStorage.getItem('store'))) {
-      if (store.auth) {
-        let obj = {}
-        console.log(store.auth.providerSignup.schedules)
-        setTiming(store.auth.providerSignup.schedules)
-        Object.keys(store.auth.providerSignup).forEach(key => {
-          if (signupFormData[key] !== undefined) {
-            obj[key] = store.auth.providerSignup[key]
-            setSignupData(obj)
-          }
-        })
-        // console.log(timing)
-      }
-    }
+    // if (store = JSON.parse(localStorage.getItem('store'))) {
+    //   if (store.auth) {
+    //     let obj = {}
+    //     console.log(store.auth.providerSignup.schedules)
+    //     setTiming(store.auth.providerSignup.schedules)
+    //     Object.keys(store.auth.providerSignup).forEach(key => {
+    //       if (signupFormData[key] !== undefined) {
+    //         obj[key] = store.auth.providerSignup[key]
+    //         setSignupData(obj)
+    //       }
+    //     })
+    //     // console.log(timing)
+    //   }
+    // }
   }, [])
 
   return (

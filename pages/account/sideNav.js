@@ -11,6 +11,7 @@ import AddressBook from './addressBook';
 import SavedServiceProviders from './savedServiceProviders';
 import Router from 'next/router';
 import UserCards from './UserCards';
+import LookBook from './LookBook';
 
 const SideNav = (props) => {    
     
@@ -105,6 +106,12 @@ const SideNav = (props) => {
         component: <ManagePayments />,
         active: 'inactive',
         icon: '/static/icons/card.svg'
+    },
+    {
+        text: 'Upload Lookbook',
+        component: <LookBook />,
+        active: 'inactive',
+        icon: '/static/icons/card.svg'
     }
   ])
   
@@ -141,6 +148,12 @@ const SideNav = (props) => {
         component: <SavedServiceProviders providers={savedProviders} />,
         active: 'inactive',
         icon: '/static/icons/filled-heart.svg'
+    },
+    {
+        text: 'Upload Lookbook',
+        component: <LookBook />,
+        active: 'inactive',
+        icon: '/static/icons/card.svg'
     }
   ])
 

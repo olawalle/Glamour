@@ -57,17 +57,17 @@ export default function StepOne(props) {
 
   useEffect(() => {
     let store = null
-    if (store = JSON.parse(localStorage.getItem('store'))) {
-      if (store.auth) {
-        let obj = {}
-        Object.keys(store.auth.providerSignup).forEach(key => {
-          if (signupFormData[key] !== undefined) {
-            obj[key] = store.auth.providerSignup[key]
-            setSignupData(obj)
-          }
-        })
-      }
-    }
+    // if (store = JSON.parse(localStorage.getItem('store'))) {
+    //   if (store.auth) {
+    //     let obj = {}
+    //     Object.keys(store.auth.providerSignup).forEach(key => {
+    //       if (signupFormData[key] !== undefined) {
+    //         obj[key] = store.auth.providerSignup[key]
+    //         setSignupData(obj)
+    //       }
+    //     })
+    //   }
+    // }
   }, [])
 
   return (

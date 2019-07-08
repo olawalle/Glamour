@@ -30,7 +30,7 @@ export default class CustomImageUploader extends Component {
 
   dropdown = (e) => {
     let file = e.target.files[0]
-    this.props.getImageFile(file)
+    this.props.getImageFile ? this.props.getImageFile(file) : null
     this.getBase64(file)
   }
 
@@ -38,7 +38,7 @@ export default class CustomImageUploader extends Component {
     var reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload =  () => {
-      this.props.getImageString(reader.result)
+      this.props.getImageString ? this.props.getImageString(reader.result) : null
     };
     reader.onerror = (error) => {
       console.log('Error: ', error);
@@ -68,7 +68,7 @@ export default class CustomImageUploader extends Component {
           zIndex: '40',
           overflow: 'hidden',
           width: '100%',
-          height: `${this.refs.componentChildren.clientHeight}px`,
+          maxHeight: `${this.refs.componentChildren.clientHeight}px`,
           cursor: 'pointer'
       }
     })

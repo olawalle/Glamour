@@ -25,6 +25,7 @@ const mapStateToProps = (state) => {
   return {
     notifications: getNotifications(state),
     review: getNotificationReview(state),
+    user: state.user,
     isWritingReview: getIsWritingReview(state),
   }
 }

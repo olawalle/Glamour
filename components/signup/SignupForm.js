@@ -199,7 +199,7 @@ const styles = {
               value={signupFormData.referral}
               fluid
               options={options}
-              placeholder='How did you hear about Glamour on Demand?'
+              placeholder='How did you hear about Glamour?'
             />
             <div className="is-flex">
               <Checkbox

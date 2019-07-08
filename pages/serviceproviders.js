@@ -10,13 +10,13 @@ import { Grid } from 'semantic-ui-react';
 import { getProviders } from '../store'
 import './less/serviceProvider.less'
 import * as actions from '../store/actions'
-import { getAllProviders } from '../services/generatData.ts'
 import Display from '../components/shared/Display';
+import { getAllServices, getAllTrends, getAllProviders } from '../services/generatData.ts'
 
 
 const styles = {
     pageWrap: {
-    // padding: '20px'
+    paddingTop: '60px'
     }
 }
 
@@ -39,24 +39,53 @@ class ServiceProvider extends Component {
     }
 
     getFormData = (e) => {
+        console.log(e)
         // filter list of providers based on user preferences
+        console.log(this.props.serviceProviders)
         let newArray = this.props.serviceProviders.filter(provider => {
             return provider.description.toLowerCase().includes(e.searchFor.toLowerCase())
-                    && (provider.service ? provider.service.toLowerCase().includes(e.sortBy.toLowerCase()) : provider)
+                && provider.service.toLowerCase().includes(e.sortBy.toLowerCase())
+                && provider.mileRadius.toLowerCase().includes(e.distance.toLowerCase())
+                && provider.postcode.toLowerCase().includes(e.postcode.toLowerCase())
         })
+        console.log(newArray)
         this.setState({allProviders: newArray})
     }
 
-    componentDidMount() {
-        // set the list of providers in the state
-        this.setState({allProviders: this.props.serviceProviders})
+    getWhenServiceNeeded = (day) => {
+        console.log(day)
+        // let providers = [...this.state.allProviders]
+        let availableProviders = this.props.serviceProviders.filter(prv => {
+          return JSON.stringify(prv.schedules).includes(day)
+        })
+        console.log(availableProviders)
+        if (day !== 'Invalid') {
+            this.setState({allProviders: availableProviders})
+        }
     }
 
     componentWillMount() {
-        //API call to get all available providers
+        // get list of service categories, trends and serviceProviders
+        getAllServices()
+        .then(res => {
+          this.props.saveServices(res.data.data.services)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    
+        getAllTrends()
+        .then(res => {
+          this.props.saveTrends(res.data.data.services)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    
         getAllProviders()
         .then(res => {
           this.props.saveProviders(res.data.users)
+          this.setState({allProviders: res.data.users})
         })
         .catch(err => {
           console.log(err)
@@ -71,14 +100,14 @@ class ServiceProvider extends Component {
             </Display>
             <Container>
                 <div style={styles.pageWrap} className="serviceProviders">
-                    <ProvidersForm getFormData={this.getFormData} />
+                    <ProvidersForm getWhenServiceNeeded={this.getWhenServiceNeeded} getFormData={this.getFormData} />
 
                     <Grid columns={3} stackable>
                         <Grid.Row>
                             {
                                 this.state.allProviders.map((provider, i) => (
-                                    <Grid.Column >
-                                        <Provider  key={`provider${i}`} {...provider} />
+                                    <Grid.Column key={`provider${i}`}>
+                                        <Provider  {...provider} />
                                     </Grid.Column>
                                 ))
                             }

@@ -19,7 +19,7 @@ class InnerNav extends Component {
         image: '/static/icons/home.svg',
         to: '/provider/home',
         hasNotif: false,
-        for: 'serviceprovider'
+        for: 'provider'
       },
       {
         text: 'Home',

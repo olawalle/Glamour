@@ -9,7 +9,7 @@ export default class Timing extends Component {
             {day: 'Mon', active: '', from: '', to: ''}, 
             {day: 'Tue', active: '', from: '', to: ''}, 
             {day: 'Wed', active: '', from: '', to: ''}, 
-            {day: 'Thr', active: '', from: '', to: ''}, 
+            {day: 'Thu', active: '', from: '', to: ''}, 
             {day: 'Fri', active: '', from: '', to: ''}, 
             {day: 'Sat', active: '', from: '', to: ''}
         ],

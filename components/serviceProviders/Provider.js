@@ -8,7 +8,7 @@ import './less/provider.less'
 let toDetails = (props) => {
     Router.push({
         pathname: '/servicedetails',
-        query: { provider: props.id }
+        query: { provider: props._id }
     })
 }
 

@@ -112,3 +112,32 @@ export const addCartItem = (payload) => {
     payload
   }
 }
+
+
+export const saveUserNotifications = (payload) => {
+  return {
+    type: types.ADD_NOTIFICATIONS,
+    payload
+  }
+}
+
+export const saveProviderServices = (payload) => {
+  return {
+    type: types.SAVE_PROVIDER_SERVICES,
+    payload
+  }
+}
+
+export const saveUserAddresses = (payload) => {
+  return {
+    type: types.SAVE_ADDRESSES,
+    payload
+  }
+}
+
+export const saveActiveAddress = (payload) => {
+  return {
+    type: types.SELECT_ACTIVE_ADDRESS,
+    payload
+  }
+}

@@ -11,7 +11,9 @@ import notificationReducer from '../reducers/notification';
 import serviceProviders from '../reducers/serviceProviders';
 import subscribedServicesReducer from '../reducers/subscribedServices'
 import cartReducer from '../reducers/cart';
+import providerServices from '../reducers/providerServices'
 import bookingsReducer from '../reducers/bookings';
+import addressReducer from '../reducers/address'
 
 let rootReducer = combineReducers({
   user: userReducer,
@@ -19,12 +21,14 @@ let rootReducer = combineReducers({
   team: teamReducer,
   serviceProviders: serviceProviders,
   service: serviceReducer,
+  providerServices: providerServices,
   trend: trendReducer,
   testimonial: testimonialReducer,
   notifications: notificationReducer,
   subscribedServices: subscribedServicesReducer,
   cart: cartReducer,
   bookings: bookingsReducer,
+  addresses: addressReducer
 });
 
 export default rootReducer;

@@ -15,12 +15,12 @@ export default function StepThree(props) {
   useEffect(() => {
     console.log(props)
     let store = null
-    if (store = JSON.parse(localStorage.getItem('store'))) {
-      if (store.auth) {
-        setServices(store.auth.providerSignup.service)
-        setServices(store.auth.providerSignup.description)
-      }
-    }
+    // if (store = JSON.parse(localStorage.getItem('store'))) {
+    //   if (store.auth) {
+    //     setServices(store.auth.providerSignup.service)
+    //     setServices(store.auth.providerSignup.description)
+    //   }
+    // }
   }, [])
 
   const jump = () => {

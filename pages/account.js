@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Grid, Container } from 'semantic-ui-react';
 import InnerNav from '../components/shared/InnerNav';
 import withMasterLayout from './layouts/withMasterLayout';
 import * as actions from '../store/actions'
 import { connect } from 'react-redux';
+import Router from 'next/router'
 import './less/account.less'
 import SideNav from './account/sideNav';
 import PersonalDetails from './account/PersonalDetails';
 import Display from '../components/shared/Display';
+import {getUserAddresses} from '../services/generatData.ts'
 
 
 const Account = (props) => {
@@ -17,6 +19,13 @@ const Account = (props) => {
   const updateActiveComponent_ = (component) => {
     updateActiveComponent(component)
   }
+
+  useEffect(() => {
+    if (!window.sessionStorage.getItem('glamourToken')) {
+        Router.push('/login')
+    }
+  }, [])
+
   return (
     <div className="accountComponent">
       <InnerNav userRole={props.userRole}/>
@@ -25,7 +34,7 @@ const Account = (props) => {
             <Grid.Row>
             <Grid.Column  mobile={16} tablet={16} largeScreen={5} widescreen={5} textAlign="center">
                 <div className="lightShadow leftWing">
-                    <Display if={props.userRole === 'serviceprovider'}>
+                    <Display if={props.userRole === 'provider'}>
                         <div className="leftWingTop">
                             <div className="userPhoto">
                                 <img src="/static/icons/edit_.svg" className="edit" alt=""/>

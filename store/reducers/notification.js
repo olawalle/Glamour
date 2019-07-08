@@ -95,15 +95,16 @@ export default function (state = INITIAL_STATE, { type, payload }) {
     case ADD_NOTIFICATIONS: {
       let byId = [];
       let allNotifications = {};
+      console.log(payload)
 
       payload.forEach((notification) => {
         byId = [
           ...byId,
-          notification.id
+          notification._id
         ]
         allNotifications = {
           ...allNotifications,
-          [notification.id]: notification
+          [notification._id]: notification
         }
       })
 

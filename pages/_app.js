@@ -18,6 +18,9 @@ class Glamour extends App {
     return { pageProps };
   }
 
+  componentDidMount() {
+  }
+
   render () {
     const { Component, pageProps, reduxStore } = this.props
     return (

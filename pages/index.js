@@ -37,7 +37,7 @@ class Home extends Component {
     // get list of service categories, trends and serviceProviders
     getAllServices()
     .then(res => {
-      this.props.saveServices(res.data.services)
+      this.props.saveServices(res.data.data.services)
     })
     .catch(err => {
       console.log(err)
@@ -45,7 +45,7 @@ class Home extends Component {
 
     getAllTrends()
     .then(res => {
-      this.props.saveTrends(res.data.services)
+      this.props.saveTrends(res.data.data.services)
     })
     .catch(err => {
       console.log(err)
@@ -58,8 +58,6 @@ class Home extends Component {
     .catch(err => {
       console.log(err)
     })
-
-
   }
 
   render () {

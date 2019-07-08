@@ -8,13 +8,13 @@ import { connect } from 'react-redux';
 function BookingDetails(props) {
 
   const renderList = (list) => {
-    return list.map((item, i) => <div key={i} className="bookService__title__amount">{item.title} <span>£{item.price}</span></div>)
+    return list.map((item, i) => <div key={i} className="bookService__title__amount">{item.serviceName} <span>£{item.amount}</span></div>)
   }
 
   const total = (list) => {
     let total = 0
     list.forEach(item => {
-      total += parseFloat(item.price)
+      total += parseFloat(item.amount)
     });
     return total
   }

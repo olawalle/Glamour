@@ -82,7 +82,7 @@ const PersonalDetails = (props) => {
         </div>
       </Display>
       
-      <Display if={props.user.role === 'serviceprovider'}>
+      <Display if={props.user.role === 'provider'}>
         <div className="personalDetails">
           <Grid stackable>
               <Grid.Row>
@@ -96,7 +96,7 @@ const PersonalDetails = (props) => {
                   </Grid.Column>
                   <Grid.Column width={9}>
                       <Input 
-                        value="Mary Jane"
+                        value={props.user.fullname}
                       />
                   </Grid.Column>
               </Grid.Row>
@@ -111,10 +111,10 @@ const PersonalDetails = (props) => {
                   </Grid.Column>
                   <Grid.Column width={9}>
                       <Input 
-                        value="Mary Jane"
+                        value={props.user.email}
                       />
                       <Input 
-                        placeholder="Mobile number"
+                        placeholder={props.user.phone}
                       />
                   </Grid.Column>
               </Grid.Row>

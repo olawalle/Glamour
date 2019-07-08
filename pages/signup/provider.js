@@ -64,6 +64,9 @@ class ProviderSignup extends Component {
             .then(res => {
                 this.setState({signingUp: false})
                 console.log(res)
+                this.setState({message: res.data.message})
+                this.setState({snackType: 'success'})
+                this._showSnackbarHandler()
             })
             .catch(err => {
                 this.setState({signingUp: false})

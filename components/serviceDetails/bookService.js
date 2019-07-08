@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import { Button } from 'semantic-ui-react';
 import {getUserData} from '../../store'
@@ -11,13 +11,13 @@ const BookService = (props) => {
 
     const total = () => {
         let total = 0
-        props.subscribedServices.forEach(itm => total += parseFloat(itm.price))
+        props.subscribedServices.forEach(itm => total += parseFloat(itm.amount))
         return total
     }
 
     const renderServicesList = () => {
          return props.subscribedServices.map((item, i) => {
-            return <div className="bookService__title__amount" key={'item'+i}>{item.title} <span>£{item.price}</span></div>
+            return <div className="bookService__title__amount" key={'item'+i}>{item.serviceName} <span>£{item.amount}</span></div>
         })
     }
 
@@ -34,26 +34,31 @@ const BookService = (props) => {
     }
 
     const logg = () => {
-        console.log(props)
+        console.log(props.providerDetails)
+    }
+
+    const submit = () => {
+        console.log(props.subscribedServices)
     }
 
     return (
         <div className="bookService">
             <p className="usersName" onClick={() => logg()}>
-                Book {props.providerDetails.name}
+                Book {props.providerDetails.fullname}
             </p>
 
             <Display if={!isPickingDate}>
                 <span onClick={() => setPickingStatus(true)}>
                     <img src="/static/icons/close.svg" className="close" title="close" alt=""/>
                 </span>
-                <GlamourDatePicker pickTime={pickTime} selectedTime={selectedTime} selectedDate={selectedDate} pickDate={pickDate}/>
+                <GlamourDatePicker userSchedule={props.providerDetails.schedules} pickTime={pickTime} selectedTime={selectedTime} selectedDate={selectedDate} pickDate={pickDate}/>
             </Display>
 
             <Display if={isPickingDate}>
                 <img src="../../static/images/calender.png" className="pickerImage" />
                 <input type="text"
                     value={`${selectedDate} ${selectedTime}`}
+                    readOnly
                     onFocus={() => setPickingStatus(false)}
                     placeholder="When do you want this?"
                     className="date--picker" />
@@ -67,7 +72,7 @@ const BookService = (props) => {
                     {renderServicesList()}
                     <div className="bookService__title__amount_total">Total <span>£{total()}</span></div>
                 </div>
-                <Button secondary className="proceedBtn">
+                <Button secondary className="proceedBtn" onClick={submit} disabled={total() === 0 ? true : false}>
                     <Link href='/checkout'>Proceed to checkout</Link>
                 </Button>
             </Display>

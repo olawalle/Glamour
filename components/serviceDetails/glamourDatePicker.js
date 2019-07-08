@@ -16,6 +16,7 @@ export default class glamourDatePicker extends Component {
       next: false,
       prev: true
     },
+    availableDaysOfTheWeek: [],
     allDates: [],
     monthNames: [
       {name: "January", position: 1},
@@ -132,16 +133,30 @@ export default class glamourDatePicker extends Component {
       let fullPreviouslySelectedDate = datesDictionary[`${month}, ${year}`].map((date, i) => {
         if (day === date.day) {
           selectedDatesPosition = i
-          return  {... date, active: 'active'}
+          return  {...date, active: 'active'}
          } else {
           return {...date, active: ''}
          }
+      }).map(d => {
+        return {...d, isAvailable: this.userIsAvailable(`${d.day}, ${d.month}`)}
       })
       this.moveDatesLeft(selectedDatesPosition)
-      this.setState({allDates: fullPreviouslySelectedDate})
+      this.setState({allDates: fullPreviouslySelectedDate}, () => {
+        console.log(this.state.allDates)
+      })
     } else {
-      this.setState({allDates: datesDictionary[`${currentMonth}, ${currentYear}`]})
+      let all = datesDictionary[`${currentMonth}, ${currentYear}`].map(d => {
+        return {...d, isAvailable: this.userIsAvailable(`${d.day}, ${d.month}`)}
+      })
+      console.log(all)
+      this.setState({allDates: all})
     }
+  }
+
+  userIsAvailable = (date) => {
+    let whatDay = (dayjs(date).$d).toString().split(' ')[0]
+    let isAvailable = this.props.userSchedule.map(day => day.day).includes(whatDay)
+    return isAvailable ? 'isAvailable' : 'notAvailable'
   }
 
   moveDatesLeft = (n) => {
@@ -168,11 +183,11 @@ export default class glamourDatePicker extends Component {
 
   renderDates = () => {
     return this.state.allDates.map((day, i) => {
-      return i === 0 ? <div key={`date${i}`} onClick={() => this.pick(i)} className={`card--content ${day.active}`} title={`Book for ${ day.day } ${day.month}`}>
+      return i === 0 ? <div key={`date${i}`} onClick={() => this.pick(i)} className={`card--content ${day.active} ${day.isAvailable}`} title={`Book for ${ day.day } ${day.month}`}>
               {day.day}
             </div>
             :
-            <div key={`date${i}`} onClick={() => this.pick(i)} className={`card--content ${day.active}`}  title={`Book for ${ day.day } ${day.month}`}>
+            <div key={`date${i}`} onClick={() => this.pick(i)} className={`card--content ${day.active} ${day.isAvailable}`}  title={`Book for ${ day.day } ${day.month}`}>
               {day.day}
             </div>
     })
@@ -181,10 +196,19 @@ export default class glamourDatePicker extends Component {
   pick = (i) => {
     let newDates = this.state.allDates.map((date, j) => i === j ? {...date, active: 'active'} : {...date, active: ''})
     let pickedDate = `${newDates[i].day} ${newDates[i].month}`
+
+    let whatDay = (dayjs(pickedDate).$d).toString().split(' ')[0]
+    let daySchedule = this.props.userSchedule.find(d => d.day === whatDay)
+    console.log(daySchedule)
+    this.setState({userAvailableTimes: daySchedule}, () => {
+      this.getUserAvailableTimesArray()
+    })
+
     this.setState({allDates: newDates})
     this.setState({pickedDate: pickedDate}, () => {
       this.props.pickDate(pickedDate)
     })
+    console.log(pickedDate)
   }
 
   getMonth = () => {
@@ -252,9 +276,7 @@ export default class glamourDatePicker extends Component {
     }
   }
 
-  componentWillMount() {
-    this.getDates(this.props.selectedDate)
-
+  getUserAvailableTimesArray = () => {
     let limits = {}
     this.state.times.find((time, i) => {
       if (time.time === this.state.userAvailableTimes.from) {
@@ -273,6 +295,11 @@ export default class glamourDatePicker extends Component {
     this.setState({userAvailableTimesArray: userAvailableTimesArray}, () => {
       this.pickTime(null, this.props.selectedTime)  
     })
+  }
+
+  componentWillMount() {
+    this.getDates(this.props.selectedDate)
+    this.getUserAvailableTimesArray()
   }
 
   render () {
@@ -296,7 +323,7 @@ export default class glamourDatePicker extends Component {
           <Grid.Row className="timeRow">
             {
              this.state.userAvailableTimesArray.map((time, i) => {
-               return <Grid.Column width={4}>
+               return <Grid.Column width={4} key={`time${i}`}>
                         <div className={`singleTime ${time.selected}`} onClick={() => this.pickTime(i)}>
                           {time.time}
                         </div>

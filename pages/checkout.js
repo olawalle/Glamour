@@ -8,13 +8,18 @@ import Link from 'next/link';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions'
 import './less/checkout.less'
+import Router from 'next/router'
 import Display from '../components/shared/Display';
+import { postBookings, postPayment } from '../services/auth.ts'
+import { StripeProvider, Elements } from "react-stripe-elements";
 
 class Checkout extends Component {
 
   state = {
-    step: 1,
-    open: false
+    step: 2,
+    open: false,
+    id: '',
+    stripe: null
   }
 
   styles = {
@@ -44,7 +49,41 @@ class Checkout extends Component {
 
   updateState = (n) => {
     this.setState({step: n})
-    this.triggerAddressSubmit
+    // this.triggerAddressSubmit
+  }
+
+  createBooking = () => {
+    let total = 0
+    this.props.subscribedServices.map(service => total += parseFloat(service.amount))
+    let data = {
+      providerId: this.props.subscribedServices[0].userId,
+      services: this.props.subscribedServices,
+      amount: total,
+      addressId: this.props.activeAddress
+    }
+    console.log(data)
+    postBookings(data)
+    .then(res => {
+      console.log(res)
+      this.setState({id: res.data.data._id}, () => {
+        console.log(this.state)
+      })
+      this.sendPayment()
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  sendPayment = () => {
+    postPayment(this.state.id)
+    .then(res => {
+      this.updateState(2)
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
   }
 
   triggerAddressSubmit = () => {
@@ -94,17 +133,25 @@ class Checkout extends Component {
 
   componentDidMount() {
     console.log(this.refs)
+    if (!window.sessionStorage.getItem('glamourToken')) Router.push('/login')
+    
+    // this.setState({
+    //   stripe: window.Stripe("pk_test_YOUR_STRIPE_PK_KEY")
+    // });
+  }
+
+  componentWillMount() {
   }
 
   render() {
 
     const bttn = () => {
       if (this.state.step === 1) {
-        return <Button  secondary className="proceedBtn" onClick={() => this.updateState(2)}>
+        return <Button  secondary className="proceedBtn" onClick={() => this.createBooking()}>
             Continue
         </Button>
     } else {
-        return <Button secondary className="proceedBtn" onClick={() => this.updateCart()}>
+        return <Button secondary className="proceedBtn" onClick={() => this.sendPayment()}>
           <div> <img src='/static/icons/lock.svg' />  Make payment</div>
         </Button>
       }
@@ -201,7 +248,8 @@ class Checkout extends Component {
 
 const mapStateToProps = (state) => ({
   subscribedServices: state.subscribedServices.subscribedServices,
-  providerDetails: state.subscribedServices.selectedProvider
+  providerDetails: state.subscribedServices.selectedProvider,
+  activeAddress: state.addresses.activeAddress
 })
 
 export default connect(mapStateToProps, actions)(Checkout)
