@@ -30252,9 +30252,7 @@ function (_App) {
 
   Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_3__["default"])(Glamour, [{
     key: "componentDidMount",
-    value: function componentDidMount() {
-      console.log('from app');
-    }
+    value: function componentDidMount() {}
   }, {
     key: "render",
     value: function render() {
@@ -30325,7 +30323,7 @@ function (_App) {
 /*!********************************!*\
   !*** ./store/actions/types.js ***!
   \********************************/
-/*! exports provided: UPDATE_SIGNUP_FORM, UPDATE_PROVIDER_SIGNUP_FORM, UPDATE_LOGIN_FORM, SAVE_USER_DATA, SAVE_LOGGEDIN_STATUS, ADD_TEAM_MEMBERS, SET_LOADING_MEMBERS, SAVE_SERVICE_PROVIDERS, ADD_SERVICES, ADD_TRENDS, ADD_TESTIMONIALS, ADD_NOTIFICATIONS, SET_LOADING_SERVICES, SET_LOADING_NOTIFICATIONS, SET_WRITING_REVIEW, SET_REVIEW, SET_LOADING_TRENDS, SET_LOADING_TESTIMONIALS, SUBSCRIBE_TO_SERVICE, UNSUBSCRIBE_TO_SERVICE, SELECTED_PROVIDER, ADD_CART_ITEM, ADD_CART_ITEMS, REMOVE_CART_ITEM */
+/*! exports provided: UPDATE_SIGNUP_FORM, UPDATE_PROVIDER_SIGNUP_FORM, UPDATE_LOGIN_FORM, SAVE_USER_DATA, SAVE_LOGGEDIN_STATUS, ADD_TEAM_MEMBERS, SET_LOADING_MEMBERS, SAVE_SERVICE_PROVIDERS, ADD_SERVICES, ADD_TRENDS, ADD_TESTIMONIALS, ADD_NOTIFICATIONS, SET_LOADING_SERVICES, SET_LOADING_NOTIFICATIONS, SET_WRITING_REVIEW, SET_REVIEW, SET_LOADING_TRENDS, SET_LOADING_TESTIMONIALS, SUBSCRIBE_TO_SERVICE, UNSUBSCRIBE_TO_SERVICE, SELECTED_PROVIDER, ADD_CART_ITEM, ADD_CART_ITEMS, REMOVE_CART_ITEM, SAVE_PROVIDER_SERVICES, SAVE_ADDRESSES, SELECT_ACTIVE_ADDRESS, SAVE_USER_BOOKINGS */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30354,6 +30352,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_CART_ITEM", function() { return ADD_CART_ITEM; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_CART_ITEMS", function() { return ADD_CART_ITEMS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_CART_ITEM", function() { return REMOVE_CART_ITEM; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SAVE_PROVIDER_SERVICES", function() { return SAVE_PROVIDER_SERVICES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SAVE_ADDRESSES", function() { return SAVE_ADDRESSES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SELECT_ACTIVE_ADDRESS", function() { return SELECT_ACTIVE_ADDRESS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SAVE_USER_BOOKINGS", function() { return SAVE_USER_BOOKINGS; });
 // ACTION TYPES STAYS HERE
 var UPDATE_SIGNUP_FORM = 'update_signup_form';
 var UPDATE_PROVIDER_SIGNUP_FORM = 'update_provider_signup_form';
@@ -30379,6 +30381,10 @@ var SELECTED_PROVIDER = 'selected_provider';
 var ADD_CART_ITEM = 'add_cart_item';
 var ADD_CART_ITEMS = 'add_cart_items';
 var REMOVE_CART_ITEM = 'remove_cart_item';
+var SAVE_PROVIDER_SERVICES = 'save_provider_services';
+var SAVE_ADDRESSES = 'save_addresses';
+var SELECT_ACTIVE_ADDRESS = 'save_active_address';
+var SAVE_USER_BOOKINGS = 'save_user_bookings';
 
 /***/ }),
 
@@ -30416,7 +30422,10 @@ __webpack_require__.r(__webpack_exports__);
 
  // INITAL STATE OF STORE
 
-var INITIAL_STATE = {};
+var INITIAL_STATE = {}; // const r = () => {
+//   return window.localStorageocalStorage.getItem('store') ? JSON.parse(localStorage.getItem('store')) : {}
+// }
+
 function initStore() {
   var initialState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
   return Object(redux__WEBPACK_IMPORTED_MODULE_3__["createStore"])(_reducers__WEBPACK_IMPORTED_MODULE_4__["default"], initialState, Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_0__["composeWithDevTools"])(Object(redux__WEBPACK_IMPORTED_MODULE_3__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], redux_promise__WEBPACK_IMPORTED_MODULE_2___default.a)));
@@ -30463,10 +30472,54 @@ var getCartItems = function getCartItems(state) {
   });
 };
 var getBookings = function getBookings(state) {
-  return state.bookings.bookedItemIds.map(function (id) {
-    return state.bookings.bookedItems[id];
-  });
+  return state.bookings;
 };
+
+/***/ }),
+
+/***/ "./store/reducers/address.js":
+/*!***********************************!*\
+  !*** ./store/reducers/address.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/objectSpread */ "./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js");
+/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/types */ "./store/actions/types.js");
+
+
+var INITIAL_STATE = {
+  addressList: [],
+  activeAddress: ''
+};
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
+
+  var _ref = arguments.length > 1 ? arguments[1] : undefined,
+      type = _ref.type,
+      payload = _ref.payload;
+
+  switch (type) {
+    case _actions_types__WEBPACK_IMPORTED_MODULE_1__["SAVE_ADDRESSES"]:
+      {
+        return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state, {
+          addressList: payload
+        });
+      }
+
+    case _actions_types__WEBPACK_IMPORTED_MODULE_1__["SELECT_ACTIVE_ADDRESS"]:
+      {
+        return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state, {
+          activeAddress: payload
+        });
+      }
+
+    default:
+      return state;
+  }
+});
 
 /***/ }),
 
@@ -30552,107 +30605,82 @@ var INITIAL_STATE = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/objectSpread */ "./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/toConsumableArray */ "./node_modules/@babel/runtime-corejs2/helpers/esm/toConsumableArray.js");
-/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/types */ "./store/actions/types.js");
-
-
+/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/types */ "./store/actions/types.js");
 
 var INITIAL_STATE = {
-  bookedItemIds: [1, 2, 3],
-  bookedItems: {
-    1: {
-      id: 1,
-      key: '1',
-      status: 'running',
-      progressText: 'In progress',
-      providerInfo: {
-        avatar: '/static/images/team/teammember1.png',
-        name: 'Britanny McDavidson',
-        formattedTime: '08:00 pm, Today'
-      },
-      services: [{
-        name: 'Title of service',
-        price: 80
-      }, {
-        name: 'Title of service',
-        price: 65
-      }]
-    },
-    2: {
-      id: 2,
-      key: '2',
-      progressText: 'Completed',
-      status: 'completed',
-      providerInfo: {
-        avatar: '/static/images/team/teammember4.png',
-        name: 'Mary Jane',
-        formattedTime: '04:00 pm, Tommorrow'
-      },
-      services: [{
-        name: 'Title of service',
-        price: 75
-      }, {
-        name: 'Title of service',
-        price: 30
-      }]
-    },
-    3: {
-      id: 3,
-      key: '3',
-      status: 'completed',
-      progressText: 'Completed',
-      providerInfo: {
-        avatar: '/static/images/team/teammember3.png',
-        name: 'Joe Black',
-        formattedTime: '21:00 am, Today'
-      },
-      services: [{
-        name: 'Title of service',
-        price: 5
-      }, {
-        name: 'Title of service',
-        price: 10
-      }, {
-        name: 'Title of service',
-        price: 300
-      }]
-    }
+  bookedItems: {// 1: {
+    //     id: 1,
+    //     key: '1',
+    //     status: 'running',
+    //     progressText: 'In progress',
+    //     providerInfo: {
+    //       avatar: '/static/images/team/teammember1.png',
+    //       name: 'Britanny McDavidson',
+    //       formattedTime: '08:00 pm, Today',
+    //     },
+    //     services: [{ name: 'Title of service', price: 80 }, { name: 'Title of service', price: 65 }],
+    //   },
+    // 2: {
+    //     id: 2,
+    //     key: '2',
+    //     progressText: 'Completed',
+    //     status: 'completed',
+    //     providerInfo: {
+    //       avatar: '/static/images/team/teammember4.png',
+    //       name: 'Mary Jane',
+    //       formattedTime: '04:00 pm, Tommorrow',
+    //     },
+    //     services: [{ name: 'Title of service', price: 75 }, { name: 'Title of service', price: 30 }],
+    //   },
+    // 3: {
+    //     id: 3,
+    //     key: '3',
+    //     status: 'completed',
+    //     progressText: 'Completed',
+    //     providerInfo: {
+    //       avatar: '/static/images/team/teammember3.png',
+    //       name: 'Joe Black',
+    //       formattedTime: '21:00 am, Today',
+    //     },
+    //     services: [{ name: 'Title of service', price: 5 }, { name: 'Title of service', price: 10 }, { name: 'Title of service', price: 300 }],
+    //   }
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
 
-  switch (action.type) {
-    case _actions_types__WEBPACK_IMPORTED_MODULE_2__["ADD_CART_ITEM"]:
+  var _ref = arguments.length > 1 ? arguments[1] : undefined,
+      type = _ref.type,
+      payload = _ref.payload;
+
+  switch (type) {
+    // case (ADD_CART_ITEM): {
+    //   let { cartItems, cartItemIds } = state;
+    //   let bookedItemIds =  [...cartItemIds ,action.payload.id]
+    //   let bookedItems = [...cartItems, action.payload]
+    //   return {
+    //     ...state,
+    //     bookedItems,
+    //     bookedItemIds
+    //   }
+    // }
+    // case (REMOVE_CART_ITEM): {
+    //   let { cartItems, cartItemIds } = state;
+    //   cartItemIds = state.cartItemIds.filter(cartItem => cartItem.id !== action.payload);
+    //   delete cartItems[action.payload];
+    //   return {
+    //     ...state,
+    //     cartItems,
+    //     cartItemIds
+    //   }
+    // }
+    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["SAVE_USER_BOOKINGS"]:
       {
-        var cartItems = state.cartItems,
-            cartItemIds = state.cartItemIds;
-        var bookedItemIds = [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(cartItemIds), [action.payload.id]);
-        var bookedItems = [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(cartItems), [action.payload]);
-        return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state, {
-          bookedItems: bookedItems,
-          bookedItemIds: bookedItemIds
-        });
+        console.log('reducer', payload);
+        return {
+          bookedItems: payload
+        };
       }
-
-    case _actions_types__WEBPACK_IMPORTED_MODULE_2__["REMOVE_CART_ITEM"]:
-      {
-        var _cartItems = state.cartItems,
-            _cartItemIds = state.cartItemIds;
-        _cartItemIds = state.cartItemIds.filter(function (cartItem) {
-          return cartItem.id !== action.payload;
-        });
-        delete _cartItems[action.payload];
-        return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state, {
-          cartItems: _cartItems,
-          cartItemIds: _cartItemIds
-        });
-      }
-
-    case _actions_types__WEBPACK_IMPORTED_MODULE_2__["ADD_CART_ITEMS"]:
-      {}
 
     default:
       return state;
@@ -30782,8 +30810,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _reducers_serviceProviders__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../reducers/serviceProviders */ "./store/reducers/serviceProviders.js");
 /* harmony import */ var _reducers_subscribedServices__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../reducers/subscribedServices */ "./store/reducers/subscribedServices.js");
 /* harmony import */ var _reducers_cart__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../reducers/cart */ "./store/reducers/cart.js");
-/* harmony import */ var _reducers_bookings__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../reducers/bookings */ "./store/reducers/bookings.js");
+/* harmony import */ var _reducers_providerServices__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../reducers/providerServices */ "./store/reducers/providerServices.js");
+/* harmony import */ var _reducers_bookings__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../reducers/bookings */ "./store/reducers/bookings.js");
+/* harmony import */ var _reducers_address__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../reducers/address */ "./store/reducers/address.js");
  // IMPORT REDUCERS HERE
+
+
 
 
 
@@ -30802,12 +30834,14 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
   team: _reducers_team__WEBPACK_IMPORTED_MODULE_3__["default"],
   serviceProviders: _reducers_serviceProviders__WEBPACK_IMPORTED_MODULE_8__["default"],
   service: _reducers_service__WEBPACK_IMPORTED_MODULE_4__["default"],
+  providerServices: _reducers_providerServices__WEBPACK_IMPORTED_MODULE_11__["default"],
   trend: _reducers_trends__WEBPACK_IMPORTED_MODULE_5__["default"],
   testimonial: _reducers_testimonial__WEBPACK_IMPORTED_MODULE_6__["default"],
   notifications: _reducers_notification__WEBPACK_IMPORTED_MODULE_7__["default"],
   subscribedServices: _reducers_subscribedServices__WEBPACK_IMPORTED_MODULE_9__["default"],
   cart: _reducers_cart__WEBPACK_IMPORTED_MODULE_10__["default"],
-  bookings: _reducers_bookings__WEBPACK_IMPORTED_MODULE_11__["default"]
+  bookings: _reducers_bookings__WEBPACK_IMPORTED_MODULE_12__["default"],
+  addresses: _reducers_address__WEBPACK_IMPORTED_MODULE_13__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (rootReducer);
 
@@ -30949,6 +30983,38 @@ var INITIAL_STATE = {
 
 /***/ }),
 
+/***/ "./store/reducers/providerServices.js":
+/*!********************************************!*\
+  !*** ./store/reducers/providerServices.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/types */ "./store/actions/types.js");
+
+var INITIAL_STATE = [];
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
+
+  var _ref = arguments.length > 1 ? arguments[1] : undefined,
+      type = _ref.type,
+      payload = _ref.payload;
+
+  switch (type) {
+    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["SAVE_PROVIDER_SERVICES"]:
+      {
+        return payload;
+      }
+
+    default:
+      return state;
+  }
+});
+
+/***/ }),
+
 /***/ "./store/reducers/service.js":
 /*!***********************************!*\
   !*** ./store/reducers/service.js ***!
@@ -30965,7 +31031,7 @@ __webpack_require__.r(__webpack_exports__);
 var INITIAL_STATE = {
   beautyServices: {
     byId: [],
-    allServices: {},
+    allServices: [],
     loadingServices: false
   }
 };
@@ -31258,7 +31324,6 @@ var INITIAL_STATE = {
   switch (type) {
     case _actions_types__WEBPACK_IMPORTED_MODULE_0__["SAVE_SERVICE_PROVIDERS"]:
       {
-        console.log(payload);
         return {
           allProviders: payload
         };
@@ -31281,9 +31346,7 @@ var INITIAL_STATE = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/objectSpread */ "./node_modules/@babel/runtime-corejs2/helpers/esm/objectSpread.js");
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/toConsumableArray */ "./node_modules/@babel/runtime-corejs2/helpers/esm/toConsumableArray.js");
-/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/types */ "./store/actions/types.js");
-
+/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/types */ "./store/actions/types.js");
 
 
 var INITIAL_STATE = {
@@ -31298,34 +31361,14 @@ var INITIAL_STATE = {
       payload = _ref.payload;
 
   switch (type) {
-    case _actions_types__WEBPACK_IMPORTED_MODULE_2__["SUBSCRIBE_TO_SERVICE"]:
+    case _actions_types__WEBPACK_IMPORTED_MODULE_1__["SUBSCRIBE_TO_SERVICE"]:
       {
-        var check = state.subscribedServices.find(function (service) {
-          return service.title === payload.title;
-        });
-
-        if (check === undefined) {
-          var newState = [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(state.subscribedServices), [payload]);
-          return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state, {
-            subscribedServices: newState
-          });
-        } else {
-          return state;
-        }
-      }
-
-    case _actions_types__WEBPACK_IMPORTED_MODULE_2__["UNSUBSCRIBE_TO_SERVICE"]:
-      {
-        var _newState = state.subscribedServices.filter(function (service) {
-          return service.title !== payload;
-        });
-
         return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state, {
-          subscribedServices: _newState
+          subscribedServices: payload
         });
       }
 
-    case _actions_types__WEBPACK_IMPORTED_MODULE_2__["SELECTED_PROVIDER"]:
+    case _actions_types__WEBPACK_IMPORTED_MODULE_1__["SELECTED_PROVIDER"]:
       {
         return Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_0__["default"])({}, state, {
           selectedProvider: payload

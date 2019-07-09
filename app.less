@@ -1,41 +1,41 @@
 @font-face {
         font-family: sofiaproblack;
-        src: url(/static/fonts/sofiapro/Sofia\ Pro\ Black.ttf);
+        src: url('/static/fonts/sofiapro/Sofia\ Pro\ Black.ttf');
 }
 
 @font-face {
         font-family: sofiaproblackitalic;
-        src: url(/static/fonts/sofiapro/Sofia\ Pro\ Black\ Italic.ttf);
+        src: url('/static/fonts/sofiapro/Sofia\ Pro\ Black\ Italic.ttf');
 }
 
 @font-face {
         font-family: sofiaproregular;
-        src: url(/static/fonts/sofiapro/Sofia\ Pro\ Regular.ttf);
+        src: url('/static/fonts/sofiapro/Sofia\ Pro\ Regular.ttf');
 }
 
 @font-face {
         font-family: sofiapromedium;
-        src: url(/static/fonts/sofiapro/Sofia\ Pro\ Medium.ttf);
+        src: url('/static/fonts/sofiapro/Sofia\ Pro\ Medium.ttf');
 }
 
 @font-face {
         font-family: sofiapro;
-        src: url(/static/fonts/sofiapro/sofiapro-light.otf);
+        src: url('/static/fonts/sofiapro/sofiapro-light.otf');
 }
 
 @font-face {
         font-family: sofiaprosemibold;
-        src: url(/static/fonts/sofiapro/Sofia\ Pro\ SemiBold.ttf);
+        src: url('/static/fonts/sofiapro/Sofia\ Pro\ SemiBold.ttf');
 }
 
 @font-face {
         font-family: fontfreightproblack;
-        src: url(/static/fonts/Freight\ Big\ Pro/FreightBigProBlack.otf);
+        src: url('/static/fonts/Freight\ Big\ Pro/FreightBigProBlack.otf');
 }
 
 @font-face {
         font-family: fontfreightbigproblack;
-        src: url(/static/fonts/Freight\ Big\ Pro/Freight\_Big\_Pro\ Bold.otf);
+        src: url('/static/fonts/Freight\ Big\ Pro/Freight\_Big\_Pro\ Bold.otf');
 }
 
 body {
@@ -404,6 +404,61 @@ body ::-webkit-scrollbar-track {
         width: 100% !important;
         box-shadow: 0px 0px 10px rgba(99, 115, 129, 0.1) !important;
 }
+   
+        .login-form {
+                padding: 5px 25px !important;
+        
+                .login-form--input1{
+                        margin: 10px 0px !important;
+                        margin-bottom: 30px !important;
+                }
+                
+                .login-form--input2 {
+                        margin: 10px 0px !important;
+                }
+                
+                .forgotPassword {
+                        font-family: sofiaprosemibold !important;
+                        color: #e84671;
+                        font-size: 16px;
+                        margin-top: 10px !important;
+                        margin-bottom: 20px !important;
+                        text-align: right !important;
+                        display: block !important;
+                }
+                
+                .column {
+                        background: white !important;
+                        padding: 45px 20px !important;
+                        // marginTop: 135px;
+                        margin-top: 4% !important;
+                        padding-bottom: 70px !important;
+                }
+                
+                .button {
+                        height: 60px !important;
+                        width: 126px !important;
+                        margin-bottom: 20px;
+                }
+        }
+        
+        
+              
+              
+        @media only screen and (max-width: 480px) {
+              
+                #login {
+                  .column {
+                    width: 100% !important
+                  }
+              
+                  form{
+                    padding: 5px 0px !important;
+                  }
+                }
+              
+        }
+
 
 
 // @media only screen and (min-width: 1200px){

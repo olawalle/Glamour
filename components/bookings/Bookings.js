@@ -32,15 +32,15 @@ const Bookings = (props) => {
                         Bookings
                       </h2>
                     </Card.Header>
-                    <Display if={!props.bookings.length}>
+                    <Display if={!props.bookings.bookedItems.length === 0}>
                       <EmptyState
                         icon="/static/images/nobookings.svg"
                         text="You have not made any booking yet"
                       />
                     </Display>
-                    <Display if={props.bookings.length}>
+                    <Display if={props.bookings.bookedItems.length > 0}>
                       <BookingsList
-                        { ...props }
+                        { ...props.bookings.bookedItems }
                       />
                     </Display>
                   </Card.Content>

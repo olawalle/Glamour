@@ -39,16 +39,16 @@ class ServiceProvider extends Component {
     }
 
     getFormData = (e) => {
-        console.log(e)
+        // console.log(e)
         // filter list of providers based on user preferences
-        console.log(this.props.serviceProviders)
+        // console.log(this.props.serviceProviders)
         let newArray = this.props.serviceProviders.filter(provider => {
             return provider.description.toLowerCase().includes(e.searchFor.toLowerCase())
                 && provider.service.toLowerCase().includes(e.sortBy.toLowerCase())
                 && provider.mileRadius.toLowerCase().includes(e.distance.toLowerCase())
                 && provider.postcode.toLowerCase().includes(e.postcode.toLowerCase())
         })
-        console.log(newArray)
+        // console.log(newArray)
         this.setState({allProviders: newArray})
     }
 

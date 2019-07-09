@@ -22,7 +22,7 @@ class bookings extends Component {
     return (
       <>
         <InnerNav userRole={'client'} />
-        <Bookings {...this.props}/>
+          <Bookings {...this.props}/>
         <Footer/>
       </>
     );

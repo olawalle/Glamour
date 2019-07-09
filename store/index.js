@@ -71,5 +71,5 @@ export const getCartItems = (state) => {
 }
 
 export const getBookings = (state) => {
-  return state.bookings.bookedItemIds.map(id => state.bookings.bookedItems[id])
+  return state.bookings
 }

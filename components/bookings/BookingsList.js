@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Table, Divider, Tag } from 'antd';
 import { Button } from 'semantic-ui-react';
 import ServiceProviderMedia from '../../components/shared/ServiceProviderMedia';
@@ -7,55 +7,69 @@ import 'antd/lib/table/style/index.css';
 import 'antd/lib/pagination/style/index.css';
 import 'antd/lib/checkbox/style/index.css';
 import './less/bookingsList.less';
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions'
+
+
+
+const CartList = (props) => {
+
+  const getProvider = (id) => {
+    let provider = props.serviceProviders.find(prv => prv._id === id)
+    return provider
+  }
 
 const columns = [
   {
-    dataIndex: 'providerInfo',
-    key: 'providerInfo',
+    dataIndex: 'providerId',
+    key: 'providerId',
     align: 'left',
     width: '40%',
-    render: (providerInfo, row) => (
+    render: (row, full) => (
       <div>
         <ServiceProviderMedia
           showAvatar={true}
           className="mb-30"
-          providerInfo={row.providerInfo}
+          providerId={row}
         />
         <ServicesList
           className="mb-20"
-          services={row.services}
+          services={full.services}
         />
       </div>
     ),
   },
   {
-    dataIndex: 'id',
+    dataIndex: '_id',
     width: '40%',
     align: 'center',
-    key: 'id',
+    key: '_id',
     render: (id, row) => (
       <div className="actions">
-        <Button className={row.status == 'running' ? 'progress-btn' : row.status +'-btn'}>
-          {row.progressText}
+        <Button className={row.status == "pending" ? 'progress-btn' : row.status +'-btn'}>
+          {row.status}
         </Button>
       </div>
     )
   },
 ];
 
-
-const CartList = (props) => {
   return (
     <div className="bookingslist">
       <Table
         showHeader={false}
         showFooter={false}
-        scroll={{ x: false, y: 750 }}
+        scroll={{ x: false, y: 450 }}
         columns={columns}
-        dataSource={props.bookings}
+        dataSource={props.bookings_}
       />
     </div>
   );
 }
 
-export default CartList;
+const mapStateToProps = (state) => ({
+  serviceProviders: state.serviceProviders.allProviders,
+  bookings_: state.bookings.bookedItems
+})
+
+export default connect(mapStateToProps, actions)(CartList);

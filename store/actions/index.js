@@ -141,3 +141,11 @@ export const saveActiveAddress = (payload) => {
     payload
   }
 }
+
+export const saveUserBookings = (payload) => {
+  console.log('bookings action', payload)
+  return {
+    type: types.SAVE_USER_BOOKINGS,
+    payload
+  }
+}

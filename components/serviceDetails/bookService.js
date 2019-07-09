@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
-import { Button } from 'semantic-ui-react';
+import { Button, Modal } from 'semantic-ui-react';
 import {getUserData} from '../../store'
 import './less/bookService.less'
-import Link from 'next/link';
+import Router from 'next/router';
 import Display from '../shared/Display'
 import GlamourDatePicker from '../../components/serviceDetails/glamourDatePicker'
+import LoginForm from '../login/LoginForm';
 
 const BookService = (props) => {
 
@@ -25,6 +26,8 @@ const BookService = (props) => {
     let [ selectedDate, setSelectedDate ] = useState('');
     let [ selectedTime, setSelectedTime ] = useState('');
 
+    const [open, close] = useState(false)
+
     const pickDate = (date) => {
         setSelectedDate(date)
     }
@@ -39,6 +42,7 @@ const BookService = (props) => {
 
     const submit = () => {
         console.log(props.subscribedServices)
+        !window.sessionStorage.getItem('glamourToken') ? close(true) : Router.push('/checkout')
     }
 
     return (
@@ -73,9 +77,15 @@ const BookService = (props) => {
                     <div className="bookService__title__amount_total">Total <span>£{total()}</span></div>
                 </div>
                 <Button secondary className="proceedBtn" onClick={submit} disabled={total() === 0 ? true : false}>
-                    <Link href='/checkout'>Proceed to checkout</Link>
+                    Proceed to checkout
                 </Button>
             </Display>
+
+            
+      
+            <Modal size='small' open={open} onClose={() => close(false)}>
+                <LoginForm from="checkout" />
+            </Modal>
         </div>
     )
 }

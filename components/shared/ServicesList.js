@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './less/servicesList.less';
 
 const ServicesList = (props) => {
+
   return (
     <table className={ "services " + props.className }>
       <tbody>
@@ -9,10 +10,10 @@ const ServicesList = (props) => {
           return (
             <tr key={index}>
               <td className="fw600 h40 pb-15">
-                {service.name}
+                {service.serviceName}
               </td>
               <td className="fw600 h40 pb-15 has-text-aligned-right">
-                £{service.price}
+                £{service.amount}
               </td>
             </tr>
           )
@@ -20,7 +21,7 @@ const ServicesList = (props) => {
         <tr>
           <td className="fw600">Total</td>
           <td className="is-pink fw900 has-text-aligned-right">
-            £{props.services.reduce((agg, cur) => agg + cur.price, 0)}
+            £{props.services.reduce((agg, cur) => agg + parseFloat(cur.amount), 0)}
           </td>
         </tr>
       </tbody>

@@ -9,7 +9,7 @@ import * as actions from '../../store/actions';
 import Router from 'next/router';
 import './less/loginForm.less';
 import Display from '../shared/Display';
-import { Snackbar } from '../shared/SnackBar';
+// import { Snackbar } from '../shared/SnackBar';
 
 const LoginForm = (props) => {
 
@@ -68,22 +68,23 @@ const LoginForm = (props) => {
             Router.push('/serviceproviders')
 
             getBookings(res.data.data.token)
-            .then(res => {
-              console.log(res)
+            .then(bookings => {
+              console.log('bookings', bookings.data.data.bookings)
+              props.saveUserBookings(bookings.data.data.bookings)
             })
             .catch(err => {
               console.log({...err})
             })
             
             getUserAddresses(res.data.data.token)
-            .then(res => {
+            .then(addresses => {
                 // updateUserAddresses(res.data.addresses)
                 // setAddressData(res.data.addresses[0])
-                props.saveUserAddresses(res.data.addresses)
-                props.saveActiveAddress(res.data.addresses[0]['_id'])
-                let addressList = res.data.addresses.map((add, i) => {
-                  return { key: `${add.aptNumber}, ${add.streetNumber}`, value: add._id, text: `${add.aptNumber}, ${add.streetNumber}` }
-                })
+                props.saveUserAddresses(addresses.data.addresses)
+                props.saveActiveAddress(addresses.data.addresses[0]['_id'])
+                // let addressList = res.data.addresses.map((add, i) => {
+                //   return { key: `${add.aptNumber}, ${add.streetNumber}`, value: add._id, text: `${add.aptNumber}, ${add.streetNumber}` }
+                // })
             })
             .catch(err => {
               console.log(err)
@@ -92,16 +93,16 @@ const LoginForm = (props) => {
             Router.push('/provider/home')
 
             getProviderBookings(res.data.data.token)
-            .then(res => {
-              console.log(res)
+            .then(providerBookings => {
+              console.log(providerBookings)
             })
             .catch(err => {
               console.log({...err})
             })
 
             getProviderReviews(response.data.me._id)
-            .then(res => {
-              console.log(res)
+            .then(reviews => {
+              console.log(reviews)
             })
             .catch(err => {
               console.log(err)
@@ -142,13 +143,14 @@ const LoginForm = (props) => {
   }, [])
   return (
     <>
-      <Snackbar ref = {snackbarRef} 
+      {/* <Snackbar ref = {snackbarRef} 
         type={snackType} 
         position={'top'} 
         showClose={true} 
         duration={5000} 
-        message={message} />
-      <Grid id="login" className="login" columns={2} centered>
+        message={message} /> */}
+      {
+        !props.from ? <Grid id="login" className="login" columns={2} centered>
         <Grid.Row>
           <Grid.Column mobile={14} tablet={9} computer={7} largeScreen={6} widescreen={5}>
             <Header textAlign="center" as='h1'>
@@ -208,7 +210,47 @@ const LoginForm = (props) => {
             </form>
           </Grid.Column>
         </Grid.Row>
-      </Grid>
+      </Grid> : <form className="login-form">
+              <Input
+                type="email"
+                error={formErrors['email']}
+                onChange={(e) => handleChange(e, 'email')}
+                value={loginFormData.email}
+                className="login-form--input1"
+                size="huge"
+                placeholder='Email address'
+                fluid
+              />
+              <Input
+                type="password"
+                error={formErrors['password']}
+                onChange={(e) => handleChange(e, 'password')}
+                value={loginFormData.password}
+                className="login-form--input2"
+                size="huge"
+                placeholder='Password'
+                fluid
+              />
+              <Link href="/forgotpassword/reset">
+                <a className="forgotPassword">Forgot password ?</a>
+              </Link>
+              <div className="is-v-centered">
+                <Button
+                  onClick={submit}
+                  size="large"
+                  secondary >
+                    <Display if={logginIn}>
+                      <Loader active inline='centered' />
+                    </Display>
+                    <Display if={!logginIn}>
+                      Log in
+                    </Display>
+                  </Button>
+              </div>
+
+            </form>
+      }
+      
     </>
   );
 }

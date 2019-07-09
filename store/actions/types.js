@@ -53,3 +53,5 @@ export const SAVE_PROVIDER_SERVICES = 'save_provider_services';
 export const SAVE_ADDRESSES = 'save_addresses';
 
 export const SELECT_ACTIVE_ADDRESS = 'save_active_address'
+
+export const SAVE_USER_BOOKINGS = 'save_user_bookings'

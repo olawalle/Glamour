@@ -7,9 +7,9 @@ import './less/homeService.less'
 
 const HomeService = (props) => {
 
-  useEffect(() => {
-    console.log(props)
-  }, [])
+  // useEffect(() => {
+  //   console.log(props)
+  // }, [])
 
   let [ serviceSelected, setPickingStatus ] = useState(false);
   
@@ -29,16 +29,16 @@ const HomeService = (props) => {
         <Grid.Row>
             <Grid.Column width={12}>
               <p className="serviceTitle">
-                {props.service.serviceName}
+                {props.service ? props.service.serviceName : ''}
               </p>
               <p className="serviceDesc">
-                {props.service.description}
+                {props.service ? props.service.description : ''}
               </p>
               <p className="serviceCost">
-              £{props.service.amount}
+              £{props.service ? props.service.amount : ''}
               </p>
               <p className="serviceDuration">
-                <img src="../static/icons/clock.svg" alt=""/> {props.service.duration}
+                <img src="../static/icons/clock.svg" alt=""/> {props.service ? props.service.duration : ''}
               </p>
             </Grid.Column>
             <Grid.Column width={2} className="">
