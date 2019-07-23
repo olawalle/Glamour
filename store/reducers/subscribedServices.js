@@ -1,8 +1,9 @@
-import { SUBSCRIBE_TO_SERVICE, UNSUBSCRIBE_TO_SERVICE, SELECTED_PROVIDER } from '../actions/types';
+import { SUBSCRIBE_TO_SERVICE, SELECTED_TIME, SELECTED_PROVIDER } from '../actions/types';
 
 const INITIAL_STATE = {
   selectedProvider: {},
-  subscribedServices: []
+  subscribedServices: [],
+  time: ''
 }
 
 export default function (state = INITIAL_STATE, { type, payload }) {
@@ -18,6 +19,12 @@ export default function (state = INITIAL_STATE, { type, payload }) {
         return {
             ...state,
             selectedProvider: payload
+        }
+    }
+    case SELECTED_TIME: {
+        return {
+            ...state,
+            time: payload
         }
     }
     default:

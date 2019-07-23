@@ -4,6 +4,7 @@ export default class CustomImageUploader extends Component {
 
   state = {
     customUploader: {
+        cursor: 'pointer',
         position: 'relative',
         top: '0',
         zIndex: '40',
@@ -14,11 +15,13 @@ export default class CustomImageUploader extends Component {
     },
     customUploaderChildren: {
         height: '100%',
+        width: 'auto',
         position: 'relative',
         top: '0',
         zIndex: '20'
     },
     input: {
+      cursor: "pointer",
       width: '100%',
       height: '100%' ,
       position: 'relative',
@@ -67,7 +70,7 @@ export default class CustomImageUploader extends Component {
           top: '0',
           zIndex: '40',
           overflow: 'hidden',
-          width: '100%',
+          width: `${this.refs.componentChildren.clientWidth}px`,
           maxHeight: `${this.refs.componentChildren.clientHeight}px`,
           cursor: 'pointer'
       }

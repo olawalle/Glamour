@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
-import { Menu, Image, Button, Container } from 'semantic-ui-react';
+import React, {useState, useEffect} from 'react';
+import { Menu, Image, Button, Container, Divider } from 'semantic-ui-react';
 import Link from 'next/link';
 import { connect } from 'react-redux';
 import { getUserData } from '../../store'
 import './less/navbar.less';
 import Display from './Display';
+import Router from "next/router"
+import * as actions from '../../store/actions'
 
 const styles = {
   Image: {
@@ -16,7 +18,7 @@ const styles = {
     padding: '0.92857143em 2.4em'
   },
   UserIcon: {
-    margin: '0 10px',
+    margin: '0 10px 0 0',
     borderRadius: '50%',
   }
 }
@@ -28,6 +30,30 @@ const Navbar = (props) => {
   const [inside, updateInside] = useState({wrap: 'hide', inner: 'none'})
 
   const [activeItem, setactiveItem] = useState('')
+
+  const [onAccount, setOnAccount] = useState(false)
+
+  const [clientLinks, updateClient] = useState([
+    'Personal details',
+    'Address book',
+    'Payment methods and invoices',
+    'Saved service providers'
+  ])
+
+  
+  const [providerLinks, updateProvider] = useState([
+    'Personal details',
+    'Business details',
+    'Manage subscriptions',
+    'Manage payments',
+    'Upload Lookbook',
+  ])
+
+  const toActiveLink = (link) => {
+    props.saveActiveComponent(link)
+    updateBurgerId('')
+    updateInside({wrap: 'hide', inner: 'none'})
+  }
 
   const toggleClass = () => {
     if (burgerId === '') {
@@ -43,6 +69,10 @@ const Navbar = (props) => {
 
   }
 
+  useEffect(() => {
+    if (Router.router.route === "/account") setOnAccount(true)
+  }, [])
+
   return (
     <span className="navbar">
     <Menu
@@ -52,7 +82,10 @@ const Navbar = (props) => {
       <Container >
         <Menu.Item>
           <Link href="/">
-            <Image className="logo" src='/static/icons/logo.svg' size='small' />
+            {
+              props.from === 'banner' ? <Image className="logo" src='/static/icons/logo_.svg' size='small' /> :
+                <Image className="logo" src='/static/icons/logo.svg' size='small' />
+            }
           </Link>
         </Menu.Item>
 
@@ -74,7 +107,10 @@ const Navbar = (props) => {
                 </Link>
                 <Link href="/signup">
                   <Menu.Item className="mobile hidden" as='div'>
-                    <Button className="navbar-signup-btn" size="huge" secondary>Sign up</Button>
+                  {
+                    props.from === 'banner' ? <Button className="navbar-signup-btn_" size="huge">Sign up</Button> :
+                                              <Button className="navbar-signup-btn" size="huge" secondary>Sign up</Button>
+                  }
                   </Menu.Item>
                 </Link>
             </Display>
@@ -87,14 +123,13 @@ const Navbar = (props) => {
                 </Menu.Item>
               </Link>
               
-              <Link href="/cart">
+              {/* <Link href="/cart">
                 <Menu.Item className="mobile hidden cursor" as='div'>
                   <Image style={styles.UserIcon} src='/static/images/basket.svg' size='mini' />
                 </Menu.Item>
-              </Link>
+              </Link> */}
 
             </Display>
-
             {/* links to be shown if a provider logs in */}
             <Display if={props.userData.isLoggedIn && props.userData.role !== 'client'}>
             
@@ -177,11 +212,11 @@ const Navbar = (props) => {
             <Display if={props.userData.isLoggedIn && props.userData.role === 'client'}>
               <Link href="/account">
                 <Menu.Item className="cursor name" as='div'>
-                  <Image src={props.userData.pictureUrl} size='mini' /> { props.userData.fullname }
+                  <Image style={styles.UserIcon} src={props.userData.pictureUrl} size='mini' /> { props.userData.fullname }
                 </Menu.Item>
               </Link>
               
-              <Link href="/cart">
+              <Link href="/bookings">
                 <Menu.Item className="cursor" as='div'>
                   <Image src='/static/images/basket.svg' size='mini' />
                 </Menu.Item>
@@ -199,8 +234,27 @@ const Navbar = (props) => {
               </Link> 
                           
             </Display> 
-          
 
+            <hr className="hr"/>
+            
+            <Display if={Router.router.route === "/account" && props.userData.role === 'provider'}>
+              { providerLinks.map(link => {
+                return <Menu.Item className="" as='div' onClick={() => toActiveLink(link)} className="acctLinks">
+                        {link}
+                      </Menu.Item>
+                })
+              }
+            </Display>
+            
+            <Display if={Router.router.route === "/account" && props.userData.role === 'client'}>
+              { clientLinks.map(link => {
+                return <Menu.Item className="" as='div' onClick={() => toActiveLink(link)} className="acctLinks">
+                        {link}
+                      </Menu.Item>
+                })
+              }
+            </Display>
+  
         </Menu>
       </div>
     </div>
@@ -212,4 +266,4 @@ const mapStateToProps = (state) => ({
   userData: getUserData(state)
 })
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, actions)(Navbar);

@@ -1,17 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { Segment, Container, Grid, Card } from 'semantic-ui-react';
+import { Segment, Container, Grid, Card, Button } from 'semantic-ui-react';
 import EmptyState from '../shared/EmptyState';
 import Display from '../shared/Display';
 import MessagesList from './MessagesList';
 import './less/messages.less';
 import { Icon } from 'antd';
 import Router from 'next/router';
+import { getConversations, sendMessage, getProviderConversations, getClientConversations } from '../../services/auth.ts'
+import dayjs from 'dayjs';
+import lifecycle from 'react-pure-lifecycle';
 
 const Messages = (props) => {
 
   let [ isInMobileView, setIsInMobileView ] = useState(false);
   let [ isInTabletView, setIsInTabletView ] = useState(false);
   let [ msgComponentInitialized, setInitState ] = useState(false);
+  const [conversations, setConversations] = useState([])
+  const [activeConversation, setActiveConversation] = useState("")
+  const [allMessages, setAllMessages] = useState({
+    thread: []
+  })
+
+  const [interval, updateInterval] = useState(null)
 
   let resizeHandler = () => {
     if (!msgComponentInitialized) setInitState(true);
@@ -27,17 +37,74 @@ const Messages = (props) => {
   }
 
   useEffect(() => {
+    
+    // updateInterval(setInterval(() => {
+    //   getConvo(activeConversation)
+    // }, 5000))
+
+    if (Router.router.query.conversationId) {
+      getConvo(Router.router.query.conversationId)
+    } else {
+      getConvo()
+    }
+
+
     resizeHandler();
     window.addEventListener('resize', resizeHandler);
     return () => {
       window.removeEventListener('resize', resizeHandler);
+      // updateInterval(clearTimeout(interval))
     }
   }, [])
+
+  const getConvo = async (id) => {
+    try {
+      let res = props.user.role === 'client' ? await getClientConversations(props.user.id) : await getProviderConversations(props.user.id)
+      let conversations = res.data.data
+      setConversations(conversations)
+      id ? getFullConvo(id) : getFullConvo(conversations[0].message._id)
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
+  const getFullConvo = (id) => {
+    // console.log(id)
+    setActiveConversation(id)
+    getConversations(id)
+      .then(res => {
+        let thread = res.data.data.map(message => {
+          // console.log(message.userId , props.user.id)
+          return message.message.userId === props.user.id ? {
+            ...message, 
+            msg: message.message.body, 
+            time: dayjs(message.message.createdAt).format('DD MMM YYYY  hh:mm:ss'), 
+            origin: 'from'} : {
+            ...message, 
+            msg: message.message.body, 
+            time: dayjs(message.message.createdAt).format('DD MMM YYYY  hh:mm:ss'), 
+            origin: 'to'
+          }
+        })
+        setAllMessages({
+          messages: [{}],
+          thread
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
 
   const determineBackBtnClasses = () => {
     let classes = 'go-back is-v-centered mt-30 pl-2';
     if (props.threadId && ( isInMobileView || isInTabletView )) return classes;
     return classes + ' is-hidden';
+  }
+
+  const loggg = () => {
+    console.log(allMessages)
   }
 
   return (
@@ -55,7 +122,8 @@ const Messages = (props) => {
                 largeScreen={16}
                 widescreen={16}
               >
-                <Card className="messages-card h720 mb-70" fluid>
+                {/* <Card className="messages-card h720 mb-70" fluid> */}
+                <Card className="messages-card mb-70" fluid>
                   <Card.Content
                     className={isInMobileView
                       ? 'p0 message-content pr-0'
@@ -70,20 +138,20 @@ const Messages = (props) => {
                         className={determineBackBtnClasses()}
                         type="left"
                       />
-                      <h2 className="has-font-freight mt-30 pl-10">
+                      <h2 className="has-font-freight mt-30 pl-20">
                         Messages
                       </h2>
                     </Card.Header>
 
-                    <Display if={!props.messages.length}>
+                    <Display if={!conversations.length}>
                       <EmptyState
                         icon="/static/images/nomessages.svg"
                         text="No messages yet"
                       />
                     </Display>
-                    <Display if={props.messages.length}>
+                    <Display if={conversations.length}>
                       <MessagesList
-                        { ...props }
+                        { ...allMessages } conversations={conversations} activeConversation={activeConversation} getConvo={getConvo}
                         isInMobileView={isInMobileView}
                         isInTabletView={isInTabletView}
                       />

@@ -29,14 +29,14 @@ function BookingDetails(props) {
       <Grid className="userDetailsWrap">
         <Grid.Row>
           <Grid.Column width={3}>
-            <img src={props.providerDetails.userPhoto} className="userImage" alt=""/>
+            <img src={props.providerDetails.pictureUrl} className="userImage" alt=""/>
           </Grid.Column>
           <Grid.Column width={13}>
             <p className="name">
-              {props.providerDetails.name}
+              {props.providerDetails.fullname}
             </p>
             <p className="userDetails">
-              <img src="/static/icons/clock.svg" alt=""/> 08:00pm Today
+              <img src="/static/icons/clock.svg" alt=""/> {props.time}
             </p>
           </Grid.Column>
         </Grid.Row>
@@ -60,7 +60,8 @@ function BookingDetails(props) {
 
 const mapStateToProps = (state) => ({
   subscribedServices: state.subscribedServices.subscribedServices,
-  providerDetails: state.subscribedServices.selectedProvider
+  providerDetails: state.subscribedServices.selectedProvider,
+  time: state.subscribedServices.time
 })
 
 export default connect(mapStateToProps)(BookingDetails)

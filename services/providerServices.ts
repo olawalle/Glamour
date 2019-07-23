@@ -5,30 +5,45 @@ import * as apiUrls from './apiUrls'
 let addServices = (data) => {
     return axios({
         method: 'POST',
-        url: apiUrls.providerServicesUrl,
+        url: apiUrls.addServicesUrl,
         data: data,
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'multipart/form-data'
+        }
+    })
+}
+
+let editService = (data, id) => {
+    return axios({
+        method: 'PUT',
+        url: apiUrls.providerServicesUrl+'/'+id,
+        data: data,
+        headers: {
+            'Content-Type': 'multipart/form-data'
         }
     })
 }
 
 let getProviderServices = (id) => {
-    let id_ = ''
-    id ? id_ = id : id_ = '5d1bb151f451bc0004d30594'
     return axios({
         method: 'GET',
-        url: apiUrls.providerServicesUrl+'/'+id_
+        url: apiUrls.providerServicesUrl+'/'+id
     })
 }
 
-let getProviderBookings = (token) => {
+let deleteProviderServices = (id) => {
+    return axios({
+        method: 'DELETE',
+        url: apiUrls.providerServicesUrl+'/'+id
+    })
+}
+
+let getProviderBookings = () => {
     return axios({
         method: 'GET',
         url: apiUrls.providerBookingUrl,
         headers: {
-            'Content-Type': 'application/json',
-            'x-access-token': token
+            'Content-Type': 'application/json'
         }
     })
 }
@@ -47,10 +62,56 @@ let getProviderReviews = (id) => {
     })
 }
 
+
+let getLookbook = (id) => {
+    return axios({
+        method: 'GET',
+        url: apiUrls.lookbookUrl+'/'+id
+    })
+}
+
+let addLookbook = (id, data) => {
+    return axios({
+        method: 'POST',
+        url: apiUrls.addLookbookUrl+'/'+id,
+        data
+    })
+}
+
+let deleteLookbook = (id) => {
+    return axios({
+        method: 'DELETE',
+        url: apiUrls.lookbookUrl+'/'+id
+    })
+}
+
+let providerSubscribe = (data) => {
+    return axios({
+        method: 'POST',
+        url: apiUrls.providerSubscription,
+        data
+    })
+}
+
+
+let getSubscriptions = () => {
+    return axios({
+        method: 'GET',
+        url: apiUrls.subscriptionsUrl
+    })
+}
+
 export {
     addServices,
+    editService,
     getProviderServices,
+    deleteProviderServices,
     getProviderBookings,
     getProviderDetails,
-    getProviderReviews
+    getProviderReviews,
+    getLookbook,
+    addLookbook,
+    deleteLookbook,
+    providerSubscribe,
+    getSubscriptions
 }

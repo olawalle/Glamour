@@ -19,7 +19,7 @@ const Provider = (props) => {
                 props.instant ? <div className="instant">Instant Booking</div> : <div className="instant_"></div>
             }
             <div className="cardBanner">
-                <img src='/static/images/services/body.png' className="BannerImage"  />
+                <img src={props.bannerUrl} className="BannerImage"  />
             </div>
 
             {

@@ -7,14 +7,35 @@ import { getNotifications, getNotificationReview, getIsWritingReview } from '../
 import InnerNav from '../components/shared/InnerNav';
 import NotificationModal from '../components/notifications/NotificationModal';
 import * as actions from '../store/actions';
+import { getUserNotifications } from '../services/auth.ts'
+import Router from 'next/router'
 
 class notifications extends Component {
+
+  componentWillMount() {
+    getUserNotifications()
+    .then(res => {
+      console.log(res)
+      let notifications = res.data.data
+      this.props.saveUserNotifications(notifications)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+  componentDidMount() {    
+    // let token = window.sessionStorage.getItem('glamourToken')
+    // if (!token) {
+    //   Router.push("/login")
+    // }
+  }
+
   render () {
     return (
       <>
-        <InnerNav userRole={'client'} />
-        <Notifications {...this.props} />
-        <NotificationModal {...this.props}/>
+        <InnerNav userRole={this.props.user.role} />
+        <Notifications user={this.props.user} {...this.props} />
+        <NotificationModal review={this.props.review} {...this.props}/>
         <Footer/>
       </>
     );

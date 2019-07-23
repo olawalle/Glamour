@@ -14,40 +14,50 @@ export default function UserCards(props) {
     const renderForm = () => {
       if (!isAddingCard) {
           return <>
-          {/* <Grid.Column width={16}>
-            <p className="sectionTitle">
-               Cards
-            </p>
-            </Grid.Column> */}
-            {
-                !props.showAdd ? <div className="filledCardFrame">
-                        <p className="cardname">
-                            Melissa McCarthy
-                            <img src="/static/icons/cog.svg" className="cog" alt=""/>
-                        </p> 
+                  <Grid stackable>
+                  <Grid.Row>
+                    <Grid.Column width={16}>
+                      <p className="sectionTitle">
+                        Cards
+                      </p>
+                    </Grid.Column>
+                  </Grid.Row>
+                </Grid>
+                <Grid stackable columns={2}>
+                  <Grid.Row>
+                    <Grid.Column>
+                        <div className="filledCardFrame">
+                          <p className="cardname">
+                              Melissa McCarthy
+                              <img src="/static/icons/cog.svg" className="cog" alt=""/>
+                          </p> 
 
-                        <p className="cardNo">
-                            <p className="cardNoTitle">
-                                card number
-                            </p>
-                            <span className="dots">
-                                .... .... ....
-                            </span>
-                            <span className="last4">
-                                1234
-                            </span>
-                        </p>
-                        <p className="cardImg">
-                            <img src="/static/icons/mastercard.svg" alt=""/>
-                        </p>
-                    </div> : null
-            }
-            {
-                props.showAdd ? <div className="emptyCardFrame" onClick={() => showAddingForm()}>
-                                            <img src="/static/icons/add.svg" alt=""/> Add card 
-                                        </div> : null
-            }
-        </>
+                          <p className="cardNo">
+                              <p className="cardNoTitle">
+                                  card number
+                              </p>
+                              <span className="dots">
+                                  .... .... ....
+                              </span>
+                              <span className="last4">
+                                  1234
+                              </span>
+                          </p>
+                          <p className="cardImg">
+                              <img src="/static/icons/mastercard.svg" alt=""/>
+                          </p>
+                      </div>
+                    </Grid.Column>
+                    <Grid.Column>
+                      {
+                          props.showAdd ? <div className="emptyCardFrame" onClick={() => showAddingForm()}>
+                                                      <img src="/static/icons/add.svg" alt=""/> Add card 
+                                                  </div> : null
+                      }
+                    </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            </>
       } else {
           return <Grid>
                     <CardDetailsForm showBtn={false} />
@@ -57,13 +67,9 @@ export default function UserCards(props) {
   
     return (
       <div className="managePayments">
-        <Grid stackable>
-            <Grid.Row>
-              {
-                renderForm()
-              }
-            </Grid.Row>
-        </Grid>
+        {
+          renderForm()
+        }
       </div>
     )
 }

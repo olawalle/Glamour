@@ -15,8 +15,9 @@ import UpcomingBookings from './home/upcomingBookings';
 import CustomImageUploader from '../../components/shared/CustomImageUploader';
 import Display from '../../components/shared/Display';
 import { getCurrentUser } from '../../services/auth.ts'
-import { getProviderServices } from '../../services/providerServices.ts'
+import { getProviderServices, getProviderBookings } from '../../services/providerServices.ts'
 import { uploadImage, uploadBanner } from '../../services/generatData.ts'
+import Loader from '../../components/shared/Loader'
 
 
 const ProviderHome = (props) => {
@@ -29,28 +30,31 @@ const ProviderHome = (props) => {
     }
 
     useEffect(() => {
-        console.log(props.userData)
-        
 
-        getProviderServices()
-        .then(res => {
-          console.log(res)
-          let services = res.data.data.services
-          props.saveProviderServices(services)
-        })
-        .catch(err => {
-          console.log({...err})
-        })
-
+        let userData = window.sessionStorage.getItem('glamourToken')
+        if (userData) {
+            // props.saveUserData(JSON.parse(userData))
+            // updateBannerSrc({image: props.user.bannerUrl})
+            // updateUserPhoto(props.user.pictureUrl)
+            getUserDetails()            
+            
+            getProviderBookings()
+            .then(providerBookings => {
+                console.log(providerBookings)
+              props.saveUserBookings(providerBookings.data.data)
+            })
+            .catch(err => {
+              console.log({...err})
+            })
+        }
     }, [])
 
-    const [bannerSrc, updateBannerSrc] = useState({image: '/static/images/EmptyBanner.png'})
+    const [bannerSrc, updateBannerSrc] = useState({image: props.userData.bannerUrl})
     const [userPhoto, updateUserPhoto] = useState(props.userData.pictureUrl)
     const [showNav, updateShowNav] = useState(true)
-    const [bookingsEmpty, updateBookingsEmpty] = useState(false)
     const [bookingStatus, updateBookingStatus] = useState([
         {
-            status: 'Advanced bookings only', selected: ''
+            status: 'Advanced bookings only', selected: 'activeStatus'
         },
         {
             status: 'I\'m available immediately', selected: ''
@@ -104,12 +108,12 @@ const ProviderHome = (props) => {
     
 
     const getUserbannerImageString = (imageString) => {
-        updateBannerSrc({image: imageString})
+        // updateBannerSrc({image: imageString})
         console.log('banner')
     }
 
     const getUserphotoImageString = (imageString) => {
-        updateUserPhoto(imageString)
+        // updateUserPhoto(imageString)
         console.log('userphoto')
     }
 
@@ -118,7 +122,7 @@ const ProviderHome = (props) => {
         console.log('imageFile', imageFile)
         let formData = new FormData()
         formData.append('picture', imageFile)
-        uploadBanner(formData)
+        uploadBanner(formData, props.user.id)
         .then(res => {
             console.log(res)
             getUserDetails()
@@ -129,12 +133,26 @@ const ProviderHome = (props) => {
     }
 
     const getImageFile = (imageFile) => {
-        console.log('imageFile', imageFile)
         let formData = new FormData()
         formData.append('picture', imageFile)
-        uploadImage(formData)
+        setloading(true)
+        uploadImage(formData, props.user.id)
         .then(res => {
-            console.log(res)
+            setloading(false)
+            getUserDetails()
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
+    const getImageFile_ = (imageFile) => {
+        let formData = new FormData()
+        formData.append('picture', imageFile)
+        setloading(true)
+        uploadBanner(formData, props.user.id)
+        .then(res => {
+            setloading(false)
             getUserDetails()
         })
         .catch(err => {
@@ -145,10 +163,22 @@ const ProviderHome = (props) => {
     const getUserDetails = () => {
         getCurrentUser()
         .then(response => {
-          let payload = {
-            ...response.data.me
-          }
-          props.saveUserData(payload)
+            let payload = {
+            ...response.data.me,
+            isLoggedIn: true
+            }
+            updateBannerSrc({image: response.data.me.bannerUrl})
+            updateUserPhoto(response.data.me.pictureUrl)
+            props.saveUserData(payload)
+
+            getProviderServices(response.data.me.id)
+            .then(res => {
+                let services = res.data.data.services
+                props.saveProviderServices(services)
+            })
+            .catch(err => {
+                console.log({...err})
+            })
         })
         .catch(err => {
             console.log({...err})
@@ -159,15 +189,26 @@ const ProviderHome = (props) => {
         return serviceProvider.servicesRendered.map((service, i) => <Service key={`service${i}`} id={serviceProvider.id} userServices={service} selected={false} />)
     }
 
-    const [modal, updateModal] = useState({open: false})
+    const [modal, updateModal] = useState({open: false, edit: false})
+    const [selectedService, setSelectedService] = useState({})
+    const [loading, setloading] = useState(false)
     
     const show = () => {
-        updateModal({ open: true })
+        updateModal({ open: true, edit: false })
+        updateShowNav(false)
+    }
+
+    
+    const edit = (i) => {
+        console.log(i)
+        setSelectedService(props.providersServices.find(service => service._id === i))
+        updateModal({ open: false, edit: true })
         updateShowNav(false)
     }
 
     const close = () => {
-        updateModal({ open: false })
+        console.log('closing')
+        updateModal({ open: false, edit: false })
         updateShowNav(true)
     }
 
@@ -198,10 +239,11 @@ const ProviderHome = (props) => {
     return (
         <>
         <Display if={showNav}>
-            <InnerNav userRole={'client'} />
+            <InnerNav userRole={props.user.role} />
         </Display>
+        {loading && <Loader />}
         <div className="outerBannerWrap">
-            <CustomImageUploader getImageString={getUserbannerImageString} getImageFile={getImageFile}>
+            <CustomImageUploader getImageString={getUserbannerImageString} getImageFile={getImageFile_}>
                 <Banner banner={bannerSrc.image}  text={''} />  
                 <img src='/static/icons/camera.svg' className="bannerChange" alt=""/>
             </CustomImageUploader>          
@@ -212,7 +254,7 @@ const ProviderHome = (props) => {
                     <Grid.Row>
                         <Grid.Column width={8}>
                             <div className="userDesc">
-                                    <CustomImageUploader getImageString={getUserphotoImageString} getImageFile={getImageFile}>
+                                    <CustomImageUploader getImageFile={getImageFile}>
                                         <div style={{height: '100%', position: 'relative', zIndex: 20}}>
                                             <div className="imgWrap" style={styles.UserPhoto}>
                                                 <img src='/static/icons/camera.svg' className="camera" alt=""/>
@@ -223,7 +265,7 @@ const ProviderHome = (props) => {
                                     {props.user.fullname}
                                 </p>
                                 <p className="userJob">
-                                    Makeup, Massage
+                                    {props.user.service}
                                 </p>
                                 <p className="userDetails">
                                     {props.user.description}
@@ -282,7 +324,7 @@ const ProviderHome = (props) => {
                                         <div className="servicesChildWrap">
                                             {
                                                 props.providersServices.map((service, i) => {
-                                                    return <HomeService service={service} key={'service'+i} />
+                                                    return <HomeService service={service} key={'service'+i} openEdit={() => edit(service._id)} />
                                                 })
                                             }
                                         </div>
@@ -295,7 +337,7 @@ const ProviderHome = (props) => {
                                         Upcoming booking
                                     </div>
                                     <div className="servicesChildWrap">
-                                        <Display if={bookingsEmpty}>
+                                        <Display if={props.bookings.length === 0}>
                                             <div className="emptyState">
                                                 <img src="/static/icons/empty-bookings.svg" alt=""/>
                                                 <p>
@@ -303,14 +345,8 @@ const ProviderHome = (props) => {
                                                 </p>
                                             </div>
                                         </Display>
-                                        <Display if={!bookingsEmpty}>
-                                            <UpcomingBookings />
-                                            <UpcomingBookings />
-                                            <UpcomingBookings />
-                                            <UpcomingBookings />
-                                            <UpcomingBookings />
-                                            <UpcomingBookings />
-                                            <UpcomingBookings />
+                                        <Display if={props.bookings.length > 0}>
+                                            <UpcomingBookings user={props.user} bookings={props.bookings} />
                                         </Display>
                                     </div>
                                 </div>
@@ -324,7 +360,13 @@ const ProviderHome = (props) => {
 
         <Modal size='tiny' open={modal.open} onClose={() => close()}>
             <Modal.Content>
-                <AddService />
+                <AddService onClose={() => close()} />
+            </Modal.Content>
+        </Modal>
+        
+        <Modal size='tiny' open={modal.edit} onClose={() => close()}>
+            <Modal.Content>
+                <AddService selectedService={selectedService} onClose={() => close()} />
             </Modal.Content>
         </Modal>
         </>
@@ -336,6 +378,7 @@ const mapStateToProps = (state) => ({
     providersServices: state.providerServices,
     userData: getUserData(state),
     user: state.user,
+    bookings: state.bookings.bookedItems,
     isLoggedIn: state.user.isLoggedIn
 })
 

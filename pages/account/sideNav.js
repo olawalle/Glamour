@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ManageSubscriptions from '../account/ManageSubscriptions';
 import ManagePayments from '../account/ManagePayments';
 import PersonalDetails from '../account/PersonalDetails';
@@ -14,108 +14,52 @@ import UserCards from './UserCards';
 import LookBook from './LookBook';
 
 const SideNav = (props) => {    
-    
-  const [activeComponent, updateActiveComponent ] = useState(<PersonalDetails role={props.role} />)
-  const [savedProviders, updateproviders] = useState(
-    [
-    {
-        banner: '/static/images/services/hair.png',
-        userPhoto: '/static/images/team/teammember1.png',
-        name: 'Mary Sullivan',
-        jobDesc: 'Makeup, Massage',
-        description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
-        stars: 3,
-        id: '1',
-        instant: true, 
-        ratingsCount: 16,
-        servicesRendered: [
-          {
-            title: 'something nice',
-            desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-            duration: '1hr',
-            price: '40'
-          },
-          {
-            title: 'another nice',
-            desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-            duration: '30mins - 1hr',
-            price: '30'
-          },
-          {
-            title: 'hair rolls tasks',
-            desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-            duration: '1hr',
-            price: '55'
-          },
-          {
-            title: 'Basket making',
-            desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-            duration: '1hr',
-            price: '80'
-          }
-        ]
-      },
-      {
-        banner: '/static/images/services/hair.png',
-        userPhoto: '/static/images/team/teammember3.png',
-        name: 'Joy Koke',
-        jobDesc: 'Makeup, Massage',
-        description: 'Hey, you know how I\'m, like, always trying to save the planet? Here\'s my chance. ',
-        stars: 3,
-        id: '2',
-        instant: false, 
-        ratingsCount: 12,
-        servicesRendered: [
-          {
-            title: 'something nice',
-            desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-            duration: '1hr',
-            price: '40'
-          },
-          {
-            title: 'another nice',
-            desc: 'udyf djfviua viusvi isufvid iudvgiu giuvycytsf hvfiubdfiob sh yud cyfcduyfvius isfvs vfiuvfyu dfh dyf df u jf sjhfuysfvuys f',
-            duration: '30mins - 1hr',
-            price: '30'
-          }
-        ]
-      }
-  ])
+  
 
-  const [sideLinks, updateSideLinks] = useState([
+  useEffect(() => {
+    if (Router.router.query.child) pickRoute(Router.router.query.child)
+  }, [])
+
+  // const [activeComponent, updateActiveComponent ] = useState(<PersonalDetails role={props.role} />)
+  const [providerLinks, updateproviderLinks] = useState([
     {
         text: 'Personal details',
         component: <PersonalDetails role={props.role} />,
         active: 'active',
-        icon: '/static/icons/personalDetails.svg'
+        icon: '/static/icons/personalDetails.svg',
+        route: ''
     },
     {
-        text: 'Busines details',
+        text: 'Business details',
         component: <BusinessDetails />,
         active: 'inactive',
-        icon: '/static/icons/briefcase.svg'
+        icon: '/static/icons/briefcase.svg',
+        route: ''
     },
     {
         text: 'Manage subscriptions',
-        component: <ManageSubscriptions />,
+        component: <ManageSubscriptions subscriptions={props.availableSubscriptions} />,
         active: 'inactive',
-        icon: '/static/icons/subscriptions.svg'
+        icon: '/static/icons/subscriptions.svg',
+        route: ''
     },
     {
         text: 'Manage payments',
         component: <ManagePayments />,
         active: 'inactive',
-        icon: '/static/icons/card.svg'
+        icon: '/static/icons/card.svg',
+        route: ''
     },
     {
         text: 'Upload Lookbook',
         component: <LookBook />,
         active: 'inactive',
-        icon: '/static/icons/card.svg'
+        icon: '/static/icons/card.svg',
+        route: ''
     }
   ])
   
-  const [sideLinks_, updateSideLinks_] = useState([
+  const [clientLinks, updateclientLinks] = useState([
     {
         text: 'Personal details',
         component: <PersonalDetails role={props.role} />,
@@ -130,67 +74,67 @@ const SideNav = (props) => {
     },
     {
         text: 'Payment methods and invoices',
-        component: <Grid>
-          <Grid.Row className="cards">
-            <Grid.Column width={8}>
-              <UserCards showAdd={false} />
-            </Grid.Column>
-            <Grid.Column width={8}>
-              <UserCards showAdd={true} />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>,
+        component: <UserCards showAdd={false} />,
         active: 'inactive',
         icon: '/static/icons/subscriptions.svg'
     },
     {
         text: 'Saved service providers',
-        component: <SavedServiceProviders providers={savedProviders} />,
+        component: <SavedServiceProviders />,
         active: 'inactive',
         icon: '/static/icons/filled-heart.svg'
-    },
-    {
-        text: 'Upload Lookbook',
-        component: <LookBook />,
-        active: 'inactive',
-        icon: '/static/icons/card.svg'
     }
   ])
 
+  const pickRoute = (route) => {
+    let selectedComponent = {}
+    if (props.role === 'client') {
+      selectedComponent = clientLinks.forEach(link => {
+        link.text.toLowerCase() === route.toLowerCase() ? activateLink_(i) : null
+      })
+      // props.updateActiveComponent(selectedComponent.component)
+    } else {
+      selectedComponent = providerLinks.forEach((link, i) => {
+        link.text.toLowerCase() === route.toLowerCase() ? activateLink(i) : null
+      })
+      // props.updateActiveComponent(selectedComponent.component)
+    }
+  }
+
   const renderLinks = () => {
     if(props.role === 'client') {
-      return sideLinks_.map((link, i) => {
+      return clientLinks.map((link, i) => {
         return <li className={link.active} key={`link${i}`} onClick={() => activateLink_(i)}><img src={link.icon} alt=""/> {link.text}</li>
       })
     } else {
-      return sideLinks.map((link, i) => {
+      return providerLinks.map((link, i) => {
           return <li className={link.active} key={`link${i}`} onClick={() => activateLink(i)}><img src={link.icon} alt=""/> {link.text}</li>
         })
     }
   }
   
   const activateLink = (i) => {
-    let newLinks = sideLinks.map((link, n) => {
+    let newLinks = providerLinks.map((link, n) => {
       if (n === i) {
         return {...link, active: 'active'}
       } else {
         return {...link, active: ''}
       }
     })
-    updateSideLinks(newLinks)
-    props.updateActiveComponent(sideLinks[i].component)
+    updateproviderLinks(newLinks)
+    props.saveActiveComponent(providerLinks[i].text)
   }
   
   const activateLink_ = (i) => {
-    let newLinks = sideLinks_.map((link, n) => {
+    let newLinks = clientLinks.map((link, n) => {
       if (n === i) {
         return {...link, active: 'active'}
       } else {
         return {...link, active: ''}
       }
     })
-    updateSideLinks_(newLinks)
-    props.updateActiveComponent(sideLinks_[i].component)
+    updateclientLinks(newLinks)
+    props.saveActiveComponent(clientLinks[i].text)
   }
 
   const logout = () => {
@@ -199,12 +143,12 @@ const SideNav = (props) => {
     }
     window.sessionStorage.removeItem('glamourToken')
     props.saveUserData(payload)
-    Router.push('/')
+    Router.push('/login')
   }
 
   return (
     <>
-      <ul className="sidelinks">
+      <ul className="sidelinks mobile hidden">
           {renderLinks()}
           <li className="logout" onClick={() => logout()}><img src='/static/icons/logout.svg' alt=""/>Log out</li>
       </ul>            
@@ -212,4 +156,10 @@ const SideNav = (props) => {
   )
 }
 
-export default connect(null, actions)(SideNav)
+const mapStateToProps = (state) => {
+  return {
+      subscriptions: state.subscriptions
+  }
+}
+
+export default connect(mapStateToProps, actions)(SideNav)

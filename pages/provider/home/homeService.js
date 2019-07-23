@@ -42,12 +42,16 @@ const HomeService = (props) => {
               </p>
             </Grid.Column>
             <Grid.Column width={2} className="">
-              <p className="dot online">
-                .
-              </p>
+              {
+                props.service.status === "active" ? <p className="dot online">
+                  .
+                </p> : <p className="dot offline">
+                  .
+                </p>
+              }
             </Grid.Column>
             <Grid.Column width={2} className="myrow">
-              <img src="/static/icons/edit.svg" alt=""/>
+              <img src="/static/icons/edit.svg" onClick={props.openEdit} style={{cursor: 'pointer'}} title="edit" alt=""/>
             </Grid.Column>
           </Grid.Row>
         </Grid>      

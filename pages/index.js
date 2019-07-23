@@ -14,6 +14,7 @@ import { Skeleton } from 'antd';
 import { getTestimonials, getBeautyServices, getTopTrends } from '../store';
 import 'antd/lib/skeleton/style/index.css'
 import { getAllServices, getAllTrends, getAllProviders } from '../services/generatData.ts'
+import Router from 'next/router';
 
 const Testimonials = dynamic(
   () => import('../components/home/Testimonials'),
@@ -34,10 +35,11 @@ class Home extends Component {
   }
 
   componentWillMount () {
+
     // get list of service categories, trends and serviceProviders
     getAllServices()
     .then(res => {
-      this.props.saveServices(res.data.data.services)
+      this.props.saveServices(res.data.data)
     })
     .catch(err => {
       console.log(err)
@@ -45,7 +47,7 @@ class Home extends Component {
 
     getAllTrends()
     .then(res => {
-      this.props.saveTrends(res.data.data.services)
+      this.props.saveTrends(res.data.data)
     })
     .catch(err => {
       console.log(err)
@@ -60,10 +62,18 @@ class Home extends Component {
     })
   }
 
+  componentDidMount() {   
+    // console.log('app mounted') 
+    // let userData = window.sessionStorage.getItem('glamoutUserData')
+    // if (userData) {
+    //   this.props.saveUserData(JSON.parse(userData))
+    // }
+  }
+
   render () {
     return (
       <>
-        <Banner />
+        <Banner showName={true} />
         <BeautyServices beautyServices={this.props.beautyServices} />
         <Trends trends={this.props.trends} />
         <HowItWorks />

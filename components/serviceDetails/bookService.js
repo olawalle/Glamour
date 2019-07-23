@@ -5,6 +5,7 @@ import {getUserData} from '../../store'
 import './less/bookService.less'
 import Router from 'next/router';
 import Display from '../shared/Display'
+import * as actions from '../../store/actions'
 import GlamourDatePicker from '../../components/serviceDetails/glamourDatePicker'
 import LoginForm from '../login/LoginForm';
 
@@ -42,7 +43,12 @@ const BookService = (props) => {
 
     const submit = () => {
         console.log(props.subscribedServices)
-        !window.sessionStorage.getItem('glamourToken') ? close(true) : Router.push('/checkout')
+        !window.sessionStorage.getItem('glamourToken') ? Router.push('/login?from=book-service') : Router.push('/checkout')
+    }
+
+    const closePicker = () => {
+        props.pickServiceTime(`${selectedDate} ${selectedTime}`) 
+        setPickingStatus(true)
     }
 
     return (
@@ -52,7 +58,7 @@ const BookService = (props) => {
             </p>
 
             <Display if={!isPickingDate}>
-                <span onClick={() => setPickingStatus(true)}>
+                <span onClick={() => closePicker()}>
                     <img src="/static/icons/close.svg" className="close" title="close" alt=""/>
                 </span>
                 <GlamourDatePicker userSchedule={props.providerDetails.schedules} pickTime={pickTime} selectedTime={selectedTime} selectedDate={selectedDate} pickDate={pickDate}/>
@@ -76,16 +82,16 @@ const BookService = (props) => {
                     {renderServicesList()}
                     <div className="bookService__title__amount_total">Total <span>£{total()}</span></div>
                 </div>
-                <Button secondary className="proceedBtn" onClick={submit} disabled={total() === 0 ? true : false}>
+                <Button secondary className="proceedBtn" onClick={submit} disabled={total() === 0 || selectedDate === '' || selectedTime === '' ? true : false}>
                     Proceed to checkout
                 </Button>
             </Display>
 
             
       
-            <Modal size='small' open={open} onClose={() => close(false)}>
+            {/* <Modal size='tiny' open={open} onClose={() => close(false)}>
                 <LoginForm from="checkout" />
-            </Modal>
+            </Modal> */}
         </div>
     )
 }
@@ -97,4 +103,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps)(BookService)
+export default connect(mapStateToProps, actions)(BookService)

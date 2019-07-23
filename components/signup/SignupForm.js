@@ -86,7 +86,7 @@ const styles = {
         console.log(res)
         setsigningUp(false)
         setModal(true) 
-        // Router.push('/login')
+        Router.push('/login')
         // return <Snackbar message={res.data.message} actionText="dismiss" />
       })
       .catch(err => {

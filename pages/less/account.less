@@ -45,7 +45,13 @@
             font-weight: 600
         }
         .userDesc {
-            color: #212B36
+            color: #212B36;
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
         }
         .location {
             color: #637381
@@ -92,15 +98,28 @@
     .rightWing {
         padding: 30px !important;
         height: 750px !important;
+        overflow: hidden;
     }
 
     @media only screen and (max-width: 767px) {
+        padding: 0 10px;
         .column {
             padding: 0 !important
         }
         .rightWing {
             padding: 30px !important;
             height: auto !important;
+        }
+        .lightShadow {
+            min-height: 100px !important
+        }
+        .leftWing {
+            text-align: center !important;
+            margin-top: 75px !important;
+            height: 260px !important;
+        }
+        .leftWingTop {
+            height: 220px !important;
         }
     }
 }

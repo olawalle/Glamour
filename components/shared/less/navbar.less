@@ -16,6 +16,14 @@
     height: 49px !important;
     width: 120px !important;
   }
+  
+  .navbar-signup-btn_ {
+    background-color: #fff !important;
+    color: #000 !important;
+    border-radius: 0px !important;
+    height: 49px !important;
+    width: 120px !important;
+  }
 
   .cursor {
     cursor: pointer;
@@ -94,8 +102,9 @@
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
   position: relative;
-  top: 1px;
+  top: 0px;
   left: 0px;
+  width: 104%;
 }
 
 #nav-icon4.open span:nth-child(2) {
@@ -105,12 +114,13 @@
 
 #nav-icon4.open span:nth-child(3) {
   -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  position: relative;
-  top: 3px;
-  left: 0px;
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    position: relative;
+    top: 2px;
+    left: 0px;
+    width: 104%;
 }
 
 .mobile-links {
@@ -135,12 +145,18 @@
       width: 100% !important
     }
     .item {
-      color: #e84671 !important
+      color: #212B36 !important
+    }
+    .acctLinks {
     }
     .burger {
       padding-top: 12px;
       float: right;
     }
+  }
+  .hr {
+    border: 0 !important;
+    border-bottom: 1px solid #eee
   }
 }
 .hide {
@@ -164,6 +180,10 @@
 @media only screen and (max-width: 480px) {
   .navbar {
     box-shadow: 0px 1px 20px 0 rgba(34, 36, 38, 0.15) !important;
+    position: fixed !important;
+    top: 0 !important;
+    min-width: 100% !important;
+    z-index: 100000 !important;
   }
 
   .mobile-links {

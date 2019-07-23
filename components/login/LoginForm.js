@@ -2,14 +2,14 @@ import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { Grid, Header, Input, Button, Loader } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { login, getCurrentUser, getUserNotifications, getBookings} from '../../services/auth.ts'
+import { login, getCurrentUser, getUserNotifications, getBookings, getSavedProviders} from '../../services/auth.ts'
 import { getProviderServices, getProviderBookings, getProviderReviews } from '../../services/providerServices.ts'
 import { getUserAddresses } from '../../services/generatData.ts'
 import * as actions from '../../store/actions';
 import Router from 'next/router';
 import './less/loginForm.less';
 import Display from '../shared/Display';
-// import { Snackbar } from '../shared/SnackBar';
+import { Snackbar } from '../shared/SnackBar';
 
 const LoginForm = (props) => {
 
@@ -26,6 +26,7 @@ const LoginForm = (props) => {
 
   const submit = (e) => {
     e.preventDefault();
+    
     let  _formErrors = {};
     Object.keys(loginFormData).forEach((item) => {
       if (!loginFormData[item]) {
@@ -42,77 +43,60 @@ const LoginForm = (props) => {
         password: loginFormData.password
       }
 
+      // let form = new FormData()
+      // Object.keys(data).forEach(key => {
+      //   form.append(key, data[key])
+      // })
+
       login(data)
       .then(res => {
         window.sessionStorage.setItem('glamourToken', res.data.data.token)
-        getCurrentUser(res.data.data.token)
-        .then(response => {
-          let payload = {
-            ...response.data.me,
-            isLoggedIn: true
-          }
-          props.saveUserData(payload)
-          setlogginIn(false)
-          
+        let payload = {
+          ...res.data.data.user,
+          isLoggedIn: true
+        }
+        props.saveUserData(payload)
+        setlogginIn(false)   
           // get user notifications
-          getUserNotifications(res.data.data.token)
-          .then(res => {
-            let notifications = res.data.data.notification
-            props.saveUserNotifications(notifications)
-          })
-          .catch(err => {
-            console.log(err)
-          })
+          // getUserNotifications(res.data.data.token)
+          // .then(res => {
+          //   let notifications = res.data.data.notification
+          //   props.saveUserNotifications(notifications)
+          // })
+          // .catch(err => {
+          //   console.log(err)
+          // })
 
-          if ( response.data.me.role === 'client')  {
+          if ( res.data.data.user.role === 'client')  {
+            // getUserAddresses(res.data.data.token)
+            // .then(addresses => {
+            //     props.saveUserAddresses(addresses.data.addresses)
+            //     props.saveActiveAddress(addresses.data.addresses[0]['_id'])
+            // })
+            // .catch(err => {
+            //   console.log(err)
+            // })
+
+            // getSavedProviders(res.data.data.token)
+            // .then(prv => {
+            //   console.log(prv)
+            //   props.saveFavedProviders(prv.data.providers)
+            // })
+            // .catch(err => {
+            //   console.log(err)
+            // })
+          }
+          if (Router.router.query.from === 'book-service') {
+            Router.push('/checkout')
+          } else if (res.data.data.user.role === 'client') {
             Router.push('/serviceproviders')
-
-            getBookings(res.data.data.token)
-            .then(bookings => {
-              console.log('bookings', bookings.data.data.bookings)
-              props.saveUserBookings(bookings.data.data.bookings)
-            })
-            .catch(err => {
-              console.log({...err})
-            })
-            
-            getUserAddresses(res.data.data.token)
-            .then(addresses => {
-                // updateUserAddresses(res.data.addresses)
-                // setAddressData(res.data.addresses[0])
-                props.saveUserAddresses(addresses.data.addresses)
-                props.saveActiveAddress(addresses.data.addresses[0]['_id'])
-                // let addressList = res.data.addresses.map((add, i) => {
-                //   return { key: `${add.aptNumber}, ${add.streetNumber}`, value: add._id, text: `${add.aptNumber}, ${add.streetNumber}` }
-                // })
-            })
-            .catch(err => {
-              console.log(err)
-            })
           } else {
             Router.push('/provider/home')
-
-            getProviderBookings(res.data.data.token)
-            .then(providerBookings => {
-              console.log(providerBookings)
-            })
-            .catch(err => {
-              console.log({...err})
-            })
-
-            getProviderReviews(response.data.me._id)
-            .then(reviews => {
-              console.log(reviews)
-            })
-            .catch(err => {
-              console.log(err)
-            })
           }
-        })
       })
       .catch(err => {
         setlogginIn(false)
-        setMessage('Error on login')
+        setMessage(err.response.data.message)
         setSnackType('error')
         _showSnackbarHandler()
         console.log({...err})
@@ -139,16 +123,16 @@ const LoginForm = (props) => {
  
   useEffect(() => {
     window.sessionStorage.removeItem('glamourToken')
-    console.log(props)
   }, [])
+
   return (
     <>
-      {/* <Snackbar ref = {snackbarRef} 
+      <Snackbar ref = {snackbarRef} 
         type={snackType} 
         position={'top'} 
         showClose={true} 
         duration={5000} 
-        message={message} /> */}
+        message={message} />
       {
         !props.from ? <Grid id="login" className="login" columns={2} centered>
         <Grid.Row>

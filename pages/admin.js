@@ -10,6 +10,7 @@ import CategoryMgt from './admin/categoryMgt';
 import CityMgt from './admin/cityMgt';
 import ContentMgt from './admin/contentMgt';
 import OrderMgt from './admin/orderMgt';
+import Router from 'next/router'
 import { getAllUsers, getAllCategories } from '../services/generatData.ts'
 
 const Admin = (props) => {
@@ -20,24 +21,28 @@ const Admin = (props) => {
     const [activeComponent, updateActiveComponent] = useState(<CustomerMgt users={allUsers} />)
 
     useEffect(() => {
-        getAllUsers()
-        .then(res => {
-            updateAllUsers(res.data.users)
-            console.log(res.data.users)
-            updateActiveComponent(<CustomerMgt users={res.data.users.filter(user => user.role === 'client')} />)
-        })
-        .catch(err => {
-            console.log(err)
-        })
+          if (!window.sessionStorage.getItem('glamourToken')) {
+              Router.push('/login')
+          } else {
+            getAllUsers()
+            .then(res => {
+                updateAllUsers(res.data.users)
+                console.log(res.data.users)
+                updateActiveComponent(<CustomerMgt users={res.data.users.filter(user => user.role === 'client')} />)
+            })
+            .catch(err => {
+                console.log(err)
+            })
 
-        getAllCategories() 
-        .then(res => {
-            updateCategories(res.data.services)
-            console.log(res.data)
-        })
-        .catch(err => {
-            console.log(err)
-        })
+            getAllCategories() 
+            .then(res => {
+                updateCategories(res.data.services)
+                console.log(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }
 
     }, [])
 

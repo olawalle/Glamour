@@ -38,8 +38,8 @@ export default function CustomerMgt({state, users}) {
                     <Table.HeaderCell>Full Name</Table.HeaderCell>
                     <Table.HeaderCell>Email Address</Table.HeaderCell>
                     <Table.HeaderCell>Mobile Number</Table.HeaderCell>
-                    <Table.HeaderCell>Postcode</Table.HeaderCell>
-                    <Table.HeaderCell>Created At</Table.HeaderCell>
+                    {/* <Table.HeaderCell>Postcode</Table.HeaderCell> */}
+                    {/* <Table.HeaderCell>Created At</Table.HeaderCell> */}
                     <Table.HeaderCell></Table.HeaderCell>
                 </Table.Row>
                 </Table.Header>
@@ -51,8 +51,8 @@ export default function CustomerMgt({state, users}) {
                         <Table.Cell>{user.fullname}</Table.Cell>
                         <Table.Cell>{user.email}</Table.Cell>
                         <Table.Cell>{user.phone}</Table.Cell>
-                        <Table.Cell>{user.postcode}</Table.Cell>
-                        <Table.Cell>{dayjs(user.createdAt).format('DD MMM YYYY')}</Table.Cell>
+                        {/* <Table.Cell>{user.postcode}</Table.Cell>
+                        <Table.Cell>{dayjs(user.createdAt).format('DD MMM YYYY')}</Table.Cell> */}
                         <Table.Cell> <span className="edit" onClick={() => openEdit(i)}>Edit</span> </Table.Cell>
                     </Table.Row>
                   }) : null

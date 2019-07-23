@@ -70,23 +70,37 @@ class ProviderForm extends Component {
     e.target.value ? fields[type] = e.target.value : fields[type] = data.value
     this.setState({formFields: fields})
   }
+
+  clearFilter = () => {
+    this.setState({formFields: {
+        sortBy: '',
+        searchFor: '',
+        postcode: '',
+        distance: '',
+        priceRange: ''
+      }
+    })
+  }
   
   
   componentWillMount () {
-    if (this.props.services && this.props.services.length > 0) {
-      let options = this.props.services.map(service => {
-        return {
-          text: service.serviceName,
-          key: service._id,
-          value: service._id  
-        }  
+    let options = []
+    Object.keys(this.props.services).map(key => {
+      options.push(this.props.services[key])
+    })
+    this.setState({options: options.map(option => {
+      return {
+              text: option.serviceName,
+              key: option._id,
+              value: option.serviceName  
+            }
       })
-      this.setState({options})
-    }
+    })
   }
 
 
-  componentDidMount() {}
+  componentDidMount() {
+  }
 
   componentDidUpdate() {
     this.props.getFormData(this.state.formFields)
@@ -94,6 +108,7 @@ class ProviderForm extends Component {
 
   render () {
     return (
+      <>
       <div className="providerForm pageWrap">
         <Grid columns={3} stackable>
             <Grid.Row>
@@ -177,6 +192,14 @@ class ProviderForm extends Component {
             </Grid.Row>
         </Grid>
       </div>
+        <p style={{
+                  color: '#212B36',
+                  width: '100%',
+                  textAlign: 'right',
+                  fontWeight: 600,
+                  cursor: 'pointer'
+                  }} onClick={this.clearFilter}>Clear filter</p>
+      </>
     );
   }
 }

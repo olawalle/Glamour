@@ -54,8 +54,7 @@ export default function StepTwo(props) {
   const [ formErrors, setFormErrors ] = useState({})
   const [signupFormData, setSignupData] = useState({
     postcode: '',
-    mileRadius: '',
-    location: false
+    mileRadius: ''
   });
   
   useEffect(() => {
@@ -94,7 +93,7 @@ export default function StepTwo(props) {
               value={signupFormData.postcode}
               className="stepOne-form--input"
               size="huge"
-              placeholder='Postcode'
+              autocomplete="false" placeholder='Postcode'
               fluid
             />
             <Select
@@ -104,17 +103,8 @@ export default function StepTwo(props) {
               value={signupFormData.mileRadius}
               fluid
               options={distance}
-              placeholder='Within mile radius'
+              autocomplete="false" placeholder='Within mile radius'
             />
-            <div className="is-flex checkboxWrap">
-              <Checkbox
-                className="stepOne-form--checkbox"
-                onChange={(e, data) => handleChange(e, 'location', data)}
-              />
-              <span className="caveat">
-                <b>Use my location.</b> This enables us to match you effectively to nearby clients
-              </span>
-            </div>
             
             <p className="sectHeading_">
                 Availability

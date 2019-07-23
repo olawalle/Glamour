@@ -9,61 +9,152 @@ import 'antd/lib/checkbox/style/index.css';
 import './less/bookingsList.less';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions'
+import Display from '../shared/Display';
+import { updateStatus } from '../../services/auth.ts'
 
 
 
 const CartList = (props) => {
 
-  const getProvider = (id) => {
-    let provider = props.serviceProviders.find(prv => prv._id === id)
-    return provider
+  const markAsCompleted = (id) => {
+    console.log(id)
+    let data = {
+      status: 'completed'
+    }
+    updateStatus(data, id)
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
   }
 
-const columns = [
-  {
-    dataIndex: 'providerId',
-    key: 'providerId',
-    align: 'left',
-    width: '40%',
-    render: (row, full) => (
-      <div>
-        <ServiceProviderMedia
-          showAvatar={true}
-          className="mb-30"
-          providerId={row}
-        />
-        <ServicesList
-          className="mb-20"
-          services={full.services}
-        />
-      </div>
-    ),
-  },
-  {
-    dataIndex: '_id',
-    width: '40%',
-    align: 'center',
-    key: '_id',
-    render: (id, row) => (
-      <div className="actions">
-        <Button className={row.status == "pending" ? 'progress-btn' : row.status +'-btn'}>
-          {row.status}
-        </Button>
-      </div>
-    )
-  },
-];
+  const leaveFeedback = (id) => {
+
+  }
+
+  const providerCols = [
+    {
+      dataIndex: 'providerId',
+      key: 'providerId',
+      align: 'left',
+      width: '40%',
+      render: (row, full) => (
+        <div>
+          <ServiceProviderMedia
+            showAvatar={true}
+            className="mb-30"
+            clientDetails={full}
+          />
+          <ServicesList
+            className="mb-20"
+            role={props.role}
+            services={full}
+          />
+        </div>
+      ),
+    },
+    {
+      dataIndex: '_id',
+      width: '30%',
+      align: 'center',
+      key: '_id',
+      render: (id, row) => (
+        <div className="actions">
+          <Button className={row.message.status == "pending" ? 'progress-btn' : row.message.status +'-btn'}>
+            {row.message.status}
+          </Button>
+        </div>
+      )
+    },
+    {
+      dataIndex: 'mark',
+      width: '30%',
+      align: 'center',
+      key: 'mark',
+      render: (id, row) => (
+        <>
+          <Display if={props.role === 'provider' && row.message.status === "pending"}>
+            <div className="actions"> 
+              <Button className="secondaryBtn" onClick={() => markAsCompleted(row.message._id)}>
+                Mark as completed
+              </Button>
+            </div>
+          </Display>  
+          <Display if={props.role === 'provider' && row.message.status === "completed"}>
+            <div className="actions"> 
+              <Button className="secondaryBtn" onClick={() => leaveFeedback(row.message._id)}>
+                Leave feedback
+              </Button>
+            </div>
+          </Display>    
+        </>
+      )
+    },
+  ];
+
+  const clientCols = [
+    {
+      dataIndex: 'providerId',
+      key: 'providerId',
+      align: 'left',
+      width: '60%',
+      render: (row, full) => (
+        <div>
+          <ServiceProviderMedia
+            showAvatar={true}
+            className="mb-30"
+            clientDetails={full}
+          />
+          <ServicesList
+            className="mb-20"
+            role={props.role}
+            services={full}
+          />
+        </div>
+      ),
+    },
+    {
+      dataIndex: '_id',
+      width: '40%',
+      align: 'center',
+      key: '_id',
+      render: (id, row) => (
+        <div className="actions">
+          <Button className={row.message.status == "pending" ? 'progress-btn' : row.status +'-btn'}>
+            {row.message.status}
+          </Button>
+        </div>
+      )
+    },
+  ];
 
   return (
-    <div className="bookingslist">
-      <Table
-        showHeader={false}
-        showFooter={false}
-        scroll={{ x: false, y: 450 }}
-        columns={columns}
-        dataSource={props.bookings_}
-      />
-    </div>
+    <>
+      <Display if={props.role === 'provider'}>
+        <div className="bookingslist">
+          <Table
+            showHeader={false}
+            showFooter={false}
+            scroll={{ x: false, y: 450 }}
+            columns={providerCols}
+            dataSource={props.bookings_}
+          />
+        </div>
+      </Display>
+      <Display if={props.role === 'client'}>
+        <div className="bookingslist">
+          <Table
+            showHeader={false}
+            showFooter={false}
+            scroll={{ x: false, y: 450 }}
+            columns={clientCols}
+            dataSource={props.bookings_}
+          />
+        </div>
+      </Display>
+    </>
   );
 }
 

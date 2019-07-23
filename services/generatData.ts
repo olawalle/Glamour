@@ -56,30 +56,46 @@ let addAddress = (data) => {
     })
 }
 
-let getUserAddresses = (token) => {
+
+let editAddress = (data, id) => {
     return axios({
-        method: 'GET',
-        url: apiUrls.addressUrl,
+        method: 'PUT',
+        url: apiUrls.addressUrl+'/'+id,
+        data,
         headers: {
-            'x-access-token': token
+            'Content-Type': 'application/json',
         }
     })
 }
 
-let uploadImage = (data) => {
+let deleteAddress = (id) => {
+    return axios({
+        method: 'DELETE',
+        url: apiUrls.addressUrl+'/'+id
+    })
+}
+
+let getUserAddresses = () => {
+    return axios({
+        method: 'GET',
+        url: apiUrls.addressUrl
+    })
+}
+
+let uploadImage = (data, id) => {
     return axios({
         method: 'POST',
-        url: apiUrls.imageUrl,
+        url: apiUrls.imageUrl+"/"+id,
         data,
         headers: {
             'Content-Type': 'multipart/form-data'
         }
     })
 }
-let uploadBanner = (data) => {
+let uploadBanner = (data, id) => {
     return axios({
         method: 'POST',
-        url: apiUrls.bannerUploadUrl,
+        url: apiUrls.bannerUploadUrl+"/"+id,
         data,
         headers: {
             'Content-Type': 'multipart/form-data'
@@ -95,6 +111,8 @@ export {
     getAllCategories,
     addCategory,
     addAddress,
+    editAddress,
+    deleteAddress,
     getUserAddresses,
     uploadImage,
     uploadBanner

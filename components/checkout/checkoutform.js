@@ -6,6 +6,10 @@ import AddressForm from '../shared/AddressForm';
 
 export default function Checkoutform(props) {
 
+  const logg = () => {
+    console.log(props)
+  }
+
   const getAddressFormData = (e) => {
     console.log(e)
     props.addressForm(e)
@@ -15,8 +19,11 @@ export default function Checkoutform(props) {
     console.log(e)
   }
 
-  const toBeRendered = () => {
-      
+  const getCard = e => {
+    props.getCard(e)
+  }
+
+  const toBeRendered = () => {      
     if (props.step === 1) {
       return <div className="checkoutFormWrap">
         {props.children}
@@ -43,7 +50,7 @@ export default function Checkoutform(props) {
                         </Grid.Column>   
                     </Grid.Row>
 
-                    <CardDetailsForm  showBtn={true} />    
+                    <CardDetailsForm client_secret={props.client_secret}  getCard={getCard} showBtn={true} />    
 
                     {/* <Grid.Row  className="inputWrap">
                         <Grid.Column width={4}>

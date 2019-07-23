@@ -27,8 +27,8 @@ export default function ServiceProviderMgt({state, users}) {
             <Table basic='very'>
                 <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell>First Name</Table.HeaderCell>
-                    <Table.HeaderCell>Last Name</Table.HeaderCell>
+                    <Table.HeaderCell>Full Name</Table.HeaderCell>
+                    {/* <Table.HeaderCell>Last Name</Table.HeaderCell> */}
                     <Table.HeaderCell>Email Address</Table.HeaderCell>
                     <Table.HeaderCell>Mobile number</Table.HeaderCell>
                     <Table.HeaderCell>Postcode</Table.HeaderCell>
@@ -44,7 +44,7 @@ export default function ServiceProviderMgt({state, users}) {
                         <Table.Cell>{user.email}</Table.Cell>
                         <Table.Cell>{user.phone}</Table.Cell>
                         <Table.Cell>{user.postcode}</Table.Cell>
-                        <Table.Cell>{dayjs(user.createdAt).format('DD MMM YYYY')}</Table.Cell>
+                        {/* <Table.Cell>{dayjs(user.createdAt).format('DD MMM YYYY')}</Table.Cell> */}
                         <Table.Cell> <span className="edit" onClick={() => openEdit(i)}>Edit</span> </Table.Cell>
                     </Table.Row>
                   }): null

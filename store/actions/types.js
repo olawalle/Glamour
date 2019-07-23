@@ -55,3 +55,19 @@ export const SAVE_ADDRESSES = 'save_addresses';
 export const SELECT_ACTIVE_ADDRESS = 'save_active_address'
 
 export const SAVE_USER_BOOKINGS = 'save_user_bookings'
+
+export const SAVE_LOOKBOOK = 'save_lookbook'
+
+export const SELECTED_TIME = 'selected_time'
+
+export const SAVE_FAVED_PROVIDERS = 'save_faved_providers'
+
+export const SAVE_FULL_FAVED_PROVIDERS = 'save_full_faved_providers'
+
+export const SAVE_AVAILABLE_SUBSCRIPTIONS = 'save_available_subscriptions'
+
+export const SAVE_USER_SUBSCRIPTIONS = 'save_user_subscriptions'
+
+export const SAVE_USER_INVOICES = 'save_user_invoices'
+
+export const SAVE_ACTIVE_COMPONENT = 'save_active_component'

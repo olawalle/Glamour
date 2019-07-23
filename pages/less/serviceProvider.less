@@ -1,7 +1,7 @@
 
 .providerForm {
     margin: 20px 0;
-    padding-top: 60px !important;
+//     padding-top: 60px !important;
     border: 1px solid #eee;
         input, .providerForm select {
                 padding-left: 35px !important;
@@ -28,6 +28,31 @@
         .providerCard {
         }
 }
+        .emptyProviders {
+                text-align: center;
+                padding: 150px;
+                .mainBtn {
+                    border-radius: 0px;
+                    font-size: 14px;
+                    padding: 0 !important;
+                    margin: 10px;
+                    background-color: #fff;
+                    color: #212B36;
+                    padding: 12px 30px !important;
+                    border: 1px solid #212B36;
+                    cursor: pointer;
+                }
+                .secondaryBtn {
+                    border-radius: 0px;
+                    font-size: 14px;
+                    padding: 12px 30px !important;
+                    margin: 10px;
+                    background-color: #212B36 !important;
+                    color: #fff !important;
+                    border: 1px solid #212B36 !important;
+                    // padding: 30px !important;
+                }
+        }
 
 @media only screen and (max-width: 767px) {
         .providerForm {
@@ -38,6 +63,13 @@
         }
         .providerCard {
                 margin: 0 !important
+        }
+        .emptyProviders {
+                text-align: center;
+                padding: 50px;
+                h1 {
+                        font-size: 14px !important
+                }
         }
 }
 // END OF PROVIDER FORM

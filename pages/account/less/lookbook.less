@@ -3,6 +3,79 @@
     overflow: hidden;
     .imgWrap {
         width: 100%;
-        border: 1px solid #eee
+        height: 200px;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        border: 1px dashed #C4CDD5;
+        background-position-y: center;
+        cursor: pointer;
+        input[type="file"] {
+            position: relative;
+            top: -199px;
+            z-index: 12;
+            opacity: 0;
+            height: 100%;
+            width: 100%;
+            cursor: pointer;
+        }
+    
+        div {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            text-align: center;
+            width: 100%;
+            padding: 40px;
+            img {
+                margin: 0 0 20px 0
+            }
+        }
+                
+        div.dragover {
+            background-color: #aaa;
+        }
+    }
+    .sectionTitle {
+        color: #212B36;
+        font-size: 20px;
+        font-weight: 600;
+        width: 100%;
+        margin: 1px 0 !important;
+        font-family: freightproblack !important;
+    }
+    .secondaryBtn {
+        border-radius: 0px;
+        font-size: 14px;
+        padding: 12px 30px !important;
+        margin: 10px;
+        background-color: #212B36 !important;
+        color: #fff !important;
+        border: 1px solid #212B36 !important;
+        // padding: 30px !important;
+        
+    }
+    .lookColumn {
+        padding: 10px !important;
+        height: 213px;
+        overflow: hidden;
+        img {
+            margin-top: -34px;
+        }
+    }
+    .lookColumn:hover .deleteBtn {
+        opacity: 1;
+    }
+    .deleteBtn {
+        opacity: 0;
+        color: red;
+        background: #fff;
+        border-radius: 5px;
+        position: relative;
+        top: 103px;
+        right: 36%;
+        float: right;
+        padding: 10px 20px;
+        transition: linear all 0.4s;
+        cursor: pointer;
     }
 }

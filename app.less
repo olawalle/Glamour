@@ -377,6 +377,9 @@ body ::-webkit-scrollbar-track {
 .ui.loader:after {
         border-color: #e84671 transparent transparent !important;
 }
+.ui.active.selection.dropdown {
+        z-index: 10000000 !important;
+}
 
 
 
@@ -405,42 +408,56 @@ body ::-webkit-scrollbar-track {
         box-shadow: 0px 0px 10px rgba(99, 115, 129, 0.1) !important;
 }
    
-        .login-form {
-                padding: 5px 25px !important;
-        
-                .login-form--input1{
-                        margin: 10px 0px !important;
-                        margin-bottom: 30px !important;
-                }
-                
-                .login-form--input2 {
-                        margin: 10px 0px !important;
-                }
-                
-                .forgotPassword {
-                        font-family: sofiaprosemibold !important;
-                        color: #e84671;
-                        font-size: 16px;
-                        margin-top: 10px !important;
-                        margin-bottom: 20px !important;
-                        text-align: right !important;
-                        display: block !important;
-                }
-                
-                .column {
-                        background: white !important;
-                        padding: 45px 20px !important;
-                        // marginTop: 135px;
-                        margin-top: 4% !important;
-                        padding-bottom: 70px !important;
-                }
-                
-                .button {
-                        height: 60px !important;
-                        width: 126px !important;
-                        margin-bottom: 20px;
-                }
+.login-form {
+        padding: 5px 25px !important;
+
+        .login-form--input1{
+                margin: 10px 0px !important;
+                margin-bottom: 30px !important;
         }
+        
+        .login-form--input2 {
+                margin: 10px 0px !important;
+        }
+        
+        .forgotPassword {
+                font-family: sofiaprosemibold !important;
+                color: #e84671;
+                font-size: 16px;
+                margin-top: 10px !important;
+                margin-bottom: 20px !important;
+                text-align: right !important;
+                display: block !important;
+        }
+        
+        .column {
+                background: white !important;
+                padding: 45px 20px !important;
+                // marginTop: 135px;
+                margin-top: 4% !important;
+                padding-bottom: 70px !important;
+        }
+        
+        .button {
+                height: 60px !important;
+                width: 126px !important;
+                margin-bottom: 20px;
+        }
+}
+
+.addressBook .mainBtn {
+        border-radius: 0px;
+        font-size: 14px;
+        padding: 15px 30px !important;
+        margin: 10px;
+        background-color: #212B36 !important;
+        font-size: 15px !important;
+        font-weight: 400 !important;
+        font-family: sofiapromedium !important;
+        color: #fff !important;
+        border: 1px solid #c4cdd580;
+        margin-top: 35px !important;
+    }
         
         
               

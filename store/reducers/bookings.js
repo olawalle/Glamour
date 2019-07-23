@@ -2,7 +2,7 @@ import { SAVE_USER_BOOKINGS } from '../actions/types';
 
 
 const INITIAL_STATE = {
-  bookedItems: {
+  bookedItems: [
     // 1: {
     //     id: 1,
     //     key: '1',
@@ -39,7 +39,7 @@ const INITIAL_STATE = {
     //     },
     //     services: [{ name: 'Title of service', price: 5 }, { name: 'Title of service', price: 10 }, { name: 'Title of service', price: 300 }],
     //   }
-  }
+  ]
 }
 
 
@@ -66,7 +66,6 @@ export default (state = INITIAL_STATE, { type, payload }) => {
     //   }
     // }
     case SAVE_USER_BOOKINGS: {
-      console.log('reducer', payload)
       return {bookedItems: payload}
     }
     default:

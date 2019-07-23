@@ -12,11 +12,13 @@ import './less/serviceProvider.less'
 import * as actions from '../store/actions'
 import Display from '../components/shared/Display';
 import { getAllServices, getAllTrends, getAllProviders } from '../services/generatData.ts'
+import Router from 'next/router';
+import { Button } from 'antd';
 
 
 const styles = {
     pageWrap: {
-    paddingTop: '60px'
+    paddingTop: '10px'
     }
 }
 
@@ -38,17 +40,19 @@ class ServiceProvider extends Component {
         allProviders: []
     }
 
-    getFormData = (e) => {
-        // console.log(e)
+    getFormData = (e, f) => {
+        
         // filter list of providers based on user preferences
-        // console.log(this.props.serviceProviders)
-        let newArray = this.props.serviceProviders.filter(provider => {
+        let newArray = []
+        !f ? newArray = this.props.serviceProviders.filter(provider => {
             return provider.description.toLowerCase().includes(e.searchFor.toLowerCase())
                 && provider.service.toLowerCase().includes(e.sortBy.toLowerCase())
                 && provider.mileRadius.toLowerCase().includes(e.distance.toLowerCase())
                 && provider.postcode.toLowerCase().includes(e.postcode.toLowerCase())
+        }) : newArray = this.state.allProviders.filter(provider => {
+            return provider.description.toLowerCase().includes(f.searchFor.toLowerCase())
+                && provider.postcode.toLowerCase().includes(f.postcode.toLowerCase())
         })
-        // console.log(newArray)
         this.setState({allProviders: newArray})
     }
 
@@ -68,7 +72,7 @@ class ServiceProvider extends Component {
         // get list of service categories, trends and serviceProviders
         getAllServices()
         .then(res => {
-          this.props.saveServices(res.data.data.services)
+          this.props.saveServices(res.data.data)
         })
         .catch(err => {
           console.log(err)
@@ -85,11 +89,21 @@ class ServiceProvider extends Component {
         getAllProviders()
         .then(res => {
           this.props.saveProviders(res.data.users)
-          this.setState({allProviders: res.data.users})
+          Object.keys(Router.router.query).length > 0 ? this.setState({allProviders: res.data.users}, () => {
+            this.getFormData(null, Router.router.query)
+          }) : this.setState({allProviders: res.data.users})
         })
         .catch(err => {
           console.log(err)
         })
+    }
+
+    componentDidMount() {
+        // console.log(window.localStorage.getItem('store'))
+        let token = window.sessionStorage.getItem('glamourToken')
+        if (token) {
+        //   this.props.saveUserData(JSON.parse(userData))
+        }
     }
 
     render () {
@@ -102,7 +116,8 @@ class ServiceProvider extends Component {
                 <div style={styles.pageWrap} className="serviceProviders">
                     <ProvidersForm getWhenServiceNeeded={this.getWhenServiceNeeded} getFormData={this.getFormData} />
 
-                    <Grid columns={3} stackable>
+                    {
+                        this.state.allProviders.length > 0 ? <Grid columns={3} stackable>
                         <Grid.Row>
                             {
                                 this.state.allProviders.map((provider, i) => (
@@ -112,7 +127,17 @@ class ServiceProvider extends Component {
                                 ))
                             }
                         </Grid.Row> 
-                    </Grid>  
+                    </Grid>  :
+                    <div className="emptyProviders">
+                        <img src="/static/icons/empty_service.svg" alt=""/>
+                        <h1>
+                            No providers match your specified criteria
+                        </h1>
+                        <Button className="mainBtn secondaryBtn" onClick={() => Router.push('/serviceproviders')}>
+                            View All
+                        </Button>
+                    </div>
+                    }
                 </div>
             </Container>
             <Footer />

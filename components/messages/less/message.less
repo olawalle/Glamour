@@ -1,6 +1,7 @@
 #__next .message {
   display: flex !important;
   flex-direction: column !important;
+  cursor: pointer;
 
   .message-header {
     display: flex;
@@ -13,7 +14,7 @@
   }
 
   .message-snippet {
-    padding: 20px 0px;
+    padding: 10px 0px;
   }
 
   .message-time {
@@ -29,6 +30,11 @@
     margin: 0px !important;
     // margin-left: -8%;
     // position: absolute;
+  }
+
+  .selected-convo {
+    border-left: 5px solid #e84671 !important;
+    padding-top: 10px;
   }
 
 

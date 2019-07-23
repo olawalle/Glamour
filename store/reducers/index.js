@@ -13,7 +13,10 @@ import subscribedServicesReducer from '../reducers/subscribedServices'
 import cartReducer from '../reducers/cart';
 import providerServices from '../reducers/providerServices'
 import bookingsReducer from '../reducers/bookings';
-import addressReducer from '../reducers/address'
+import addressReducer from '../reducers/address';
+import providerLookbookReducer from '../reducers/providerLookbook'
+import subscriptionsReducer from '../reducers/subscriptions'
+import activeComponentReducer from '../reducers/activeComponent'
 
 let rootReducer = combineReducers({
   user: userReducer,
@@ -28,7 +31,10 @@ let rootReducer = combineReducers({
   subscribedServices: subscribedServicesReducer,
   cart: cartReducer,
   bookings: bookingsReducer,
-  addresses: addressReducer
+  addresses: addressReducer,
+  providerLookbook: providerLookbookReducer,
+  subscriptions: subscriptionsReducer,
+  activeComponent: activeComponentReducer
 });
 
 export default rootReducer;

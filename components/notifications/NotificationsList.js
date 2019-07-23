@@ -5,7 +5,7 @@ import './less/notificationsList.less';
 
 const NotificationsList = (props) => {
   return (
-    <List className="notification-list mt-30" divided verticalAlign='middle'>
+    <List className="notification-list mt-30" style={{overflow: 'hidden'}} divided verticalAlign='middle'>
       {
         props.notifications.map((notification, index) => (
           <Notification key={index} { ...notification } {...props}/>

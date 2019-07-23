@@ -1,6 +1,6 @@
 import React, { Component, useRef } from 'react'
 
-import { Grid, Image, Container, Button, Modal } from 'semantic-ui-react'
+import { Grid, Image, Container, Button, Modal, Loader } from 'semantic-ui-react'
 import Checkoutform from '../components/checkout/checkoutform'
 import BookingDetails from '../components/checkout/bookingDetails'
 import Navbar from '../components/shared/Navbar';
@@ -10,16 +10,26 @@ import * as actions from '../store/actions'
 import './less/checkout.less'
 import Router from 'next/router'
 import Display from '../components/shared/Display';
-import { postBookings, postPayment } from '../services/auth.ts'
-import { StripeProvider, Elements } from "react-stripe-elements";
+import { postBookings, postPayment, confirmBookings } from '../services/auth.ts'
+import { injectStripe, Elements, StripeProvider, } from "react-stripe-elements";
 
-class Checkout extends Component {
+class Checkout_ extends Component {
 
   state = {
-    step: 2,
+    step: 1,
     open: false,
     id: '',
-    stripe: null
+    stripe: null,
+    loading: false,
+    cardDetails: {
+      cardExpiryDate: "",
+      cardName: "",
+      cardNumber: "",
+      cvv: "",
+      errors: 4
+    },
+    bookingId: "",
+    client_secret: "",
   }
 
   styles = {
@@ -49,76 +59,83 @@ class Checkout extends Component {
 
   updateState = (n) => {
     this.setState({step: n})
-    // this.triggerAddressSubmit
   }
 
   createBooking = () => {
+    this.setState({loading: true})
     let total = 0
     this.props.subscribedServices.map(service => total += parseFloat(service.amount))
     let data = {
       providerId: this.props.subscribedServices[0].userId,
       services: this.props.subscribedServices,
-      amount: total,
-      addressId: this.props.activeAddress
+      amount: total * 100,
+      addressId: this.props.activeAddress,
+      time: this.props.time
     }
-    console.log(data)
     postBookings(data)
     .then(res => {
-      console.log(res)
-      this.setState({id: res.data.data._id}, () => {
-        console.log(this.state)
+      this.setState({bookingId: res.data.data.bookings._id})
+      let amt = {
+        amount: total * 100,
+        currency: 'GBP',
+      }
+      postPayment(amt, res.data.data.bookings._id)
+      .then(resp => {
+        console.log(resp)
+        this.setState({loading: false})
+        this.setState({
+          client_secret: resp.data.data.client_secret,
+          step: 2
+        })
       })
-      this.sendPayment()
+      .catch(err => {
+        console.log({...err})
+        this.setState({loading: false})
+      })
     })
     .catch(err => {
       console.log(err)
+      this.setState({loading: false})
     })
   }
 
-  sendPayment = () => {
-    postPayment(this.state.id)
-    .then(res => {
-      this.updateState(2)
-      console.log(res)
+  handleSubmit = () => {
+    let secret = this.state.client_secret
+    let bookingId = this.state.bookingId
+    this.props.stripe.handleCardPayment(
+      secret,
+    )
+    .then(function(result) {
+      console.log(result)
+      if (result.paymentIntent) {
+        let data = {
+          secret: result.paymentIntent.id
+        }
+        confirmBookings(data, bookingId)
+        .then(res => {
+          console.log(res)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      } else {
+        let data = {
+          secret: result.error.payment_intent.id
+        }
+        confirmBookings(data)
+        .then(res => {
+          console.log(res)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      }
+      // Handle result.error or result.paymentIntent
     })
-    .catch(err => {
-      console.log(err)
-    })
-  }
-
-  triggerAddressSubmit = () => {
-    
-  }
-
-  // updateCart = () => {
-
-  // }
+  };
 
   show = () => {
     this.setState({ open: true })
-    console.log(this.state)
-  }
-
-  getRandomInt = (min, max) => {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-
-  updateCart = () => {
-    let id = this.getRandomInt(200, 38725654542)
-    console.log(this.props)
-    let data = {
-      id: id,
-      key: id.toString(),
-      providerInfo: {
-        avatar: this.props.providerDetails.userPhoto,
-        name: this.props.providerDetails.name,
-        formattedTime: '21:00 am, Today',
-      },
-      services: this.props.subscribedServices
-    }
-    this.props.addCartItem(data)
   }
 
   close = () => this.setState({ open: false })  
@@ -131,28 +148,40 @@ class Checkout extends Component {
     console.log(e)
   }
 
+  
+  getCard = e => {
+    console.log(e)
+    this.setState({cardDetails: e})
+  }
+
+  toTwo = () => {
+    this.createBooking()
+  }
+
   componentDidMount() {
-    console.log(this.refs)
-    if (!window.sessionStorage.getItem('glamourToken')) Router.push('/login')
-    
-    // this.setState({
-    //   stripe: window.Stripe("pk_test_YOUR_STRIPE_PK_KEY")
-    // });
+    let token = window.sessionStorage.getItem('glamourToken')
+    if (!token) Router.push('/login')
   }
-
-  componentWillMount() {
-  }
-
   render() {
 
     const bttn = () => {
       if (this.state.step === 1) {
-        return <Button  secondary className="proceedBtn" onClick={() => this.createBooking()}>
+        return <Button secondary disabled={this.props.activeAddress === ""} className="proceedBtn" onClick={() => this.toTwo()}>
+          <Display if={this.state.loading}>
+            <Loader active inline='centered' />
+          </Display>
+          <Display if={!this.state.loading}>
             Continue
+          </Display>
         </Button>
     } else {
-        return <Button secondary className="proceedBtn" onClick={() => this.sendPayment()}>
-          <div> <img src='/static/icons/lock.svg' />  Make payment</div>
+        return <Button secondary className="proceedBtn" onClick={() => this.handleSubmit()}>
+          <Display if={this.state.loading}>
+            <Loader active inline='centered' />
+          </Display>
+          <Display if={!this.state.loading}>
+            <div> <img src='/static/icons/lock.svg' />  Make payment</div>
+          </Display>
         </Button>
       }
     }
@@ -164,7 +193,13 @@ class Checkout extends Component {
         <Grid columns={2} stackable>
           <Grid.Row>
             <Grid.Column width={11}>
-              <Checkoutform ref='checkoutform' step={this.state.step} log={this.log} addressForm={this.getAddressFormData}> 
+              <Checkoutform 
+                client_secret={this.state.client_secret} 
+                getCard={this.getCard} 
+                ref='checkoutform' 
+                step={this.state.step} 
+                log={this.log} 
+                addressForm={this.getAddressFormData}> 
 
                 <Display if={this.state.step === 1}>
                   <Grid className="gridWrap">
@@ -192,7 +227,7 @@ class Checkout extends Component {
                 <Display if={this.state.step === 2}>
                   <Grid className="gridWrap">
                       <Grid.Row className="topIndicator">
-                          <div className="edge inactive"></div>
+                          <div className="edge inactive" style={{cursor: 'pointer'}} onClick={() => this.updateState(1)}></div>
                           <div className="divider"></div>
                           <div className="edge"></div>
                       </Grid.Row>
@@ -248,8 +283,22 @@ class Checkout extends Component {
 
 const mapStateToProps = (state) => ({
   subscribedServices: state.subscribedServices.subscribedServices,
+  time: state.subscribedServices.time,
   providerDetails: state.subscribedServices.selectedProvider,
   activeAddress: state.addresses.activeAddress
 })
 
-export default connect(mapStateToProps, actions)(Checkout)
+// export default connect(mapStateToProps, actions)(Checkout)
+const Checkoutchild = injectStripe(connect(mapStateToProps, actions)(Checkout_))
+
+export default class Checkout extends Component {
+  render() {
+    return (
+      <StripeProvider apiKey={"pk_test_sntSe2uSuOohMsBh66biH34d00mLeSb2eh"}>
+        <Elements>
+          <Checkoutchild />
+        </Elements>
+      </StripeProvider>
+    );
+  }
+}

@@ -2,21 +2,32 @@
     .userDesc {
         margin-top: -65px !important;
         .userPhoto {
-            width: 130px;
+            width: 120px;
+            height: 120px;
+            overflow: hidden;
             border: 3px solid #fff;
             border-radius: 50%;
-            background-color: #fff !important
+            background-color: #fff !important;
+            img {
+                width: 100%
+            }
         }
         .userPhoto_ {
-            width: 130px;
+            width: 120px;
+            height: 120px;
+            overflow: hidden;
             border: 3px solid #e84671;
             border-radius: 50%;
-            background-color: #fff !important
+            background-color: #fff !important;
+            img {
+                width: 100%
+            }
         }
     }
     .buttons {
         float: right;
-        padding-top: 70px !important;
+        margin-top: -50px !important
+        // padding-top: 70px !important;
     }
     .secondaryBtn {
         border-radius: 0px;
@@ -36,6 +47,7 @@
         padding-left: 30px !important;
         display: inline-flex;
         padding-right: 30px !important;
+        vertical-align: middle;
         img {
             margin-top: -4px;
             margin-right: 6px !important;
@@ -60,7 +72,13 @@
     .userDetails {
         margin: 10px 0 0 0 !important;
         font-family: sofiapromedium !important;
-        color: #637381
+        color: #637381;
+        -webkit-box-orient: vertical;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
 
     }
     .lightShadow {
@@ -88,7 +106,8 @@
         background-color: #fff;
         padding: 30px;
         margin-bottom: 30px;
-        height: auto        
+        height: 520px;
+        overflow: hidden;        
     }
     .lookBookWrapTitle {
         font-size: 30px;
@@ -140,10 +159,14 @@
         top: 20px;
     }
     .bookServiceComponent {
-        margin-top: -260px !important;
+        margin-top: -290px !important;
         background-color: #fff;
         padding: 30px;
-        height: auto
+        height: auto;
+        
+        position: -webkit-sticky !important;
+        position: sticky !important;
+        top: 20px !important;
     }
     @media (max-width: 767px) {
         .userDesc {
@@ -165,9 +188,6 @@
         }
         .serviceDetails .serviceWrap {
             box-shadow: unset !important
-        }
-        .bookServiceComponent {
-            margin-top: 0 !important
         }
         .userName {
             font-size: 16px !important;
@@ -191,6 +211,12 @@
             font-size: 24px !important;
             padding: 0 15px !important
         } 
+        .lookBookWrap {
+            background-color: #fff;
+            padding: 30px;
+            margin-bottom: 30px;
+            height: auto;      
+        }
         .servicesChildWrap {
             padding: 0 !important
         }

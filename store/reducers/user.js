@@ -16,7 +16,6 @@ export default function (state = INITIAL_STATE, action) {
     
   switch (action.type) {
     case SAVE_USER_DATA:
-      // console.log(action.payload)
       return {...action.payload};
 
     // case SAVE_LOGGEDIN_STATUS: {

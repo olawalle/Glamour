@@ -47,12 +47,12 @@ export default function StepOne(props) {
   const [ formErrors, setFormErrors ] = useState({})
 
   const [signupFormData, setSignupData] = useState({
-    fullnames: 'fullnames',
-    email: 'email',
-    phone: 'phone',
-    password: 'password',
-    referral: 'online',
-    accept: false
+    fullnames: '',
+    email: '',
+    phone: '',
+    password: '',
+    referral: '',
+    accept: true
   });
 
   useEffect(() => {
@@ -91,7 +91,7 @@ export default function StepOne(props) {
               value={signupFormData.fullnames}
               className="stepOne-form--input"
               size="huge"
-              placeholder='Full Name'
+              autocomplete="false" placeholder='Full Name'
               fluid
             />
             <Input
@@ -101,7 +101,7 @@ export default function StepOne(props) {
               value={signupFormData.email}
               className="stepOne-form--input"
               size="huge"
-              placeholder='Email address'
+              autocomplete="false" placeholder='Email address'
               fluid
             />
             <Input
@@ -111,7 +111,7 @@ export default function StepOne(props) {
               value={signupFormData.phone}
               className="stepOne-form--input"
               size="huge"
-              placeholder='Mobile number'
+              autocomplete="false" placeholder='Mobile number'
               fluid
             />
             <Password
@@ -119,8 +119,9 @@ export default function StepOne(props) {
               handlechange={(e) => handleChange(e, 'password')}
               password={signupFormData.password}
               size="huge"
-              placeholder='Password'
+              autocomplete="false" placeholder='Password'
               className="stepOne-form--input"
+              auto
               fluid
             />
             <Select
@@ -130,7 +131,7 @@ export default function StepOne(props) {
               value={signupFormData.referral}
               fluid
               options={options}
-              placeholder='How did you hear about Glamour?'
+              autocomplete="false" placeholder='How did you hear about Glamour?'
             />
             <div className="is-flex mt-10">
               <Checkbox

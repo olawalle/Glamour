@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {Grid} from 'semantic-ui-react'
 import './less/SelectedServices.less'
 
@@ -44,6 +44,18 @@ export default function SelectedServices(props) {
         .map(ser => ser.title)
     )
   }
+  
+  useEffect(() => {
+    if (props.userServices) {
+      let preSelectedservices = props.userServices.split(",")
+      let services_ = [...services]
+      let newArr = services_.map(serv => {
+        let isThere = preSelectedservices.find(pre => pre === serv.title)
+        return isThere ? {...serv, selected: true} : {...serv, selected: false}
+      })
+      updateServices(newArr)
+    }
+  }, [])
 
   return (
     <>

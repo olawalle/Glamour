@@ -20,7 +20,6 @@ const NotificationModal = (props) => {
   }
 
   const rate = (i) => {
-    console.log(i)
     let n = STARS.map((star, j) => {
       return j <= i ? 'filled' : null
     })
@@ -36,14 +35,13 @@ const NotificationModal = (props) => {
     let data = {
       description,
       rating,
-      providerId: '5d1bb151f451bc0004d30594'
+      providerId: props.review.user.id
       // user: props.user
     }
     console.log(data)
     postReviews(data)
     .then(res => {
       console.log(res)
-      Router.push('/notifications')
     })
     .catch(err => {
       console.log(err)
@@ -64,11 +62,11 @@ const NotificationModal = (props) => {
         Review
       </Header>
       <div className="info-box mt-15">
-        <Image className="avatar mr-10" src={props.user.pictureUrl} />
-        <span className="fw900">{props.user.fullname}</span>
+        <Image className="avatar mr-10" src={props.review.user.userPhoto} />
+        <span className="fw900">{props.review.user.name}</span>
       </div>
 
-      <Header as="h4" className="fw100 mb-5 notificationModal-rate--header">Rate { props.user.fullname } </Header>
+      <Header as="h4" className="fw100 mb-5 notificationModal-rate--header">Rate { props.review.user.name } </Header>
       <div className="notificationModal-stars--panel mb-30">
         {
           STARS.map((star, index) => {

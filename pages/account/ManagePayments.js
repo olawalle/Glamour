@@ -45,7 +45,7 @@ export default function ManagePayments() {
                 </p>
             </Grid.Column>
             <Grid.Column width={12}>
-            <UserBankAccount showAdd={true} />
+                <UserBankAccount showAdd={true} />
             </Grid.Column>
         </>
     }
@@ -57,7 +57,7 @@ export default function ManagePayments() {
         return null 
     } else if (!isAddingCard) {
         return <>
-                    <Grid.Column width={8}>
+                    <Grid.Column largeScreen={6} mobile={16}>
                     <p className="sectionTitle">
                         Card
                     </p>

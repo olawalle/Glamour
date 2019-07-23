@@ -7,24 +7,13 @@ const LookBook = (props) => {
     <div className="lookBook">
         <Grid stackable columns={3}>
             <Grid.Row>
-                <Grid.Column className="lookColumn">
-                    <img className="look" src="../../static/images/services/face.png" alt=""/>
-                </Grid.Column>
-                <Grid.Column className="lookColumn">
-                    <img className="look" src="../../static/images/services/face.png" alt=""/>
-                </Grid.Column>
-                <Grid.Column className="lookColumn">
-                    <img className="look" src="../../static/images/services/face.png" alt=""/>
-                </Grid.Column>
-                <Grid.Column className="lookColumn">
-                    <img className="look" src="../../static/images/services/face.png" alt=""/>
-                </Grid.Column>
-                <Grid.Column className="lookColumn">
-                    <img className="look" src="../../static/images/services/face.png" alt=""/>
-                </Grid.Column>
-                <Grid.Column className="lookColumn">
-                    <img className="look" src="../../static/images/services/face.png" alt=""/>
-                </Grid.Column>
+                {
+                    props.looks.map((look, i) => {
+                        return <Grid.Column key={i} className="lookColumn">
+                            <img className="look" src={look.pictureUrl} alt=""/>
+                        </Grid.Column>
+                    })
+                }
             </Grid.Row>
         </Grid>      
     </div>

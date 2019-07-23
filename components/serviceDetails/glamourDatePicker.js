@@ -142,13 +142,11 @@ export default class glamourDatePicker extends Component {
       })
       this.moveDatesLeft(selectedDatesPosition)
       this.setState({allDates: fullPreviouslySelectedDate}, () => {
-        console.log(this.state.allDates)
       })
     } else {
       let all = datesDictionary[`${currentMonth}, ${currentYear}`].map(d => {
         return {...d, isAvailable: this.userIsAvailable(`${d.day}, ${d.month}`)}
       })
-      console.log(all)
       this.setState({allDates: all})
     }
   }
@@ -160,7 +158,6 @@ export default class glamourDatePicker extends Component {
   }
 
   moveDatesLeft = (n) => {
-    console.log(n)
     // settimeout needed because there a time lag from when component is mounted before refs are defined
     setTimeout(() => {
       let position = this.refs.section.scrollLeft
@@ -199,7 +196,6 @@ export default class glamourDatePicker extends Component {
 
     let whatDay = (dayjs(pickedDate).$d).toString().split(' ')[0]
     let daySchedule = this.props.userSchedule.find(d => d.day === whatDay)
-    console.log(daySchedule)
     this.setState({userAvailableTimes: daySchedule}, () => {
       this.getUserAvailableTimesArray()
     })
@@ -208,15 +204,12 @@ export default class glamourDatePicker extends Component {
     this.setState({pickedDate: pickedDate}, () => {
       this.props.pickDate(pickedDate)
     })
-    console.log(pickedDate)
   }
 
   getMonth = () => {
     if (this.state.dateLimits.min.month === this.state.allDates[0].month) {
-      console.log('min')
     }
     if (this.state.dateLimits.max.month === this.state.allDates[0].month) {
-      console.log('max')
     }
     return this.state.allDates[0] ? this.state.allDates[0].month : ''
   }

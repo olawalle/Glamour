@@ -3,8 +3,9 @@ import {Grid, Input, Select} from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions'
 import './less/cardDetailsForm.less'
-import { addAddress, getUserAddresses } from '../../services/generatData.ts'
+import { addAddress, getUserAddresses, editAddress, deleteAddress } from '../../services/generatData.ts'
 import Display from './Display';
+import Loader from './Loader';
 
 const AddressForm = (props) => {
   
@@ -23,6 +24,8 @@ const AddressForm = (props) => {
   const [addressList, setaddressList] = useState([])
 
   const [addingNew, setaddingNew] = useState(true)
+
+  const [loading, setloading] = useState(false)
 
   
   const handleChange = (e, key, {value = null, checked = null } = {}) => {
@@ -44,27 +47,42 @@ const AddressForm = (props) => {
       }
     })
     setFormErrors(_formErrors)
-    console.log(addressFormData, _formErrors)
-    // props.formData(addressFormData)
 
     // CALL API WITH loginFormData
-    if (Object.keys(_formErrors).length <= 0) {
+    if (Object.keys(_formErrors).length <= 0 && !addressFormData._id) {
+      setloading(true)
       addAddress(addressFormData)
       .then(res => {
+        setloading(false)
         console.log(res)
         fetchUserAddresses()
         setaddingNew(true)
       })
       .catch(err => {
+        setloading(false)
+        console.log(err)
+      })
+    } else {
+      setloading(true)
+      editAddress(addressFormData, addressFormData._id)
+      .then(res => {
+        console.log(res)
+        fetchUserAddresses()
+        setaddingNew(true)
+        setloading(false)
+      })
+      .catch(err => {
+        setloading(false)
         console.log(err)
       })
     }
+    console.log(addressFormData)
   }
 
   const switchActive = (e, f) => {
     let selected = userAddresses.find(add => add._id === f.value)
     props.saveActiveAddress(f.value)
-    // setAddressData(selected)
+    setAddressData(selected)
   }
 
   const addNewAddress = () => {
@@ -78,36 +96,70 @@ const AddressForm = (props) => {
     })
   }
 
+  const deleteCurrentAddress = () => {
+    setloading(true)
+    deleteAddress(addressFormData._id)
+    .then(res => {
+      console.log(res)
+      setloading(false)
+      fetchUserAddresses()
+    })
+    .catch(err => {
+      console.log(err)
+      setloading(false)
+    })
+  }
+
   const fetchUserAddresses = () => {
-    // getUserAddresses()
-    // .then(res => {
-    //     updateUserAddresses(res.data.addresses)
-    //     setAddressData(res.data.addresses[0])
-    //     props.saveUserAddresses(res.data.addresses)
-    if (props.userAddresses.addressList.length > 0 ) {
-      let addressList = props.userAddresses.addressList.map((add, i) => {
-        return { key: `${add.aptNumber}, ${add.streetNumber}`, value: add._id, text: `${add.aptNumber}, ${add.streetNumber}` }
-      })
-      setAddressData(props.userAddresses.addressList[0])
-      setaddressList(addressList)
-    }
-    // })
-    // .catch(err => {
-    //   console.log(err)
-    // })
+    getUserAddresses()
+    .then(res => {
+        updateUserAddresses(res.data.addresses)
+        props.saveUserAddresses(res.data.addresses)
+        let addressList = res.data.addresses.map((add, i) => {
+          return { key: `${add.aptNumber}, ${add.streetNumber}`, value: add._id, text: `${add.aptNumber}, ${add.streetNumber}` }
+        })
+        if (res.data.addresses.length > 0) {
+          props.saveActiveAddress(res.data.addresses[0]._id)
+          setAddressData(res.data.addresses[0])
+          setaddressList(addressList)
+        } else {
+          setAddressData({
+            aptNumber: '',
+            streetNumber: '',
+            postCode: '',
+            city: '',
+            instructions: ''
+          })
+          setaddressList([])
+          props.saveActiveAddress("")
+        }
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  const close = () => {
+    setaddingNew(true)
+    setAddressData(userAddresses[0])
   }
 
   useEffect(() => {
-    fetchUserAddresses()
-    console.log(props)
+    let token = window.sessionStorage.getItem('glamourToken')
+    if (token) {
+      fetchUserAddresses()
+    }
   }, [])
 
   return (
     <>     
+      {loading && <Loader />}
         <Grid.Row  className="inputWrap">
             <Display if={addingNew}>
               <Grid.Column width={16}>
-              <span className="addList">Address List: <Select placeholder="switch address" onChange={(e, data) => switchActive(e, data)} options={addressList} /></span> 
+              { addressList.length ? 
+                <span className="addList">Address List: <Select placeholder="switch address" onChange={(e, data) => switchActive(e, data)} options={addressList} /></span>  : null
+              }
               </Grid.Column>
             </Display>
             <Grid.Column width={8}>
@@ -164,12 +216,20 @@ const AddressForm = (props) => {
                 <button className="secondaryBtn" onClick={() => addNewAddress()}>
                     Add new Address
                 </button>
+                <button className="dangerBtn" onClick={() => deleteCurrentAddress()}>
+                    Delete Address
+                </button>
               </Display>
             </Grid.Column>
         </Grid.Row>
 
         <Grid.Row className="bottom">
             <Grid.Column textAlign="center">
+              <Display if={!addingNew}>
+                <button className="dangerBtn" onClick={() => close()}>
+                  Cancel
+                </button>
+              </Display>
                 <button className="mainBtn" onClick={submit}>
                     Save changes
                 </button>

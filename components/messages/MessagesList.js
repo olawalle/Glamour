@@ -22,8 +22,6 @@ const determineMsgThreadStyles = (props) => {
 }
 
 const MessagesList = (props) => {
-
-  console.log(props)
   let [ hasScrolledMsgList, setHasScrollMsgList ] = useState(false);
 
   let handleScroll = (e) => {
@@ -34,7 +32,9 @@ const MessagesList = (props) => {
   }
 
   useEffect(() => {
-  }, [hasScrolledMsgList]);
+    // console.log(props)
+    // if (props.conversations.length > 0) props.getConvo(props.conversations[0]._id)
+  }, []);
 
   return (
     <Segment className={ determineSegmentClasses(props) }>
@@ -57,11 +57,11 @@ const MessagesList = (props) => {
                   className="messages-list mt-30"
                   verticalAlign='middle'
                 >
-                  {
-                    props.messages.map((message, index) => (
-                      <Message key={index} { ...message } {...props}/>
-                    ))
-                  }
+                  {/* { */}
+                    {/* props.conversations.map((message, index) => ( */}
+                      <Message getConvo={props.getConvo} {...props}/>
+                    {/* )) */}
+                  {/* } */}
                 </List>
               </Grid.Column>
             </Display>
@@ -74,7 +74,7 @@ const MessagesList = (props) => {
               largeScreen={ 11 }
               widescreen={ 11 }
             >
-              <ThreadBlock {...props} />
+              <ThreadBlock getConvo={props.getConvo} activeConversation={props.activeConversation} {...props} />
             </Grid.Column>
 
           </Grid.Row>

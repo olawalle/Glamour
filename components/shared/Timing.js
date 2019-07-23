@@ -66,12 +66,15 @@ export default class Timing extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.setTimimg)
+        if (this.props.userSchedule) {
+            let schedule = [...this.state.days].map(singleDay => {
+                let correspondingSchedule = this.props.userSchedule.find(sch => sch.day === singleDay.day)
+                return correspondingSchedule ? {...correspondingSchedule, active: 'activeDay'} : {...singleDay, active: ''}
+            })
+            this.setState({days: schedule})
+        }
     }
     
-    componentWillUpdate() {
-        console.log(this.props.setTimimg)
-    }
     pickDay = (i) => {
         let newDays = [...this.state.days]
         let newDays_ = newDays.map((day, j) => {

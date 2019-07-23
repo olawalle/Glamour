@@ -7,7 +7,8 @@ const Banner = (props) => {
   const styles = {
     Segment: {
       background: '#020202',
-      backgroundImage: `url(${props.banner})`
+      backgroundImage: `url(${props.banner})`,
+      backgroundSize: 'cover'
     },
     Header: {
       fontFamily: 'fontfreightproblack',

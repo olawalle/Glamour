@@ -143,9 +143,65 @@ export const saveActiveAddress = (payload) => {
 }
 
 export const saveUserBookings = (payload) => {
-  console.log('bookings action', payload)
   return {
     type: types.SAVE_USER_BOOKINGS,
+    payload
+  }
+}
+
+export const saveUserLookbook = (payload) => {
+  return {
+    type: types.SAVE_LOOKBOOK,
+    payload
+  }
+}
+
+export const pickServiceTime = (payload) => {
+  return {
+    type: types.SELECTED_TIME,
+    payload
+  }
+}
+
+export const saveFavedProviders = (payload) => {
+  return {
+    type: types.SAVE_FAVED_PROVIDERS,
+    payload
+  }
+}
+
+export const saveFullFavedProviders = (payload) => {
+  return {
+    type: types.SAVE_FULL_FAVED_PROVIDERS,
+    payload
+  }
+}
+
+
+export const saveAvailableSubscriptions = (payload) => {
+  return {
+    type: types.SAVE_AVAILABLE_SUBSCRIPTIONS,
+    payload
+  }
+}
+
+export const saveUserSubscriptions = (payload) => {
+  return {
+    type: types.SAVE_USER_SUBSCRIPTIONS,
+    payload
+  }
+}
+
+export const saveUserInvoices = (payload) => {
+  return {
+    type: types.SAVE_USER_INVOICES,
+    payload
+  }
+}
+
+export const saveActiveComponent = (payload) => {
+  return {
+    type: types.SAVE_ACTIVE_COMPONENT,
     payload
   }
 }

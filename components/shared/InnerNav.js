@@ -92,7 +92,7 @@ class InnerNav extends Component {
 
   render() {
     return (
-      <div className="innerNav">
+      <div className="innerNav mobile hidden">
         <Sticky>
           <Menu secondary>
             {
