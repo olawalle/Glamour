@@ -9,15 +9,16 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions'
 
 import { getCurrentUser } from '../../services/auth.ts'
-import { postPayment, confirmSubscriptionPayment } from '../../services/auth.ts'
+import { postSubscriptionPayment, confirmSubscriptionPayment } from '../../services/auth.ts'
 import Display from '../../components/shared/Display';
 import { injectStripe, Elements, StripeProvider, } from "react-stripe-elements";
+import dayjs from 'dayjs';
 
 
 const ManageSubscriptions_ = (props) => {
 
   useEffect(() => {
-   if(props.user.subscriptionId !== "0") {
+   if(props.user.subscriptionId !== "0" && props.user.subscriptionId !== null) {
        setUserSubscription({present: true, type: props.subscriptions.availableSubscriptions.find(sub => sub._id === props.user.subscriptionId)})
    }
   }, [])
@@ -144,74 +145,77 @@ const ManageSubscriptions_ = (props) => {
   const pay = () => {
     setsendingRequest(true)
     let amt = {
-        amount: selectedPlan.amount * 100,
-        currency: 'GBP',
-      }
-      postPayment(amt, selectedPlan._id)
-      .then(resp => {
-        console.log(resp)
-        setSecret(resp.data.data.client_secret)
-        handleSubmit(resp.data.data.client_secret)
-      })
-      .catch(err => {
-        console.log({...err})
-      })
+      amount: selectedPlan.amount * 100,
+      currency: 'GBP',
+    }
+    postSubscriptionPayment(amt, selectedPlan._id)
+    .then(resp => {
+      console.log(resp)
+      setSecret(resp.data.data.client_secret)
+      handleSubmit(resp.data.data.client_secret)
+    })
+    .catch(err => {
+      console.log({...err})
+    })
   }
   
   const handleSubmit = (secret) => {
-    props.stripe.handleCardPayment(
-      secret,
-      card
-    )
-    .then(function(result) {
-      console.log(result)
-      if (result.paymentIntent) {
-        let data = {
-          secret: result.paymentIntent.id,
-          subscriptionId: props.user.id
-        }
-        confirmSubscriptionPayment(data, props.user.id)
-        .then(res => {
-          setsendingRequest(false)
-          console.log(res)
-          getCurrentUser()
+    if (props.stripe) {
+      props.stripe.handleCardPayment(
+        secret,
+        card
+      )
+      .then(function(result) {
+        console.log(result)
+        if (result.paymentIntent) {
+          let data = {
+            secret: result.paymentIntent.id,
+            subscriptionId: selectedPlan._id,
+            duration: selectedPlan.duration
+          }
+          confirmSubscriptionPayment(data, props.user.id)
           .then(res => {
-            props.saveUserData({
-              ...res.data.me,
-              isLoggedIn: true
+            setsendingRequest(false)
+            console.log(res)
+            getCurrentUser()
+            .then(res => {
+              props.saveUserData({
+                ...res.data.me,
+                isLoggedIn: true
+              })
             })
           })
-        })
-        .catch(err => {
+          .catch(err => {
+            console.log(err)
+          })
+        } 
+        // else {
+        //   let data = {
+        //     secret: result.error.payment_intent.id,
+        //     subscriptionId: selectedPlan._id
+        //   }
+        //   confirmBookings(data)
+        //   .then(res => {
+        //     setsendingRequest(false)
+        //     console.log(res)
+        //     getCurrentUser()
+        //     .then(res => {
+        //       this.props.saveUserData({
+        //         ...res.data.me,
+        //         isLoggedIn: true
+        //       })
+        //     })
+        //   })
+        //   .catch(err => {
+        //     console.log(err)
+        //     setsendingRequest(false)
+        //   })
+        // }
+      })
+      .catch(err => {
           console.log(err)
-        })
-      } 
-      // else {
-      //   let data = {
-      //     secret: result.error.payment_intent.id,
-      //     subscriptionId: selectedPlan._id
-      //   }
-      //   confirmBookings(data)
-      //   .then(res => {
-      //     setsendingRequest(false)
-      //     console.log(res)
-      //     getCurrentUser()
-      //     .then(res => {
-      //       this.props.saveUserData({
-      //         ...res.data.me,
-      //         isLoggedIn: true
-      //       })
-      //     })
-      //   })
-      //   .catch(err => {
-      //     console.log(err)
-      //     setsendingRequest(false)
-      //   })
-      // }
-    })
-    .catch(err => {
-        console.log(err)
-    })
+      })
+    }
   };
 
   return (
@@ -230,7 +234,7 @@ const ManageSubscriptions_ = (props) => {
                                         {userSubscription.type.name}
                                     </p>
                                     <p className="renews">
-                                        Renews on 5th June, 2020
+                                        Renews on {dayjs(props.user.subscriptionEnd).format('DD MMM YYYY')}
                                     </p>
                                     <button onClick={() => openModal(sub._id)} className="subscribeBtn">
                                         Change plan
@@ -240,9 +244,10 @@ const ManageSubscriptions_ = (props) => {
                     }
                 </Grid.Column>
             </Grid.Row>
-            <Grid.Row className="subscriptionsWrapper">
+            {
+              !userSubscription.present &&  <Grid.Row className="subscriptionsWrapper">
                 {
-                    props.subscriptions.availableSubscriptions.map(sub => {
+                  props.subscriptions.availableSubscriptions.map(sub => {
                         return <Grid.Column width={4} key={sub._id}>
                             <div className={`${sub.name.toLowerCase()} sub`}>
                                 <p className="duration">
@@ -275,6 +280,7 @@ const ManageSubscriptions_ = (props) => {
                     </div>
                 </Grid.Column> */}
             </Grid.Row>
+            }
             <Grid.Row>
                 <Grid.Column width="16">
                     <p className="topText">
@@ -409,18 +415,31 @@ const ManageSubscriptionsChild = injectStripe(connect(mapStateToProps, actions)(
 
 
 class ManageSubscriptions extends Component {
-    state = {
-        cardDetails: null
+  
+  state = {
+    stripe: 'pk_test_sntSe2uSuOohMsBh66biH34d00mLeSb2eh',
+    comp: <></>
+  }
+  
+  componentDidMount() {
+    // Create Stripe instance in componentDidMount
+    // (componentDidMount only fires in browser/DOM environment)
+    // this.setState({stripe: window.Stripe('pk_test_sntSe2uSuOohMsBh66biH34d00mLeSb2eh')});
+    if (window.Stripe) {
+      this.setState({
+        comp: <StripeProvider apiKey={"pk_test_sntSe2uSuOohMsBh66biH34d00mLeSb2eh"}>
+                <Elements>
+                  <ManageSubscriptionsChild />
+                </Elements>
+              </StripeProvider>
+      })
     }
+  }
 
     render() {
       return (
-        <StripeProvider apiKey={"pk_test_sntSe2uSuOohMsBh66biH34d00mLeSb2eh"}>
-          <Elements>
-            <ManageSubscriptionsChild />
-          </Elements>
-        </StripeProvider>
-      );
+        this.state.comp
+      )    
     }
   }
   export default ManageSubscriptions

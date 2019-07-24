@@ -100,38 +100,34 @@ class Checkout_ extends Component {
   }
 
   handleSubmit = () => {
+    this.setState({loading: true})
     let secret = this.state.client_secret
     let bookingId = this.state.bookingId
-    this.props.stripe.handleCardPayment(
-      secret,
-    )
-    .then(function(result) {
-      console.log(result)
-      if (result.paymentIntent) {
-        let data = {
-          secret: result.paymentIntent.id
+    if (this.props.stripe) {
+      this.props.stripe.handleCardPayment(
+        secret,
+      )
+      .then(function(result) {
+        console.log(result)
+        setTimeout(() => {
+          this.setState({loading: false})
+          Router.push('/bookings')          
+        }, 3000);
+        if (result.paymentIntent) {
+          let data = {
+            secret: result.paymentIntent.id
+          }
+          confirmBookings(data, bookingId)
+          .then(res => {
+            console.log(res)
+          })
+          .catch(err => {
+            console.log(err)
+          })
         }
-        confirmBookings(data, bookingId)
-        .then(res => {
-          console.log(res)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-      } else {
-        let data = {
-          secret: result.error.payment_intent.id
-        }
-        confirmBookings(data)
-        .then(res => {
-          console.log(res)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-      }
-      // Handle result.error or result.paymentIntent
-    })
+        // Handle result.error or result.paymentIntent
+      })
+    }
   };
 
   show = () => {
@@ -292,13 +288,30 @@ const mapStateToProps = (state) => ({
 const Checkoutchild = injectStripe(connect(mapStateToProps, actions)(Checkout_))
 
 export default class Checkout extends Component {
+  
+  state = {
+    stripe: 'pk_test_sntSe2uSuOohMsBh66biH34d00mLeSb2eh',
+    comp: <></>
+  }
+  
+  componentDidMount() {
+    // Create Stripe instance in componentDidMount
+    // (componentDidMount only fires in browser/DOM environment)
+    // this.setState({stripe: window.Stripe('pk_test_sntSe2uSuOohMsBh66biH34d00mLeSb2eh')});
+    if (window.Stripe) {
+      this.setState({
+      comp: <StripeProvider apiKey={"pk_test_sntSe2uSuOohMsBh66biH34d00mLeSb2eh"}>
+              <Elements>
+                <Checkoutchild />
+              </Elements>
+            </StripeProvider>
+      })
+    }
+  }
+
   render() {
     return (
-      <StripeProvider apiKey={"pk_test_sntSe2uSuOohMsBh66biH34d00mLeSb2eh"}>
-        <Elements>
-          <Checkoutchild />
-        </Elements>
-      </StripeProvider>
-    );
+      this.state.comp
+    )    
   }
 }

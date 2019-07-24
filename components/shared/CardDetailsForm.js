@@ -174,25 +174,23 @@ class SplitFieldsForm extends Component {
   handleSubmit = (evt) => {
     console.log('submitting')
     evt.preventDefault();
-    // if (this.props.stripe) {
-    //   this.props.stripe.createToken()
-    //   .then(this.props.handleResult);
-    // } else {
-    //   console.log("Stripe.js hasn't loaded yet.");
-    // }
-    this.props.stripe.handleCardPayment(
+    if (this.props.stripe) {
+      this.props.stripe.handleCardPayment(
       this.props.client_secret,
       this.state.card
-      // {
-      //   cardNumber: '5555555555554444'
-      // }
-    ).then(function(result) {
-      console.log(result)
-      // Handle result.error or result.paymentIntent
-    })
-    .catch(err => {
-      console.log(err)
-    })
+        // {
+        //   cardNumber: '5555555555554444'
+        // }
+      ).then(function(result) {
+        console.log(result)
+        // Handle result.error or result.paymentIntent
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    } else {
+      console.log("Stripe.js hasn't loaded yet.");
+    }
   };
 
   logg = () => {

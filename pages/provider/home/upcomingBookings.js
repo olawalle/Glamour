@@ -38,7 +38,7 @@ export default function UpcomingBookings(props) {
     <div className="upcomingBookings">
         <Grid stackable>
             {
-                props.bookings.map((singleBooking, i) => {
+                props.bookings && props.bookings.map((singleBooking, i) => {
                     return  <Grid.Row key={`booking${i}`}>
                         <Grid.Column width={10}>
                             <p className="customerName">

@@ -68,14 +68,14 @@ const LoginForm = (props) => {
           // })
 
           if ( res.data.data.user.role === 'client')  {
-            // getUserAddresses(res.data.data.token)
-            // .then(addresses => {
-            //     props.saveUserAddresses(addresses.data.addresses)
-            //     props.saveActiveAddress(addresses.data.addresses[0]['_id'])
-            // })
-            // .catch(err => {
-            //   console.log(err)
-            // })
+            getUserAddresses(res.data.data.token)
+            .then(addresses => {
+                props.saveUserAddresses(addresses.data.addresses)
+                props.saveActiveAddress(addresses.data.addresses[0]['_id'])
+            })
+            .catch(err => {
+              console.log(err)
+            })
 
             // getSavedProviders(res.data.data.token)
             // .then(prv => {

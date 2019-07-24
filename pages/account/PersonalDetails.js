@@ -14,13 +14,13 @@ const PersonalDetails = (props) => {
   useEffect(() => {
     // setClientData({
     // })    
-    getUserAddresses()
-    .then(res => {
-        props.saveUserAddresses(res.data.addresses)
-    })
-    .catch(err => {
-      console.log(err)
-    })
+    // getUserAddresses()
+    // .then(res => {
+    //     props.saveUserAddresses(res.data.addresses)
+    // })
+    // .catch(err => {
+    //   console.log(err)
+    // })
 
   }, [])
 

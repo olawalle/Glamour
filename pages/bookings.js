@@ -65,11 +65,15 @@ class bookings extends Component {
     }
   }
 
+  fetchData = (e) => {
+    this.setState({userBookings: e})    
+  }
+
   render () {
     return (
       <>
         <InnerNav userRole={this.props.user.role} />
-          <Bookings {...this.props} userBookings={this.state.userBookings} role={this.props.user.role} />
+          <Bookings fetchData={this.fetchData} {...this.props} userBookings={this.state.userBookings} role={this.props.user.role} />
         <Footer/>
       </>
     );

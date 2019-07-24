@@ -13,6 +13,7 @@ export const providerServicesUrl = `${baseUrl}/services`
 export const addServicesUrl = `${baseUrl}/uploads/services`
 export const servicesUrl = `${baseUrl}/categories`
 export const payUrl = `${baseUrl}/bookings/pay`
+export const subscriptionPayUrl = `${baseUrl}/users/pay`
 export const trendsUrl = `${baseUrl}/services/trends`
 export const categoriesUrl = `${baseUrl}/categories`
 export const clientBookingsUrl = `${baseUrl}/bookings`

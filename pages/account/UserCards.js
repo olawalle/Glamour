@@ -23,7 +23,7 @@ export default function UserCards(props) {
                     </Grid.Column>
                   </Grid.Row>
                 </Grid>
-                <Grid stackable columns={2}>
+                <Grid stackable columns={props.from && props.from === 'managePayments' ? 1 : 2}>
                   <Grid.Row>
                     <Grid.Column>
                         <div className="filledCardFrame">

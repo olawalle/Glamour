@@ -39,7 +39,7 @@
 }
 
 body {
-        font-family: sofiaproregular !important
+        font-family: sofiaproregular !important;
 }
 body ::-webkit-scrollbar-track {
         // background: rgba(0, 0, 0, 0.01) !important;
@@ -54,6 +54,17 @@ body ::-webkit-scrollbar-track {
 // FONTS
 
 
+// progressbar 
+.ui.progress .bar {
+        height: 5px !important;
+        margin: 0 !important
+}
+.ui.progress:first-child {
+        margin: 0 !important
+}
+.ui.pink.progress .bar {
+        background-color: #e84671 !important
+}
 
 
 // UTILITIES
@@ -487,7 +498,7 @@ body ::-webkit-scrollbar-track {
 // }
 @media only screen and (min-width: 1440px) {
         .ui.container {
-                width: 1367px !important;
+                // width: 1367px !important;
                 margin-left: auto !important;
                 margin-right: auto !important;
             }

@@ -43,7 +43,7 @@ const HomeService = (props) => {
             </Grid.Column>
             <Grid.Column width={2} className="">
               {
-                props.service.status === "active" ? <p className="dot online">
+                props.service && props.service.status === "active" ? <p className="dot online">
                   .
                 </p> : <p className="dot offline">
                   .

@@ -11,12 +11,12 @@ const ServiceProviderMedia = (props) => {
   })
   return (
     <div className={ 'is-flex ' + props.className }>
-      <img className="h40 is-round mr-15" src={props.clientDetails.from.userPhoto}></img>
+      { props.clientDetails && <img className="h40 is-round mr-15" src={props.clientDetails.from.userPhoto}></img> }
       <div>
-        <h4 className="has-font-freightbigpro fw900">{props.clientDetails.from.name}</h4>
+        { props.clientDetails && <h4 className="has-font-freightbigpro fw900">{props.clientDetails.from.name}</h4> }
         <span className="time-container">
           <img className="pr-10" src="/static/images/clock.svg" />
-          <span className="time ">{dayjs(props.clientDetails.message.time).format('DD MMM YYYY')}</span>
+          { props.clientDetails && <span className="time ">{dayjs(props.clientDetails.message.time).format('DD MMM YYYY')}</span> }
         </span>
       </div>
     </div>

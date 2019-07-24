@@ -6,7 +6,7 @@ const ServicesList = (props) => {
   return (
     <>
     <Display if={props.role === 'provider'}>
-      {props.services.message.services.map((service, index) => {
+      { props.services.message && props.services.message.services.map((service, index) => {
           return (
             <tr key={index}>
               <td className="fw600 h40 pb-15">
@@ -25,14 +25,14 @@ const ServicesList = (props) => {
           <td className="fw600">Total</td>
           <td className="is-pink fw900 has-text-aligned-right">
             {/* £{props.services.reduce((agg, cur) => agg + parseFloat(cur.message.amount), 0)} */}
-            £{(parseFloat(props.services.message.amount)/ 100).toFixed(2) }
+            { props.services.message && <>£{(parseFloat(props.services.message.amount)/ 100).toFixed(2) }</>}
           </td>
         </tr>
     </Display>
     <Display if={props.role === 'client'}>
       <table className={ "services " + props.className }>
         <tbody>
-        {props.services.message.services.map((service, index) => {
+        {props.services.message && props.services.message.services.map((service, index) => {
             return (
               <tr key={index}>
                 <td className="fw600 h40 pb-15">
@@ -42,7 +42,7 @@ const ServicesList = (props) => {
                   <span>{service.serviceName}</span>
                 </td>
                 <td className="fw600 h40 pb-15 has-text-aligned-right">
-                  £{parseFloat(service.amount).toFixed(2)}
+                  { props.services.message && <>£{parseFloat(service.amount).toFixed(2)} </> }
                 </td>
               </tr>
             )
@@ -51,7 +51,7 @@ const ServicesList = (props) => {
             <td className="fw600">Total</td>
             <td className="is-pink fw900 has-text-aligned-right">
               {/* £{props.services.reduce((agg, cur) => agg + parseFloat(cur.message.amount), 0)} */}
-              £{(parseFloat(props.services.message.amount)/ 100).toFixed(2) }
+              { props.services.message && <>£{(parseFloat(props.services.message.amount)/ 100).toFixed(2) } </> }
             </td>
           </tr>
         </tbody>

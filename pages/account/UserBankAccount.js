@@ -22,7 +22,7 @@ export default function UserBankAccount(props) {
 
                         <p className="cardNo">
                             <p className="cardNoTitle">
-                                card number
+                                Account number
                             </p>
                             <span className="dots">
                                 .... .... ....

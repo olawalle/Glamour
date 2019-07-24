@@ -49,7 +49,7 @@ const Account = (props) => {
     },
     {
         text: 'Manage payments',
-        component: <ManagePayments />,
+        component: <ManagePayments showAdd={false} />,
         active: 'inactive',
         icon: '/static/icons/card.svg',
         route: ''

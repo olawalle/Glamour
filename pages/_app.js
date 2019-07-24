@@ -10,6 +10,8 @@ import axios from 'axios'
 import Router from 'next/router'
 import '../app.less';
 import { Snackbar } from '../components/shared/SnackBar';
+import { Progress } from 'semantic-ui-react'
+import Head from 'next/head'
 
 
 class Glamour extends App {
@@ -25,15 +27,19 @@ class Glamour extends App {
 
   state = {
     snackbarRef: React.createRef(),
-    message: "Your session has expired, please login to continue"
+    message: "Your session has expired, please login to continue",
+    showProgress: false,
+    progress: 0
   }
 
-  componentDidMount() {    
-    const script = document.createElement("script");
-    script.src = "https://js.stripe.com/v3/";
-    script.async = true;
-    // script.onload = () => 
-    document.body.appendChild(script);
+  componentDidMount() { 
+    // const script = document.createElement("script");
+    // script.src = "https://js.stripe.com/v3/";
+    // script.async = true;
+    // script.onload = () => {
+    //   document.body.appendChild(script);
+    //   console.log('stripe loaded')
+    // }
 
     if (window.sessionStorage.getItem('glamourToken')) {
       getCurrentUser()
@@ -58,6 +64,26 @@ class Glamour extends App {
   //   // return Promise.reject(error);
   // });
 
+    Router.events.on('routeChangeStart', url => {
+      console.log(`Loading: ${url}`)
+      this.setState({showProgress: true})
+      setTimeout(() => {
+        this.setState({
+          progress: this.state.progress + 33
+        })
+      }, 1000);
+      // NProgress.start()
+    })
+    Router.events.on('routeChangeComplete', () => {
+      this.setState({progress: 100})
+      this.setState({
+        showProgress: false,
+        progress: 0
+      })
+    })
+    Router.events.on('routeChangeError', () => {
+    })
+
     Router.router.route === '/' ? this.setState({show: false}) : this.setState({show: true })      
   }
 
@@ -76,9 +102,16 @@ class Glamour extends App {
           showClose={true} 
           duration={20000} 
           message={this.state.message} /> */}
+          
+      <Head>
+        <script src="https://js.stripe.com/v3/" />
+      </Head>
         <Provider store={reduxStore}>
           {/* <PersistGate loading={null}>         */}
-            <Component {...pageProps} />
+            <>
+              { this.state.showProgress && <Progress indicating percent={this.state.progress} color='pink' /> }
+              <Component {...pageProps} />
+            </>
           {/* </PersistGate> */}
         </Provider>
       </Container>

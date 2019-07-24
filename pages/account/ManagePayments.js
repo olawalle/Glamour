@@ -4,7 +4,7 @@ import './less/managePayments.less'
 import UserCards from './UserCards';
 import UserBankAccount from './UserBankAccount';
 
-export default function ManagePayments() {
+export default function ManagePayments(props) {
   const [isAddingAccount, updateIsAddingAccount] = useState(false)
   const [isAddingCard, updateIsAddingCard] = useState(false)
 
@@ -53,27 +53,30 @@ export default function ManagePayments() {
 
 
   const renderCard = () => {
-    if (isAddingAccount) {
-        return null 
-    } else if (!isAddingCard) {
-        return <>
-                    <Grid.Column largeScreen={6} mobile={16}>
-                    <p className="sectionTitle">
-                        Card
-                    </p>
-                        <UserCards showAdd={true} toggleCardView={toggleCard} />
-                    </Grid.Column>
-                </>        
-    } else {
-        return <>
-                    <Grid.Column width={16}>
-                        <p className="sectionTitle">
-                            Card
-                        </p>
-                        <UserCards showAdd={false} toggleCardView={toggleCard} />
-                    </Grid.Column>
-                </>  
-    }
+    return  <Grid.Column width={8}>
+                <UserCards from={"managePayments"} showAdd={props.showAdd} toggleCardView={toggleCard} />
+            </Grid.Column>
+    // if (isAddingAccount) {
+    //     return null 
+    // } else if (!isAddingCard) {
+    //     return <>
+    //                 <Grid.Column largeScreen={6} mobile={16}>
+    //                 <p className="sectionTitle">
+    //                     Card
+    //                 </p>
+    //                     <UserCards showAdd={true} toggleCardView={toggleCard} />
+    //                 </Grid.Column>
+    //             </>        
+    // } else {
+    //     return <>
+    //                 <Grid.Column width={16}>
+    //                     <p className="sectionTitle">
+    //                         Card
+    //                     </p>
+    //                     <UserCards showAdd={false} toggleCardView={toggleCard} />
+    //                 </Grid.Column>
+    //             </>  
+    // }
 
   }
 

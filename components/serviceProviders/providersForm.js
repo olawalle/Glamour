@@ -9,7 +9,7 @@ import * as actions from '../../store/actions';
 
 import { DatePicker } from 'antd';
 import "./less/providerForm.less"
-import { getAllServices, getAllTrends } from '../../services/generatData.ts'
+import { getAllServices } from '../../services/generatData.ts'
 import dayjs from 'dayjs'
 
 const options = [
@@ -39,6 +39,7 @@ class ProviderForm extends Component {
       // when: null,
       priceRange: ''
     },
+    services: [],
     when: null,
   }
 
@@ -84,17 +85,29 @@ class ProviderForm extends Component {
   
   
   componentWillMount () {
-    let options = []
-    Object.keys(this.props.services).map(key => {
-      options.push(this.props.services[key])
-    })
-    this.setState({options: options.map(option => {
-      return {
-              text: option.serviceName,
-              key: option._id,
-              value: option.serviceName  
-            }
+    
+    getAllServices()
+    .then(res => {
+      this.props.saveServices(res.data.data)
+      this.setState({
+        services: res.data.data
+      }, () => {
+        let options = []
+        Object.keys(this.state.services).map(key => {
+          options.push(this.state.services[key])
+        })
+        this.setState({options: options.map(option => {
+          return {
+                  text: option.serviceName,
+                  key: option._id,
+                  value: option.serviceName  
+                }
+          })
+        })
       })
+    })
+    .catch(err => {
+      console.log(err)
     })
   }
 

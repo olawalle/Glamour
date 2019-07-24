@@ -108,6 +108,18 @@ let postPayment = (data, id) => {
     })
 }
 
+
+let postSubscriptionPayment = (data, id) => {
+    return axios({
+        method: 'POST',
+        url: apiUrls.subscriptionPayUrl+'/'+id,
+        data,
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+}
+
 let getSavedProviders = () => {
     return axios({
         method: 'GET',
@@ -199,6 +211,7 @@ export {
     getUserNotifications,
     getBookings,
     postBookings,
+    postSubscriptionPayment,
     updateStatus,
     confirmBookings,
     postReviews,

@@ -237,7 +237,7 @@ const Navbar = (props) => {
 
             <hr className="hr"/>
             
-            <Display if={Router.router.route === "/account" && props.userData.role === 'provider'}>
+            <Display if={Router.router && Router.router.route === "/account" && props.userData.role === 'provider'}>
               { providerLinks.map(link => {
                 return <Menu.Item className="" as='div' onClick={() => toActiveLink(link)} className="acctLinks">
                         {link}
@@ -246,7 +246,7 @@ const Navbar = (props) => {
               }
             </Display>
             
-            <Display if={Router.router.route === "/account" && props.userData.role === 'client'}>
+            <Display if={Router.router && Router.router.route === "/account" && props.userData.role === 'client'}>
               { clientLinks.map(link => {
                 return <Menu.Item className="" as='div' onClick={() => toActiveLink(link)} className="acctLinks">
                         {link}

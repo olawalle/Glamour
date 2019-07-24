@@ -69,23 +69,7 @@ class ServiceProvider extends Component {
     }
 
     componentWillMount() {
-        // get list of service categories, trends and serviceProviders
-        getAllServices()
-        .then(res => {
-          this.props.saveServices(res.data.data)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    
-        getAllTrends()
-        .then(res => {
-          this.props.saveTrends(res.data.data.services)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    
+        // get list of serviceProviders    
         getAllProviders()
         .then(res => {
           this.props.saveProviders(res.data.users)

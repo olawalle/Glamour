@@ -111,7 +111,7 @@ const AddressForm = (props) => {
   }
 
   const fetchUserAddresses = () => {
-    getUserAddresses()
+    getUserAddresses(window.sessionStorage.getItem('glamourToken'))
     .then(res => {
         updateUserAddresses(res.data.addresses)
         props.saveUserAddresses(res.data.addresses)

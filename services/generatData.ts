@@ -75,10 +75,13 @@ let deleteAddress = (id) => {
     })
 }
 
-let getUserAddresses = () => {
+let getUserAddresses = (token) => {
+    let headers = {}
+    token ? headers = {'x-access-token': token} : null
     return axios({
         method: 'GET',
-        url: apiUrls.addressUrl
+        url: apiUrls.addressUrl,
+        headers
     })
 }
 

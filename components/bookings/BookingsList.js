@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions'
 import Display from '../shared/Display';
 import { updateStatus } from '../../services/auth.ts'
+import { getProviderBookings } from '../../services/providerServices.ts'
 
 
 
@@ -24,6 +25,13 @@ const CartList = (props) => {
     updateStatus(data, id)
     .then(res => {
       console.log(res)
+      getProviderBookings()
+      .then(providerBookings => {
+        props.fetchData(providerBookings.data.data)
+      })
+      .catch(err => {
+        console.log({...err})
+      })
     })
     .catch(err => {
       console.log(err)
@@ -122,7 +130,7 @@ const CartList = (props) => {
       key: '_id',
       render: (id, row) => (
         <div className="actions">
-          <Button className={row.message.status == "pending" ? 'progress-btn' : row.status +'-btn'}>
+          <Button className={row.message.status == "pending" ? 'progress-btn' : row.message.status +'-btn'}>
             {row.message.status}
           </Button>
         </div>
