@@ -113,10 +113,10 @@ export const LookBook = (props) => {
 }
 
 
-const mapStateToProps = (state) => ({
-    lookbooks: state.providerLookbook,
-    user: state.user
-})
+// const mapStateToProps = (state) => ({
+//     lookbooks: state.providerLookbook,
+//     user: state.user
+// })
 
-export default connect(mapStateToProps, actions)(LookBook)
+// export default connect(mapStateToProps, actions)(LookBook)
 

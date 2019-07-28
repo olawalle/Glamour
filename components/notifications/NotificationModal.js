@@ -29,10 +29,6 @@ const NotificationModal = (props) => {
     updateCount(i + 1)
   }
 
-  useEffect(() => {
-    console.log(props)
-  }, [])
-
   const submitReview = () => {
     let data = {
       description,

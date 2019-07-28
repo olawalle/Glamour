@@ -35,55 +35,56 @@ export default class glamourDatePicker extends Component {
     pickedDate: '',
     userAvailableTimes: { from: '09:00 am', to: '05:00 pm' },
     userAvailableTimesArray: [],
+    disabledTimes: null,
     times: [
-        {time: '00:00 am' , selected: ''},
-        {time: '00:30 am' , selected: ''},
-        {time: '01:00 am' , selected: ''},
-        {time: '01:30 am' , selected: ''},
-        {time: '02:00 am' , selected: ''},
-        {time: '02:30 am' , selected: ''},
-        {time: '03:00 am' , selected: ''},
-        {time: '03:30 am' , selected: ''},
-        {time: '04:00 am' , selected: ''},
-        {time: '04:30 am' , selected: ''},
-        {time: '05:00 am' , selected: ''},
-        {time: '05:30 am' , selected: ''},
-        {time: '06:00 am' , selected: ''},
-        {time: '06:30 am' , selected: ''},
-        {time: '07:00 am' , selected: ''},
-        {time: '07:30 am' , selected: ''},
-        {time: '08:00 am' , selected: ''},
-        {time: '08:30 am' , selected: ''},
-        {time: '09:00 am' , selected: ''},
-        {time: '09:30 am' , selected: ''},
-        {time: '10:00 am' , selected: ''},
-        {time: '10:30 am' , selected: ''},
-        {time: '11:00 am' , selected: ''},
-        {time: '11:30 am' , selected: ''},
-        {time: '12:00 pm', selected: ''},
-        {time: '12:30 pm', selected: ''},
-        {time: '01:00 pm', selected: ''},
-        {time: '01:30 pm', selected: ''},
-        {time: '02:00 pm', selected: ''},
-        {time: '02:30 pm', selected: ''},
-        {time: '03:00 pm', selected: ''},
-        {time: '03:30 pm', selected: ''},
-        {time: '04:00 pm', selected: ''},
-        {time: '04:30 pm', selected: ''},
-        {time: '05:00 pm', selected: ''},
-        {time: '05:30 pm', selected: ''},
-        {time: '06:00 pm', selected: ''},
-        {time: '06:30 pm', selected: ''},
-        {time: '07:00 pm', selected: ''},
-        {time: '07:30 pm', selected: ''},
-        {time: '08:00 pm', selected: ''},
-        {time: '08:30 pm', selected: ''},
-        {time: '09:00 pm', selected: ''},
-        {time: '09:30 pm', selected: ''},
-        {time: '10:00 pm', selected: ''},
-        {time: '10:30 pm', selected: ''},
-        {time: '11:00 pm', selected: ''},
-        {time: '11:30 pm', selected: ''},
+        {time: '00:00 am' , selected: '', disabled: ''},
+        {time: '00:30 am' , selected: '', disabled: ''},
+        {time: '01:00 am' , selected: '', disabled: ''},
+        {time: '01:30 am' , selected: '', disabled: ''},
+        {time: '02:00 am' , selected: '', disabled: ''},
+        {time: '02:30 am' , selected: '', disabled: ''},
+        {time: '03:00 am' , selected: '', disabled: ''},
+        {time: '03:30 am' , selected: '', disabled: ''},
+        {time: '04:00 am' , selected: '', disabled: ''},
+        {time: '04:30 am' , selected: '', disabled: ''},
+        {time: '05:00 am' , selected: '', disabled: ''},
+        {time: '05:30 am' , selected: '', disabled: ''},
+        {time: '06:00 am' , selected: '', disabled: ''},
+        {time: '06:30 am' , selected: '', disabled: ''},
+        {time: '07:00 am' , selected: '', disabled: ''},
+        {time: '07:30 am' , selected: '', disabled: ''},
+        {time: '08:00 am' , selected: '', disabled: ''},
+        {time: '08:30 am' , selected: '', disabled: ''},
+        {time: '09:00 am' , selected: '', disabled: ''},
+        {time: '09:30 am' , selected: '', disabled: ''},
+        {time: '10:00 am' , selected: '', disabled: ''},
+        {time: '10:30 am' , selected: '', disabled: ''},
+        {time: '11:00 am' , selected: '', disabled: ''},
+        {time: '11:30 am' , selected: '', disabled: ''},
+        {time: '12:00 pm', selected: '', disabled: ''},
+        {time: '12:30 pm', selected: '', disabled: ''},
+        {time: '01:00 pm', selected: '', disabled: ''},
+        {time: '01:30 pm', selected: '', disabled: ''},
+        {time: '02:00 pm', selected: '', disabled: ''},
+        {time: '02:30 pm', selected: '', disabled: ''},
+        {time: '03:00 pm', selected: '', disabled: ''},
+        {time: '03:30 pm', selected: '', disabled: ''},
+        {time: '04:00 pm', selected: '', disabled: ''},
+        {time: '04:30 pm', selected: '', disabled: ''},
+        {time: '05:00 pm', selected: '', disabled: ''},
+        {time: '05:30 pm', selected: '', disabled: ''},
+        {time: '06:00 pm', selected: '', disabled: ''},
+        {time: '06:30 pm', selected: '', disabled: ''},
+        {time: '07:00 pm', selected: '', disabled: ''},
+        {time: '07:30 pm', selected: '', disabled: ''},
+        {time: '08:00 pm', selected: '', disabled: ''},
+        {time: '08:30 pm', selected: '', disabled: ''},
+        {time: '09:00 pm', selected: '', disabled: ''},
+        {time: '09:30 pm', selected: '', disabled: ''},
+        {time: '10:00 pm', selected: '', disabled: ''},
+        {time: '10:30 pm', selected: '', disabled: ''},
+        {time: '11:00 pm', selected: '', disabled: ''},
+        {time: '11:30 pm', selected: '', disabled: ''},
     ]
   }
 
@@ -200,6 +201,19 @@ export default class glamourDatePicker extends Component {
       this.getUserAvailableTimesArray()
     })
 
+    let arr = []
+    arr[0] = this.props.bookedTimes
+    let selectedDay = arr.find(date => date.date === pickedDate)
+    if (selectedDay) {
+      this.setState({
+        disabledTimes: {time: selectedDay.time_, timeCount: selectedDay.duration * 2}
+      })
+    } else {
+      this.setState({
+        disabledTimes: null
+      })
+    }
+
     this.setState({allDates: newDates})
     this.setState({pickedDate: pickedDate}, () => {
       this.props.pickDate(pickedDate)
@@ -245,12 +259,16 @@ export default class glamourDatePicker extends Component {
       if (active < 12) {
         let newYear = currentYear
         this.setState({
-          allDates: this.state.datesDictionary[`${this.state.monthNames[active].name},${newYear}`]
+          allDates: this.state.datesDictionary[`${this.state.monthNames[active].name},${newYear}`].map(d => {
+            return {...d, isAvailable: this.userIsAvailable(`${d.day}, ${d.month}`)}
+          })
         })
       } else {
         let newYear = parseFloat(currentYear.replace(/\s/g,'')) + 1
         this.setState({
-          allDates: this.state.datesDictionary[this.state.monthNames[0].name+", "+newYear]
+          allDates: this.state.datesDictionary[this.state.monthNames[0].name+", "+newYear].map(d => {
+            return {...d, isAvailable: this.userIsAvailable(`${d.day}, ${d.month}`)}
+          })
         })
       }
     } else {
@@ -258,12 +276,16 @@ export default class glamourDatePicker extends Component {
       if (active === 1) {
         let newYear = parseFloat(currentYear.replace(/\s/g,'')) - 1
         this.setState({
-          allDates: this.state.datesDictionary[this.state.monthNames[11].name+", "+newYear]
+          allDates: this.state.datesDictionary[this.state.monthNames[11].name+", "+newYear].map(d => {
+            return {...d, isAvailable: this.userIsAvailable(`${d.day}, ${d.month}`)}
+          })
         })
       } else {
         let newYear = currentYear
         this.setState({
-          allDates: this.state.datesDictionary[`${this.state.monthNames[active - 2].name},${newYear}`]
+          allDates: this.state.datesDictionary[`${this.state.monthNames[active - 2].name},${newYear}`].map(d => {
+            return {...d, isAvailable: this.userIsAvailable(`${d.day}, ${d.month}`)}
+          })
         })
       }
     }
@@ -285,9 +307,20 @@ export default class glamourDatePicker extends Component {
         return time
       }
     })
-    this.setState({userAvailableTimesArray: userAvailableTimesArray}, () => {
-      this.pickTime(null, this.props.selectedTime)  
-    })
+    
+    if (this.state.disabledTimes) {
+      let a = userAvailableTimesArray.findIndex((time, i) => time.time === this.state.disabledTimes.time)
+      let b = userAvailableTimesArray.map((time, i) => {
+        return i >= a && i <= a + this.state.disabledTimes.timeCount ? {...time, disabled: 'isDisabled'} : {...time}
+      })
+      this.setState({userAvailableTimesArray: b}, () => {
+        this.pickTime(null, this.props.selectedTime)  
+      })
+    } else {
+      this.setState({userAvailableTimesArray: userAvailableTimesArray}, () => {
+        this.pickTime(null, this.props.selectedTime)  
+      })
+    }
   }
 
   componentWillMount() {
@@ -316,8 +349,12 @@ export default class glamourDatePicker extends Component {
           <Grid.Row className="timeRow">
             {
              this.state.userAvailableTimesArray.map((time, i) => {
-               return <Grid.Column width={4} key={`time${i}`}>
-                        <div className={`singleTime ${time.selected}`} onClick={() => this.pickTime(i)}>
+               return time.disabled === 'isDisabled' ? <Grid.Column width={4} key={`time${i}`}>
+                        <div className={`singleTime ${time.selected} ${time.disabled}`} title="user booked for this time">
+                          {time.time}
+                        </div>
+                      </Grid.Column> : <Grid.Column width={4} key={`time${i}`}>
+                        <div className={`singleTime ${time.selected} ${time.disabled}`} onClick={() => this.pickTime(i)}>
                           {time.time}
                         </div>
                       </Grid.Column>

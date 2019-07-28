@@ -15,7 +15,6 @@ class notifications extends Component {
   componentWillMount() {
     getUserNotifications()
     .then(res => {
-      console.log(res)
       let notifications = res.data.data
       this.props.saveUserNotifications(notifications)
     })

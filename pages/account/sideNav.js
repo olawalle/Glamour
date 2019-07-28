@@ -24,35 +24,35 @@ const SideNav = (props) => {
   const [providerLinks, updateproviderLinks] = useState([
     {
         text: 'Personal details',
-        component: <PersonalDetails role={props.role} />,
+        // component: <PersonalDetails role={props.role} />,
         active: 'active',
         icon: '/static/icons/personalDetails.svg',
         route: ''
     },
     {
         text: 'Business details',
-        component: <BusinessDetails />,
+        // component: <BusinessDetails />,
         active: 'inactive',
         icon: '/static/icons/briefcase.svg',
         route: ''
     },
     {
         text: 'Manage subscriptions',
-        component: <ManageSubscriptions subscriptions={props.availableSubscriptions} />,
+        // component: <ManageSubscriptions subscriptions={props.availableSubscriptions} />,
         active: 'inactive',
         icon: '/static/icons/subscriptions.svg',
         route: ''
     },
     {
         text: 'Manage payments',
-        component: <ManagePayments />,
+        // component: <ManagePayments />,
         active: 'inactive',
         icon: '/static/icons/card.svg',
         route: ''
     },
     {
         text: 'Upload Lookbook',
-        component: <LookBook />,
+        // component: <LookBook />,
         active: 'inactive',
         icon: '/static/icons/card.svg',
         route: ''
@@ -62,25 +62,25 @@ const SideNav = (props) => {
   const [clientLinks, updateclientLinks] = useState([
     {
         text: 'Personal details',
-        component: <PersonalDetails role={props.role} />,
+        // component: <PersonalDetails role={props.role} />,
         active: 'active',
         icon: '/static/icons/personalDetails.svg'
     },
     {
         text: 'Address book',
-        component: <AddressBook />,
+        // component: <AddressBook />,
         active: 'inactive',
         icon: '/static/icons/addressbook.svg'
     },
     {
         text: 'Payment methods and invoices',
-        component: <UserCards showAdd={false} />,
+        // component: <UserCards showAdd={false} />,
         active: 'inactive',
         icon: '/static/icons/subscriptions.svg'
     },
     {
         text: 'Saved service providers',
-        component: <SavedServiceProviders />,
+        // component: <SavedServiceProviders />,
         active: 'inactive',
         icon: '/static/icons/filled-heart.svg'
     }

@@ -4,13 +4,12 @@ import './less/reviews.less'
 import dayjs from 'dayjs';
 
 const Reviews = (props) => {
-    console.log(props)
   return (
     <div className="reviews">
     <Grid>
         {
             props.reviews.map((review, i) => {
-                return <Grid.Row style={{borderBottom: '1px solid #c4cdd540'}}>
+                return <Grid.Row key={`review${i}`} style={{borderBottom: '1px solid #c4cdd540'}}>
                         <Grid.Column  mobile={16} tablet={16} computer={16} largeScreen={16} widescreen={16}>
                             <p className="reviewBody">
                                 {review.review.description}  

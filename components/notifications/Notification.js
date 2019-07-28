@@ -24,7 +24,6 @@ const Notification = (props) => {
   }
 
   const viewBooking = (id) => {
-    console.log(id)
     Router.push('/bookings?id='+id)
   }
 

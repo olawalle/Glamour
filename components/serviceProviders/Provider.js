@@ -12,14 +12,22 @@ let toDetails = (props) => {
     })
 }
 
+
 const Provider = (props) => {
+
+    const styles = {
+        banner: {
+            backgroundImage: `url(${props.bannerUrl})`,
+            backgroundSize: 'cover'
+        }
+    }
     return (
         <div className="providerCard">
             {
                 props.instant ? <div className="instant">Instant Booking</div> : <div className="instant_"></div>
             }
-            <div className="cardBanner">
-                <img src={props.bannerUrl} className="BannerImage"  />
+            <div className="cardBanner" style={styles.banner}>
+                {/* <img src={props.bannerUrl} className="BannerImage"  /> */}
             </div>
 
             {

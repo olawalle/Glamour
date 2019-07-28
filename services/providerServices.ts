@@ -48,6 +48,13 @@ let getProviderBookings = () => {
     })
 }
 
+let getProviderSchedule = (id) => {
+    return axios({
+        method: 'GET',
+        url: apiUrls.providerSchedule+'/'+id
+    })
+}
+
 let getProviderDetails = (id) => {
     return axios({
         method: 'GET',
@@ -107,6 +114,7 @@ export {
     getProviderServices,
     deleteProviderServices,
     getProviderBookings,
+    getProviderSchedule,
     getProviderDetails,
     getProviderReviews,
     getLookbook,

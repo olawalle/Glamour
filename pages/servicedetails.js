@@ -14,7 +14,7 @@ import Router from 'next/router';
 import * as actions from '../store/actions'
 import './less/serviceDetails.less'
 import { getAllProviders } from '../services/generatData.ts'
-import { getProviderDetails, getLookbook, getProviderReviews, getProviderServices } from '../services/providerServices.ts'
+import { getProviderSchedule, getLookbook, getProviderReviews, getProviderServices } from '../services/providerServices.ts'
 import { saveProvider, getSavedProviders, deleteSavedProvider, createConversation } from '../services/auth.ts'
 import Display from '../components/shared/Display';
 
@@ -51,7 +51,8 @@ class ServiceDetails extends Component {
         lookbook: [],
         reviews: [],
         servicesRendered: [],
-        saving: false
+        saving: false,
+        bookedTimes: []
     }
     
 
@@ -80,6 +81,26 @@ class ServiceDetails extends Component {
             })
             .catch(err => {
                 console.log(err)
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+        getProviderSchedule(Router.router.query.provider)
+        .then(res => {
+            this.setState({
+                bookedTimes: res.data.data
+                .map(sch => {
+                    return { 
+                        time: sch.time, 
+                        time_: `${sch.time.split(' ')[3]} ${sch.time.split(' ')[4]}`,
+                        date: `${sch.time.split(' ')[0]} ${sch.time.split(' ')[1]} ${sch.time.split(' ')[2]}`,
+                        duration: sch.services.map(
+                            serv => parseInt(serv.duration.split('-')[1].replace('hr', '').replace(' ', ''))
+                        ).reduce((dur, start) => dur += start, 0)
+                    }
+                })
             })
         })
         .catch(err => {
@@ -256,7 +277,7 @@ class ServiceDetails extends Component {
                                 
                                 <Grid.Column width={6} className="forBig">
                                     <div className="lightShadow bookServiceComponent">
-                                        <BookService providerDetails={this.state.selectedProvider} />
+                                        <BookService bookedTimes={this.state.bookedTimes} providerDetails={this.state.selectedProvider} />
                                     </div>
                                 </Grid.Column>  
                                 <Grid.Column width={10}>

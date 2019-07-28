@@ -56,7 +56,7 @@ const Account = (props) => {
     },
     {
         text: 'Upload Lookbook',
-        component: <LookBook />,
+        component: <LookBook user={ props.user } />,
         active: 'inactive',
         icon: '/static/icons/card.svg',
         route: ''
@@ -110,10 +110,10 @@ const Account = (props) => {
         Router.push('/login')
     } else {
       // props.saveUserData(JSON.parse(userData))
-      getLookbook(props.user.id)
-      .then(res => {
-          props.saveUserLookbook(res.data.looks)
-      })
+      // getLookbook(props.user.id)
+      // .then(res => {
+      //     props.saveUserLookbook(res.data.looks)
+      // })
 
       getAllProviders()
       .then(res => {

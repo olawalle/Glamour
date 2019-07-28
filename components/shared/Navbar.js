@@ -239,7 +239,7 @@ const Navbar = (props) => {
             
             <Display if={Router.router && Router.router.route === "/account" && props.userData.role === 'provider'}>
               { providerLinks.map(link => {
-                return <Menu.Item className="" as='div' onClick={() => toActiveLink(link)} className="acctLinks">
+                return <Menu.Item key={link} className="" as='div' onClick={() => toActiveLink(link)} className="acctLinks">
                         {link}
                       </Menu.Item>
                 })
@@ -248,7 +248,7 @@ const Navbar = (props) => {
             
             <Display if={Router.router && Router.router.route === "/account" && props.userData.role === 'client'}>
               { clientLinks.map(link => {
-                return <Menu.Item className="" as='div' onClick={() => toActiveLink(link)} className="acctLinks">
+                return <Menu.Item key={link} className="" as='div' onClick={() => toActiveLink(link)} className="acctLinks">
                         {link}
                       </Menu.Item>
                 })

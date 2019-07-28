@@ -14,7 +14,6 @@ const ThreadBlock = (props) => {
   useEffect(() => {
     let desc = document.getElementById('desc')
     desc.scrollTop = 34
-    console.log(desc.scrollHeight)
   }, [])
 
   const [messageBody, setmessageBody] = useState("")

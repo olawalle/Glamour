@@ -107,11 +107,8 @@ class Checkout_ extends Component {
       this.props.stripe.handleCardPayment(
         secret,
       )
-      .then(function(result) {
-        console.log(result)
-        setTimeout(() => {
-          this.setState({loading: false})
-          Router.push('/bookings')          
+      .then((result) => {
+        setTimeout(() => {       
         }, 3000);
         if (result.paymentIntent) {
           let data = {
@@ -119,7 +116,7 @@ class Checkout_ extends Component {
           }
           confirmBookings(data, bookingId)
           .then(res => {
-            console.log(res)
+            this.setState({loading: false, open: true}) 
           })
           .catch(err => {
             console.log(err)
@@ -137,16 +134,13 @@ class Checkout_ extends Component {
   close = () => this.setState({ open: false })  
 
   log = () => {
-    console.log('log called')
   }
 
   getAddressFormData = (e) => {
-    console.log(e)
   }
 
   
   getCard = e => {
-    console.log(e)
     this.setState({cardDetails: e})
   }
 
@@ -192,7 +186,6 @@ class Checkout_ extends Component {
               <Checkoutform 
                 client_secret={this.state.client_secret} 
                 getCard={this.getCard} 
-                ref='checkoutform' 
                 step={this.state.step} 
                 log={this.log} 
                 addressForm={this.getAddressFormData}> 
@@ -212,7 +205,7 @@ class Checkout_ extends Component {
                               </p>
                           </Grid.Column>
                           <Grid.Column>
-                              <p className="indicatorText inactive" ref="something">
+                              <p className="indicatorText inactive">
                                   Payment Details
                               </p>
                           </Grid.Column>

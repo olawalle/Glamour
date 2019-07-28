@@ -65,14 +65,12 @@ class Glamour extends App {
   // });
 
     Router.events.on('routeChangeStart', url => {
-      console.log(`Loading: ${url}`)
       this.setState({showProgress: true})
       setTimeout(() => {
         this.setState({
           progress: this.state.progress + 33
         })
       }, 1000);
-      // NProgress.start()
     })
     Router.events.on('routeChangeComplete', () => {
       this.setState({progress: 100})
