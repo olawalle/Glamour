@@ -46,7 +46,7 @@ export default function UpcomingBookings(props) {
                                 {singleBooking.from.name}
                             </p>
                             <p className="address">
-                                idufuv dfviudf iusvdiu iduvsuidjk siud vius vdius sficviufv iud fiduvfid fvidvfiudf
+                                Somewhere on earth
                             </p>
                             <p className="servicesRequested">
                                 {renderSelectedServices(singleBooking)}
