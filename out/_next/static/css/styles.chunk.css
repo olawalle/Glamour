@@ -60033,292 +60033,6 @@ body ::-webkit-scrollbar-track {
   }
 }
 
-.checkoutFormWrap {
-  padding: 30px;
-  box-shadow: 0px 0px 10px rgba(99, 115, 129, 0.1);
-  min-height: 555px;
-  width: 100%;
-}
-.checkoutFormWrap .gridWrap {
-  margin: 0 !important;
-}
-.checkoutFormWrap .gridWrap .rowHeading {
-  text-align: center;
-  font-size: 30px;
-  font-family: freightproblack !important;
-  font-weight: 600;
-  margin-bottom: 20px;
-  transition: all 0.3s;
-}
-.checkoutFormWrap .topIndicator {
-  padding: 0 25% !important;
-}
-.checkoutFormWrap .topIndicator p {
-  margin: 0 !important;
-  text-align: center !important;
-}
-.checkoutFormWrap .topIndicator .edge {
-  width: 12px;
-  height: 12px;
-  background-color: #212B36;
-  width: 4%;
-}
-.checkoutFormWrap .topIndicator .inactive {
-  color: #C4CDD5 !important;
-  background-color: #C4CDD5 !important;
-}
-.checkoutFormWrap .topIndicator .divider {
-  border-top: 1px solid #C4CDD5;
-  margin-top: 5px;
-  width: 92%;
-}
-.checkoutFormWrap .topIndicatorText {
-  margin-top: 0px !important;
-  text-align: center;
-  cursor: pointer;
-}
-.checkoutFormWrap .topIndicatorText .indicatorText {
-  font-weight: 600;
-}
-.checkoutFormWrap .topIndicatorText .inactive {
-  color: #C4CDD5 !important;
-  transition: all 0.3s;
-}
-.checkoutFormWrap .inputWrap .ui.input {
-  width: 100% !important;
-}
-.checkoutFormWrap .inputWrap input {
-  padding-left: 50px;
-}
-.checkoutFormWrap .inputWrap .inputImage {
-  position: relative;
-  top: -34px;
-  left: 20px;
-}
-.checkoutFormWrap .proceedBtn {
-  width: 100% !important;
-  height: 52px !important;
-}
-@media only screen and (max-width: 767px) {
-  .checkoutFormWrap .indicatorText {
-    font-size: 12px !important;
-  }
-  .checkoutFormWrap .ui.stackable.grid > .row > .column {
-    padding: 0 !important;
-  }
-  .checkoutFormWrap .rowHeading {
-    font-size: 24px !important;
-    margin: 12px 0 !important;
-  }
-  .checkoutFormWrap .inputWrap {
-    margin-top: 30px !important;
-  }
-}
-
-.inputWrap input {
-  margin: 0em !important;
-  max-width: 100% !important;
-  flex: 1 0 auto !important;
-  outline: none !important;
-  -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
-  text-align: left !important;
-  line-height: 1.21428571em !important;
-  font-family: 'sofiaproregular', 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
-  padding: 0.67857143em 1em !important;
-  background: #FFFFFF !important;
-  border: 1px solid #c4cdd5 !important;
-  color: rgba(0, 0, 0, 0.87) !important;
-  border-radius: none !important;
-  transition: box-shadow 0.1s ease, border-color 0.1s ease !important;
-  box-shadow: none !important;
-}
-.inputWrap .ui.input {
-  width: 100% !important;
-}
-.inputWrap .ui.input > input {
-  padding-left: 50px !important;
-}
-.inputWrap .inputImage {
-  position: relative !important;
-  top: -34px !important;
-  left: 20px !important;
-}
-.inputWrap .addList {
-  float: right;
-  padding: 12px 0;
-}
-@media only screen and (max-width: 767px) {
-  .inputWrap .column {
-    padding: 1rem 0 !important;
-  }
-}
-.mainCard {
-  width: 100%;
-}
-.mainCard * {
-  box-sizing: border-box;
-}
-.mainCard h1 {
-  color: #32325d;
-  font-weight: 400;
-  line-height: 50px;
-  font-size: 40px;
-  margin: 20px 0;
-  padding: 0;
-}
-.mainCard .Checkout {
-  margin: 0 auto;
-  max-width: 800px;
-  box-sizing: border-box;
-  padding: 0 5px;
-}
-.mainCard label {
-  color: #6b7c93;
-  font-weight: 600;
-  letter-spacing: 0.025em;
-}
-.mainCard button {
-  white-space: nowrap;
-  border: 0;
-  outline: 0;
-  display: inline-block;
-  height: 40px;
-  line-height: 40px;
-  padding: 0 14px;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  color: #fff;
-  border-radius: 4px;
-  font-size: 15px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
-  background-color: #6772e5;
-  text-decoration: none;
-  -webkit-transition: all 150ms ease;
-  transition: all 150ms ease;
-  margin-top: 10px;
-}
-.mainCard form {
-  margin-bottom: 40px;
-  padding-bottom: 40px;
-}
-.mainCard button:hover {
-  color: #fff;
-  cursor: pointer;
-  background-color: #7795f8;
-  transform: translateY(-1px);
-  box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
-}
-.mainCard input,
-.mainCard .StripeElement {
-  margin: 5px 0 20px 0 !important;
-  height: 53px !important;
-  width: 100% !important;
-  flex: 1 0 auto !important;
-  outline: none !important;
-  -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
-  text-align: left !important;
-  line-height: 53px !important;
-  font-family: 'sofiaproregular', 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
-  padding: 0.67857143em 1em !important;
-  background: #FFFFFF !important;
-  border: 1px solid #c4cdd5 !important;
-  color: rgba(0, 0, 0, 0.87) !important;
-  border-radius: none !important;
-  transition: box-shadow 0.1s ease, border-color 0.1s ease !important;
-  box-shadow: none !important;
-}
-.mainCard input::placeholder {
-  color: #aab7c4;
-}
-.mainCard input:focus,
-.mainCard .StripeElement--focus {
-  box-shadow: rgba(50, 50, 93, 0.109804) 0px 4px 6px, rgba(0, 0, 0, 0.0784314) 0px 1px 3px;
-  -webkit-transition: all 150ms ease;
-  transition: all 150ms ease;
-}
-.mainCard .StripeElement.IdealBankElement,
-.mainCard .StripeElement.PaymentRequestButton {
-  padding: 0;
-}
-
-.bookingDetails {
-  box-shadow: 0px 0px 10px rgba(99, 115, 129, 0.1);
-  min-height: 555px;
-  padding: 30px;
-}
-.bookingDetails p {
-  margin: 0 !important;
-}
-.bookingDetails .usersName {
-  font-size: 30px !important;
-  font-family: freightproblack !important;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 10px !important;
-}
-.bookingDetails .userDetailsWrap {
-  padding: 0 !important;
-}
-.bookingDetails .userDetailsWrap .column {
-  padding: 0 10px 0 0!important;
-}
-.bookingDetails .userDetailsWrap .userImage {
-  border-radius: 50%;
-}
-.bookingDetails .userDetailsWrap .name {
-  font-size: 19px;
-  font-family: freightproblack !important;
-  font-weight: 600;
-}
-.bookingDetails .userDetailsWrap .userDetails {
-  color: #637381;
-  font-size: 15px;
-}
-.bookingDetails .bookService__title__amount {
-  font-size: 14px;
-  color: #637381;
-  padding: 20px 0 !important;
-  border-bottom: 1px solid #c4cdd5 !important;
-}
-.bookingDetails .bookService__title__amount_total {
-  font-size: 18px;
-  color: #637381;
-  padding: 20px 0 !important;
-  font-weight: 600;
-}
-.bookingDetails .bookService__title__amount_total span {
-  font-size: 18px;
-  color: #E84671 !important;
-  float: right;
-}
-.bookingDetails .bookService__title__amount span {
-  float: right;
-}
-.bookingDetails .proceedBtn {
-  height: 45px !important;
-  width: 100% !important;
-  margin-top: 12px !important;
-}
-.bookingDetails .proceedBtn a {
-  color: #fff !important;
-}
-.bookingDetails .caveat {
-  color: #637381;
-  font-size: 14px;
-  text-align: center;
-  margin-top: 12px !important;
-  padding: 5px 40px !important;
-}
-@media only screen and (max-width: 767px) {
-  .bookingDetails {
-    padding: 20px !important;
-  }
-  .caveat {
-    padding: 0 !important;
-  }
-}
-
 .navbar {
   margin-bottom: 0px !important;
   border-radius: 0px !important;
@@ -60496,376 +60210,6 @@ body ::-webkit-scrollbar-track {
   }
 }
 
-.BannerWrap {
-  background-position: 0% 10% !important;
-  height: 400px !important;
-  background-repeat: no-repeat !important;
-  -webkit-background-size: cover !important;
-  -moz-background-size: cover !important;
-  -o-background-size: cover !important;
-  background-size: cover !important;
-  margin: 0px !important;
-  border-radius: 0px !important;
-}
-
-.footer {
-  color: white !important;
-  font-family: freightproblack !important;
-  background-color: #212B36 !important;
-  min-height: 471px !important;
-  padding-top: 60px !important;
-}
-.footer .divider {
-  margin-top: 40px !important;
-}
-.footer .copyright {
-  color: white !important;
-}
-.footer .copyright span {
-  font-weight: 100 !important;
-  font-size: 14px !important;
-}
-.footer .copyright img {
-  margin-top: 0px !important;
-  height: 18px !important;
-}
-.footer .social-links {
-  margin-left: -12px !important;
-}
-.footer .social-links img {
-  height: 18px !important;
-}
-.footer .social-links .item {
-  width: 40px !important;
-  padding: 0px !important;
-  padding-left: 0px !important;
-  margin: 0px !important;
-  margin-left: 0px !important;
-}
-.footer .ui.link.list.list a.item:hover,
-.footer .ui.link.list.list .item a:not(.ui):hover {
-  color: rgba(255, 255, 255, 0.8) !important;
-  margin-bottom: 13px !important;
-  font-size: 16px;
-}
-.footer .ui.link.list .item,
-.footer .ui.link.list a.item,
-.footer .ui.link.list .item a:not(.ui) {
-  color: white !important;
-  margin-bottom: 13px !important;
-  font-size: 16px;
-}
-.footer .header {
-  margin-bottom: 27px;
-  font-size: 18px;
-}
-
-.service {
-  padding-top: 25px;
-  border-bottom: 1px solid rgba(196, 205, 213, 0.25);
-}
-.service p {
-  margin: 0 0 10px 0 !important;
-}
-.service .serviceTitle {
-  font-family: freightproblack !important;
-  color: #212B36;
-  font-size: 18px;
-  font-weight: 600;
-}
-.service .serviceDesc,
-.service .serviceDuration {
-  color: #637381;
-}
-.service .serviceCost {
-  color: #E84671;
-  font-size: 15px;
-  font-weight: 600;
-  height: 100%;
-  padding-top: 50px;
-}
-.service .addService {
-  margin-top: 30px;
-}
-.servicesChildWrap {
-  padding: 0 30px !important;
-  height: 480px;
-  width: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-.serviceWrapTitle {
-  font-size: 30px;
-  padding: 30px !important;
-  font-family: freightproblack !important;
-  font-weight: 600;
-  width: 100%;
-}
-.serviceWrapTitle .right {
-  float: right;
-}
-.serviceWrapTitle .right .mainBtn {
-  margin: 0 !important;
-  margin-top: -12px !important;
-}
-.emptyState {
-  text-align: center !important;
-  padding: 100px 0;
-}
-.emptyState img {
-  margin-bottom: 30px !important;
-}
-.emptyState p {
-  font-weight: 500;
-  color: #637381;
-}
-@media (max-width: 767px) {
-  .service {
-    padding-top: 0 !important;
-  }
-  .serviceCost {
-    margin: 12px 0 !important;
-  }
-  .addService {
-    float: right;
-    margin: 0 0 12px 0 !important;
-  }
-  .serviceCost {
-    padding-top: 0 !important;
-  }
-  .ui.grid > .row > .column {
-    padding: 0 !important;
-  }
-}
-
-.lookBook {
-  width: 100% !important;
-}
-.lookBook .lookColumn {
-  overflow: hidden !important;
-  margin-bottom: 10px !important;
-  padding: 0 10px !important;
-  height: 200px;
-}
-.lookBook .ui.grid {
-  margin: 0 !important;
-}
-.lookBook .ui.grid > .row > .column > img {
-  max-width: 142% !important;
-}
-.lookBook .look {
-  margin: 0 !important;
-}
-@media (max-width: 767px) {
-  .lookBook .ui.grid > .row > .column > img {
-    max-width: 100% !important;
-  }
-}
-
-.reviews {
-  padding: 30px 0 0 0;
-}
-.reviews p {
-  margin: 0 0 10px 0 !important;
-}
-.reviews .reviewBody {
-  color: #212B36;
-  margin-bottom: 20px !important;
-}
-.reviews .reviewerPhoto {
-  border-radius: 50% !important;
-  width: 40px !important;
-}
-.reviews .reviewerName {
-  color: #212B36;
-  font-weight: 600;
-  font-family: freightproblack !important;
-}
-.reviews .reviewDate {
-  color: #637381;
-}
-
-.bookService p {
-  margin: 0 !important;
-}
-.bookService .usersName {
-  font-size: 30px;
-  font-family: freightproblack !important;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 20px !important;
-}
-.bookService .dateLabel {
-  position: relative;
-  top: -55px;
-  left: 42px;
-  font-size: 10px;
-  color: #637381;
-}
-.bookService .close {
-  width: 14px;
-  position: relative;
-  top: 40px;
-  left: 92%;
-  cursor: pointer;
-}
-.bookService .pickerImage {
-  position: relative;
-  top: 50px;
-  left: 10px;
-  width: 20px;
-}
-.bookService .date--picker {
-  margin-top: 10px !important;
-  width: 100% !important;
-  padding: 10px 0 0 40px !important;
-  border: 1px solid #c4cdd5 !important;
-}
-.bookService ul {
-  padding: 0 !important;
-  list-style: none;
-}
-.bookService li {
-  padding: 20px 0 !important;
-  border-bottom: 1px solid #c4cdd540;
-}
-.bookService .bookService__title {
-  font-size: 20px;
-  margin-top: 20px !important;
-  font-weight: 600;
-}
-.bookService .bookService__title__amount {
-  font-size: 14px;
-  color: #637381;
-  padding: 20px 0 !important;
-  border-bottom: 1px solid #c4cdd5 !important;
-}
-.bookService .bookService__title__amount_total {
-  font-size: 18px;
-  color: #637381;
-  padding: 20px 0 !important;
-  font-weight: 600;
-}
-.bookService .bookService__title__amount_total span {
-  font-size: 18px;
-  color: #E84671 !important;
-  float: right;
-}
-.bookService .bookService__title__amount span {
-  float: right;
-}
-.bookService .proceedBtn {
-  height: 45px !important;
-  width: 100% !important;
-}
-.bookService .proceedBtn a {
-  color: #fff !important;
-}
-@media (max-width: 767px) {
-  .bookService .usersName {
-    font-size: 24px;
-    font-family: freightproblack !important;
-    font-weight: 600;
-    text-align: left;
-    margin: 0px !important;
-  }
-  .bookService .ui.stackable.grid > .row > .column {
-    padding: 0 !important;
-  }
-}
-
-.datePickerWrap {
-  padding: 20px;
-  box-shadow: 0px 0px 10px rgba(99, 115, 129, 0.1);
-}
-.datePickerWrap .month {
-  width: 100%;
-  text-align: center;
-  margin-bottom: 20px !important;
-}
-.datePickerWrap .month .month-left-chevron {
-  margin: 0 12px;
-  cursor: pointer;
-}
-.datePickerWrap .daysInner {
-  min-width: 90%;
-}
-.datePickerWrap .kard::-webkit-scrollbar {
-  display: none !important;
-}
-.datePickerWrap .kard {
-  display: flex;
-  min-width: 100%;
-  overflow-x: auto;
-  margin-bottom: 20px;
-  scroll-behavior: smooth;
-}
-.datePickerWrap .kard .card--content {
-  color: #637381;
-  border: 1px solid rgba(196, 205, 213, 0.5);
-  min-width: 12% !important;
-  max-width: 12% !important;
-  height: 55px !important;
-  line-height: 55px !important;
-  display: inline-block;
-  margin: 0 1.2% 0 1.2%;
-  text-align: center;
-  cursor: pointer;
-  scroll-behavior: smooth;
-}
-.datePickerWrap .kard .notAvailable {
-  display: none !important;
-}
-.datePickerWrap .days {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  scroll-behavior: smooth;
-}
-.datePickerWrap .days .right-chevron {
-  position: relative;
-  top: -10px;
-  right: 0;
-}
-.datePickerWrap .days .left-chevron {
-  position: relative;
-  top: -10px;
-  left: 0px;
-}
-.datePickerWrap .turn {
-  transform: rotate(180deg);
-}
-.datePickerWrap .time .timeRow {
-  padding-left: 19px !important;
-  padding-right: 18px !important;
-  height: 190px;
-  overflow: scroll;
-}
-.datePickerWrap .time .timeRow .column {
-  padding: 2px !important;
-}
-.datePickerWrap .time .singleTime {
-  width: 100%;
-  border: 1px solid rgba(196, 205, 213, 0.5);
-  height: 80px;
-  line-height: 80px;
-  text-align: center;
-  cursor: pointer;
-  color: #637381;
-}
-.datePickerWrap .active {
-  background-color: #E84671;
-  color: #fff !important;
-  border: 0 !important;
-}
-@media (max-width: 767px) {
-  .datePickerWrap .singleTime {
-    font-size: 10px !important;
-    height: 60px !important;
-    line-height: 60px !important;
-  }
-}
-
 .login {
   font-size: 16px !important;
 }
@@ -61037,36 +60381,279 @@ body ::-webkit-scrollbar-track {
   }
 }
 
-.serviceDetails .userDesc {
+.BannerWrap {
+  background-position: 0% 10% !important;
+  height: 400px !important;
+  background-repeat: no-repeat !important;
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important;
+  background-size: cover !important;
+  margin: 0px !important;
+  border-radius: 0px !important;
+}
+
+.footer {
+  color: white !important;
+  font-family: freightproblack !important;
+  background-color: #212B36 !important;
+  min-height: 471px !important;
+  padding-top: 60px !important;
+}
+.footer .divider {
+  margin-top: 40px !important;
+}
+.footer .copyright {
+  color: white !important;
+}
+.footer .copyright span {
+  font-weight: 100 !important;
+  font-size: 14px !important;
+}
+.footer .copyright img {
+  margin-top: 0px !important;
+  height: 18px !important;
+}
+.footer .social-links {
+  margin-left: -12px !important;
+}
+.footer .social-links img {
+  height: 18px !important;
+}
+.footer .social-links .item {
+  width: 40px !important;
+  padding: 0px !important;
+  padding-left: 0px !important;
+  margin: 0px !important;
+  margin-left: 0px !important;
+}
+.footer .ui.link.list.list a.item:hover,
+.footer .ui.link.list.list .item a:not(.ui):hover {
+  color: rgba(255, 255, 255, 0.8) !important;
+  margin-bottom: 13px !important;
+  font-size: 16px;
+}
+.footer .ui.link.list .item,
+.footer .ui.link.list a.item,
+.footer .ui.link.list .item a:not(.ui) {
+  color: white !important;
+  margin-bottom: 13px !important;
+  font-size: 16px;
+}
+.footer .header {
+  margin-bottom: 27px;
+  font-size: 18px;
+}
+
+.service {
+  padding-top: 25px;
+  border-bottom: 1px solid rgba(196, 205, 213, 0.25);
+}
+.service p {
+  margin: 0 0 10px 0 !important;
+}
+.service .serviceTitle {
+  font-family: freightproblack !important;
+  color: #212B36;
+  font-size: 18px;
+  font-weight: 600;
+}
+.service .serviceDesc,
+.service .serviceDuration {
+  color: #637381;
+}
+.service .serviceCost {
+  color: #E84671;
+  font-size: 15px;
+  font-weight: 600;
+  height: 100%;
+  padding-top: 50px;
+}
+.service .addService {
+  margin-top: 30px;
+}
+.servicesChildWrap {
+  padding: 0 30px !important;
+  height: 480px;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.serviceWrapTitle {
+  font-size: 30px;
+  padding: 30px !important;
+  font-family: freightproblack !important;
+  font-weight: 600;
+  width: 100%;
+}
+.serviceWrapTitle .right {
+  float: right;
+}
+.serviceWrapTitle .right .mainBtn {
+  margin: 0 !important;
+  margin-top: -12px !important;
+}
+.emptyState {
+  text-align: center !important;
+  padding: 100px 0;
+}
+.emptyState img {
+  margin-bottom: 30px !important;
+}
+.emptyState p {
+  font-weight: 500;
+  color: #637381;
+}
+@media (max-width: 767px) {
+  .service {
+    padding-top: 0 !important;
+  }
+  .serviceCost {
+    margin: 12px 0 !important;
+  }
+  .addService {
+    float: right;
+    margin: 0 0 12px 0 !important;
+  }
+  .serviceCost {
+    padding-top: 0 !important;
+  }
+  .ui.grid > .row > .column {
+    padding: 0 !important;
+  }
+}
+
+.innerNav .menu {
+  background-color: #fafafa !important;
+}
+.innerNav .active {
+  background-color: #212B36 !important;
+  color: #fff;
+  border-radius: 0 !important;
+}
+.innerNav .listItem {
+  width: 20%;
+  text-align: center;
+  height: 60px;
+  background-color: #FAFAFA !important;
+}
+.innerNav .item {
+  margin: 0 !important;
+  font-size: 15px;
+  background: #FAFAFA;
+  color: #637381 !important;
+}
+.innerNav .item .linkIcon {
+  width: 18px !important;
+  margin: 0 10px 0 0 !important;
+}
+.innerNav .active {
+  background-color: #212B36 !important;
+}
+.innerNav .active img {
+  filter: brightness(0) invert(1);
+}
+.innerNav ul li:hover {
+  cursor: pointer;
+  transform: scale(1.01);
+  transition: all 0.3s;
+  background-color: #f1f1f1;
+}
+.innerNav .ui.secondary.menu .active.item {
+  color: #fff !important;
+}
+.innerNav .notif {
+  color: #E84671;
+  height: 12px;
+  font-size: 87px;
+  position: relative;
+  right: -14px;
+  top: -77px;
+}
+
+.outerBannerWrap {
+  height: 400px;
+  width: 100%;
+  overflow: hidden;
+}
+.outerBannerWrap .bannerChange {
+  position: relative;
+  top: -365px;
+  left: 81px;
+  z-index: 4;
+}
+.outerBannerWrap .bannerInput {
+  position: relative;
+  top: -400px;
+  left: 0px;
+  z-index: 12;
+  opacity: 0;
+  height: 400px;
+  width: 100%;
+  cursor: pointer;
+}
+.providerHome .userphotoInput {
+  position: relative;
+  left: -61px;
+  z-index: 15;
+  opacity: 0;
+  height: 140px;
+  width: 140px;
+  cursor: pointer;
+}
+.providerHome .userDesc {
   margin-top: -65px !important;
 }
-.serviceDetails .userDesc .userPhoto {
-  width: 120px;
-  height: 120px;
-  overflow: hidden;
-  border: 3px solid #fff;
+.providerHome .userDesc .imgWrap {
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
-  background-color: #fff !important;
-}
-.serviceDetails .userDesc .userPhoto img {
-  width: 100%;
-}
-.serviceDetails .userDesc .userPhoto_ {
-  width: 120px;
-  height: 120px;
+  background-size: cover;
+  background-position-y: center;
+  background-color: #637381;
   overflow: hidden;
-  border: 3px solid #e84671;
-  border-radius: 50%;
-  background-color: #fff !important;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
 }
-.serviceDetails .userDesc .userPhoto_ img {
-  width: 100%;
+.providerHome .userDesc .camera {
+  width: 30%;
+  opacity: 0.4;
 }
-.serviceDetails .buttons {
+.providerHome .userDesc .imgWrap:hover .camera {
+  opacity: 1;
+}
+.providerHome .availability {
+  width: 80%;
+  padding: 20px 0;
   float: right;
-  margin-top: -50px !important;
+  text-align: left;
+  margin-top: -5px;
+  color: #637381;
 }
-.serviceDetails .secondaryBtn {
+.providerHome .availability p {
+  margin: 0 !important;
+  width: 100%;
+  color: #212B36 !important;
+  margin-bottom: 26px !important;
+}
+.providerHome .status {
+  padding: 15px 30px;
+  min-width: 50%;
+  margin-top: 10px !important;
+  border: 1px solid #c4cdd580;
+  cursor: pointer;
+}
+.providerHome .activeStatus {
+  background-color: #212B36;
+  color: #fff;
+}
+.providerHome .buttons {
+  float: right;
+  padding-top: 20px !important;
+  width: 70%;
+}
+.providerHome .secondaryBtn {
   border-radius: 0px;
   font-size: 14px;
   padding: 0 !important;
@@ -61075,36 +60662,37 @@ body ::-webkit-scrollbar-track {
   color: #212B36;
   border: 1px solid #212B36;
 }
-.serviceDetails .mainBtn {
+.providerHome .mainBtn {
   border-radius: 0px !important;
   height: 49px !important;
   font-size: 14px !important;
   margin: 10px !important;
   padding-left: 30px !important;
+  background-color: #212B36;
+  color: #fff;
   display: inline-flex;
   padding-right: 30px !important;
-  vertical-align: middle;
 }
-.serviceDetails .mainBtn img {
-  margin-top: -4px;
+.providerHome .mainBtn img {
+  margin-top: -7px;
   margin-right: 6px !important;
 }
-.serviceDetails .mainBtn p {
+.providerHome .mainBtn p {
   justify-content: center;
   align-items: center;
   margin: 0 !important;
 }
-.serviceDetails .userName {
+.providerHome .userName {
   margin: 10px 0 0 0 !important;
   font-family: freightproblack !important;
   font-size: 30px;
   font-weight: 600;
 }
-.serviceDetails .userJob {
+.providerHome .userJob {
   margin: 10px 0 0 0 !important;
   font-family: sofiapromedium !important;
 }
-.serviceDetails .userDetails {
+.providerHome .userDetails {
   margin: 10px 0 0 0 !important;
   font-family: sofiapromedium !important;
   color: #637381;
@@ -61115,191 +60703,219 @@ body ::-webkit-scrollbar-track {
   text-overflow: ellipsis;
   white-space: normal;
 }
-.serviceDetails .lightShadow {
+.providerHome .lightShadow {
   box-shadow: 0px 0px 10px rgba(99, 115, 129, 0.1);
 }
-.serviceDetails .serviceWrap {
-  margin: 30px 0 30px 0;
-  max-height: 509px;
+.providerHome .serviceWrap {
+  margin: 30px 0;
+  max-height: 559px;
+  min-height: 559px;
   overflow: hidden;
 }
-.serviceDetails .servicesChildWrap {
+.providerHome .servicesChildWrap {
   padding: 0 30px !important;
-  height: 420px;
+  height: 480px;
+  width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
 }
-.serviceDetails .serviceWrapTitle {
+.providerHome .serviceWrapTitle {
   font-size: 30px;
   padding: 30px !important;
   font-family: freightproblack !important;
   font-weight: 600;
   width: 100%;
 }
-.serviceDetails .lookBookWrap {
-  background-color: #fff;
-  padding: 30px;
-  margin-bottom: 30px;
-  height: 520px;
-  overflow: hidden;
+.providerHome .serviceWrapTitle .right {
+  float: right;
 }
-.serviceDetails .lookBookWrapTitle {
-  font-size: 30px;
-  padding: 30px 10px !important;
-  font-family: freightproblack !important;
-  font-weight: 600;
-  width: 100%;
+.providerHome .serviceWrapTitle .right .mainBtn {
+  margin: 0 !important;
+  margin-top: -12px !important;
 }
-.serviceDetails .lookStars {
-  text-align: right !important;
+.providerHome .emptyState {
+  text-align: center !important;
+  padding: 100px 0;
 }
-.serviceDetails .lookStars span {
-  padding-right: 30px !important;
+.providerHome .emptyState img {
+  margin-bottom: 30px !important;
 }
-.serviceDetails .lookStars .arrows {
-  padding-right: 0 !important;
-}
-.serviceDetails .lookStars .arrows img {
-  margin-left: 12px;
-  cursor: pointer;
-}
-.serviceDetails .lookStars .arrows .left {
-  transform: rotate(180deg);
-}
-.serviceDetails .lookStars .arrows .dim {
-  opacity: 0.3;
-}
-.serviceDetails .reviewsComponentWrap {
-  background-color: #fff;
-  padding: 0px;
-  height: 580px;
-  overflow: hidden;
-}
-.serviceDetails .reviewsWrapTitle {
-  padding: 30px 0 !important;
-  font-family: freightproblack !important;
-  font-weight: 600;
-  width: 100%;
-}
-.serviceDetails .reviewsComponentWrapChild {
-  background-color: #fff;
-  padding: 0 30px;
-  height: 490px;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-.serviceDetails .forBig {
-  position: sticky;
-  top: 20px;
-}
-.serviceDetails .bookServiceComponent {
-  margin-top: -290px !important;
-  background-color: #fff;
-  padding: 30px;
-  height: auto;
-  position: -webkit-sticky !important;
-  position: sticky !important;
-  top: 20px !important;
+.providerHome .emptyState p {
+  font-weight: 500;
+  color: #637381;
 }
 @media (max-width: 767px) {
-  .serviceDetails .userDesc {
-    padding: 10px !important;
-  }
-  .serviceDetails .buttons {
-    padding-top: 10px !important;
+  .providerHome .availability {
     width: 100%;
   }
-  .serviceDetails .mainBtn {
-    margin: 10px !important;
-    padding-left: 15px !important;
-    padding-right: 15px !important;
+  .providerHome .availability .status {
+    display: block;
+    padding: 15px 30px;
+    min-width: 100%;
+    width: 50%;
+    margin-top: 10px !important;
+    border: 1px solid #c4cdd580;
   }
-  .serviceDetails .serviceDetails .serviceWrap {
+  .providerHome .lightShadow {
     box-shadow: unset !important;
   }
-  .serviceDetails .userName {
-    font-size: 16px !important;
-    text-align: left !important;
-  }
-  .serviceDetails .lightShadow {
-    margin: 15px 0 !important;
-    padding: 1rem !important;
-  }
-  .serviceDetails .serviceWrapTitle {
-    margin-top: 0px !important;
-    font-size: 24px !important;
-    padding: 0 !important;
-  }
-  .serviceDetails .lookBookWrapTitle,
-  .serviceDetails .reviewsWrapTitle {
-    margin-top: 0px !important;
-    font-size: 24px !important;
-    padding: 0 15px !important;
-  }
-  .serviceDetails .lookBookWrap {
-    background-color: #fff;
-    padding: 30px;
-    margin-bottom: 30px;
-    height: auto;
-  }
-  .serviceDetails .servicesChildWrap {
-    padding: 0 !important;
-  }
-  .serviceDetails .servicesChildWrap,
-  .serviceDetails .serviceWrap,
-  .serviceDetails .reviewsComponentWrapChild,
-  .serviceDetails .reviewsComponentWrap {
+  .providerHome .serviceWrap {
+    margin: 30px 0;
     height: auto !important;
-    padding: 15px !important;
-    max-height: unset;
-    overflow: hidden;
-  }
-  .serviceDetails .ui.stackable.grid > .row > .column {
     padding: 0 !important;
   }
-  .serviceDetails .lookBookWrap .ui.stackable.grid > .row > .column {
-    padding: 15px !important;
-  }
-  .serviceDetails .lookStars {
-    font-size: 13px !important;
-    text-align: right;
-  }
-  .serviceDetails .lookStars span {
+  .providerHome .serviceWrapTitle {
+    font-size: 25px !important;
     padding: 0 !important;
   }
-  .serviceDetails .lookStars .arrows {
-    padding: 0 15px !important;
+  .providerHome .servicesChildWrap {
+    padding: 0 !important;
+  }
+  .providerHome .mainBtn {
+    padding: 10px 12px !important;
   }
 }
 
-.checkout {
-  padding-top: 50px !important;
+.addService .heading {
+  font-size: 30px;
+  font-weight: 600;
+  font-family: freightproblack !important;
+  width: 100%;
+  text-align: center;
+  margin-top: 25px !important;
+  margin-bottom: 0 !important;
 }
-.checkout .ui.grid {
-  margin: 0 !important;
+.addService .ui.input {
+  width: 100% !important;
 }
-.checkout .proceedBtn div {
-  height: 25px !important;
-  line-height: 25px !important;
-  display: inline-flex !important;
+.addService .textArea {
+  width: 100%;
+  color: #637381 !important;
+  font-size: 16px;
+  font-family: 'sofiaproregular', 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
+  padding: 10px 20px !important;
+  border: 1px solid #C4CDD5 !important;
 }
-.checkout .proceedBtn div img {
-  margin-right: 12px;
+.addService .column {
+  margin-top: 15px !important;
 }
-.checkout .mainBtn {
+.addService .select {
+  width: 100%;
+  height: 50px !important;
+  border-radius: 0 !important;
+  border: 1px solid #C4CDD5 !important;
+  z-index: 100 !important;
+}
+.addService .labell {
+  font-weight: 600;
+  padding-bottom: 10px;
+}
+.addService .upload {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  border: 1px dashed #C4CDD5;
+  background-position-y: center;
+  cursor: pointer;
+}
+.addService .upload input[type="file"] {
+  position: relative;
+  top: -199px;
+  z-index: 12;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+.addService .upload div {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  text-align: center;
+  width: 100%;
+  padding: 40px;
+}
+.addService .upload div img {
+  margin: 0 0 20px 0;
+}
+.addService .upload div.dragover {
+  background-color: #aaa;
+}
+.addService .myButtons .mainBtn {
   border-radius: 0px;
   font-size: 14px;
-  padding: 15px 30px !important;
+  padding: 0 !important;
+  margin: 10px;
+  background-color: #fff;
+  color: #212B36;
+  padding: 12px 30px !important;
+  border: 1px solid #212B36;
+}
+.addService .myButtons .secondaryBtn {
+  border-radius: 0px;
+  font-size: 14px;
+  padding: 12px 30px !important;
   margin: 10px;
   background-color: #212B36 !important;
-  font-size: 15px !important;
-  font-weight: 400 !important;
-  font-family: sofiapromedium !important;
   color: #fff !important;
-  border: 1px solid #c4cdd580;
-  margin-top: 35px !important;
+  border: 1px solid #212B36 !important;
 }
-.checkout .secondaryBtn {
+.addService .myButtons .delete {
+  font-weight: 600;
+  font-size: 16px;
+  color: #E84671;
+  width: 100%;
+  cursor: pointer;
+  text-align: center;
+}
+
+.homeService {
+  padding-top: 25px;
+  border-bottom: 1px solid rgba(196, 205, 213, 0.25);
+}
+.homeService p {
+  margin: 0 0 10px 0 !important;
+}
+.homeService .serviceTitle {
+  font-family: freightproblack !important;
+  color: #212B36;
+  font-size: 18px;
+  font-weight: 600;
+}
+.homeService .serviceDesc,
+.homeService .serviceDuration {
+  color: #637381;
+}
+.homeService .serviceCost {
+  color: #E84671;
+  font-size: 15px;
+  font-weight: 600;
+}
+.homeService .myrow {
+  height: 100%;
+  padding-top: 50px;
+}
+.homeService .dot {
+  font-size: 70px;
+}
+.homeService .online {
+  color: #26BD23;
+}
+.homeService .offline {
+  color: #a4a4a4;
+}
+.homeService .addService {
+  margin-top: 30px;
+}
+
+.upcomingBookings {
+  border-bottom: 1px solid #c4cdd540;
+  padding: 15px 0;
+}
+.upcomingBookings p {
+  margin-bottom: 5px !important;
+}
+.upcomingBookings .secondaryBtn {
   border-radius: 0px;
   font-size: 14px;
   padding: 15px 30px !important;
@@ -61309,27 +60925,38 @@ body ::-webkit-scrollbar-track {
   font-weight: 400 !important;
   font-family: sofiapromedium !important;
   color: #212B36 !important;
-  border: 1px solid #212B36;
+  border: 1px solid #c4cdd580;
   margin-top: 35px !important;
 }
-.checkout .dangerBtn {
-  border-radius: 0px;
-  font-size: 14px;
-  padding: 15px 30px !important;
-  margin: 10px;
-  background-color: #fff !important;
-  font-size: 15px !important;
-  font-weight: 400 !important;
+.upcomingBookings .customerName {
+  font-weight: 600;
+  color: #212B36;
+}
+.upcomingBookings .address {
+  color: #637381;
+  font-size: 13px;
   font-family: sofiapromedium !important;
-  color: red !important;
-  border: 1px solid red;
-  margin-top: 35px !important;
 }
-.checkout .modalContents {
-  width: 100%;
-  text-align: center !important;
+.upcomingBookings .servicesRequested {
+  color: #637381;
+  font-size: 13px;
+  font-family: sofiapromedium !important;
+}
+.upcomingBookings .time {
+  color: #637381;
+  font-size: 13px;
+  font-family: sofiapromedium !important;
+}
+.upcomingBookings .right {
+  text-align: right !important;
 }
 @media (max-width: 767px) {
+  .upcomingBookings .right {
+    text-align: center !important;
+  }
+  .upcomingBookings .right button {
+    margin-top: 0 !important;
+  }
 }
 
 

@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static\\development\\pages\\_app.js"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/_app.js"],{
 
 /***/ "./components/shared/SnackBar.js":
 /*!***************************************!*\
@@ -62448,7 +62448,7 @@ var partitionHTMLProps = function partitionHTMLProps(props) {
 /*!*************************************************************!*\
   !*** ./node_modules/semantic-ui-react/dist/es/lib/index.js ***!
   \*************************************************************/
-/*! exports provided: AutoControlledComponent, getChildMapping, mergeChildMappings, childrenUtils, useKeyOnly, useKeyOrValueAndKey, useValueAndKey, useMultipleProp, useTextAlignProp, useVerticalAlignProp, useWidthProp, customPropTypes, eventStack, createShorthand, createShorthandFactory, createHTMLDivision, createHTMLIframe, createHTMLImage, createHTMLInput, createHTMLLabel, createHTMLParagraph, getUnhandledProps, getElementType, htmlInputAttrs, htmlInputEvents, htmlInputProps, htmlImageProps, partitionHTMLProps, isBrowser, doesNodeContainClick, leven, createPaginationItems, SUI, numberToWordMap, numberToWord, normalizeOffset, normalizeTransitionDuration, objectDiff, handleRef, isRefObject */
+/*! exports provided: AutoControlledComponent, getChildMapping, mergeChildMappings, childrenUtils, useKeyOnly, useKeyOrValueAndKey, useValueAndKey, useMultipleProp, useTextAlignProp, useVerticalAlignProp, useWidthProp, customPropTypes, eventStack, getUnhandledProps, getElementType, htmlInputAttrs, htmlInputEvents, htmlInputProps, htmlImageProps, partitionHTMLProps, isBrowser, doesNodeContainClick, leven, createPaginationItems, SUI, numberToWordMap, numberToWord, normalizeOffset, normalizeTransitionDuration, objectDiff, handleRef, isRefObject, createShorthand, createShorthandFactory, createHTMLDivision, createHTMLIframe, createHTMLImage, createHTMLInput, createHTMLLabel, createHTMLParagraph */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -76082,8 +76082,6 @@ function (_App) {
 
 
       next_router__WEBPACK_IMPORTED_MODULE_19___default.a.events.on('routeChangeStart', function (url) {
-        console.log("Loading: ".concat(url));
-
         _this2.setState({
           showProgress: true
         });
@@ -76092,7 +76090,7 @@ function (_App) {
           _this2.setState({
             progress: _this2.state.progress + 33
           });
-        }, 1000); // NProgress.start()
+        }, 1000);
       });
       next_router__WEBPACK_IMPORTED_MODULE_19___default.a.events.on('routeChangeComplete', function () {
         _this2.setState({
@@ -76190,7 +76188,7 @@ function (_App) {
 /*!*****************************!*\
   !*** ./services/apiUrls.js ***!
   \*****************************/
-/*! exports provided: baseUrl, login, clientRegister, providerRegister, getCurrentUser, changePassword, getAllUsers, getUserNotifications, allProvidersUrl, providerServicesUrl, addServicesUrl, servicesUrl, payUrl, subscriptionPayUrl, trendsUrl, categoriesUrl, clientBookingsUrl, providerBookingUrl, reviewsUrl, providersDetailsUrl, addressUrl, imageUrl, bannerUploadUrl, lookbookUrl, addLookbookUrl, saveProviders, subscriptionsUrl, providerSubscription, confirmSubscription, updateClient, updateProvider, messageUrl, providerMessageUrl, clientMessageUrl, createConversationUrl */
+/*! exports provided: baseUrl, login, clientRegister, providerRegister, getCurrentUser, changePassword, getAllUsers, getUserNotifications, allProvidersUrl, providerServicesUrl, providerSchedule, addServicesUrl, servicesUrl, payUrl, subscriptionPayUrl, trendsUrl, categoriesUrl, clientBookingsUrl, providerBookingUrl, reviewsUrl, providersDetailsUrl, addressUrl, imageUrl, bannerUploadUrl, lookbookUrl, addLookbookUrl, saveProviders, subscriptionsUrl, providerSubscription, confirmSubscription, updateClient, updateProvider, messageUrl, providerMessageUrl, clientMessageUrl, createConversationUrl */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -76205,6 +76203,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUserNotifications", function() { return getUserNotifications; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "allProvidersUrl", function() { return allProvidersUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "providerServicesUrl", function() { return providerServicesUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "providerSchedule", function() { return providerSchedule; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addServicesUrl", function() { return addServicesUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "servicesUrl", function() { return servicesUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "payUrl", function() { return payUrl; });
@@ -76241,6 +76240,7 @@ var getAllUsers = "".concat(baseUrl, "/users/all");
 var getUserNotifications = "".concat(baseUrl, "/notifications");
 var allProvidersUrl = "".concat(baseUrl, "/users/provider");
 var providerServicesUrl = "".concat(baseUrl, "/services");
+var providerSchedule = "".concat(baseUrl, "/bookings/schedule");
 var addServicesUrl = "".concat(baseUrl, "/uploads/services");
 var servicesUrl = "".concat(baseUrl, "/categories");
 var payUrl = "".concat(baseUrl, "/bookings/pay");
@@ -77385,7 +77385,6 @@ var INITIAL_STATE = {
       {
         var byId = [];
         var allNotifications = {};
-        console.log(payload);
         payload.forEach(function (notification) {
           byId = [].concat(Object(_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_1__["default"])(byId), [notification._id]);
           allNotifications = Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_2__["default"])({}, allNotifications, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])({}, notification._id, notification));

@@ -86,7 +86,6 @@ const AddService = (props) => {
     .then(res => {
       getProviderServices(props.user.id)
       .then(res => {
-        console.log(res)
         let services = res.data.data.services
         props.saveProviderServices(services)
       })

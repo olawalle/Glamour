@@ -14,8 +14,8 @@ import HomeService from './home/homeService';
 import UpcomingBookings from './home/upcomingBookings';
 import CustomImageUploader from '../../components/shared/CustomImageUploader';
 import Display from '../../components/shared/Display';
-import { getCurrentUser } from '../../services/auth.ts'
-import { getProviderServices, getProviderBookings } from '../../services/providerServices.ts'
+import { getCurrentUser, updateProvider } from '../../services/auth.ts'
+import { getProviderServicesPrivate, getProviderBookings } from '../../services/providerServices.ts'
 import { uploadImage, uploadBanner } from '../../services/generatData.ts'
 import Loader from '../../components/shared/Loader'
 
@@ -40,7 +40,6 @@ const ProviderHome = (props) => {
             
             getProviderBookings()
             .then(providerBookings => {
-                console.log(providerBookings)
               props.saveUserBookings(providerBookings.data.data)
             })
             .catch(err => {
@@ -52,19 +51,17 @@ const ProviderHome = (props) => {
     const [bannerSrc, updateBannerSrc] = useState({image: props.userData.bannerUrl})
     const [userPhoto, updateUserPhoto] = useState(props.userData.pictureUrl)
     const [showNav, updateShowNav] = useState(true)
-    const [bookingStatus, updateBookingStatus] = useState([
-        {
-            status: 'Advanced bookings only', selected: 'activeStatus'
-        },
-        {
-            status: 'I\'m available immediately', selected: ''
-        }
-    ])
+    const [bookingStatus, updateBookingStatus] = useState([])
 
 
     const styles = {
         UserPhoto: {
-            backgroundImage: `url(${userPhoto})`
+            backgroundImage: `url(${userPhoto})`,
+            border: '3px solid #fff'
+        },
+        UserPhoto_: {
+            backgroundImage: `url(${userPhoto})`,
+            border: '3px solid #E84671'
         },
         img: {
             width: '30px'
@@ -169,10 +166,28 @@ const ProviderHome = (props) => {
             }
             updateBannerSrc({image: response.data.me.bannerUrl})
             updateUserPhoto(response.data.me.pictureUrl)
+
+            response.data.me.instant ? updateBookingStatus([
+                {
+                    status: 'Advanced bookings only', selected: ''
+                },
+                {
+                    status: 'I\'m available immediately', selected: 'activeStatus'
+                }
+            ]) : updateBookingStatus([
+                {
+                    status: 'Advanced bookings only', selected: 'activeStatus'
+                },
+                {
+                    status: 'I\'m available immediately', selected: ''
+                }
+            ])
+
             props.saveUserData(payload)
 
-            getProviderServices(response.data.me.id)
+            getProviderServicesPrivate(response.data.me.id)
             .then(res => {
+                console.log(res)
                 let services = res.data.data.services
                 props.saveProviderServices(services)
             })
@@ -213,26 +228,28 @@ const ProviderHome = (props) => {
     }
 
     const selectStatus = (i) => {
-        console.log(i)
+        let user = props.user
         if ( i === 0 ) {
-            updateBookingStatus([
-            
-            {
-                status: 'Advanced bookings only', selected: 'activeStatus'
-            },
-            {
-                status: 'I\'m available immediately', selected: ''
-            }
-        ])
+        updateProvider(
+            {...user, instant: false}
+        )
+        .then(res => {
+            getUserDetails()
+        })
+        .catch(err => {
+            console.log({...err})
+        })
       } else {
-        return updateBookingStatus([
-            {
-                status: 'Advanced bookings only', selected: ''
-            },
-            {
-                status: 'I\'m available immediately', selected: 'activeStatus'
-            }
-        ])
+        updateProvider(
+            {...user, instant: true}
+        )
+        .then(res => {
+            getUserDetails()
+        })
+        .catch(err => {
+            console.log({...err})
+            getUserDetails()
+        })
       }
     }
 
@@ -256,7 +273,7 @@ const ProviderHome = (props) => {
                             <div className="userDesc">
                                     <CustomImageUploader getImageFile={getImageFile}>
                                         <div style={{height: '100%', position: 'relative', zIndex: 20}}>
-                                            <div className="imgWrap" style={styles.UserPhoto}>
+                                            <div className="imgWrap" style={props.user.instant ? styles.UserPhoto_ : styles.UserPhoto}>
                                                 <img src='/static/icons/camera.svg' className="camera" alt=""/>
                                             </div>
                                         </div>

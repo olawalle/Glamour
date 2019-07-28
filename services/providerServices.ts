@@ -31,6 +31,13 @@ let getProviderServices = (id) => {
     })
 }
 
+let getProviderServicesPrivate = (id) => {
+    return axios({
+        method: 'GET',
+        url: apiUrls.providerServicesUrl+'/'+id
+    })
+}
+
 let deleteProviderServices = (id) => {
     return axios({
         method: 'DELETE',
@@ -112,6 +119,7 @@ export {
     addServices,
     editService,
     getProviderServices,
+    getProviderServicesPrivate,
     deleteProviderServices,
     getProviderBookings,
     getProviderSchedule,
