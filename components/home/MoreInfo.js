@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Segment, Grid, Image, Header, Button } from 'semantic-ui-react';
 import './less/moreInfo.less';
+import Router from 'next/router';
 
 const MoreInfo = (props) => {
   return (
@@ -13,14 +14,14 @@ const MoreInfo = (props) => {
           <Grid.Column className="is-h-centered" textAlign="left" width="8" verticalAlign="middle">
             <div className="moreinfo-text">
               <Header as="h4">
-                Are you a beauty service provider?
+                Are you a service provider?
               </Header>
               <Header.Subheader>
                 I was part of something special.
                 Is this my espresso machine? Wh-what is-h-how did you get my espresso machine?
                 What do they got in there? King Kong? So you two dig up, dig up dinosaurs?
               </Header.Subheader>
-              <Button content="Get started" secondary/>
+              <Button content="Get started" secondary onClick={() => Router.push('/signup/provider')} />
             </div>
           </Grid.Column>
         </Grid.Row>

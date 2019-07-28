@@ -59,8 +59,6 @@ class ServiceDetails extends Component {
     componentDidMount() {
         
         let userData = window.sessionStorage.getItem('glamourToken')
-        if (userData) {
-        }
             
         //API call to get all available providers
         getAllProviders()
@@ -71,17 +69,20 @@ class ServiceDetails extends Component {
             }, () => {
                 this.props.selectProvider(this.state.selectedProvider)
             })
-            getSavedProviders()
-            .then(prv => {
-                this.props.saveFavedProviders(prv.data.providers)
-                let present = this.props.savedProviders.find(provider => provider.providerId === Router.router.query.provider)
-                if (present) {
-                    this.setState({present: true})
-                }
-            })
-            .catch(err => {
-                console.log(err)
-            })
+
+            if (userData) {
+                getSavedProviders()
+                .then(prv => {
+                    this.props.saveFavedProviders(prv.data.providers)
+                    let present = this.props.savedProviders.find(provider => provider.providerId === Router.router.query.provider)
+                    if (present) {
+                        this.setState({present: true})
+                    }
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+            }
         })
         .catch(err => {
             console.log(err)
@@ -89,18 +90,9 @@ class ServiceDetails extends Component {
 
         getProviderSchedule(Router.router.query.provider)
         .then(res => {
+            console.log(res)
             this.setState({
                 bookedTimes: res.data.data
-                .map(sch => {
-                    return { 
-                        time: sch.time, 
-                        time_: `${sch.time.split(' ')[3]} ${sch.time.split(' ')[4]}`,
-                        date: `${sch.time.split(' ')[0]} ${sch.time.split(' ')[1]} ${sch.time.split(' ')[2]}`,
-                        duration: sch.services.map(
-                            serv => parseInt(serv.duration.split('-')[1].replace('hr', '').replace(' ', ''))
-                        ).reduce((dur, start) => dur += start, 0)
-                    }
-                })
             })
         })
         .catch(err => {

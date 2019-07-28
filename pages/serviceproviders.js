@@ -41,7 +41,7 @@ class ServiceProvider extends Component {
     }
 
     getFormData = (e, f) => {
-        
+        console.log(f)
         // filter list of providers based on user preferences
         let newArray = []
         !f ? newArray = this.props.serviceProviders.filter(provider => {
@@ -51,6 +51,7 @@ class ServiceProvider extends Component {
                 && provider.postcode.toLowerCase().includes(e.postcode.toLowerCase())
         }) : newArray = this.state.allProviders.filter(provider => {
             return provider.description.toLowerCase().includes(f.searchFor.toLowerCase())
+                && provider.service.toLowerCase().includes(f.sortBy.toLowerCase())
                 && provider.postcode.toLowerCase().includes(f.postcode.toLowerCase())
         })
         this.setState({allProviders: newArray})
@@ -117,7 +118,7 @@ class ServiceProvider extends Component {
                         <h1>
                             No providers match your specified criteria
                         </h1>
-                        <Button className="mainBtn secondaryBtn" onClick={() => Router.push('/serviceproviders')}>
+                        <Button className="mainBtn secondaryBtn" onClick={() => this.setState({allProviders: this.props.serviceProviders})}>
                             View All
                         </Button>
                     </div>

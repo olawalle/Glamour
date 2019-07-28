@@ -69,7 +69,9 @@ class ProviderForm extends Component {
   updateForm = (e, data, type) => {
     let fields = {...this.state.formFields}
     e.target.value ? fields[type] = e.target.value : fields[type] = data.value
-    this.setState({formFields: fields})
+    this.setState({formFields: fields}, () => {
+      this.props.getFormData(this.state.formFields)
+    })
   }
 
   clearFilter = () => {
@@ -80,6 +82,8 @@ class ProviderForm extends Component {
         distance: '',
         priceRange: ''
       }
+    }, () => {
+      this.props.getFormData(this.state.formFields)
     })
   }
   
@@ -116,7 +120,7 @@ class ProviderForm extends Component {
   }
 
   componentDidUpdate() {
-    this.props.getFormData(this.state.formFields)
+    // this.props.getFormData(this.state.formFields)
   }
 
   render () {
@@ -135,7 +139,7 @@ class ProviderForm extends Component {
                     />
                     <img src="../../static/icons/sort.svg" className="selectIcon" alt=""/>
                     <span className="selectLabel">
-                        Sort by
+                        Sort by category
                     </span>
                 </Grid.Column>
                 <Grid.Column  className="RangeCol">

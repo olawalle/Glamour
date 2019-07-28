@@ -201,8 +201,7 @@ export default class glamourDatePicker extends Component {
       this.getUserAvailableTimesArray()
     })
 
-    let arr = []
-    arr[0] = this.props.bookedTimes
+    let arr = this.props.bookedTimes
     let selectedDay = arr.find(date => date.date === pickedDate)
     if (selectedDay) {
       this.setState({
