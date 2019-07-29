@@ -12,7 +12,7 @@ import Router from 'next/router'
 
 class notifications extends Component {
 
-  componentWillMount() {
+  componentDidMount() {    
     getUserNotifications()
     .then(res => {
       let notifications = res.data.data
@@ -21,8 +21,6 @@ class notifications extends Component {
     .catch(err => {
       console.log(err)
     })
-  }
-  componentDidMount() {    
     // let token = window.sessionStorage.getItem('glamourToken')
     // if (!token) {
     //   Router.push("/login")

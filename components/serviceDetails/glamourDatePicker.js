@@ -329,7 +329,7 @@ export default class glamourDatePicker extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.getDates(this.props.selectedDate)
     this.getUserAvailableTimesArray()
   }
