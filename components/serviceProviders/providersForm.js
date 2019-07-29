@@ -84,7 +84,7 @@ class ProviderForm extends Component {
   }
   
   
-  componentWillMount () {
+  componentDidMount () {
     
     getAllServices()
     .then(res => {
@@ -109,10 +109,6 @@ class ProviderForm extends Component {
     .catch(err => {
       console.log(err)
     })
-  }
-
-
-  componentDidMount() {
   }
 
   componentDidUpdate() {

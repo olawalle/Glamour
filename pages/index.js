@@ -34,7 +34,7 @@ class Home extends Component {
     return {}
   }
 
-  componentWillMount () {
+  componentDidMount () {
 
     // get list of service categories, trends and serviceProviders
     getAllServices()
@@ -60,14 +60,6 @@ class Home extends Component {
     .catch(err => {
       console.log(err)
     })
-  }
-
-  componentDidMount() {   
-    // console.log('app mounted') 
-    // let userData = window.sessionStorage.getItem('glamoutUserData')
-    // if (userData) {
-    //   this.props.saveUserData(JSON.parse(userData))
-    // }
   }
 
   render () {

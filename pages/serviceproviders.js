@@ -68,7 +68,13 @@ class ServiceProvider extends Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
+        // console.log(window.localStorage.getItem('store'))
+        let token = window.sessionStorage.getItem('glamourToken')
+        if (token) {
+        //   this.props.saveUserData(JSON.parse(userData))
+        }
+
         // get list of serviceProviders    
         getAllProviders()
         .then(res => {
@@ -80,14 +86,6 @@ class ServiceProvider extends Component {
         .catch(err => {
           console.log(err)
         })
-    }
-
-    componentDidMount() {
-        // console.log(window.localStorage.getItem('store'))
-        let token = window.sessionStorage.getItem('glamourToken')
-        if (token) {
-        //   this.props.saveUserData(JSON.parse(userData))
-        }
     }
 
     render () {

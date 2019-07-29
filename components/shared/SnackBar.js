@@ -19,9 +19,6 @@ export class Snackbar extends PureComponent {
     this.setState({ isActive: false });
   }
 
-  componentWillMount() {
-  }
-
   render() {
     return (
       <div className="snackbar_wrapper"> 
