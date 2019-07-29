@@ -46,7 +46,7 @@ export default function UpcomingBookings(props) {
                                 {singleBooking.from.name}
                             </p>
                             <p className="address">
-                                Somewhere on earth
+                                {singleBooking.address}
                             </p>
                             <p className="servicesRequested">
                                 {renderSelectedServices(singleBooking)}

@@ -61,7 +61,7 @@ const BookService = (props) => {
                 <span onClick={() => closePicker()}>
                     <img src="/static/images/checked.svg" className="close" title="close" alt=""/>
                 </span>
-                <GlamourDatePicker bookedTimes={props.bookedTimes[4]} userSchedule={props.providerDetails.schedules} pickTime={pickTime} selectedTime={selectedTime} selectedDate={selectedDate} pickDate={pickDate}/>
+                <GlamourDatePicker bookedTimes={props.bookedTimes} userSchedule={props.providerDetails.schedules} pickTime={pickTime} selectedTime={selectedTime} selectedDate={selectedDate} pickDate={pickDate}/>
             </Display>
 
             <Display if={isPickingDate}>

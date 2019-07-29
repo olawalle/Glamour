@@ -15,7 +15,7 @@ import UpcomingBookings from './home/upcomingBookings';
 import CustomImageUploader from '../../components/shared/CustomImageUploader';
 import Display from '../../components/shared/Display';
 import { getCurrentUser, updateProvider } from '../../services/auth.ts'
-import { getProviderServicesPrivate, getProviderBookings } from '../../services/providerServices.ts'
+import { getProviderServices, getProviderBookings } from '../../services/providerServices.ts'
 import { uploadImage, uploadBanner } from '../../services/generatData.ts'
 import Loader from '../../components/shared/Loader'
 
@@ -185,7 +185,7 @@ const ProviderHome = (props) => {
 
             props.saveUserData(payload)
 
-            getProviderServicesPrivate(response.data.me.id)
+            getProviderServices(response.data.me.id)
             .then(res => {
                 console.log(res)
                 let services = res.data.data.services
