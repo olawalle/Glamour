@@ -201,9 +201,7 @@ export default class glamourDatePicker extends Component {
       this.getUserAvailableTimesArray()
     })
 
-    let arr = []
-    arr[0] = this.props.bookedTimes
-    let arr_ = arr.map(itm => {
+    let arr_ = this.props.bookedTimes.map(itm => {
       return {
         date: `${itm.time.split(' ')[0]} ${itm.time.split(' ')[1]} ${itm.time.split(' ')[2]}`,
         time_: `${itm.time.split(' ')[3]} ${itm.time.split(' ')[4]}`,
