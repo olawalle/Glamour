@@ -10,6 +10,7 @@ export const getUserNotifications = `${baseUrl}/notifications`
 
 export const allProvidersUrl =  `${baseUrl}/users/provider`
 export const providerServicesUrl = `${baseUrl}/services`
+export const providerPublicServicesUrl = `${baseUrl}/services/provider`
 export const providerSchedule = `${baseUrl}/bookings/schedule`
 export const addServicesUrl = `${baseUrl}/uploads/services`
 export const servicesUrl = `${baseUrl}/categories`

@@ -14,7 +14,7 @@ import Router from 'next/router';
 import * as actions from '../store/actions'
 import './less/serviceDetails.less'
 import { getAllProviders } from '../services/generatData.ts'
-import { getProviderSchedule, getLookbook, getProviderReviews, getProviderServices } from '../services/providerServices.ts'
+import { getProviderSchedule, getLookbook, getProviderReviews, getProviderPublicServices } from '../services/providerServices.ts'
 import { saveProvider, getSavedProviders, deleteSavedProvider, createConversation } from '../services/auth.ts'
 import Display from '../components/shared/Display';
 
@@ -107,7 +107,7 @@ class ServiceDetails extends Component {
             console.log(err)
         })
         
-        getProviderServices(Router.router.query.provider)
+        getProviderPublicServices(Router.router.query.provider)
         .then(res => {
             let services = res.data.data.services
             this.setState({servicesRendered: services})
