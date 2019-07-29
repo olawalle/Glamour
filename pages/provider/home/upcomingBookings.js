@@ -7,6 +7,7 @@ import Router from 'next/router'
 
 export default function UpcomingBookings(props) {
   useEffect(() => {
+      console.log(props)
   }, [])
 
   const time = (time) => {
@@ -38,20 +39,20 @@ export default function UpcomingBookings(props) {
     <div className="upcomingBookings">
         <Grid stackable>
             {
-                props.bookings && props.bookings.map((singleBooking, i) => {
+                props.bookings && props.bookings.filter(bk => bk.message.status !== 'completed').map((singleBooking, i) => {
                     return  <Grid.Row key={`booking${i}`}>
                         <Grid.Column width={10}>
                             <p className="customerName">
                                 {singleBooking.from.name}
                             </p>
                             <p className="address">
-                                idufuv dfviudf iusvdiu iduvsuidjk siud vius vdius sficviufv iud fiduvfid fvidvfiudf
+                                {singleBooking.address}
                             </p>
                             <p className="servicesRequested">
                                 {renderSelectedServices(singleBooking)}
                             </p>
                             <p className="time">
-                                <img src="/static/icons/clock.svg" alt=""/> {time(singleBooking.time)}
+                                <img src="/static/icons/clock.svg" alt=""/> {singleBooking.message.time}
                             </p>
                         </Grid.Column>
                         <Grid.Column width={6} className="right">
