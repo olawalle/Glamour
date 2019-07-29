@@ -201,8 +201,17 @@ export default class glamourDatePicker extends Component {
       this.getUserAvailableTimesArray()
     })
 
-    let arr = this.props.bookedTimes
-    let selectedDay = arr.find(date => date.date === pickedDate)
+    let arr = []
+    arr[0] = this.props.bookedTimes
+    let arr_ = arr.map(itm => {
+      return {
+        date: `${itm.time.split(' ')[0]} ${itm.time.split(' ')[1]} ${itm.time.split(' ')[2]}`,
+        time_: `${itm.time.split(' ')[3]} ${itm.time.split(' ')[4]}`,
+        duration: itm.services.map(serv =>  parseInt(serv.duration.split('-')[1].replace('hr', ''))).reduce((no, curr) => no += curr, 0)
+      }
+    })
+    
+    let selectedDay = arr_.find(date => date.date === pickedDate)
     if (selectedDay) {
       this.setState({
         disabledTimes: {time: selectedDay.time_, timeCount: selectedDay.duration * 2}
