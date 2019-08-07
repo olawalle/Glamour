@@ -19,7 +19,6 @@ export class Snackbar extends PureComponent {
     this.setState({ isActive: false });
   }
 
-
   render() {
     return (
       <div className="snackbar_wrapper"> 

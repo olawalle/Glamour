@@ -16,18 +16,18 @@ const Banner = (props) => {
             <Grid.Column className="is-v-centered" textAlign="center" mobile={16} tablet={10} largeScreen={10} widescreen={10}>
               <div className="header-container" >
                 <Header as="h3">
-                  On demand Grooming service 
+                  Expert beauty services right when
                 </Header>
                 <Header as="h3">
-                  for everyday people
+                  you need them
                 </Header>
               </div>
               <div className="subheader-container" >
                 <Header.Subheader>
-                  Be part of a thriving community bringing on-demand 
+                  Life finds a way. Do you have any idea how long it takes those cups to
                 </Header.Subheader>
                 <Header.Subheader>
-                  beauty services to Londoners
+                  decompose. So you two dig up, dig up dinosaurs?
                 </Header.Subheader>
               </div>
               <SearchForm />

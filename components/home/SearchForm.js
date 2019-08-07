@@ -11,7 +11,6 @@ const SearchForm = () => {
   const [fields, setfields] = useState({
     searchFor: '',
     postcode: '',
-    sortBy: '',
     when: ''
   })
 

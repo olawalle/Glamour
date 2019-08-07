@@ -227,9 +227,9 @@ export default class glamourDatePicker extends Component {
   }
 
   getMonth = () => {
-    if (this.state.dateLimits.min.month === this.state.allDates[0].month) {
+    if (this.state.dateLimits.min.month  && this.state.dateLimits.min.month === this.state.allDates[0].month) {
     }
-    if (this.state.dateLimits.max.month === this.state.allDates[0].month) {
+    if (this.state.dateLimits.max.month && this.state.dateLimits.max.month === this.state.allDates[0].month) {
     }
     return this.state.allDates[0] ? this.state.allDates[0].month : ''
   }

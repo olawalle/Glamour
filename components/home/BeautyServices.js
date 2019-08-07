@@ -10,7 +10,7 @@ const BeautySerivces = (props) => {
     <Segment className="beautyServices">
       <Container>
         <Header className="beautyServices-header" textAlign="center" as="h4">
-          Discover Grooming Services
+          Discover beauty services
         </Header>
         <Services columns={3}>
           {

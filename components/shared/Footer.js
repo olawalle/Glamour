@@ -10,7 +10,7 @@ const Footer = () => {
         <Grid stackable columns={4}>
           <Grid.Row>
             <Grid.Column width="4" >
-              <Image src='/static/icons/logo_.svg' size='small' />
+              <Image src='/static/images/logowhite.svg' size='small' />
             </Grid.Column>
             <Grid.Column width="4">
               <List link>

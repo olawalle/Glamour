@@ -197,14 +197,9 @@ class SplitFieldsForm extends Component {
     console.log(this.props)
   }
   
-  handleReady = element => {
-    console.log(element)
-    // this.setState({ cardElement: element });
-  };
-  
   render() {
     return (
-      <div className="mainCard" onReady={this.handleReady}>
+      <div className="mainCard">
       <form ref="card">
         <Grid>
           <Grid.Row>
