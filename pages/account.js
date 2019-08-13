@@ -106,14 +106,14 @@ const Account = (props) => {
 
   useEffect(() => {
     
-    if (!window.sessionStorage.getItem('glamourToken')) {
+    if (window && !window.sessionStorage.getItem('glamourToken')) {
         Router.push('/login')
     } else {
-      // props.saveUserData(JSON.parse(userData))
-      // getLookbook(props.user.id)
-      // .then(res => {
-      //     props.saveUserLookbook(res.data.looks)
-      // })
+      props.saveUserData(JSON.parse(userData))
+      getLookbook(props.user.id)
+      .then(res => {
+          props.saveUserLookbook(res.data.looks)
+      })
 
       getAllProviders()
       .then(res => {
@@ -216,12 +216,12 @@ const Account = (props) => {
                         </div>
                     </Display>
 
-                    <SideNav role={props.userRole} />
+                    <SideNav role={props.userRole ? props.userRole : ""} />
                 </div>
             </Grid.Column>
             <Grid.Column  mobile={16} tablet={16} largeScreen={11} widescreen={11}>
                 <div className="lightShadow rightWing">
-                  { props.user.role === 'client' ?
+                  { props.user.role && props.userRole === 'client' ?
                       clientLinks.find(link => link.text === props.activeComponent).component
                     : providerLinks.find(link => link.text === props.activeComponent).component 
                   }  

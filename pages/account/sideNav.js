@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import ManageSubscriptions from '../account/ManageSubscriptions';
-import ManagePayments from '../account/ManagePayments';
-import PersonalDetails from '../account/PersonalDetails';
-import BusinessDetails from '../account/BusinessDetails'
-import AddressForm from '../../components/shared/AddressForm';
+// import ManageSubscriptions from '../account/ManageSubscriptions';
+// import ManagePayments from '../account/ManagePayments';
+// import PersonalDetails from '../account/PersonalDetails';
+// import BusinessDetails from '../account/BusinessDetails'
+// import AddressForm from '../../components/shared/AddressForm';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import { Grid } from 'semantic-ui-react';
-import AddressBook from './addressBook';
-import SavedServiceProviders from './savedServiceProviders';
+// import AddressBook from './addressBook';
+// import SavedServiceProviders from './savedServiceProviders';
 import Router from 'next/router';
-import UserCards from './UserCards';
-import LookBook from './LookBook';
+// import UserCards from './UserCards';
+// import LookBook from './LookBook';
 
 const SideNav = (props) => {    
   

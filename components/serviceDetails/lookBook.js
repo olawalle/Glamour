@@ -2,7 +2,7 @@ import React from 'react'
 import { Grid } from 'semantic-ui-react';
 import './less/lookBook.less'
 
-const LookBook = (props) => {
+const LookBook_ = (props) => {
   return (
     <div className="lookBook">
         <Grid stackable columns={3}>
@@ -20,4 +20,4 @@ const LookBook = (props) => {
   )
 }
 
-export default LookBook
+export default LookBook_

@@ -7,7 +7,7 @@ import Banner from '../components/shared/Banner'
 import Footer from '../components/shared/Footer'
 import Stars from '../components/shared/stars'
 import Service from '../components/serviceDetails/service'
-import LookBook from '../components/serviceDetails/lookBook'
+import LookBook_ from '../components/serviceDetails/lookBook'
 import Reviews from '../components/serviceDetails/reviews'
 import BookService from '../components/serviceDetails/bookService'
 import Router from 'next/router';
@@ -290,7 +290,7 @@ class ServiceDetails extends Component {
                                             </Grid.Row>
                                         </Grid>
                                         
-                                        {this.state.lookbook.length > 0 ? <LookBook looks={this.state.lookbook} /> : 
+                                        {this.state.lookbook.length > 0 ? <LookBook_ looks={this.state.lookbook} /> : 
                                             <div className="emptyState">
                                                 <img src="/static/icons/empty_service.svg" alt=""/>
                                                 <p>

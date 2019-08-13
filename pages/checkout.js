@@ -255,7 +255,7 @@ class Checkout_ extends Component {
               <p style={this.styles.modalText}>
                 Your payment has been held securely and will be released once the vendor has completed their service
               </p>
-              <Link href="/serviceProviders">
+              <Link href="/serviceproviders">
                 <Button  secondary style={this.styles.button}>
                     Go to dashboard
                 </Button>

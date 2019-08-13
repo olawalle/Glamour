@@ -7,14 +7,16 @@ import * as actions from '../../store/actions'
 import { addLookbook, getLookbook, deleteLookbook } from '../../services/providerServices.ts'
 import Loader from '../../components/shared/Loader';
 
-export const LookBook = (props) => {
+const LookBook = (props) => {
 
     useEffect(() => {
-        getLookbook(props.user.id)
-        .then(response => {
-            updateIsAdding(false)
-            setlookBook(response.data.looks)
-        })
+        if (props.user.id) {
+            getLookbook(props.user.id)
+            .then(response => {
+                updateIsAdding(false)
+                setlookBook(response.data.looks)
+            })
+        }
     }, [])
 
     const getUserphotoImageString = (e) => {
@@ -84,7 +86,6 @@ export const LookBook = (props) => {
             {
                 isAdding ? <CustomImageUploader  getImageString={getUserphotoImageString} getImageFile={getImageFile}>
                                 <div className="imgWrap">
-                                    {/* <img src='/static/images/services/face.png' className="camera" alt=""/> */}
                                     <div>
                                         <img src="/static/icons/image.svg" alt=""/>
                                         <p>Click to upload images for this service or drag in from computer</p>
@@ -118,5 +119,5 @@ export const LookBook = (props) => {
 //     user: state.user
 // })
 
-// export default connect(mapStateToProps, actions)(LookBook)
+export default LookBook
 
