@@ -96,7 +96,7 @@ const ManageSubscriptions_ = (props) => {
         padding: '20px 0',
     },
     total: {
-        color: '#E84671',
+        color: '#33b0e6',
         float: 'right'
     },
     proceedBtn: {

@@ -1,9 +1,10 @@
 import React from 'react';
-import { Header, Container, Segment, Grid } from 'semantic-ui-react';
+import { Header, Container, Segment, Grid, Button } from 'semantic-ui-react';
 // import { connect } from 'react-redux';
 // import { getTopTrends } from '../../store';
 // import { chunk } from 'lodash';
 import Trend from './Trend';
+import './less/trends.less'
 
 const styles = {
   Segment: {
@@ -17,37 +18,29 @@ const styles = {
   Row: {
     marginBottom: '50px'
   },
+  maleTrends: {
+    height: '550px',
+    backgroundImage: 'url(../../static/images/male-trends.png)',
+    backgroundSize: 'cover'
+  },
   Container: {
   }
 }
 
 const Trends = (props) => {
   return (
-    <Segment>
-      <Container>
-        <Header style={styles.Header} textAlign="center" as="h4">Top trends</Header>
-        <Grid stackable columns={3}>
-          {
-            props.trends.map((trendsGroup, index) => (
-              <Grid.Row stretched key={index}  style={styles.Row}>
-                {
-                  trendsGroup.map((trend, index) => (
-                    <Trend key={index} {...trend} />
-                  ))
-                }
-              </Grid.Row>
-            ))
-          }
-        </Grid>
-      </Container>
-    </Segment>
-   );
+    <div className="trends">
+      <div className="btn">
+        Top trend
+      </div>
+      <h1 className="fade">
+        Fade
+      </h1>
+      <p className="txt">
+      Be part of a thriving community bringing on demand beauty services to Londoners. 
+      </p>
+    </div>
+  );
 }
-
-// const mapStateToProps = (state) => {
-//   return {
-//     trends: chunk(getTopTrends(state), 3)
-//   }
-// }
 
 export default Trends;
