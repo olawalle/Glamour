@@ -1,8 +1,12 @@
 import React from 'react';
 import { Container, Segment, Grid, Image, Header, Button } from 'semantic-ui-react';
 import './less/moreInfo.less';
+import Router from 'next/router'
 
 const MoreInfo = (props) => {
+  const toServices = () => {
+    Router.push('/serviceproviders')
+  }
   return (
     <Segment className="p0 moreInfo">
       <Grid stackable className="p0" verticalAlign="middle" columns={2}>
@@ -20,7 +24,7 @@ const MoreInfo = (props) => {
                 Is this my espresso machine? Wh-what is-h-how did you get my espresso machine?
                 What do they got in there? King Kong? So you two dig up, dig up dinosaurs?
               </Header.Subheader>
-              <Button content="Get started" secondary/>
+              <Button content="Get started"  secondary onClick={toServices}/>
             </div>
           </Grid.Column>
         </Grid.Row>

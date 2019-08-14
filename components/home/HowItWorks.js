@@ -2,6 +2,7 @@ import React from 'react';
 import { Header, Container, Segment, Grid, Button } from 'semantic-ui-react';
 import Step from './Step';
 import './less/howItWorks.less';
+import Router from 'next/router'
 
 const steps = [
   {
@@ -27,6 +28,9 @@ const steps = [
 ];
 
 const HowItWorks = (props) => {
+  const toServices = () => {
+    Router.push('/serviceproviders')
+  }
   return (
     <Segment className="howItWorks">
       <Container>
@@ -43,7 +47,7 @@ const HowItWorks = (props) => {
           </Grid.Row>
         </Grid>
         <div className="is-v-centered">
-          <Button secondary content="Explore services" />
+          <Button secondary content="Explore services" onClick={toServices}/>
         </div>
       </Container>
     </Segment>
