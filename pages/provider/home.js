@@ -61,7 +61,7 @@ const ProviderHome = (props) => {
         },
         UserPhoto_: {
             backgroundImage: `url(${userPhoto})`,
-            border: '3px solid #E84671'
+            border: '3px solid #33b0e6'
         },
         img: {
             width: '30px'

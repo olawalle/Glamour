@@ -7,7 +7,7 @@ const Message = (props) => {
   let styles = {};
   if (props.isViewing) {
     styles = {
-      borderLeft: '4px solid #E84671',
+      borderLeft: '4px solid #33b0e6',
       background: 'rgba(33, 43, 54, 0.02)'
     }
   }
