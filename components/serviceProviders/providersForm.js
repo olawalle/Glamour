@@ -11,6 +11,7 @@ import { DatePicker } from 'antd';
 import "./less/providerForm.less"
 import { getAllServices } from '../../services/generatData.ts'
 import dayjs from 'dayjs'
+import Router from 'next/router';
 
 const options = [
   { key: '', text: 'Not Applicable', value: '' },
@@ -52,7 +53,6 @@ class ProviderForm extends Component {
   }
   
   onChange = (event) => {
-    console.log(event)
     this.setState(
       {
         selectedValues: {
@@ -85,7 +85,8 @@ class ProviderForm extends Component {
   
   
   componentDidMount () {
-    
+    let query = Router.router.query
+    Object.keys(query).length > 0 ? this.setState({formFields: query}) : null
     getAllServices()
     .then(res => {
       this.props.saveServices(res.data.data)

@@ -1,10 +1,12 @@
 import React from 'react';
 import { Header, Grid, Image } from 'semantic-ui-react';
+import Router from 'next/router'
 
 const styles = {
   Column: {
     // fontSize: '18px',
     // fontFamily: 'sofiapro'
+    cursor: 'pointer'
   },
   SubHeader: {},
   Header: {
@@ -12,9 +14,21 @@ const styles = {
   }
 }
 
-const Service = (props) => {
+const Service =  (props) => {
+  const toServices = () => {
+    let url = '/serviceproviders?'
+    let fields = {
+      sortBy: props.name,
+      searchFor: '',
+      postcode: '',
+      distance: '',
+      priceRange: ''
+    }
+    Object.keys(fields).forEach((field, i) => i === 0 ? url += `${field}=${fields[field]}` : url += `&${field}=${fields[field]}`)
+    Router.push(url)
+  }
   return (
-    <Grid.Column style={styles.Column}>
+    <Grid.Column style={styles.Column} onClick={toServices}>
       <Image className="has-full-width" src={props.img} />
       <Header style={styles.Header} as='h4'>
         {props.name}
