@@ -7,7 +7,7 @@ import * as actions from '../../store/actions'
 import { addLookbook, getLookbook, deleteLookbook } from '../../services/providerServices.ts'
 import Loader from '../../components/shared/Loader';
 
-const LookBook = (props) => {
+export default function LookBook (props) {
 
     useEffect(() => {
         if (props.user.id) {
@@ -112,12 +112,4 @@ const LookBook = (props) => {
         </div>
     )
 }
-
-
-// const mapStateToProps = (state) => ({
-//     lookbooks: state.providerLookbook,
-//     user: state.user
-// })
-
-export default LookBook
 

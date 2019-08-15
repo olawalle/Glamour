@@ -17,7 +17,7 @@ import {getLookbook , addLookbook, getSubscriptions} from '../services/providerS
 import { getSavedProviders, getCurrentUser } from '../services/auth.ts'
 import CustomImageUploader from '../components/shared/CustomImageUploader';
 import Loader from '../components/shared/Loader';
-import { LookBook } from './account/LookBook';
+import LookBook from './account/LookBook';
 import AddressBook from './account/addressBook';
 import SavedServiceProviders from './account/savedServiceProviders';
 import UserCards from './account/UserCards';
