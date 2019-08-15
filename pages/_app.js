@@ -102,6 +102,8 @@ class Glamour extends App {
           message={this.state.message} /> */}
           
       <Head>
+        <title>Glamour on demand</title>
+        <link rel="shortcut icon" href="/static/images/favicon.ico" />
         <script src="https://js.stripe.com/v3/" />
       </Head>
         <Provider store={reduxStore}>

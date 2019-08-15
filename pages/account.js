@@ -109,7 +109,7 @@ const Account = (props) => {
     if (window && !window.sessionStorage.getItem('glamourToken')) {
         Router.push('/login')
     } else {
-      props.saveUserData(JSON.parse(userData))
+    //   props.saveUserData(JSON.parse(userData))
       getLookbook(props.user.id)
       .then(res => {
           props.saveUserLookbook(res.data.looks)
