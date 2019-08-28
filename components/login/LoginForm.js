@@ -71,7 +71,7 @@ const LoginForm = (props) => {
             getUserAddresses(res.data.data.token)
             .then(addresses => {
                 props.saveUserAddresses(addresses.data.addresses)
-                props.saveActiveAddress(addresses.data.addresses[0]['_id'])
+                addresses.data.addresses[0] ? props.saveActiveAddress(addresses.data.addresses[0]['_id']) : props.saveActiveAddress('')
             })
             .catch(err => {
               console.log(err)

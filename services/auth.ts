@@ -14,6 +14,22 @@ let login = (data) => {
     })
 }
 
+
+let verify = (token) => {
+    return axios({
+        method: 'PUT',
+        url: apiUrls.activate+'/'+token,
+    })
+}
+
+let deactivateUser = (id, status) => {
+    return axios({
+        method: 'PUT',
+        data: { status },
+        url: apiUrls.disableUser+'/'+id,
+    })
+}
+
 let changePassword = (data, id) => {
     return axios({
         method: 'PUT',
@@ -206,6 +222,8 @@ let getConversations = (id) => {
 
 export {
     login,
+    verify,
+    deactivateUser,
     getCurrentUser,
     changePassword,
     getUserNotifications,

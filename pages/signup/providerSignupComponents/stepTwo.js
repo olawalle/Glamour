@@ -38,7 +38,7 @@ export default function StepTwo(props) {
 
     setFormErrors(_formErrors)
 
-    console.log(signupFormData, _formErrors)
+    // console.log(signupFormData, _formErrors)
     if (Object.keys(_formErrors).length === 0) {
       props.jump( {...signupFormData, schedules: timing }, 2)
     }
@@ -48,7 +48,7 @@ export default function StepTwo(props) {
 
   const getTiming_ = (e) => {
     setTiming(e)
-    console.log(e, timing)
+    // console.log(e, timing)
   }
 
   const [ formErrors, setFormErrors ] = useState({})

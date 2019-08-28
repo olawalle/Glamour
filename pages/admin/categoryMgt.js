@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Table, Button, Grid, Input } from 'semantic-ui-react'
+import { Table, Button, Grid, Input, TextArea } from 'semantic-ui-react'
 import dayjs from 'dayjs'
 import {addCategory} from '../../services/generatData.ts'
 import CustomImageUploader from '../../components/shared/CustomImageUploader';
+import Display from '../../components/shared/Display';
 
 export default function CategoryMgt({categories}) {
 
@@ -10,13 +11,37 @@ export default function CategoryMgt({categories}) {
         console.log(categories)
     }, [])
 
+    const [image, updateImage] = useState('')
+    const [newService, updateNewService] = useState(true)
+    const [picture, updatePicture] = useState(null)
+    const [serviceName, updateName]= useState('')
+    const [metaDescription, updateDesc]= useState('') 
+
     const getImage = (e) => {
-        console.log(e)
+        updatePicture(e)
     }
 
-    const addNew = (data) => {
-        addCategory({
-            image: data
+    const getImageString = (e) => {
+        updateImage(e)
+    }
+
+    const addNew = () => {
+        let data = {
+            serviceName,
+            metaDescription,
+            picture
+        }
+        let form = new FormData()
+        Object.keys(data).forEach(key => {
+            form.append(key, key)
+        })
+        console.log(data)
+        addCategory(form)
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => {
+            console.log({...err})
         })
     }
 
@@ -67,35 +92,41 @@ export default function CategoryMgt({categories}) {
             <Grid className="my-form">
                 <Grid.Row>
                     <Grid.Column width={16}>
-                        <CustomImageUploader getImageFile={getImage}>
-                            <div className="empty">
-                                <img src="/static/icons/camera.svg" alt=""/> <br/>
-                                <p>Add default image</p>
-                            </div>
+                        <CustomImageUploader getImageString={getImageString} getImageFile={getImage}>
+                            <Display if={image === ''}>
+                                <div className="empty">
+                                    <img src="/static/icons/camera.svg" alt=""/> <br/>
+                                    <p>Add default image</p>
+                                </div>
+                            </Display>
+                            <Display if={image !== ''}>
+                                <img src={image} />
+                            </Display>
                         </CustomImageUploader>
                     </Grid.Column>
                     <Grid.Column width={16}>
-                        <Input placeholder="Address line 1" />
+                        <Input onChange={(e) => updateName(e.target.value)} placeholder="Service name" />
                     </Grid.Column>
                     <Grid.Column width={16}>
-                        <Input placeholder="Address line 2" />
-                    </Grid.Column>
-                    <Grid.Column width={16}>
-                        <Input placeholder="last name" />
+                        <TextArea style={{width: '100%'}} onChange={(e) => updateDesc(e.target.value)}  placeholder="Service description" />
                     </Grid.Column>
                 </Grid.Row>
                 
                 <Grid.Row>
                     <Grid.Column width={16}>
-                        <Button onClick={() => addNew()} floated="right" secondary>
-                            Save
-                        </Button>
-                        <Button floated="right" primary>
-                            Edit
-                        </Button>
-                        <Button floated="right" color="red" inverted>
-                            delete
-                        </Button>
+                        <Display if={newService}>
+                            <Button onClick={() => addNew()} floated="right" secondary>
+                                Save
+                            </Button>
+                        </Display>
+                        <Display if={!newService}>
+                            <Button floated="right" primary>
+                                Edit
+                            </Button>
+                            <Button floated="right" color="red" inverted>
+                                delete
+                            </Button>
+                        </Display>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>

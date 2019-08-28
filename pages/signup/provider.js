@@ -9,6 +9,7 @@ import Auth from '../../components/shared/Auth';
 import StepTwo from './providerSignupComponents/stepTwo';
 import StepThree from './providerSignupComponents/stepThree';
 import { providerRegister } from '../../services/signup.ts'
+import Router from 'next/router'
 import Display from '../../components/shared/Display';
 import { Snackbar } from '../../components/shared/SnackBar';
 
@@ -59,19 +60,17 @@ class ProviderSignup extends Component {
             }
             delete payload['location']
             delete payload['accept']
-            console.log(payload)
             providerRegister(payload)
             .then(res => {
                 this.setState({signingUp: false})
-                console.log(res)
                 this.setState({message: res.data.message})
                 this.setState({snackType: 'success'})
+                Router.push('/login')
                 this._showSnackbarHandler()
             })
             .catch(err => {
                 this.setState({signingUp: false})
-                console.log({...err})
-                this.setState({message: 'Error on login'})
+                this.setState({message: err.response ?  err.response.data.message : "An error occured, please try again"})
                 this.setState({snackType: 'error'})
                 this._showSnackbarHandler()
             })

@@ -24,27 +24,30 @@ const Admin = (props) => {
           if (!window.sessionStorage.getItem('glamourToken')) {
               Router.push('/login')
           } else {
-            getAllUsers()
-            .then(res => {
-                updateAllUsers(res.data.users)
-                console.log(res.data.users)
-                updateActiveComponent(<CustomerMgt users={res.data.users.filter(user => user.role === 'client')} />)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-
-            getAllCategories() 
-            .then(res => {
-                updateCategories(res.data.services)
-                console.log(res.data)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+            getData()
         }
 
     }, [])
+
+    const getData = (n) => {
+        getAllUsers()
+        .then(res => {
+            updateAllUsers(res.data.users)
+            !n ? updateActiveComponent(<CustomerMgt users={res.data.users.filter(user => user.role === 'client')} />) : null
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+        getAllCategories() 
+        .then(res => {
+            updateCategories(res.data.services)
+            console.log(res.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
 
     const updateComponent = (name) => {
         switch (name) {
@@ -53,7 +56,7 @@ const Admin = (props) => {
                 break;
                 
             case 'Service provider management':
-                updateActiveComponent(<ServiceProviderMgt users={allUsers.filter(user => user.role === 'provider')} />)
+                updateActiveComponent(<ServiceProviderMgt getUsers={getData(2)} users={allUsers.filter(user => user.role === 'provider')} />)
                 break;
                 
             case 'Category management':

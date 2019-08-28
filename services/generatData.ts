@@ -95,10 +95,22 @@ let uploadImage = (data, id) => {
         }
     })
 }
+
 let uploadBanner = (data, id) => {
     return axios({
         method: 'POST',
         url: apiUrls.bannerUploadUrl+"/"+id,
+        data,
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    })
+}
+
+let generalUploadImage = (data) => {
+    return axios({
+        method: 'POST',
+        url: apiUrls.uploadUrl,
         data,
         headers: {
             'Content-Type': 'multipart/form-data'
@@ -118,5 +130,6 @@ export {
     deleteAddress,
     getUserAddresses,
     uploadImage,
+    generalUploadImage,
     uploadBanner
 }

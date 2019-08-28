@@ -26,7 +26,7 @@ export default function StepOne(props) {
   }
 
   const submit = (e) => {
-    console.log(signupFormData)
+    // console.log(signupFormData)
     e.preventDefault();
     let  _formErrors = {};
     Object.keys(signupFormData).forEach((item) => {

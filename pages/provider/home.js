@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import withMasterLayout from '../../pages/layouts/withMasterLayout';
 import { connect } from 'react-redux';
 import { Container, Grid, Button, Modal } from 'semantic-ui-react';
@@ -18,6 +18,7 @@ import { getCurrentUser, updateProvider } from '../../services/auth.ts'
 import { getProviderServices, getProviderBookings } from '../../services/providerServices.ts'
 import { uploadImage, uploadBanner } from '../../services/generatData.ts'
 import Loader from '../../components/shared/Loader'
+import { Snackbar } from '../../components/shared/SnackBar';
 
 
 const ProviderHome = (props) => {
@@ -139,8 +140,16 @@ const ProviderHome = (props) => {
             getUserDetails()
         })
         .catch(err => {
-            console.log(err)
+            setloading(false)
+            console.log({...err})
+            setSnackType('error')
+            setMessage(err.response.data.message)
+            _showSnackbarHandler()
         })
+    }
+
+    const _showSnackbarHandler = () => {
+        snackbarRef.current.openSnackBar();
     }
 
     const getImageFile_ = (imageFile) => {
@@ -153,7 +162,11 @@ const ProviderHome = (props) => {
             getUserDetails()
         })
         .catch(err => {
-            console.log(err)
+            setloading(false)
+            console.log({...err})
+            setSnackType('error')
+            setMessage(err.response.data.message)
+            _showSnackbarHandler()
         })
     }
 
@@ -187,7 +200,6 @@ const ProviderHome = (props) => {
 
             getProviderServices(response.data.me.id)
             .then(res => {
-                console.log(res)
                 let services = res.data.data.services
                 props.saveProviderServices(services)
             })
@@ -207,6 +219,10 @@ const ProviderHome = (props) => {
     const [modal, updateModal] = useState({open: false, edit: false})
     const [selectedService, setSelectedService] = useState({})
     const [loading, setloading] = useState(false)
+
+    const [snackType, setSnackType] = useState('')
+    const [message, setMessage] = useState('')
+    const snackbarRef = useRef(null);
     
     const show = () => {
         updateModal({ open: true, edit: false })
@@ -229,26 +245,38 @@ const ProviderHome = (props) => {
 
     const selectStatus = (i) => {
         let user = props.user
+        setloading(true)
         if ( i === 0 ) {
-        updateProvider(
-            {...user, instant: false}
-        )
+        updateProvider({...user, instant: false})
         .then(res => {
+            setloading(false)
             getUserDetails()
+            setSnackType('success')
+            setMessage('Booking status sucessfully changed')
+            _showSnackbarHandler()
         })
         .catch(err => {
             console.log({...err})
+            setloading(false)
+            setSnackType('error')
+            setMessage('An error occured, Please try again')
+            _showSnackbarHandler()
         })
       } else {
-        updateProvider(
-            {...user, instant: true}
-        )
+        updateProvider({...user, instant: true})
         .then(res => {
             getUserDetails()
+            setloading(false)
+            setSnackType('success')
+            setMessage('Booking status sucessfully changed')
+            _showSnackbarHandler()
         })
         .catch(err => {
+            setloading(false)
             console.log({...err})
-            getUserDetails()
+            setSnackType('error')
+            setMessage('An error occured, Please try again')
+            _showSnackbarHandler()
         })
       }
     }
@@ -259,6 +287,12 @@ const ProviderHome = (props) => {
             <InnerNav userRole={props.user.role} />
         </Display>
         {loading && <Loader />}
+        <Snackbar ref = {snackbarRef} 
+            type={snackType} 
+            position={'top'} 
+            showClose={true} 
+            duration={5000} 
+            message={message} />
         <div className="outerBannerWrap">
             <CustomImageUploader getImageString={getUserbannerImageString} getImageFile={getImageFile_}>
                 <Banner banner={bannerSrc.image}  text={''} />  

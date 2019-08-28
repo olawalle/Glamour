@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Grid, Input, Button } from 'semantic-ui-react'
+import { Table, Grid, Input, Button, Checkbox } from 'semantic-ui-react'
 import dayjs from 'dayjs'
+import { deactivateUser } from '../../services/auth.ts'
 
-export default function ServiceProviderMgt({state, users}) {
+export default function ServiceProviderMgt({state, users, getUsers}) {
 
     const [isEditting, updateIsEditting] = useState(false)
     const [selectedUser, updateSelectedUser] = useState({})
@@ -14,6 +15,22 @@ export default function ServiceProviderMgt({state, users}) {
     const openEdit = (i) => {
       updateIsEditting(true)
       i >= 0 ? updateSelectedUser(users[i]) : updateSelectedUser({})
+    }
+
+    const check = (e, id) => {
+      let active = users.find(user => user._id === id).isActive === 1
+      console.log(active)
+      console.log(e, id)
+      let status = null
+      active ? status = 0 : status = 1
+      deactivateUser(id, status)
+      .then(res => {
+        console.log(res)
+        getUsers()
+      })
+      .catch(err => {
+        console.log({...err})
+      })
     }
 
     return (
@@ -32,7 +49,7 @@ export default function ServiceProviderMgt({state, users}) {
                     <Table.HeaderCell>Email Address</Table.HeaderCell>
                     <Table.HeaderCell>Mobile number</Table.HeaderCell>
                     <Table.HeaderCell>Postcode</Table.HeaderCell>
-                    <Table.HeaderCell></Table.HeaderCell>
+                    <Table.HeaderCell>Active</Table.HeaderCell>
                 </Table.Row>
                 </Table.Header>
 
@@ -45,7 +62,10 @@ export default function ServiceProviderMgt({state, users}) {
                         <Table.Cell>{user.phone}</Table.Cell>
                         <Table.Cell>{user.postcode}</Table.Cell>
                         {/* <Table.Cell>{dayjs(user.createdAt).format('DD MMM YYYY')}</Table.Cell> */}
-                        <Table.Cell> <span className="edit" onClick={() => openEdit(i)}>Edit</span> </Table.Cell>
+                        <Table.Cell> 
+                          <Checkbox checked={user.isActive === 1} onClick={(e, f) => check(f, user._id)} toggle />
+                          {/* <span className="edit" onClick={() => openEdit(i)}>Edit</span>  */}
+                        </Table.Cell>
                     </Table.Row>
                   }): null
                 }
