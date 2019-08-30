@@ -1,5 +1,5 @@
 // export const baseUrl = 'https://g-o-d.herokuapp.com'
-export const baseUrl = 'http://api.staging.glamourondemand.com'
+export const baseUrl = 'https://api.staging.glamourondemand.com'
 // export const baseUrl = 'https://api.staging.glamourondemand.com'
 export const login = `${baseUrl}/users/login`
 export const activate = `${baseUrl}/users/activate`

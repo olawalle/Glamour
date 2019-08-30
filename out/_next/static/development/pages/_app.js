@@ -76118,7 +76118,10 @@ function (_App) {
           reduxStore = _this$props.reduxStore;
       return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(next_app__WEBPACK_IMPORTED_MODULE_10__["Container"], {
         id: "glamour"
-      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_23___default.a, null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("script", {
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_23___default.a, null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("title", null, "Glamour on demand"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("link", {
+        rel: "shortcut icon",
+        href: "/static/images/favicon.ico"
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("script", {
         src: "https://js.stripe.com/v3/"
       })), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_13__["Provider"], {
         store: reduxStore
@@ -76185,16 +76188,18 @@ function (_App) {
 /*!*****************************!*\
   !*** ./services/apiUrls.js ***!
   \*****************************/
-/*! exports provided: baseUrl, login, clientRegister, providerRegister, getCurrentUser, changePassword, getAllUsers, getUserNotifications, allProvidersUrl, providerServicesUrl, providerPublicServicesUrl, providerSchedule, addServicesUrl, servicesUrl, payUrl, subscriptionPayUrl, trendsUrl, categoriesUrl, clientBookingsUrl, providerBookingUrl, reviewsUrl, providersDetailsUrl, addressUrl, imageUrl, bannerUploadUrl, lookbookUrl, addLookbookUrl, saveProviders, subscriptionsUrl, providerSubscription, confirmSubscription, updateClient, updateProvider, messageUrl, providerMessageUrl, clientMessageUrl, createConversationUrl */
+/*! exports provided: baseUrl, login, activate, clientRegister, providerRegister, getCurrentUser, disableUser, changePassword, getAllUsers, getUserNotifications, allProvidersUrl, providerServicesUrl, providerPublicServicesUrl, providerSchedule, addServicesUrl, servicesUrl, payUrl, subscriptionPayUrl, trendsUrl, categoriesUrl, clientBookingsUrl, providerBookingUrl, reviewsUrl, providersDetailsUrl, addressUrl, uploadUrl, imageUrl, bannerUploadUrl, lookbookUrl, addLookbookUrl, saveProviders, subscriptionsUrl, providerSubscription, confirmSubscription, updateClient, updateProvider, messageUrl, providerMessageUrl, clientMessageUrl, createConversationUrl */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "baseUrl", function() { return baseUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "activate", function() { return activate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clientRegister", function() { return clientRegister; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "providerRegister", function() { return providerRegister; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCurrentUser", function() { return getCurrentUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "disableUser", function() { return disableUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changePassword", function() { return changePassword; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllUsers", function() { return getAllUsers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUserNotifications", function() { return getUserNotifications; });
@@ -76213,6 +76218,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reviewsUrl", function() { return reviewsUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "providersDetailsUrl", function() { return providersDetailsUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addressUrl", function() { return addressUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "uploadUrl", function() { return uploadUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "imageUrl", function() { return imageUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "bannerUploadUrl", function() { return bannerUploadUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "lookbookUrl", function() { return lookbookUrl; });
@@ -76227,12 +76233,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "providerMessageUrl", function() { return providerMessageUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clientMessageUrl", function() { return clientMessageUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createConversationUrl", function() { return createConversationUrl; });
-var baseUrl = 'https://g-o-d.herokuapp.com'; // export const baseUrl = 'http://localhost:3000'
+// export const baseUrl = 'https://g-o-d.herokuapp.com'
+var baseUrl = 'http://api.staging.glamourondemand.com'; // export const baseUrl = 'https://api.staging.glamourondemand.com'
 
 var login = "".concat(baseUrl, "/users/login");
+var activate = "".concat(baseUrl, "/users/activate");
 var clientRegister = "".concat(baseUrl, "/users/client/register");
 var providerRegister = "".concat(baseUrl, "/users/provider/register");
 var getCurrentUser = "".concat(baseUrl, "/users/me");
+var disableUser = "".concat(baseUrl, "/users/status/update");
 var changePassword = "".concat(baseUrl, "/users/change-password");
 var getAllUsers = "".concat(baseUrl, "/users/all");
 var getUserNotifications = "".concat(baseUrl, "/notifications");
@@ -76251,6 +76260,7 @@ var providerBookingUrl = "".concat(baseUrl, "/bookings/provider");
 var reviewsUrl = "".concat(baseUrl, "/services/review");
 var providersDetailsUrl = "".concat(baseUrl, "/users/provider/detail");
 var addressUrl = "".concat(baseUrl, "/users/address");
+var uploadUrl = "".concat(baseUrl, "/uploads");
 var imageUrl = "".concat(baseUrl, "/uploads/addImage");
 var bannerUploadUrl = "".concat(baseUrl, "/uploads/addBanner");
 var lookbookUrl = "".concat(baseUrl, "/users/lookbook");
@@ -76272,12 +76282,14 @@ var createConversationUrl = "".concat(baseUrl, "/messages/conversation");
 /*!**************************!*\
   !*** ./services/auth.ts ***!
   \**************************/
-/*! exports provided: login, getCurrentUser, changePassword, getUserNotifications, getBookings, postBookings, postSubscriptionPayment, updateStatus, confirmBookings, postReviews, confirmSubscriptionPayment, postPayment, getSavedProviders, saveProvider, deleteSavedProvider, updateClient, updateProvider, createConversation, sendMessage, getProviderConversations, getClientConversations, getConversations */
+/*! exports provided: login, verify, deactivateUser, getCurrentUser, changePassword, getUserNotifications, getBookings, postBookings, postSubscriptionPayment, updateStatus, confirmBookings, postReviews, confirmSubscriptionPayment, postPayment, getSavedProviders, saveProvider, deleteSavedProvider, updateClient, updateProvider, createConversation, sendMessage, getProviderConversations, getClientConversations, getConversations */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "verify", function() { return verify; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deactivateUser", function() { return deactivateUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCurrentUser", function() { return getCurrentUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changePassword", function() { return changePassword; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUserNotifications", function() { return getUserNotifications; });
@@ -76317,6 +76329,22 @@ let login = (data) => {
         headers: {
             'Content-Type': 'application/json',
         }
+    })
+}
+
+
+let verify = (token) => {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: 'PUT',
+        url: _apiUrls__WEBPACK_IMPORTED_MODULE_1__["activate"]+'/'+token,
+    })
+}
+
+let deactivateUser = (id, status) => {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: 'PUT',
+        data: { status },
+        url: _apiUrls__WEBPACK_IMPORTED_MODULE_1__["disableUser"]+'/'+id,
     })
 }
 
