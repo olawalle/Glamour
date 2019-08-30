@@ -76234,7 +76234,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clientMessageUrl", function() { return clientMessageUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createConversationUrl", function() { return createConversationUrl; });
 // export const baseUrl = 'https://g-o-d.herokuapp.com'
-var baseUrl = 'http://api.staging.glamourondemand.com'; // export const baseUrl = 'https://api.staging.glamourondemand.com'
+var baseUrl = 'https://api.staging.glamourondemand.com'; // export const baseUrl = 'https://api.staging.glamourondemand.com'
 
 var login = "".concat(baseUrl, "/users/login");
 var activate = "".concat(baseUrl, "/users/activate");

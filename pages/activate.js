@@ -7,8 +7,7 @@ import { Snackbar } from '../components/shared/SnackBar';
 
 const Activate = () => {
     useEffect(() => {
-        console.log(Router)
-        const token = Router.router.query.token
+        const token = window.location.search.split('=')[1]
         verify(token)
         .then(res => {
             setVerified(true)
