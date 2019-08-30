@@ -8,6 +8,7 @@ import { Snackbar } from '../components/shared/SnackBar';
 const Activate = () => {
     useEffect(() => {
         const token = window.location.search.split('=')[1]
+        console.log(token)
         verify(token)
         .then(res => {
             setVerified(true)
