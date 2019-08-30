@@ -81,7 +81,7 @@ class Checkout_ extends Component {
       }
       postPayment(amt, res.data.data.bookings._id)
       .then(resp => {
-        console.log(resp)
+        // console.log(resp)
         this.setState({loading: false})
         this.setState({
           client_secret: resp.data.data.client_secret,
@@ -89,7 +89,7 @@ class Checkout_ extends Component {
         })
       })
       .catch(err => {
-        console.log({...err})
+        console.log(...err)
         this.setState({loading: false})
       })
     })

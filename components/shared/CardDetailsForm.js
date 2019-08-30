@@ -208,7 +208,7 @@ class SplitFieldsForm extends Component {
       <form ref="card">
         <Grid>
           <Grid.Row>
-            <Grid.Column width={8}>
+            <Grid.Column mobile={16} largeScreen={8} computer={8}>
               <label>
                 Card number
                 <CardNumberElement
@@ -217,7 +217,7 @@ class SplitFieldsForm extends Component {
                 />
               </label>
             </Grid.Column>
-            <Grid.Column width={8}>
+            <Grid.Column mobile={16} largeScreen={8} computer={8}>
               <label>
                 Expiration date
                 <CardExpiryElement
@@ -226,13 +226,13 @@ class SplitFieldsForm extends Component {
                 />
               </label>
             </Grid.Column>
-            <Grid.Column width={8}>
+            <Grid.Column mobile={16} largeScreen={8} computer={8}>
               <label>
                 CVC
                 <CardCVCElement {...createOptions()} onChange={this.handleChange} />
               </label>
             </Grid.Column>
-            <Grid.Column width={8}>
+            <Grid.Column mobile={16} largeScreen={8} computer={8}>
               <label>
                 Postal code
                 <input

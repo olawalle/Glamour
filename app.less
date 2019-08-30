@@ -55,6 +55,12 @@ body ::-webkit-scrollbar-track {
 
 
 // progressbar 
+.ui.progress {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 12345678787787;
+}
 .ui.progress .bar {
         height: 5px !important;
         margin: 0 !important
@@ -64,6 +70,12 @@ body ::-webkit-scrollbar-track {
 }
 .ui.pink.progress .bar {
         background-color: #e84671 !important
+}
+@media screen and (max-width: 767px) {
+        .ui.progress .bar {
+                height: 7px
+        }
+        
 }
 
 
@@ -461,6 +473,15 @@ body ::-webkit-scrollbar-track {
                 margin-bottom: 20px;
         }
 }
+// @media only screen and (max-width: 767px) {
+//         .column {
+//                 background: white !important;
+//                 padding: 45px 20px !important;
+//                 // marginTop: 135px;
+//                 margin-top: 10% !important;
+//                 padding-bottom: 70px !important;
+//         }
+// }
 
 .addressBook .mainBtn {
         border-radius: 0px;

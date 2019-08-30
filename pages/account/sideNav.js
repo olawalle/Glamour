@@ -72,12 +72,12 @@ const SideNav = (props) => {
         active: 'inactive',
         icon: '/static/icons/addressbook.svg'
     },
-    {
-        text: 'Payment methods and invoices',
-        // component: <UserCards showAdd={false} />,
-        active: 'inactive',
-        icon: '/static/icons/subscriptions.svg'
-    },
+    // {
+    //     text: 'Payment methods and invoices',
+    //     // component: <UserCards showAdd={false} />,
+    //     active: 'inactive',
+    //     icon: '/static/icons/subscriptions.svg'
+    // },
     {
         text: 'Saved service providers',
         // component: <SavedServiceProviders />,

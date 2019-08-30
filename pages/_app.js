@@ -73,6 +73,7 @@ class Glamour extends App {
       }, 1000);
     })
     Router.events.on('routeChangeComplete', () => {
+      window.scrollTo(0, 0);
       this.setState({progress: 100})
       this.setState({
         showProgress: false,
