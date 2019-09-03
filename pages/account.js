@@ -98,8 +98,7 @@ const Account = (props) => {
   ])
 
   
-  const [activeComponent, updateActiveComponent ] = useState(
-  )
+  const [activeComponent, updateActiveComponent ] = useState()
   const snackbarRef = useRef(null);
 
   const [snackType, setSnackType] = useState('')

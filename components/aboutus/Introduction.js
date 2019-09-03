@@ -17,7 +17,7 @@ const Introduction = () => {
             <p>
             To empower you to be the best version of yourself everyday by creating:
             </p>
-            <ul>
+            <ul className="keyList">
               <li>
                 <b>Accessibility</b> – attainable glamour for every day people
               </li>

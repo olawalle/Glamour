@@ -44,13 +44,13 @@ const Testimonials = (props) => {
               >
               {
                 props.testimonials.map((testimonial, index) => (
-                  <Testimonial testimonial={testimonial} key={index}/>
+                  <Testimonial testimonial={testimonial} key={index} no={index}/>
                 ))
               }
               </OwlCarousel>
             </div>
           </Grid.Column>
-          <Image className="testimonials--next" onClick={handleNextAction} src="/static/images/nextslide.png" />
+          {/* <Image className="testimonials--next" onClick={handleNextAction} src="/static/images/nextslide.png" /> */}
         </Grid.Row>
       </Grid>
 

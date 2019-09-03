@@ -76090,6 +76090,8 @@ function (_App) {
         }, 1000);
       });
       next_router__WEBPACK_IMPORTED_MODULE_19___default.a.events.on('routeChangeComplete', function () {
+        window.scrollTo(0, 0);
+
         _this2.setState({
           progress: 100
         });

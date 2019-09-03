@@ -19,7 +19,7 @@ const styles = {
   },
   UserIcon: {
     margin: '0 10px 0 0',
-    borderRadius: '50%',
+    // borderRadius: '50%',
   }
 }
 
@@ -120,7 +120,7 @@ const Navbar = (props) => {
             <Display if={props.userData.isLoggedIn && props.userData.role === 'client'}>
               <Link href="/account">
                 <Menu.Item className="mobile hidden cursor" as='div'>
-                  <Image style={styles.UserIcon} src={props.userData.pictureUrl} size='mini' /> { props.userData.fullname }
+                  <Image circular={true} style={styles.UserIcon} src={props.userData.pictureUrl} size='mini' /> { props.userData.fullname }
                 </Menu.Item>
               </Link>
               
@@ -136,7 +136,7 @@ const Navbar = (props) => {
             
               <Link href="/provider/home">
                 <Menu.Item className="mobile hidden" as='div'>
-                  <Image style={styles.UserIcon} src={props.userData.pictureUrl} size='mini' /> { props.userData.fullname }
+                  <Image circular={true} style={styles.UserIcon} src={props.userData.pictureUrl} size='mini' /> { props.userData.fullname }
                 </Menu.Item>
               </Link> 
                           
@@ -214,7 +214,7 @@ const Navbar = (props) => {
             </Link>
               <Link href="/account">
                 <Menu.Item className="cursor name" as='div' onClick={() => handleItemClick()}>
-                  <Image style={styles.UserIcon} src={props.userData.pictureUrl} size='mini' /> { props.userData.fullname }
+                  <Image circular={true} style={styles.UserIcon} src={props.userData.pictureUrl} size='mini' /> { props.userData.fullname }
                 </Menu.Item>
               </Link>
               
@@ -231,7 +231,7 @@ const Navbar = (props) => {
             
               <Link href="/provider/home">
                 <Menu.Item className="" as='div' onClick={() => handleItemClick()}>
-                  <Image style={styles.UserIcon} src={props.userData.pictureUrl} size='mini' /> { props.userData.fullname }
+                  <Image circular={true} style={styles.UserIcon} src={props.userData.pictureUrl} size='mini' /> { props.userData.fullname }
                 </Menu.Item>
               </Link> 
                           
