@@ -115,7 +115,6 @@ const Messages = (props) => {
   const logg = () => {
     if(window.myInterval != undefined && window.myInterval != 'undefined'){
       window.clearInterval(window.myInterval);
-      alert('Timer cleared with id'+window.myInterval);
     }
   }
 
