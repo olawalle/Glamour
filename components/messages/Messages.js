@@ -44,11 +44,11 @@ const Messages = (props) => {
     //   getConvo(activeConversation)
     // }, 12000))
 
-    if (window) {
-      window.myInterval = setInterval(setInterval(() => {
-        getConvo(activeConversation)
-      }, 12000));
-    }
+    // if (window) {
+    //   window.myInterval = setInterval(setInterval(() => {
+    //     getConvo(activeConversation)
+    //   }, 12000));
+    // }
 
     if (Router.router.query.conversationId) {
       getConvo(Router.router.query.conversationId)
@@ -113,9 +113,9 @@ const Messages = (props) => {
   }
 
   const logg = () => {
-    if(window.myInterval != undefined && window.myInterval != 'undefined'){
-      window.clearInterval(window.myInterval);
-    }
+    // if(window.myInterval != undefined && window.myInterval != 'undefined'){
+    //   window.clearInterval(window.myInterval);
+    // }
   }
 
   return (
