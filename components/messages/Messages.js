@@ -122,7 +122,6 @@ const Messages = (props) => {
     <Segment
       className={isInMobileView ? 'p0 messages h760' : 'messages h760' }
     >
-      <p onClick={logg}>logg</p>
       <Display if={msgComponentInitialized}>
         <Container>
           <Grid centered columns={1}>
