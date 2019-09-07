@@ -12,7 +12,7 @@ const determineSegmentClasses = (props) => {
 
 const determineMsgThreadClasses = (props) => {
   if (props.threadId) return 'message-thread p0';
-  return 'message-thread mobile hidden p0';
+  return 'message-thread mobile padd';
 }
 
 const determineMsgThreadStyles = (props) => {
@@ -39,15 +39,16 @@ const MessagesList = (props) => {
   return (
     <Segment className={ determineSegmentClasses(props) }>
       <Container>
-        <Grid stackable columns={ props.threadId ? 1 : 2 }>
-          <Grid.Row className="pb-0">
+        <Grid columns={ 2 }>
+          <Grid.Row className="pb-0 widee">
             <Display if={!props.threadId || (!props.isInMobileView && !props.isInTabletView)}>
               <Grid.Column
                 className="pl-0 pr-0"
-                mobile={5}
-                tablet={5}
-                largeScreen={5}
-                widescreen={5}
+                id="leftt"
+                width={5}
+                // tablet={5}
+                // largeScreen={5}
+                // widescreen={5}
               >
                 <Display if={hasScrolledMsgList}>
                   <div className="message-text-fade"></div>
@@ -57,11 +58,7 @@ const MessagesList = (props) => {
                   className="messages-list mt-30"
                   verticalAlign='middle'
                 >
-                  {/* { */}
-                    {/* props.conversations.map((message, index) => ( */}
-                      <Message getConvo={props.getConvo} {...props}/>
-                    {/* )) */}
-                  {/* } */}
+                  <Message getConvo={props.getConvo} {...props}/>
                 </List>
               </Grid.Column>
             </Display>
@@ -69,8 +66,8 @@ const MessagesList = (props) => {
             <Grid.Column
               className={determineMsgThreadClasses(props)}
               style={determineMsgThreadStyles(props)}
-              mobile={ props.threadId && props.isInMobileView ? 5 : 11 }
-              tablet={ props.threadId && props.isInTabletView ? 5 : 11 }
+              mobile={  11 }
+              tablet={  11 }
               largeScreen={ 11 }
               widescreen={ 11 }
             >

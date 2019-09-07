@@ -40,7 +40,7 @@ let getAllCategories = () => {
 let addCategory = (data) => {
     return axios({
         method: 'POST',
-        url: apiUrls.categoriesUrl,
+        url: apiUrls.addServicesUrl,
         data: data
     })
 }

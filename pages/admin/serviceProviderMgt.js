@@ -19,13 +19,10 @@ export default function ServiceProviderMgt({state, users, getUsers}) {
 
     const check = (e, id) => {
       let active = users.find(user => user._id === id).isActive === 1
-      console.log(active)
-      console.log(e, id)
       let status = null
       active ? status = 0 : status = 1
       deactivateUser(id, status)
       .then(res => {
-        console.log(res)
         getUsers()
       })
       .catch(err => {

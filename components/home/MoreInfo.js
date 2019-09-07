@@ -5,7 +5,7 @@ import Router from 'next/router'
 
 const MoreInfo = (props) => {
   const toServices = () => {
-    Router.push('/serviceproviders')
+    Router.push('/signup/provider')
   }
   return (
     <Segment className="p0 moreInfo">

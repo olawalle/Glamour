@@ -24,10 +24,10 @@ export default function UpcomingBookings(props) {
         clientId: id,
         providerId: props.user.id
     }
-    console.log(data)
+    // console.log(data)
     createConversation(data)
     .then(res => {
-        console.log(res)
+        // console.log(res)
         Router.push('/messages?conversationId='+res.data.data._id)
     })
     .catch(err => {

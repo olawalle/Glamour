@@ -388,7 +388,7 @@ const ProviderHome = (props) => {
                                         Upcoming booking
                                     </div>
                                     <div className="servicesChildWrap">
-                                        <Display if={props.bookings.length === 0}>
+                                        <Display if={props.bookings.filter(booking => booking.message.status !== 'completed').length === 0}>
                                             <div className="emptyState">
                                                 <img src="/static/icons/empty-bookings.svg" alt=""/>
                                                 <p>
@@ -396,7 +396,7 @@ const ProviderHome = (props) => {
                                                 </p>
                                             </div>
                                         </Display>
-                                        <Display if={props.bookings.length > 0}>
+                                        <Display if={props.bookings.filter(booking => booking.message.status !== 'completed').length > 0}>
                                             <UpcomingBookings user={props.user} bookings={props.bookings} />
                                         </Display>
                                     </div>

@@ -66,7 +66,9 @@ class bookings extends Component {
   }
 
   fetchData = (e) => {
-    this.setState({userBookings: e})    
+    setTimeout(() => {
+      this.setState({userBookings: e})  
+    }, 100);  
   }
 
   render () {

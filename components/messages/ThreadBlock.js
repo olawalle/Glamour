@@ -57,13 +57,30 @@ const ThreadBlock = (props) => {
     <Card fluid className="no-box-shadow full threadblock-card">
       <Card.Header className="has-height-10 threadblock-header is-lv-centered pl-20">
 
-          <Image
+          {/* <Image
             className="h28 is-round"
             src={
               props.conversations.find(conv => conv.message._id === props.activeConversation) ? 
               props.conversations.find(conv => conv.message._id === props.activeConversation).from.userPhoto : null
             }
-          />
+          /> */}
+
+          <div style={{
+            width: '40px', 
+            display: 'inline-block', 
+            height: '40px', 
+            borderRadius: '50%', 
+            overflow: 'hidden', 
+            backgroundSize: 'cover', 
+            position: 'relative',
+            // top: '10px',            
+            backgroundImage: `url(${
+              props.conversations.find(conv => conv.message._id === props.activeConversation) ? 
+              props.conversations.find(conv => conv.message._id === props.activeConversation).from.userPhoto : null
+              })`
+            }}>
+          </div>
+
           <span className="pl-10">
             <strong className="fw900">
               {/* {props.user.name} { ' ' } */}

@@ -49,8 +49,9 @@ const Notification = (props) => {
       </List.Item> */}
       <Grid>
         <Grid.Row>
-          <Grid.Column width={2} style={{padding: '25px 2px'}}>
-            <Image className="h40 is-round" src={props.from.userPhoto} style={{ marginRight: '5px', float: 'right' }}/>
+          <Grid.Column width={2} style={{padding: '25px 20px'}}>
+            <div style={{width: '50px', height: '50px', borderRadius: '50%', overflow: 'hidden', backgroundSize: 'cover', backgroundImage: `url(${props.from.userPhoto})`}}>
+            </div>
           </Grid.Column>
           <Grid.Column width={10} style={{padding: '25px 2px'}}>
               <strong className="fw900">

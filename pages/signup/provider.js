@@ -65,8 +65,10 @@ class ProviderSignup extends Component {
                 this.setState({signingUp: false})
                 this.setState({message: res.data.message})
                 this.setState({snackType: 'success'})
-                Router.push('/login')
                 this._showSnackbarHandler()
+                setTimeout(() => {
+                    Router.push('/login')
+                }, 3000);
             })
             .catch(err => {
                 this.setState({signingUp: false})

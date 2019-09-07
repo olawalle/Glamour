@@ -29,10 +29,23 @@ const Message = (props) => {
           <List.Content className="pr-10 pt-0">
             <div className={ props.activeConversation === convo.message._id ? 'selected-convo message-header' : 'message-header' }>
               <div className="pl-10">
-                <Image
+                {/* <Image
                   className="h28 is-round"
                   src={convo.from.userPhoto}
-                />
+                /> */}
+
+              <div style={{
+                width: '40px', 
+                display: 'inline-block', 
+                height: '40px', 
+                borderRadius: '50%', 
+                overflow: 'hidden', 
+                backgroundSize: 'cover', 
+                position: 'relative',
+                top: '10px',            
+                backgroundImage: `url(${convo.from.userPhoto})`
+                }}>
+              </div>
                 <span className="pl-10">
                   <strong className="fw900">
                     {convo.from.name} { ' ' }
@@ -47,7 +60,7 @@ const Message = (props) => {
               </div>
               <div>
                 {/* <p>{props.friendlyDate}</p> */}
-                <p className="message-time">
+                <p className="message-time hide-mobile">
                   {
                     props.thread.length > 0 && props.activeConversation === convo.message._id ? props.thread[props.thread.length - 1].time : null
                   }

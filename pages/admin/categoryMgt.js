@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { Table, Button, Grid, Input, TextArea } from 'semantic-ui-react'
+import { Table, Button, Grid, Input, TextArea, Message, Loader } from 'semantic-ui-react'
 import dayjs from 'dayjs'
-import {addCategory} from '../../services/generatData.ts'
+import { addCategory, getAllCategories} from '../../services/generatData.ts'
 import CustomImageUploader from '../../components/shared/CustomImageUploader';
 import Display from '../../components/shared/Display';
 
-export default function CategoryMgt({categories}) {
+export default function CategoryMgt(props) {
 
     useEffect(() => {
-        console.log(categories)
+        getAll()
     }, [])
 
     const [image, updateImage] = useState('')
@@ -16,7 +16,19 @@ export default function CategoryMgt({categories}) {
     const [picture, updatePicture] = useState(null)
     const [serviceName, updateName]= useState('')
     const [metaDescription, updateDesc]= useState('') 
+    const [categories, updateCategories] = useState([])
+    const [error, updateError] = useState(false)
 
+    const getAll = () => {
+        getAllCategories() 
+        .then(res => {
+            updateCategories(res.data.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    
+    }
     const getImage = (e) => {
         updatePicture(e)
     }
@@ -35,12 +47,19 @@ export default function CategoryMgt({categories}) {
         Object.keys(data).forEach(key => {
             form.append(key, key)
         })
-        console.log(data)
+        updateLoading(true)
         addCategory(form)
         .then(res => {
-            console.log(res)
+            getAll()
+            updateIsEditting(false)
+            updateLoading(false)
         })
         .catch(err => {
+            updateError(true)
+            updateLoading(false)
+            setTimeout(() => {
+                updateError(true)
+            }, 5000);
             console.log({...err})
         })
     }
@@ -48,6 +67,7 @@ export default function CategoryMgt({categories}) {
     
     const [isEditting, updateIsEditting] = useState(false)
 
+    const [loading, updateLoading] = useState(false)
     return (
         !isEditting ? 
         <>
@@ -57,10 +77,9 @@ export default function CategoryMgt({categories}) {
             <Table basic='very'>
                 <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell>ID</Table.HeaderCell>
+                    {/* <Table.HeaderCell>ID</Table.HeaderCell> */}
                     <Table.HeaderCell>Category title</Table.HeaderCell>
                     <Table.HeaderCell>Image</Table.HeaderCell>
-                    <Table.HeaderCell>Gender</Table.HeaderCell>
                     <Table.HeaderCell>Description</Table.HeaderCell>
                     <Table.HeaderCell>Status</Table.HeaderCell>
                     <Table.HeaderCell></Table.HeaderCell>
@@ -71,12 +90,11 @@ export default function CategoryMgt({categories}) {
                  {
                     categories ? categories.map((category, i) => {
                         return <Table.Row key={i}>
-                                <Table.Cell>{category._id}</Table.Cell>
+                                {/* <Table.Cell>{category._id}</Table.Cell> */}
                                 <Table.Cell>{category.serviceName}</Table.Cell>
                                 <Table.Cell>
                                     <img src={category.pictureUrl} width="80" alt=""/>
                                 </Table.Cell>
-                                <Table.Cell>Male</Table.Cell>
                                 <Table.Cell>{category.metaDescription}</Table.Cell>
                                 <Table.Cell>{dayjs(category.createdAt).format('DD MMM YYYY')}</Table.Cell>
                                 <Table.Cell><span className="edit">Edit</span></Table.Cell>
@@ -111,12 +129,25 @@ export default function CategoryMgt({categories}) {
                         <TextArea style={{width: '100%'}} onChange={(e) => updateDesc(e.target.value)}  placeholder="Service description" />
                     </Grid.Column>
                 </Grid.Row>
+
+                <Grid.Row>
+                    <Grid.Column width={16}>
+                        { error ? <Message negative>
+                            An error occured, Please try again
+                        </Message> : null }
+                    </Grid.Column>
+                </Grid.Row>
                 
                 <Grid.Row>
                     <Grid.Column width={16}>
                         <Display if={newService}>
                             <Button onClick={() => addNew()} floated="right" secondary>
-                                Save
+                                <Display if={!loading}>
+                                    Save
+                                </Display>
+                                <Display if={loading}>
+                                  <Loader active inline='centered' />
+                                </Display>
                             </Button>
                         </Display>
                         <Display if={!newService}>

@@ -76043,6 +76043,10 @@ function (_App) {
       progress: 0
     });
 
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_9__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7__["default"])(_this), "_showSnackbarHandler", function () {
+      _this.state.snackbarRef.current.openSnackBar();
+    });
+
     return _this;
   }
 
@@ -76066,18 +76070,26 @@ function (_App) {
         });
       } // // axios token interceptor
       // axios.defaults.headers.common['x-access-token'] =  `${window.sessionStorage.getItem('glamourToken')}`
-      // axios.interceptors.response.use(function (response) {
-      //   // Do something with response data
-      //   return response;
-      // }, function (error) {
-      //   let err = {...error}
-      //   console.log('err.response.status', err.response.status)
-      //   err.response.status === 403 ? this._showSnackbarHandler() : null
-      //   // Do something with response error
-      //   // return Promise.reject(error);
-      // });
 
 
+      axios__WEBPACK_IMPORTED_MODULE_18___default.a.interceptors.response.use(function (response) {
+        // Do something with response data
+        return response;
+      }, function (error) {
+        var err = Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_2__["default"])({}, error);
+
+        console.log('err.response.status', err.response.status);
+
+        if (err.response.status === 403) {
+          _this2.state.snackbarRef.current.openSnackBar();
+
+          setTimeout(function () {
+            next_router__WEBPACK_IMPORTED_MODULE_19___default.a.push('/login');
+          }, 3000);
+        } // Do something with response error
+        // return Promise.reject(error);
+
+      });
       next_router__WEBPACK_IMPORTED_MODULE_19___default.a.events.on('routeChangeStart', function (url) {
         _this2.setState({
           showProgress: true
@@ -76107,10 +76119,7 @@ function (_App) {
       }) : this.setState({
         show: true
       });
-    } // _showSnackbarHandler = () => {
-    //   snackbarRef.current.openSnackBar();
-    // }
-
+    }
   }, {
     key: "render",
     value: function render() {
@@ -76131,7 +76140,14 @@ function (_App) {
         indicating: true,
         percent: this.state.progress,
         color: "pink"
-      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(Component, pageProps))));
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(Component, pageProps))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_shared_SnackBar__WEBPACK_IMPORTED_MODULE_21__["Snackbar"], {
+        ref: this.state.snackbarRef,
+        type: "error",
+        position: 'top',
+        showClose: true,
+        duration: 3000,
+        message: this.state.message
+      }));
     }
   }], [{
     key: "getInitialProps",

@@ -32,7 +32,7 @@ class Glamour extends App {
     progress: 0
   }
 
-  componentDidMount() { 
+  componentDidMount() {
     // const script = document.createElement("script");
     // script.src = "https://js.stripe.com/v3/";
     // script.async = true;
@@ -53,16 +53,21 @@ class Glamour extends App {
     
   // // axios token interceptor
   // axios.defaults.headers.common['x-access-token'] =  `${window.sessionStorage.getItem('glamourToken')}`
-  // axios.interceptors.response.use(function (response) {
-  //   // Do something with response data
-  //   return response;
-  // }, function (error) {
-  //   let err = {...error}
-  //   console.log('err.response.status', err.response.status)
-  //   err.response.status === 403 ? this._showSnackbarHandler() : null
-  //   // Do something with response error
-  //   // return Promise.reject(error);
-  // });
+  axios.interceptors.response.use(function (response) {
+    // Do something with response data
+    return response;
+  }, (error) => {
+    let err = {...error}
+    console.log('err.response.status', err.response.status)
+    if (err.response.status === 403) {
+      this.state.snackbarRef.current.openSnackBar();
+      setTimeout(() => {
+        Router.push('/login')
+      }, 3000);
+    }
+    // Do something with response error
+    // return Promise.reject(error);
+  });
 
     Router.events.on('routeChangeStart', url => {
       this.setState({showProgress: true})
@@ -87,21 +92,14 @@ class Glamour extends App {
   }
 
   
-  // _showSnackbarHandler = () => {
-  //   snackbarRef.current.openSnackBar();
-  // }
+  _showSnackbarHandler = () => {
+    this.state.snackbarRef.current.openSnackBar();
+  }
 
   render () {
     const { Component, pageProps, reduxStore } = this.props
     return (
       <Container id="glamour">
-        {/* <Snackbar ref = {this.state.snackbarRef} 
-          type="error" 
-          position={'top'} 
-          showClose={true} 
-          duration={20000} 
-          message={this.state.message} /> */}
-          
       <Head>
         <title>Glamour on demand</title>
         <link rel="shortcut icon" href="/static/images/favicon.ico" />
@@ -115,6 +113,13 @@ class Glamour extends App {
             </>
           {/* </PersistGate> */}
         </Provider>
+        <Snackbar ref = {this.state.snackbarRef} 
+          type="error" 
+          position={'top'} 
+          showClose={true} 
+          duration={3000} 
+          message={this.state.message} />
+          
       </Container>
     )
   }

@@ -164,7 +164,6 @@ class SplitFieldsForm extends Component {
   };
 
   handleChange = (e) => {
-    // console.log(e)
     this.props.getCard(this.state.card)
     // if (error) {
     //   this.setState({errorMessage: error.message});
@@ -172,7 +171,6 @@ class SplitFieldsForm extends Component {
   };
 
   handleSubmit = (evt) => {
-    console.log('submitting')
     evt.preventDefault();
     if (this.props.stripe) {
       this.props.stripe.handleCardPayment(
@@ -258,6 +256,7 @@ class SplitFieldsForm extends Component {
 
 export default class CardDetailsForm extends Component {
   getCard = (e) => {
+    console.log(e)
     this.props.getCard(e)
   }
   render() {

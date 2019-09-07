@@ -44,9 +44,13 @@ const ManageSubscriptions_ = (props) => {
   const [secret, setSecret] = useState("")
     
   const  openModal = (id) => {
-    let selected = props.subscriptions.availableSubscriptions.find(sub => sub._id === id)
-    setselectedPlan(selected)
-    updateModalState({open: true})
+    if (id) { 
+        let selected = props.subscriptions.availableSubscriptions.find(sub => sub._id === id)
+        setselectedPlan(selected)
+        updateModalState({open: true})
+    } else {
+        updateModalState({open: true})
+    }
   }
     
   const close = () => {
@@ -236,7 +240,7 @@ const ManageSubscriptions_ = (props) => {
                                     <p className="renews">
                                         Renews on {dayjs(props.user.subscriptionEnd).format('DD MMM YYYY')}
                                     </p>
-                                    <button onClick={() => openModal(sub._id)} className="subscribeBtn">
+                                    <button onClick={() => openModal()} className="subscribeBtn">
                                         Change plan
                                     </button>
                                 </div>
