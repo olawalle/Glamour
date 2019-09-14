@@ -4,6 +4,7 @@ import withReduxStore from '../lib/with-redux-store'
 import { Provider } from 'react-redux'
 import 'semantic-ui-less/semantic.less';
 import { getCurrentUser } from '../services/auth.ts'
+import { getCities } from '../services/generatData.ts'
 import {saveUserData} from '../store/actions'
 import * as types from '../store/actions/types'
 import axios from 'axios'
@@ -12,6 +13,7 @@ import '../app.less';
 import { Snackbar } from '../components/shared/SnackBar';
 import { Progress } from 'semantic-ui-react'
 import Head from 'next/head'
+import Loader from '../components/shared/Loader';
 
 
 class Glamour extends App {
@@ -29,7 +31,8 @@ class Glamour extends App {
     snackbarRef: React.createRef(),
     message: "Your session has expired, please login to continue",
     showProgress: false,
-    progress: 0
+    progress: 0,
+    loading: false
   }
 
   componentDidMount() {
@@ -42,12 +45,17 @@ class Glamour extends App {
     // }
 
     if (window.sessionStorage.getItem('glamourToken')) {
+      this.setState({loading: true})
       getCurrentUser()
       .then(res => {
         this.props.reduxStore.dispatch(saveUserData({
           ...res.data.me,
           isLoggedIn: true
         }))
+        this.setState({loading: false})
+      })
+      .catch(err => {
+        this.setState({loading: false})
       })
     }
     
@@ -58,15 +66,12 @@ class Glamour extends App {
     return response;
   }, (error) => {
     let err = {...error}
-    console.log('err.response.status', err.response.status)
     if (err.response.status === 403) {
       this.state.snackbarRef.current.openSnackBar();
       setTimeout(() => {
         Router.push('/login')
       }, 3000);
     }
-    // Do something with response error
-    // return Promise.reject(error);
   });
 
     Router.events.on('routeChangeStart', url => {
@@ -100,6 +105,11 @@ class Glamour extends App {
     const { Component, pageProps, reduxStore } = this.props
     return (
       <Container id="glamour">
+      {
+
+        this.state.loading ? 
+        <Loader /> : null
+      }
       <Head>
         <title>Glamour on demand</title>
         <link rel="shortcut icon" href="/static/images/favicon.ico" />
@@ -116,7 +126,7 @@ class Glamour extends App {
         <Snackbar ref = {this.state.snackbarRef} 
           type="error" 
           position={'top'} 
-          showClose={true} 
+          showClose={false} 
           duration={3000} 
           message={this.state.message} />
           

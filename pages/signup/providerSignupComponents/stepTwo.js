@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import {Grid, Header, Select, Input, Checkbox, Button} from 'semantic-ui-react'
+import {Grid, Header, Select, Input, Checkbox, Button, Message} from 'semantic-ui-react'
 import Link from 'next/link';
 import Password from '../../../components/shared/Password';
 import './less/stepOne.less'
 import Timing from '../../../components/shared/Timing';
+import { getPostcode } from '../../../services/generatData.ts'
 
 
 export default function StepTwo(props) {
@@ -15,6 +16,8 @@ export default function StepTwo(props) {
     { key: 'Over 10 miles', text: 'Over 10 miles', value: 'Over 10 miles' }
   ]
 
+  const [showMessage, setshowMessage] = useState(false)
+
   const handleChange = (e, key, {value = null, checked = null } = {}) => {
     let newState = {
       ...signupFormData,
@@ -25,6 +28,21 @@ export default function StepTwo(props) {
 
     //delete error entry
     if (formErrors[key]) delete formErrors[key]
+  }
+
+  const checkPostCode = () => {
+    let data = {
+      postCode: signupFormData.postcode
+    }
+    // console.log(data)
+    getPostcode(data)
+    .then(res => {
+      if (!res.data.city) setshowMessage(true)
+      setfoundPostcode(res.data.city)
+    })
+    .catch(err => {
+      console.log(err)
+    })
   }
 
   const submit = (e) => {
@@ -52,6 +70,7 @@ export default function StepTwo(props) {
   }
 
   const [ formErrors, setFormErrors ] = useState({})
+  const [ foundPostcode, setfoundPostcode ] = useState(false)
   const [signupFormData, setSignupData] = useState({
     postcode: '',
     mileRadius: ''
@@ -89,6 +108,7 @@ export default function StepTwo(props) {
             </p>
             <Input
               onChange={(e) => handleChange(e, 'postcode')}
+              onBlur={() => checkPostCode()}
               error={formErrors['postcode']}
               value={signupFormData.postcode}
               className="stepOne-form--input"
@@ -105,6 +125,13 @@ export default function StepTwo(props) {
               options={distance}
               autocomplete="false" placeholder='Within mile radius'
             />
+
+            {
+              showMessage ? 
+              <Message negative>
+                Sorry, we currently do not support the post code provided. Kindly check back later
+              </Message> : null
+            }
             
             <p className="sectHeading_">
                 Availability
@@ -119,6 +146,7 @@ export default function StepTwo(props) {
                     className="mt-30 nxt-btn"
                     size="large"
                     onClick={submit}
+                    disabled={!foundPostcode}
                     secondary>
                     Next
                 </Button>

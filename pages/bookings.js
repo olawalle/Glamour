@@ -42,7 +42,6 @@ class bookings extends Component {
       if (this.props.user.role === 'client') {
         getBookings()
         .then(bookings => {
-          console.log(bookings)
           this.props.saveUserBookings(bookings.data.data)
           this.setState({userBookings: bookings.data.data})
         })
@@ -50,7 +49,6 @@ class bookings extends Component {
           console.log({...err})
         })
       } else {        
-        console.log('getting provider')
         getProviderBookings()
         .then(providerBookings => {
           this.props.saveUserBookings(providerBookings.data.data)

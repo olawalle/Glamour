@@ -71,3 +71,5 @@ export const SAVE_USER_SUBSCRIPTIONS = 'save_user_subscriptions'
 export const SAVE_USER_INVOICES = 'save_user_invoices'
 
 export const SAVE_ACTIVE_COMPONENT = 'save_active_component'
+
+export const SAVE_CITIES = 'save_cities'

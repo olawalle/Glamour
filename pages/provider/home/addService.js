@@ -36,7 +36,7 @@ const AddService = (props) => {
   const [description, updateDesc] = useState('')
   const [amount, updateAmount] = useState('')
   const [duration, updateDuration] = useState('')
-  const [picture, updatePic] = useState(null)
+  const [pictureUrl, updatePic] = useState(null)
   const [deleting, setdeleting] = useState(false)
   const [error, updateError] = useState({
     show: false,
@@ -67,7 +67,7 @@ const AddService = (props) => {
  const getImageFile = (file) => {
   if (props.selectedService) {
     let data = new FormData()
-    data.append('picture', file)
+    data.append('pictureUrl', file)
     generalUploadImage(data)
     .then(res => {
       console.log(res)
@@ -92,18 +92,18 @@ const AddService = (props) => {
     description,
     amount,
     duration,
-    picture,
+    pictureUrl,
     status: status.text
    }
 
    
    if (props.selectedService) {
-    Object.keys(data).forEach(obj => {
-      if (data[obj] !== props.selectedService[obj]) {
-        formData.append(obj, data[obj])
-      }
-    })
-    editService(formData, props.selectedService._id)
+    // Object.keys(data).forEach(obj => {
+    //   if (data[obj] !== props.selectedService[obj]) {
+    //     formData.append(obj, data[obj])
+    //   }
+    // })
+    editService(data, props.selectedService._id)
     .then(res => {
       getProviderServices(props.user.id)
       .then(res => {

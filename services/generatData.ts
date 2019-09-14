@@ -40,8 +40,46 @@ let getAllCategories = () => {
 let addCategory = (data) => {
     return axios({
         method: 'POST',
-        url: apiUrls.addServicesUrl,
+        url: apiUrls.addServiceCategory,
         data: data
+    })
+}
+
+let addCity = (data) => {
+    return axios({
+        method: 'POST',
+        url: apiUrls.cityUrl,
+        data: data
+    })
+}
+
+let editCity = (data) => {
+    return axios({
+        method: 'POST',
+        url: apiUrls.cityUrl+'/'+data._id,
+        data: data
+    })
+}
+
+let getCities = (data) => {
+    return axios({
+        method: 'GET',
+        url: apiUrls.cityUrl
+    })
+}
+
+let removeCity = (id) => {
+    return axios({
+        method: 'DELETE',
+        url: apiUrls.cityUrl+'/'+id
+    })
+}
+
+let getPostcode = (data) => {
+    return axios({
+        method: 'POST',
+        url: apiUrls.cityUrl+'/postcode',
+        data
     })
 }
 
@@ -129,6 +167,11 @@ export {
     editAddress,
     deleteAddress,
     getUserAddresses,
+    addCity,
+    editCity,
+    getCities,
+    removeCity,
+    getPostcode,
     uploadImage,
     generalUploadImage,
     uploadBanner

@@ -1,5 +1,40 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/_app.js"],{
 
+/***/ "./components/shared/Loader.js":
+/*!*************************************!*\
+  !*** ./components/shared/Loader.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "./node_modules/semantic-ui-react/dist/es/index.js");
+
+
+
+var Loader = function Loader(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      flexGrow: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      display: "flex"
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Dimmer"], {
+    active: true,
+    inverted: true
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Loader"], {
+    inverted: true
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Loader);
+
+/***/ }),
+
 /***/ "./components/shared/SnackBar.js":
 /*!***************************************!*\
   !*** ./components/shared/SnackBar.js ***!
@@ -62445,7 +62480,7 @@ var partitionHTMLProps = function partitionHTMLProps(props) {
 /*!*************************************************************!*\
   !*** ./node_modules/semantic-ui-react/dist/es/lib/index.js ***!
   \*************************************************************/
-/*! exports provided: AutoControlledComponent, getChildMapping, mergeChildMappings, childrenUtils, useKeyOnly, useKeyOrValueAndKey, useValueAndKey, useMultipleProp, useTextAlignProp, useVerticalAlignProp, useWidthProp, customPropTypes, eventStack, getUnhandledProps, getElementType, htmlInputAttrs, htmlInputEvents, htmlInputProps, htmlImageProps, partitionHTMLProps, isBrowser, doesNodeContainClick, leven, createPaginationItems, SUI, numberToWordMap, numberToWord, normalizeOffset, normalizeTransitionDuration, objectDiff, handleRef, isRefObject, createShorthand, createShorthandFactory, createHTMLDivision, createHTMLIframe, createHTMLImage, createHTMLInput, createHTMLLabel, createHTMLParagraph */
+/*! exports provided: AutoControlledComponent, getChildMapping, mergeChildMappings, childrenUtils, useKeyOnly, useKeyOrValueAndKey, useValueAndKey, useMultipleProp, useTextAlignProp, useVerticalAlignProp, useWidthProp, customPropTypes, eventStack, createShorthand, createShorthandFactory, createHTMLDivision, createHTMLIframe, createHTMLImage, createHTMLInput, createHTMLLabel, createHTMLParagraph, getUnhandledProps, getElementType, htmlInputAttrs, htmlInputEvents, htmlInputProps, htmlImageProps, partitionHTMLProps, isBrowser, doesNodeContainClick, leven, createPaginationItems, SUI, numberToWordMap, numberToWord, normalizeOffset, normalizeTransitionDuration, objectDiff, handleRef, isRefObject */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -75981,18 +76016,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var semantic_ui_less_semantic_less__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! semantic-ui-less/semantic.less */ "./node_modules/semantic-ui-less/semantic.less");
 /* harmony import */ var semantic_ui_less_semantic_less__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_less_semantic_less__WEBPACK_IMPORTED_MODULE_14__);
 /* harmony import */ var _services_auth_ts__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../services/auth.ts */ "./services/auth.ts");
-/* harmony import */ var _store_actions__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../store/actions */ "./store/actions/index.js");
-/* harmony import */ var _store_actions_types__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../store/actions/types */ "./store/actions/types.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_18__);
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! next/router */ "./node_modules/next/dist/client/router.js");
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_19__);
-/* harmony import */ var _app_less__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../app.less */ "./app.less");
-/* harmony import */ var _app_less__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_app_less__WEBPACK_IMPORTED_MODULE_20__);
-/* harmony import */ var _components_shared_SnackBar__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../components/shared/SnackBar */ "./components/shared/SnackBar.js");
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! semantic-ui-react */ "./node_modules/semantic-ui-react/dist/es/index.js");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! next/head */ "./node_modules/next-server/dist/lib/head.js");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_23__);
+/* harmony import */ var _services_generatData_ts__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../services/generatData.ts */ "./services/generatData.ts");
+/* harmony import */ var _store_actions__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../store/actions */ "./store/actions/index.js");
+/* harmony import */ var _store_actions_types__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../store/actions/types */ "./store/actions/types.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_19__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! next/router */ "./node_modules/next/dist/client/router.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_20__);
+/* harmony import */ var _app_less__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../app.less */ "./app.less");
+/* harmony import */ var _app_less__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(_app_less__WEBPACK_IMPORTED_MODULE_21__);
+/* harmony import */ var _components_shared_SnackBar__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../components/shared/SnackBar */ "./components/shared/SnackBar.js");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! semantic-ui-react */ "./node_modules/semantic-ui-react/dist/es/index.js");
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! next/head */ "./node_modules/next-server/dist/lib/head.js");
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_24___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_24__);
+/* harmony import */ var _components_shared_Loader__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../components/shared/Loader */ "./components/shared/Loader.js");
+
+
 
 
 
@@ -76040,7 +76079,8 @@ function (_App) {
       snackbarRef: react__WEBPACK_IMPORTED_MODULE_11___default.a.createRef(),
       message: "Your session has expired, please login to continue",
       showProgress: false,
-      progress: 0
+      progress: 0,
+      loading: false
     });
 
     Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_9__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7__["default"])(_this), "_showSnackbarHandler", function () {
@@ -76063,34 +76103,41 @@ function (_App) {
       //   console.log('stripe loaded')
       // }
       if (window.sessionStorage.getItem('glamourToken')) {
+        this.setState({
+          loading: true
+        });
         Object(_services_auth_ts__WEBPACK_IMPORTED_MODULE_15__["getCurrentUser"])().then(function (res) {
-          _this2.props.reduxStore.dispatch(Object(_store_actions__WEBPACK_IMPORTED_MODULE_16__["saveUserData"])(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_2__["default"])({}, res.data.me, {
+          _this2.props.reduxStore.dispatch(Object(_store_actions__WEBPACK_IMPORTED_MODULE_17__["saveUserData"])(Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_2__["default"])({}, res.data.me, {
             isLoggedIn: true
           })));
+
+          _this2.setState({
+            loading: false
+          });
+        }).catch(function (err) {
+          _this2.setState({
+            loading: false
+          });
         });
       } // // axios token interceptor
       // axios.defaults.headers.common['x-access-token'] =  `${window.sessionStorage.getItem('glamourToken')}`
 
 
-      axios__WEBPACK_IMPORTED_MODULE_18___default.a.interceptors.response.use(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_19___default.a.interceptors.response.use(function (response) {
         // Do something with response data
         return response;
       }, function (error) {
         var err = Object(_babel_runtime_corejs2_helpers_esm_objectSpread__WEBPACK_IMPORTED_MODULE_2__["default"])({}, error);
 
-        console.log('err.response.status', err.response.status);
-
         if (err.response.status === 403) {
           _this2.state.snackbarRef.current.openSnackBar();
 
           setTimeout(function () {
-            next_router__WEBPACK_IMPORTED_MODULE_19___default.a.push('/login');
+            next_router__WEBPACK_IMPORTED_MODULE_20___default.a.push('/login');
           }, 3000);
-        } // Do something with response error
-        // return Promise.reject(error);
-
+        }
       });
-      next_router__WEBPACK_IMPORTED_MODULE_19___default.a.events.on('routeChangeStart', function (url) {
+      next_router__WEBPACK_IMPORTED_MODULE_20___default.a.events.on('routeChangeStart', function (url) {
         _this2.setState({
           showProgress: true
         });
@@ -76101,7 +76148,7 @@ function (_App) {
           });
         }, 1000);
       });
-      next_router__WEBPACK_IMPORTED_MODULE_19___default.a.events.on('routeChangeComplete', function () {
+      next_router__WEBPACK_IMPORTED_MODULE_20___default.a.events.on('routeChangeComplete', function () {
         window.scrollTo(0, 0);
 
         _this2.setState({
@@ -76113,8 +76160,8 @@ function (_App) {
           progress: 0
         });
       });
-      next_router__WEBPACK_IMPORTED_MODULE_19___default.a.events.on('routeChangeError', function () {});
-      next_router__WEBPACK_IMPORTED_MODULE_19___default.a.router.route === '/' ? this.setState({
+      next_router__WEBPACK_IMPORTED_MODULE_20___default.a.events.on('routeChangeError', function () {});
+      next_router__WEBPACK_IMPORTED_MODULE_20___default.a.router.route === '/' ? this.setState({
         show: false
       }) : this.setState({
         show: true
@@ -76129,22 +76176,22 @@ function (_App) {
           reduxStore = _this$props.reduxStore;
       return react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(next_app__WEBPACK_IMPORTED_MODULE_10__["Container"], {
         id: "glamour"
-      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_23___default.a, null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("title", null, "Glamour on demand"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("link", {
+      }, this.state.loading ? react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_shared_Loader__WEBPACK_IMPORTED_MODULE_25__["default"], null) : null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_24___default.a, null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("title", null, "Glamour on demand"), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("link", {
         rel: "shortcut icon",
         href: "/static/images/favicon.ico"
       }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement("script", {
         src: "https://js.stripe.com/v3/"
       })), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_13__["Provider"], {
         store: reduxStore
-      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_11___default.a.Fragment, null, this.state.showProgress && react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_22__["Progress"], {
+      }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_11___default.a.Fragment, null, this.state.showProgress && react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_23__["Progress"], {
         indicating: true,
         percent: this.state.progress,
         color: "pink"
-      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(Component, pageProps))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_shared_SnackBar__WEBPACK_IMPORTED_MODULE_21__["Snackbar"], {
+      }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(Component, pageProps))), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_components_shared_SnackBar__WEBPACK_IMPORTED_MODULE_22__["Snackbar"], {
         ref: this.state.snackbarRef,
         type: "error",
         position: 'top',
-        showClose: true,
+        showClose: false,
         duration: 3000,
         message: this.state.message
       }));
@@ -76206,7 +76253,7 @@ function (_App) {
 /*!*****************************!*\
   !*** ./services/apiUrls.js ***!
   \*****************************/
-/*! exports provided: baseUrl, login, activate, clientRegister, providerRegister, getCurrentUser, disableUser, changePassword, getAllUsers, getUserNotifications, allProvidersUrl, providerServicesUrl, providerPublicServicesUrl, providerSchedule, addServicesUrl, servicesUrl, payUrl, subscriptionPayUrl, trendsUrl, categoriesUrl, clientBookingsUrl, providerBookingUrl, reviewsUrl, providersDetailsUrl, addressUrl, uploadUrl, imageUrl, bannerUploadUrl, lookbookUrl, addLookbookUrl, saveProviders, subscriptionsUrl, providerSubscription, confirmSubscription, updateClient, updateProvider, messageUrl, providerMessageUrl, clientMessageUrl, createConversationUrl */
+/*! exports provided: baseUrl, login, activate, clientRegister, providerRegister, getCurrentUser, disableUser, changePassword, getAllUsers, getUserNotifications, getBills, cityUrl, getAllBookings, allProvidersUrl, providerServicesUrl, providerPublicServicesUrl, providerSchedule, addServicesUrl, addServiceCategory, servicesUrl, payUrl, subscriptionPayUrl, trendsUrl, categoriesUrl, clientBookingsUrl, providerBookingUrl, reviewsUrl, providersDetailsUrl, addressUrl, uploadUrl, imageUrl, bannerUploadUrl, lookbookUrl, addLookbookUrl, saveProviders, subscriptionsUrl, providerSubscription, confirmSubscription, updateClient, updateProvider, messageUrl, providerMessageUrl, clientMessageUrl, createConversationUrl */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -76221,11 +76268,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changePassword", function() { return changePassword; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllUsers", function() { return getAllUsers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUserNotifications", function() { return getUserNotifications; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBills", function() { return getBills; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cityUrl", function() { return cityUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllBookings", function() { return getAllBookings; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "allProvidersUrl", function() { return allProvidersUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "providerServicesUrl", function() { return providerServicesUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "providerPublicServicesUrl", function() { return providerPublicServicesUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "providerSchedule", function() { return providerSchedule; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addServicesUrl", function() { return addServicesUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addServiceCategory", function() { return addServiceCategory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "servicesUrl", function() { return servicesUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "payUrl", function() { return payUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "subscriptionPayUrl", function() { return subscriptionPayUrl; });
@@ -76263,11 +76314,15 @@ var disableUser = "".concat(baseUrl, "/users/status/update");
 var changePassword = "".concat(baseUrl, "/users/change-password");
 var getAllUsers = "".concat(baseUrl, "/users/all");
 var getUserNotifications = "".concat(baseUrl, "/notifications");
+var getBills = "".concat(baseUrl, "/bill");
+var cityUrl = "".concat(baseUrl, "/city");
+var getAllBookings = "".concat(baseUrl, "/bookings/admin");
 var allProvidersUrl = "".concat(baseUrl, "/users/provider");
 var providerServicesUrl = "".concat(baseUrl, "/services");
 var providerPublicServicesUrl = "".concat(baseUrl, "/services/provider");
 var providerSchedule = "".concat(baseUrl, "/bookings/schedule");
 var addServicesUrl = "".concat(baseUrl, "/uploads/services");
+var addServiceCategory = "".concat(baseUrl, "/uploads/categories");
 var servicesUrl = "".concat(baseUrl, "/categories");
 var payUrl = "".concat(baseUrl, "/bookings/pay");
 var subscriptionPayUrl = "".concat(baseUrl, "/users/pay");
@@ -76560,11 +76615,203 @@ let getConversations = (id) => {
 
 /***/ }),
 
+/***/ "./services/generatData.ts":
+/*!*********************************!*\
+  !*** ./services/generatData.ts ***!
+  \*********************************/
+/*! exports provided: getAllUsers, getAllProviders, getAllServices, getAllTrends, getAllCategories, addCategory, addAddress, editAddress, deleteAddress, getUserAddresses, addCity, editCity, getCities, removeCity, getPostcode, uploadImage, generalUploadImage, uploadBanner */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllUsers", function() { return getAllUsers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllProviders", function() { return getAllProviders; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllServices", function() { return getAllServices; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllTrends", function() { return getAllTrends; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllCategories", function() { return getAllCategories; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addCategory", function() { return addCategory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addAddress", function() { return addAddress; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editAddress", function() { return editAddress; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteAddress", function() { return deleteAddress; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUserAddresses", function() { return getUserAddresses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addCity", function() { return addCity; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editCity", function() { return editCity; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCities", function() { return getCities; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeCity", function() { return removeCity; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPostcode", function() { return getPostcode; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "uploadImage", function() { return uploadImage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generalUploadImage", function() { return generalUploadImage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "uploadBanner", function() { return uploadBanner; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _apiUrls__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./apiUrls */ "./services/apiUrls.js");
+
+
+
+
+let getAllUsers = () => {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: 'GET',
+        url: _apiUrls__WEBPACK_IMPORTED_MODULE_1__["getAllUsers"]
+    })
+}
+
+let getAllProviders = () => {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: 'GET',
+        url: _apiUrls__WEBPACK_IMPORTED_MODULE_1__["allProvidersUrl"]
+    })
+}
+
+let getAllServices = () => {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: 'GET',
+        url: _apiUrls__WEBPACK_IMPORTED_MODULE_1__["servicesUrl"]
+    })
+}
+
+let getAllTrends = () => {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: 'GET',
+        url: _apiUrls__WEBPACK_IMPORTED_MODULE_1__["trendsUrl"]
+    })
+}
+
+let getAllCategories = () => {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: 'GET',
+        url: _apiUrls__WEBPACK_IMPORTED_MODULE_1__["categoriesUrl"]
+    })
+}
+
+let addCategory = (data) => {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: 'POST',
+        url: _apiUrls__WEBPACK_IMPORTED_MODULE_1__["addServiceCategory"],
+        data: data
+    })
+}
+
+let addCity = (data) => {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: 'POST',
+        url: _apiUrls__WEBPACK_IMPORTED_MODULE_1__["cityUrl"],
+        data: data
+    })
+}
+
+let editCity = (data) => {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: 'POST',
+        url: _apiUrls__WEBPACK_IMPORTED_MODULE_1__["cityUrl"]+'/'+data._id,
+        data: data
+    })
+}
+
+let getCities = (data) => {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: 'GET',
+        url: _apiUrls__WEBPACK_IMPORTED_MODULE_1__["cityUrl"]
+    })
+}
+
+let removeCity = (id) => {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: 'DELETE',
+        url: _apiUrls__WEBPACK_IMPORTED_MODULE_1__["cityUrl"]+'/'+id
+    })
+}
+
+let getPostcode = (data) => {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: 'POST',
+        url: _apiUrls__WEBPACK_IMPORTED_MODULE_1__["cityUrl"]+'/postcode',
+        data
+    })
+}
+
+let addAddress = (data) => {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: 'POST',
+        url: _apiUrls__WEBPACK_IMPORTED_MODULE_1__["addressUrl"],
+        data,
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+}
+
+
+let editAddress = (data, id) => {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: 'PUT',
+        url: _apiUrls__WEBPACK_IMPORTED_MODULE_1__["addressUrl"]+'/'+id,
+        data,
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+}
+
+let deleteAddress = (id) => {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: 'DELETE',
+        url: _apiUrls__WEBPACK_IMPORTED_MODULE_1__["addressUrl"]+'/'+id
+    })
+}
+
+let getUserAddresses = (token) => {
+    let headers = {}
+    token ? headers = {'x-access-token': token} : null
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: 'GET',
+        url: _apiUrls__WEBPACK_IMPORTED_MODULE_1__["addressUrl"],
+        headers
+    })
+}
+
+let uploadImage = (data, id) => {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: 'POST',
+        url: _apiUrls__WEBPACK_IMPORTED_MODULE_1__["imageUrl"]+"/"+id,
+        data,
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    })
+}
+
+let uploadBanner = (data, id) => {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: 'POST',
+        url: _apiUrls__WEBPACK_IMPORTED_MODULE_1__["bannerUploadUrl"]+"/"+id,
+        data,
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    })
+}
+
+let generalUploadImage = (data) => {
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: 'POST',
+        url: _apiUrls__WEBPACK_IMPORTED_MODULE_1__["uploadUrl"],
+        data,
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    })
+}
+
+
+
+/***/ }),
+
 /***/ "./store/actions/index.js":
 /*!********************************!*\
   !*** ./store/actions/index.js ***!
   \********************************/
-/*! exports provided: saveUserData, saveLoggedinStatus, serverRenderAction, saveServices, saveTrends, saveProviders, updateSignupForm, updateProviderSignupForm, updateLoginForm, setIsWritingReview, updateReview, subscribeToService, unSubscribeToService, selectProvider, removeCartItem, addCartItem, saveUserNotifications, saveProviderServices, saveUserAddresses, saveActiveAddress, saveUserBookings, saveUserLookbook, pickServiceTime, saveFavedProviders, saveFullFavedProviders, saveAvailableSubscriptions, saveUserSubscriptions, saveUserInvoices, saveActiveComponent */
+/*! exports provided: saveUserData, saveLoggedinStatus, serverRenderAction, saveServices, saveTrends, saveProviders, updateSignupForm, updateProviderSignupForm, updateLoginForm, setIsWritingReview, updateReview, subscribeToService, unSubscribeToService, selectProvider, removeCartItem, addCartItem, saveUserNotifications, saveProviderServices, saveUserAddresses, saveActiveAddress, saveUserBookings, saveUserLookbook, pickServiceTime, saveFavedProviders, saveFullFavedProviders, saveAvailableSubscriptions, saveUserSubscriptions, saveUserInvoices, saveActiveComponent, saveCities */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -76598,6 +76845,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "saveUserSubscriptions", function() { return saveUserSubscriptions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "saveUserInvoices", function() { return saveUserInvoices; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "saveActiveComponent", function() { return saveActiveComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "saveCities", function() { return saveCities; });
 /* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types */ "./store/actions/types.js");
  // IMPORT SERVICES HERE
 // ACTION CREATORS GOES HERE../../services/post
@@ -76771,6 +77019,12 @@ var saveActiveComponent = function saveActiveComponent(payload) {
     payload: payload
   };
 };
+var saveCities = function saveCities(payload) {
+  return {
+    type: _types__WEBPACK_IMPORTED_MODULE_0__["SAVE_CITIES"],
+    payload: payload
+  };
+};
 
 /***/ }),
 
@@ -76778,7 +77032,7 @@ var saveActiveComponent = function saveActiveComponent(payload) {
 /*!********************************!*\
   !*** ./store/actions/types.js ***!
   \********************************/
-/*! exports provided: UPDATE_SIGNUP_FORM, UPDATE_PROVIDER_SIGNUP_FORM, UPDATE_LOGIN_FORM, SAVE_USER_DATA, SAVE_LOGGEDIN_STATUS, ADD_TEAM_MEMBERS, SET_LOADING_MEMBERS, SAVE_SERVICE_PROVIDERS, ADD_SERVICES, ADD_TRENDS, ADD_TESTIMONIALS, ADD_NOTIFICATIONS, SET_LOADING_SERVICES, SET_LOADING_NOTIFICATIONS, SET_WRITING_REVIEW, SET_REVIEW, SET_LOADING_TRENDS, SET_LOADING_TESTIMONIALS, SUBSCRIBE_TO_SERVICE, UNSUBSCRIBE_TO_SERVICE, SELECTED_PROVIDER, ADD_CART_ITEM, ADD_CART_ITEMS, REMOVE_CART_ITEM, SAVE_PROVIDER_SERVICES, SAVE_ADDRESSES, SELECT_ACTIVE_ADDRESS, SAVE_USER_BOOKINGS, SAVE_LOOKBOOK, SELECTED_TIME, SAVE_FAVED_PROVIDERS, SAVE_FULL_FAVED_PROVIDERS, SAVE_AVAILABLE_SUBSCRIPTIONS, SAVE_USER_SUBSCRIPTIONS, SAVE_USER_INVOICES, SAVE_ACTIVE_COMPONENT */
+/*! exports provided: UPDATE_SIGNUP_FORM, UPDATE_PROVIDER_SIGNUP_FORM, UPDATE_LOGIN_FORM, SAVE_USER_DATA, SAVE_LOGGEDIN_STATUS, ADD_TEAM_MEMBERS, SET_LOADING_MEMBERS, SAVE_SERVICE_PROVIDERS, ADD_SERVICES, ADD_TRENDS, ADD_TESTIMONIALS, ADD_NOTIFICATIONS, SET_LOADING_SERVICES, SET_LOADING_NOTIFICATIONS, SET_WRITING_REVIEW, SET_REVIEW, SET_LOADING_TRENDS, SET_LOADING_TESTIMONIALS, SUBSCRIBE_TO_SERVICE, UNSUBSCRIBE_TO_SERVICE, SELECTED_PROVIDER, ADD_CART_ITEM, ADD_CART_ITEMS, REMOVE_CART_ITEM, SAVE_PROVIDER_SERVICES, SAVE_ADDRESSES, SELECT_ACTIVE_ADDRESS, SAVE_USER_BOOKINGS, SAVE_LOOKBOOK, SELECTED_TIME, SAVE_FAVED_PROVIDERS, SAVE_FULL_FAVED_PROVIDERS, SAVE_AVAILABLE_SUBSCRIPTIONS, SAVE_USER_SUBSCRIPTIONS, SAVE_USER_INVOICES, SAVE_ACTIVE_COMPONENT, SAVE_CITIES */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -76819,6 +77073,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SAVE_USER_SUBSCRIPTIONS", function() { return SAVE_USER_SUBSCRIPTIONS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SAVE_USER_INVOICES", function() { return SAVE_USER_INVOICES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SAVE_ACTIVE_COMPONENT", function() { return SAVE_ACTIVE_COMPONENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SAVE_CITIES", function() { return SAVE_CITIES; });
 // ACTION TYPES STAYS HERE
 var UPDATE_SIGNUP_FORM = 'update_signup_form';
 var UPDATE_PROVIDER_SIGNUP_FORM = 'update_provider_signup_form';
@@ -76856,6 +77111,7 @@ var SAVE_AVAILABLE_SUBSCRIPTIONS = 'save_available_subscriptions';
 var SAVE_USER_SUBSCRIPTIONS = 'save_user_subscriptions';
 var SAVE_USER_INVOICES = 'save_user_invoices';
 var SAVE_ACTIVE_COMPONENT = 'save_active_component';
+var SAVE_CITIES = 'save_cities';
 
 /***/ }),
 
@@ -77296,6 +77552,38 @@ var INITIAL_STATE = {
 
 /***/ }),
 
+/***/ "./store/reducers/city.js":
+/*!********************************!*\
+  !*** ./store/reducers/city.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/types */ "./store/actions/types.js");
+
+var INITIAL_STATE = [];
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
+
+  var _ref = arguments.length > 1 ? arguments[1] : undefined,
+      type = _ref.type,
+      payload = _ref.payload;
+
+  switch (type) {
+    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["SAVE_CITIES"]:
+      {
+        return payload;
+      }
+
+    default:
+      return state;
+  }
+});
+
+/***/ }),
+
 /***/ "./store/reducers/index.js":
 /*!*********************************!*\
   !*** ./store/reducers/index.js ***!
@@ -77322,7 +77610,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _reducers_providerLookbook__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../reducers/providerLookbook */ "./store/reducers/providerLookbook.js");
 /* harmony import */ var _reducers_subscriptions__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../reducers/subscriptions */ "./store/reducers/subscriptions.js");
 /* harmony import */ var _reducers_activeComponent__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../reducers/activeComponent */ "./store/reducers/activeComponent.js");
+/* harmony import */ var _reducers_city__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../reducers/city */ "./store/reducers/city.js");
  // IMPORT REDUCERS HERE
+
 
 
 
@@ -77356,7 +77646,8 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
   addresses: _reducers_address__WEBPACK_IMPORTED_MODULE_13__["default"],
   providerLookbook: _reducers_providerLookbook__WEBPACK_IMPORTED_MODULE_14__["default"],
   subscriptions: _reducers_subscriptions__WEBPACK_IMPORTED_MODULE_15__["default"],
-  activeComponent: _reducers_activeComponent__WEBPACK_IMPORTED_MODULE_16__["default"]
+  activeComponent: _reducers_activeComponent__WEBPACK_IMPORTED_MODULE_16__["default"],
+  cities: _reducers_city__WEBPACK_IMPORTED_MODULE_17__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (rootReducer);
 

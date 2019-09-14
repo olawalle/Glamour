@@ -205,3 +205,10 @@ export const saveActiveComponent = (payload) => {
     payload
   }
 }
+
+export const saveCities = (payload) => {
+  return {
+    type: types.SAVE_CITIES,
+    payload
+  }
+}

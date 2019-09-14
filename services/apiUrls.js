@@ -10,12 +10,16 @@ export const disableUser = `${baseUrl}/users/status/update`
 export const changePassword = `${baseUrl}/users/change-password`
 export const getAllUsers = `${baseUrl}/users/all`
 export const getUserNotifications = `${baseUrl}/notifications`
+export const getBills = `${baseUrl}/bill`
+export const cityUrl = `${baseUrl}/city`
+export const getAllBookings = `${baseUrl}/bookings/admin`
 
 export const allProvidersUrl =  `${baseUrl}/users/provider`
 export const providerServicesUrl = `${baseUrl}/services`
 export const providerPublicServicesUrl = `${baseUrl}/services/provider`
 export const providerSchedule = `${baseUrl}/bookings/schedule`
 export const addServicesUrl = `${baseUrl}/uploads/services`
+export const addServiceCategory = `${baseUrl}/uploads/categories`
 export const servicesUrl = `${baseUrl}/categories`
 export const payUrl = `${baseUrl}/bookings/pay`
 export const subscriptionPayUrl = `${baseUrl}/users/pay`

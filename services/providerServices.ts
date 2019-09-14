@@ -15,12 +15,9 @@ let addServices = (data) => {
 
 let editService = (data, id) => {
     return axios({
-        method: 'PUT',
+        method: 'POST',
         url: apiUrls.providerServicesUrl+'/'+id,
-        data: data,
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
+        data: data
     })
 }
 
@@ -55,6 +52,13 @@ let getProviderBookings = () => {
     })
 }
 
+let getAllBookings = () => {
+    return axios({
+        method: 'GET',
+        url: apiUrls.getAllBookings
+    })
+}
+
 let getProviderSchedule = (id) => {
     return axios({
         method: 'GET',
@@ -83,6 +87,7 @@ let getLookbook = (id) => {
         url: apiUrls.lookbookUrl+'/'+id
     })
 }
+
 
 let addLookbook = (id, data) => {
     return axios({
@@ -115,6 +120,13 @@ let getSubscriptions = () => {
     })
 }
 
+let getBills = () => {
+    return axios({
+        method: 'GET',
+        url: apiUrls.getBills
+    })
+}
+
 export {
     addServices,
     editService,
@@ -122,6 +134,7 @@ export {
     getProviderServices,
     deleteProviderServices,
     getProviderBookings,
+    getAllBookings,
     getProviderSchedule,
     getProviderDetails,
     getProviderReviews,
@@ -129,5 +142,6 @@ export {
     addLookbook,
     deleteLookbook,
     providerSubscribe,
-    getSubscriptions
+    getSubscriptions,
+    getBills
 }

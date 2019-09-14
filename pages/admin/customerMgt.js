@@ -13,11 +13,9 @@ export default function CustomerMgt({state, users}) {
     ])
 
     useEffect(() => {
-      console.log(users)
     }, [])
     
     const logg = () => {
-      console.log(users)
     }
     
 
