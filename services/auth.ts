@@ -1,7 +1,5 @@
 import axios from 'axios'
 import * as apiUrls from './apiUrls'
-import { saveUserData } from '../store/actions'
-import {initStore} from '../store'
 
 let login = (data) => {
     return axios({
@@ -45,6 +43,15 @@ let getCurrentUser = () => {
     return axios({
         method: 'GET',
         url: apiUrls.getCurrentUser
+    })
+}
+
+
+let getStatus = (role) => {
+    let url =  role === 'client' ? apiUrls.clientStatusUrl : apiUrls.providerStatusUrl
+    return axios({
+        method: 'GET',
+        url
     })
 }
 
@@ -227,6 +234,7 @@ export {
     getCurrentUser,
     changePassword,
     getUserNotifications,
+    getStatus,
     getBookings,
     postBookings,
     postSubscriptionPayment,

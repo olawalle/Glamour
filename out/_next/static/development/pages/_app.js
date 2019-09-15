@@ -76253,7 +76253,7 @@ function (_App) {
 /*!*****************************!*\
   !*** ./services/apiUrls.js ***!
   \*****************************/
-/*! exports provided: baseUrl, login, activate, clientRegister, providerRegister, getCurrentUser, disableUser, changePassword, getAllUsers, getUserNotifications, getBills, cityUrl, getAllBookings, allProvidersUrl, providerServicesUrl, providerPublicServicesUrl, providerSchedule, addServicesUrl, addServiceCategory, servicesUrl, payUrl, subscriptionPayUrl, trendsUrl, categoriesUrl, clientBookingsUrl, providerBookingUrl, reviewsUrl, providersDetailsUrl, addressUrl, uploadUrl, imageUrl, bannerUploadUrl, lookbookUrl, addLookbookUrl, saveProviders, subscriptionsUrl, providerSubscription, confirmSubscription, updateClient, updateProvider, messageUrl, providerMessageUrl, clientMessageUrl, createConversationUrl */
+/*! exports provided: baseUrl, login, activate, clientRegister, providerRegister, getCurrentUser, disableUser, changePassword, getAllUsers, clientStatusUrl, providerStatusUrl, getUserNotifications, getBills, cityUrl, getAllBookings, allProvidersUrl, providerServicesUrl, providerPublicServicesUrl, providerSchedule, addServicesUrl, addServiceCategory, servicesUrl, payUrl, subscriptionPayUrl, trendsUrl, categoriesUrl, clientBookingsUrl, providerBookingUrl, reviewsUrl, providersDetailsUrl, addressUrl, uploadUrl, imageUrl, bannerUploadUrl, lookbookUrl, addLookbookUrl, saveProviders, subscriptionsUrl, providerSubscription, confirmSubscription, updateClient, updateProvider, messageUrl, providerMessageUrl, clientMessageUrl, createConversationUrl */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -76267,6 +76267,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "disableUser", function() { return disableUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changePassword", function() { return changePassword; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllUsers", function() { return getAllUsers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clientStatusUrl", function() { return clientStatusUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "providerStatusUrl", function() { return providerStatusUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUserNotifications", function() { return getUserNotifications; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBills", function() { return getBills; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cityUrl", function() { return cityUrl; });
@@ -76313,6 +76315,8 @@ var getCurrentUser = "".concat(baseUrl, "/users/me");
 var disableUser = "".concat(baseUrl, "/users/status/update");
 var changePassword = "".concat(baseUrl, "/users/change-password");
 var getAllUsers = "".concat(baseUrl, "/users/all");
+var clientStatusUrl = "".concat(baseUrl, "/users/client-status");
+var providerStatusUrl = "".concat(baseUrl, "/users/provider-status");
 var getUserNotifications = "".concat(baseUrl, "/notifications");
 var getBills = "".concat(baseUrl, "/bill");
 var cityUrl = "".concat(baseUrl, "/city");
@@ -76355,7 +76359,7 @@ var createConversationUrl = "".concat(baseUrl, "/messages/conversation");
 /*!**************************!*\
   !*** ./services/auth.ts ***!
   \**************************/
-/*! exports provided: login, verify, deactivateUser, getCurrentUser, changePassword, getUserNotifications, getBookings, postBookings, postSubscriptionPayment, updateStatus, confirmBookings, postReviews, confirmSubscriptionPayment, postPayment, getSavedProviders, saveProvider, deleteSavedProvider, updateClient, updateProvider, createConversation, sendMessage, getProviderConversations, getClientConversations, getConversations */
+/*! exports provided: login, verify, deactivateUser, getCurrentUser, changePassword, getUserNotifications, getStatus, getBookings, postBookings, postSubscriptionPayment, updateStatus, confirmBookings, postReviews, confirmSubscriptionPayment, postPayment, getSavedProviders, saveProvider, deleteSavedProvider, updateClient, updateProvider, createConversation, sendMessage, getProviderConversations, getClientConversations, getConversations */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -76366,6 +76370,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCurrentUser", function() { return getCurrentUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changePassword", function() { return changePassword; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUserNotifications", function() { return getUserNotifications; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getStatus", function() { return getStatus; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBookings", function() { return getBookings; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postBookings", function() { return postBookings; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postSubscriptionPayment", function() { return postSubscriptionPayment; });
@@ -76387,10 +76392,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _apiUrls__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./apiUrls */ "./services/apiUrls.js");
-/* harmony import */ var _store_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/actions */ "./store/actions/index.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store */ "./store/index.js");
-
-
 
 
 
@@ -76436,6 +76437,15 @@ let getCurrentUser = () => {
     return axios__WEBPACK_IMPORTED_MODULE_0___default()({
         method: 'GET',
         url: _apiUrls__WEBPACK_IMPORTED_MODULE_1__["getCurrentUser"]
+    })
+}
+
+
+let getStatus = (role) => {
+    let url =  role === 'client' ? _apiUrls__WEBPACK_IMPORTED_MODULE_1__["clientStatusUrl"] : _apiUrls__WEBPACK_IMPORTED_MODULE_1__["providerStatusUrl"]
+    return axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: 'GET',
+        url
     })
 }
 
