@@ -40,8 +40,46 @@ let getAllCategories = () => {
 let addCategory = (data) => {
     return axios({
         method: 'POST',
-        url: apiUrls.categoriesUrl,
+        url: apiUrls.addServiceCategory,
         data: data
+    })
+}
+
+let addCity = (data) => {
+    return axios({
+        method: 'POST',
+        url: apiUrls.cityUrl,
+        data: data
+    })
+}
+
+let editCity = (data) => {
+    return axios({
+        method: 'POST',
+        url: apiUrls.cityUrl+'/'+data._id,
+        data: data
+    })
+}
+
+let getCities = (data) => {
+    return axios({
+        method: 'GET',
+        url: apiUrls.cityUrl
+    })
+}
+
+let removeCity = (id) => {
+    return axios({
+        method: 'DELETE',
+        url: apiUrls.cityUrl+'/'+id
+    })
+}
+
+let getPostcode = (data) => {
+    return axios({
+        method: 'POST',
+        url: apiUrls.cityUrl+'/postcode',
+        data
     })
 }
 
@@ -95,10 +133,22 @@ let uploadImage = (data, id) => {
         }
     })
 }
+
 let uploadBanner = (data, id) => {
     return axios({
         method: 'POST',
         url: apiUrls.bannerUploadUrl+"/"+id,
+        data,
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    })
+}
+
+let generalUploadImage = (data) => {
+    return axios({
+        method: 'POST',
+        url: apiUrls.uploadUrl,
         data,
         headers: {
             'Content-Type': 'multipart/form-data'
@@ -117,6 +167,12 @@ export {
     editAddress,
     deleteAddress,
     getUserAddresses,
+    addCity,
+    editCity,
+    getCities,
+    removeCity,
+    getPostcode,
     uploadImage,
+    generalUploadImage,
     uploadBanner
 }

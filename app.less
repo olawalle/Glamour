@@ -55,6 +55,12 @@ body ::-webkit-scrollbar-track {
 
 
 // progressbar 
+.ui.progress {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 12345678787787;
+}
 .ui.progress .bar {
         height: 5px !important;
         margin: 0 !important
@@ -64,6 +70,12 @@ body ::-webkit-scrollbar-track {
 }
 .ui.pink.progress .bar {
         background-color: #33b0e6 !important
+}
+@media screen and (max-width: 767px) {
+        .ui.progress .bar {
+                height: 7px
+        }
+        
 }
 
 
@@ -353,7 +365,12 @@ body ::-webkit-scrollbar-track {
 }
 
  .text{
-    color:    #637381 !important
+    color:    #637381 !important;
+ }
+ .ui.dropdown > .text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
 }
 
 .modalContents {
@@ -390,6 +407,7 @@ body ::-webkit-scrollbar-track {
 }
 .ui.active.selection.dropdown {
         z-index: 10000000 !important;
+        // overflow-x: hidden
 }
 
 
@@ -417,6 +435,12 @@ body ::-webkit-scrollbar-track {
         // z-index: 10000;
         width: 100% !important;
         box-shadow: 0px 0px 10px rgba(99, 115, 129, 0.1) !important;
+}
+
+.ant-calendar-picker-input::placeholder {
+        color: rgb(99, 115, 129) !important;
+        font-weight: 500;
+        font-size: 14px
 }
    
 .login-form {
@@ -455,6 +479,15 @@ body ::-webkit-scrollbar-track {
                 margin-bottom: 20px;
         }
 }
+// @media only screen and (max-width: 767px) {
+//         .column {
+//                 background: white !important;
+//                 padding: 45px 20px !important;
+//                 // marginTop: 135px;
+//                 margin-top: 10% !important;
+//                 padding-bottom: 70px !important;
+//         }
+// }
 
 .addressBook .mainBtn {
         border-radius: 0px;

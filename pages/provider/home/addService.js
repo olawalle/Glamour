@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Grid, Input, TextArea, Select, Button, Loader, Checkbox } from 'semantic-ui-react';
+import { Grid, Input, TextArea, Select, Button, Loader, Checkbox, Message } from 'semantic-ui-react';
 // import ImageUploader from 'react-images-upload';
 import './less/addService.less'
 import CustomImageUploader from '../../../components/shared/CustomImageUploader';
 import {addServices, getProviderServices, editService, deleteProviderServices} from '../../../services/providerServices.ts'
+import { generalUploadImage } from '../../../services/generatData.ts'
 import * as actions from '../../../store/actions';
 import { connect } from 'react-redux';
 
@@ -17,7 +18,6 @@ const AddService = (props) => {
   ]
 
   useEffect(() => {
-    console.log(props)
     if (props.selectedService) {
       updateAmount(props.selectedService.amount)
       updateDesc(props.selectedService.description)
@@ -36,8 +36,12 @@ const AddService = (props) => {
   const [description, updateDesc] = useState('')
   const [amount, updateAmount] = useState('')
   const [duration, updateDuration] = useState('')
-  const [picture, updatePic] = useState(null)
+  const [pictureUrl, updatePic] = useState(null)
   const [deleting, setdeleting] = useState(false)
+  const [error, updateError] = useState({
+    show: false,
+    text: ''
+  })
   const [status, setstatus] = useState({
     text: 'active',
     value: true
@@ -61,7 +65,24 @@ const AddService = (props) => {
  }
  
  const getImageFile = (file) => {
-  updatePic(file)
+  if (props.selectedService) {
+    let data = new FormData()
+    data.append('pictureUrl', file)
+    generalUploadImage(data)
+    .then(res => {
+      console.log(res)
+      updatePic(res.data.data)
+    })
+    .catch(err => {
+      console.log({...err})
+      updateError({
+        show: true,
+        text: err.response.data.message
+      })
+    })
+  } else {
+    updatePic(file)
+  }
  }
 
  const submit = () => {
@@ -71,18 +92,18 @@ const AddService = (props) => {
     description,
     amount,
     duration,
-    picture,
+    pictureUrl,
     status: status.text
    }
 
    
    if (props.selectedService) {
-    Object.keys(data).forEach(obj => {
-      if (data[obj] !== props.selectedService[obj]) {
-        formData.append(obj, data[obj])
-      }
-    })
-    editService(formData, props.selectedService._id)
+    // Object.keys(data).forEach(obj => {
+    //   if (data[obj] !== props.selectedService[obj]) {
+    //     formData.append(obj, data[obj])
+    //   }
+    // })
+    editService(data, props.selectedService._id)
     .then(res => {
       getProviderServices(props.user.id)
       .then(res => {
@@ -94,7 +115,10 @@ const AddService = (props) => {
       })
     })
     .catch(err => {
-      console.log(err)
+      updateError({
+        show: true,
+        text: err.response.data.message
+      })
     })
   } else {
     setdisableAdd(true)
@@ -114,7 +138,10 @@ const AddService = (props) => {
       })
     })
     .catch(err => {
-      console.log(err)
+      updateError({
+        show: true,
+        text: err.response.data.message
+      })
     })
   }
  }
@@ -194,6 +221,13 @@ const AddService = (props) => {
               <Grid.Column width={14}>
               { props.selectedService  && <><Checkbox checked={status.value} onClick={(e, f) => switchStatus(e, f)} /> <span>Make Service Active?</span></> }
               </Grid.Column>
+              {
+                error.show ? <Message negative>
+                  <p>
+                    {error.text}
+                  </p>
+                </Message> : null
+              }
               <Grid.Column width={14} textAlign="center" className="myButtons">
                 { !props.selectedService && <>
                   {/* <Button size="huge"  className="mainBtn" secondary>Save as draft</Button> */}

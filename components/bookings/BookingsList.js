@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table, Divider, Tag } from 'antd';
-import { Button } from 'semantic-ui-react';
+import { Button, Loader } from 'semantic-ui-react';
 import ServiceProviderMedia from '../../components/shared/ServiceProviderMedia';
 import ServicesList from '../../components/shared/ServicesList';
 import 'antd/lib/table/style/index.css';
@@ -18,18 +18,21 @@ import { getProviderBookings } from '../../services/providerServices.ts'
 const CartList = (props) => {
 
   const markAsCompleted = (id) => {
-    console.log(id)
+    setLoading(true)
+    setID(id)
     let data = {
       status: 'completed'
     }
     updateStatus(data, id)
     .then(res => {
-      console.log(res)
+      setLoading(false)
       getProviderBookings()
       .then(providerBookings => {
+        // console.log(providerBookings)
         props.fetchData(providerBookings.data.data)
       })
       .catch(err => {
+        setLoading(false)
         console.log({...err})
       })
     })
@@ -38,8 +41,13 @@ const CartList = (props) => {
     })
   }
 
-  const leaveFeedback = (id) => {
+  const [loading, setLoading] = useState(false)
+  const [selectedID, setID] = useState('')
 
+  const leaveFeedback = (id) => {
+    // setID(id)
+    // setLoading(true)
+    markAsCompleted(id)
   }
 
   const providerCols = [
@@ -86,14 +94,19 @@ const CartList = (props) => {
           <Display if={props.role === 'provider' && row.message.status === "pending"}>
             <div className="actions"> 
               <Button className="secondaryBtn" onClick={() => markAsCompleted(row.message._id)}>
-                Mark as completed
+                {
+                  loading && row.message._id === selectedID ? <Loader active inline='centered' /> : <>Mark as completed</>
+                }
               </Button>
             </div>
           </Display>  
+
           <Display if={props.role === 'provider' && row.message.status === "completed"}>
             <div className="actions"> 
               <Button className="secondaryBtn" onClick={() => leaveFeedback(row.message._id)}>
-                Leave feedback
+                {
+                  loading && row.message._id === selectedID ? <Loader active inline='centered' /> : <>Leave feedback</>
+                }
               </Button>
             </div>
           </Display>    
@@ -140,6 +153,7 @@ const CartList = (props) => {
 
   return (
     <>
+
       <Display if={props.role === 'provider'}>
         <div className="bookingslist">
           <Table
@@ -151,6 +165,7 @@ const CartList = (props) => {
           />
         </div>
       </Display>
+
       <Display if={props.role === 'client'}>
         <div className="bookingslist">
           <Table
@@ -162,6 +177,7 @@ const CartList = (props) => {
           />
         </div>
       </Display>
+
     </>
   );
 }

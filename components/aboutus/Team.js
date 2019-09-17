@@ -15,9 +15,9 @@ const Team = (props) => {
         </Header>
         <TeamMembers size={4}>
           {
-            props.teamMembers.map(member => (
-              <TeamMember key={member.id} size={4} {...member} />
-            ))
+            props.teamMembers.map((member, i) => (
+              <TeamMember key={member.id} size={4} {...member} no={i} />
+            )) 
           }
         </TeamMembers>
       </Container>

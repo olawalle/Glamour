@@ -17,6 +17,7 @@ import addressReducer from '../reducers/address';
 import providerLookbookReducer from '../reducers/providerLookbook'
 import subscriptionsReducer from '../reducers/subscriptions'
 import activeComponentReducer from '../reducers/activeComponent'
+import cityReducer from '../reducers/city'
 
 let rootReducer = combineReducers({
   user: userReducer,
@@ -34,7 +35,8 @@ let rootReducer = combineReducers({
   addresses: addressReducer,
   providerLookbook: providerLookbookReducer,
   subscriptions: subscriptionsReducer,
-  activeComponent: activeComponentReducer
+  activeComponent: activeComponentReducer,
+  cities: cityReducer
 });
 
 export default rootReducer;

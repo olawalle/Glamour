@@ -1,7 +1,5 @@
 import axios from 'axios'
 import * as apiUrls from './apiUrls'
-import { saveUserData } from '../store/actions'
-import {initStore} from '../store'
 
 let login = (data) => {
     return axios({
@@ -11,6 +9,22 @@ let login = (data) => {
         headers: {
             'Content-Type': 'application/json',
         }
+    })
+}
+
+
+let verify = (token) => {
+    return axios({
+        method: 'PUT',
+        url: apiUrls.activate+'/'+token,
+    })
+}
+
+let deactivateUser = (id, status) => {
+    return axios({
+        method: 'PUT',
+        data: { status },
+        url: apiUrls.disableUser+'/'+id,
     })
 }
 
@@ -29,6 +43,15 @@ let getCurrentUser = () => {
     return axios({
         method: 'GET',
         url: apiUrls.getCurrentUser
+    })
+}
+
+
+let getStatus = (role) => {
+    let url =  role === 'client' ? apiUrls.clientStatusUrl : apiUrls.providerStatusUrl
+    return axios({
+        method: 'GET',
+        url
     })
 }
 
@@ -206,9 +229,12 @@ let getConversations = (id) => {
 
 export {
     login,
+    verify,
+    deactivateUser,
     getCurrentUser,
     changePassword,
     getUserNotifications,
+    getStatus,
     getBookings,
     postBookings,
     postSubscriptionPayment,

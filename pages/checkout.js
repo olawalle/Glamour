@@ -1,6 +1,6 @@
 import React, { Component, useRef } from 'react'
 
-import { Grid, Image, Container, Button, Modal, Loader } from 'semantic-ui-react'
+import { Grid, Image, Container, Button, Modal, Loader, Message } from 'semantic-ui-react'
 import Checkoutform from '../components/checkout/checkoutform'
 import BookingDetails from '../components/checkout/bookingDetails'
 import Navbar from '../components/shared/Navbar';
@@ -30,6 +30,10 @@ class Checkout_ extends Component {
     },
     bookingId: "",
     client_secret: "",
+    error: {
+      show: false,
+      message: ''
+    }
   }
 
   styles = {
@@ -81,7 +85,7 @@ class Checkout_ extends Component {
       }
       postPayment(amt, res.data.data.bookings._id)
       .then(resp => {
-        console.log(resp)
+        // console.log(resp)
         this.setState({loading: false})
         this.setState({
           client_secret: resp.data.data.client_secret,
@@ -89,7 +93,7 @@ class Checkout_ extends Component {
         })
       })
       .catch(err => {
-        console.log({...err})
+        console.log(...err)
         this.setState({loading: false})
       })
     })
@@ -111,6 +115,7 @@ class Checkout_ extends Component {
         setTimeout(() => {       
         }, 3000);
         if (result.paymentIntent) {
+          console.log(result)
           let data = {
             secret: result.paymentIntent.id
           }
@@ -121,6 +126,18 @@ class Checkout_ extends Component {
           .catch(err => {
             console.log(err)
           })
+        } else {
+          this.setState({
+            loading: false,
+            error: {
+              show: true,
+              message: result.error.message
+            }
+          })
+
+          setTimeout(() => {
+            this.setState({error: {show: false, message: ''}})
+          }, 5000);
         }
         // Handle result.error or result.paymentIntent
       })
@@ -165,14 +182,21 @@ class Checkout_ extends Component {
           </Display>
         </Button>
     } else {
-        return <Button secondary className="proceedBtn" onClick={() => this.handleSubmit()}>
-          <Display if={this.state.loading}>
-            <Loader active inline='centered' />
+        return <>
+          <Button secondary className="proceedBtn" onClick={() => this.handleSubmit()}>
+            <Display if={this.state.loading}>
+              <Loader active inline='centered' />
+            </Display>
+            <Display if={!this.state.loading}>
+              <div> <img src='/static/icons/lock.svg' />  Make payment</div>
+            </Display>
+          </Button>
+          <Display if={this.state.error.show}>
+            <Message negative>
+              {this.state.error.message}
+            </Message>
           </Display>
-          <Display if={!this.state.loading}>
-            <div> <img src='/static/icons/lock.svg' />  Make payment</div>
-          </Display>
-        </Button>
+        </>
       }
     }
     

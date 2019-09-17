@@ -8,7 +8,7 @@ const Testimonial = (props) => {
       <Grid columns={2}>
         <Grid.Row>
           <Grid.Column className="pr-0" mobile={4} tablet={4} largeScreen={5} widescreen={4}>
-            <Image className="testimonials--avatar" circular={true} size="tiny" src={props.testimonial.img} />
+            <Image className="testimonials--avatar" circular={true} size="tiny" src={`https://randomuser.me/api/portraits/women/${props.no}.jpg`} />
           </Grid.Column>
           <Grid.Column className="pl-0" mobile={11} tablet={11} largeScreen={11} widescreen={11}>
             <Header className="testimonials--fullname" as="h5">{props.testimonial.fullname}</Header>

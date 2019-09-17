@@ -11,7 +11,9 @@ import CityMgt from './admin/cityMgt';
 import ContentMgt from './admin/contentMgt';
 import OrderMgt from './admin/orderMgt';
 import Router from 'next/router'
-import { getAllUsers, getAllCategories } from '../services/generatData.ts'
+import { getAllUsers } from '../services/generatData.ts'
+import { getAllServices } from '../services/generatData.ts'
+import { getBeautyServices } from '../store';
 
 const Admin = (props) => {
 
@@ -19,32 +21,37 @@ const Admin = (props) => {
     const [allUsers, updateAllUsers] = useState([])
     const [allCategories, updateCategories] = useState([])
     const [activeComponent, updateActiveComponent] = useState(<CustomerMgt users={allUsers} />)
+    const [categories, saveServices] = useState([])
 
     useEffect(() => {
           if (!window.sessionStorage.getItem('glamourToken')) {
               Router.push('/login')
           } else {
-            getAllUsers()
-            .then(res => {
-                updateAllUsers(res.data.users)
-                console.log(res.data.users)
-                updateActiveComponent(<CustomerMgt users={res.data.users.filter(user => user.role === 'client')} />)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-
-            getAllCategories() 
-            .then(res => {
-                updateCategories(res.data.services)
-                console.log(res.data)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+            getData()
         }
 
+        // get list of service categories, trends and serviceProviders
+        getAllServices()
+        .then(res => {
+            // console.log(res)
+            saveServices(res.data.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
     }, [])
+
+    const getData = (n) => {
+        getAllUsers()
+        .then(res => {
+            updateAllUsers(res.data.users)
+            !n ? updateActiveComponent(<CustomerMgt users={res.data.users.filter(user => user.role === 'client')} />) : null
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
 
     const updateComponent = (name) => {
         switch (name) {
@@ -53,11 +60,11 @@ const Admin = (props) => {
                 break;
                 
             case 'Service provider management':
-                updateActiveComponent(<ServiceProviderMgt users={allUsers.filter(user => user.role === 'provider')} />)
+                updateActiveComponent(<ServiceProviderMgt getUsers={getData(2)} users={allUsers.filter(user => user.role === 'provider')} />)
                 break;
                 
             case 'Category management':
-                updateActiveComponent(<CategoryMgt categories={allCategories} />)
+                updateActiveComponent(<CategoryMgt />)
                 break;
                 
             case 'City management':
@@ -135,7 +142,8 @@ const Admin = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        state
+        state,
+        beautyServices: getBeautyServices(state),
     }
 }
 

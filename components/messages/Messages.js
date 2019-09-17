@@ -26,9 +26,11 @@ const Messages = (props) => {
   let resizeHandler = () => {
     if (!msgComponentInitialized) setInitState(true);
     if (window.innerWidth <= 480) {
+      console.log('mobile')
       setIsInTabletView(false);
       return setIsInMobileView(true);
     } else if (window.innerWidth <= 791) {
+      console.log('tab')
       setIsInMobileView(false);
       return setIsInTabletView(true);
     }
@@ -40,7 +42,13 @@ const Messages = (props) => {
     
     // updateInterval(setInterval(() => {
     //   getConvo(activeConversation)
-    // }, 5000))
+    // }, 12000))
+
+    // if (window) {
+    //   window.myInterval = setInterval(setInterval(() => {
+    //     getConvo(activeConversation)
+    //   }, 12000));
+    // }
 
     if (Router.router.query.conversationId) {
       getConvo(Router.router.query.conversationId)
@@ -53,7 +61,7 @@ const Messages = (props) => {
     window.addEventListener('resize', resizeHandler);
     return () => {
       window.removeEventListener('resize', resizeHandler);
-      // updateInterval(clearTimeout(interval))
+      logg()
     }
   }, [])
 
@@ -99,12 +107,15 @@ const Messages = (props) => {
 
   const determineBackBtnClasses = () => {
     let classes = 'go-back is-v-centered mt-30 pl-2';
-    if (props.threadId && ( isInMobileView || isInTabletView )) return classes;
-    return classes + ' is-hidden';
+    if ( isInMobileView || isInTabletView ) return classes;
+    return classes 
+    + ' is-hidden';
   }
 
-  const loggg = () => {
-    console.log(allMessages)
+  const logg = () => {
+    // if(window.myInterval != undefined && window.myInterval != 'undefined'){
+    //   window.clearInterval(window.myInterval);
+    // }
   }
 
   return (

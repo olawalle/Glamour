@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Grid, Input, Button, Select } from 'semantic-ui-react'
+import { Table, Grid, Input, Button, Select, Checkbox } from 'semantic-ui-react'
 import dayjs from 'dayjs'
+import { deactivateUser } from '../../services/auth.ts'
 
 export default function CustomerMgt({state, users}) {
 
@@ -12,13 +13,25 @@ export default function CustomerMgt({state, users}) {
     ])
 
     useEffect(() => {
-      console.log(users)
     }, [])
     
     const logg = () => {
-      console.log(users)
     }
     
+
+    const check = (e, id) => {
+      let active = users.find(user => user._id === id).isActive === 1
+      let status = null
+      active ? status = 0 : status = 1
+      deactivateUser(id, status)
+      .then(res => {
+        getUsers()
+      })
+      .catch(err => {
+        console.log({...err})
+      })
+    }
+
     const openEdit = (i) => {
       updateIsEditting(true)
       i >= 0 ? updateSelectedUser(users[i]) : updateSelectedUser({})
@@ -53,7 +66,10 @@ export default function CustomerMgt({state, users}) {
                         <Table.Cell>{user.phone}</Table.Cell>
                         {/* <Table.Cell>{user.postcode}</Table.Cell>
                         <Table.Cell>{dayjs(user.createdAt).format('DD MMM YYYY')}</Table.Cell> */}
-                        <Table.Cell> <span className="edit" onClick={() => openEdit(i)}>Edit</span> </Table.Cell>
+                        <Table.Cell> 
+                          {/* <span className="edit" onClick={() => openEdit(i)}>Edit</span>  */}
+                          <Checkbox checked={user.isActive === 1} onClick={(e, f) => check(f, user._id)} toggle />
+                        </Table.Cell>
                     </Table.Row>
                   }) : null
                 }

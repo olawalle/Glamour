@@ -164,7 +164,6 @@ class SplitFieldsForm extends Component {
   };
 
   handleChange = (e) => {
-    // console.log(e)
     this.props.getCard(this.state.card)
     // if (error) {
     //   this.setState({errorMessage: error.message});
@@ -172,7 +171,6 @@ class SplitFieldsForm extends Component {
   };
 
   handleSubmit = (evt) => {
-    console.log('submitting')
     evt.preventDefault();
     if (this.props.stripe) {
       this.props.stripe.handleCardPayment(
@@ -208,7 +206,7 @@ class SplitFieldsForm extends Component {
       <form ref="card">
         <Grid>
           <Grid.Row>
-            <Grid.Column width={8}>
+            <Grid.Column mobile={16} largeScreen={8} computer={8}>
               <label>
                 Card number
                 <CardNumberElement
@@ -217,7 +215,7 @@ class SplitFieldsForm extends Component {
                 />
               </label>
             </Grid.Column>
-            <Grid.Column width={8}>
+            <Grid.Column mobile={16} largeScreen={8} computer={8}>
               <label>
                 Expiration date
                 <CardExpiryElement
@@ -226,13 +224,13 @@ class SplitFieldsForm extends Component {
                 />
               </label>
             </Grid.Column>
-            <Grid.Column width={8}>
+            <Grid.Column mobile={16} largeScreen={8} computer={8}>
               <label>
                 CVC
                 <CardCVCElement {...createOptions()} onChange={this.handleChange} />
               </label>
             </Grid.Column>
-            <Grid.Column width={8}>
+            <Grid.Column mobile={16} largeScreen={8} computer={8}>
               <label>
                 Postal code
                 <input
@@ -258,6 +256,7 @@ class SplitFieldsForm extends Component {
 
 export default class CardDetailsForm extends Component {
   getCard = (e) => {
+    console.log(e)
     this.props.getCard(e)
   }
   render() {

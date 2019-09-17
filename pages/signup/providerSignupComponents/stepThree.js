@@ -13,7 +13,7 @@ export default function StepThree(props) {
   const [desc, updateDesc] = useState('')
     
   useEffect(() => {
-    console.log(props)
+    // console.log(props)
     let store = null
     // if (store = JSON.parse(localStorage.getItem('store'))) {
     //   if (store.auth) {
@@ -24,10 +24,10 @@ export default function StepThree(props) {
   }, [])
 
   const jump = () => {
-    console.log({
-      services: services,
-      desc: desc
-    })
+    // console.log({
+    //   services: services,
+    //   desc: desc
+    // })
 
     props.jump({
       service: services,
@@ -36,7 +36,7 @@ export default function StepThree(props) {
   }
 
   const pickedServices = (e) => {
-    console.log(e.toString())
+    // console.log(e.toString())
     setServices(e.toString())
   }
 

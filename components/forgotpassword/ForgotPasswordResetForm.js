@@ -59,7 +59,7 @@ const forgotPasswordResetForm = (props) => {
               placeholder='Email address'
               fluid
             />
-            <div className="is-v-centered">
+            <div className="is-v-centered mt20">
               <Button
                 onClick={submit}
                 size="large"

@@ -114,7 +114,7 @@ class ServiceProvider extends Component {
                         <h1>
                             No providers match your specified criteria
                         </h1>
-                        <Button className="mainBtn secondaryBtn" onClick={() => Router.push('/serviceproviders')}>
+                        <Button className="mainBtn secondaryBtn" onClick={() => this.setState({allProviders: this.props.serviceProviders})}>
                             View All
                         </Button>
                     </div>

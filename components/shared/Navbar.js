@@ -19,7 +19,7 @@ const styles = {
   },
   UserIcon: {
     margin: '0 10px 0 0',
-    borderRadius: '50%',
+    // borderRadius: '50%',
   }
 }
 
@@ -36,7 +36,7 @@ const Navbar = (props) => {
   const [clientLinks, updateClient] = useState([
     'Personal details',
     'Address book',
-    'Payment methods and invoices',
+    // 'Payment methods and invoices',
     'Saved service providers'
   ])
 
@@ -66,7 +66,8 @@ const Navbar = (props) => {
   }
 
   const handleItemClick = () => {
-
+    updateBurgerId('')
+    updateInside({wrap: 'hide', inner: 'none'})
   }
 
   useEffect(() => {
@@ -119,7 +120,7 @@ const Navbar = (props) => {
             <Display if={props.userData.isLoggedIn && props.userData.role === 'client'}>
               <Link href="/account">
                 <Menu.Item className="mobile hidden cursor" as='div'>
-                  <Image style={styles.UserIcon} src={props.userData.pictureUrl} size='mini' /> { props.userData.fullname }
+                  <Image circular={true} style={styles.UserIcon} src={props.userData.pictureUrl} size='mini' /> { props.userData.fullname }
                 </Menu.Item>
               </Link>
               
@@ -135,7 +136,7 @@ const Navbar = (props) => {
             
               <Link href="/provider/home">
                 <Menu.Item className="mobile hidden" as='div'>
-                  <Image style={styles.UserIcon} src={props.userData.pictureUrl} size='mini' /> { props.userData.fullname }
+                  <Image circular={true} style={styles.UserIcon} src={props.userData.pictureUrl} size='mini' /> { props.userData.fullname }
                 </Menu.Item>
               </Link> 
                           
@@ -189,17 +190,12 @@ const Navbar = (props) => {
                 onClick={() => handleItemClick()}
               />
             </Link>
-            <Menu.Item
-              name='settings'
-              active={activeItem === 'Login'}
-              onClick={() => handleItemClick()}
-            />
             <Link href="/login">
               <Menu.Item position='right' as='a'>Log in</Menu.Item>
             </Link>
             <Menu.Item
-              name='settings'
-              active={activeItem === 'Login'}
+              name='Sign up'
+              active={activeItem === 'Sign up'}
               onClick={() => handleItemClick()}
             >
               <Link href="/signup">
@@ -210,14 +206,20 @@ const Navbar = (props) => {
           
             {/* links to be shown if a client is logged in */}
             <Display if={props.userData.isLoggedIn && props.userData.role === 'client'}>
+            <Link href="/notifications">
+              <Menu.Item position='right' onClick={() => handleItemClick()} as='a'>Notifications</Menu.Item>
+            </Link>
+            <Link href="/messages">
+              <Menu.Item position='right' onClick={() => handleItemClick()} as='a'>Messages</Menu.Item>
+            </Link>
               <Link href="/account">
-                <Menu.Item className="cursor name" as='div'>
-                  <Image style={styles.UserIcon} src={props.userData.pictureUrl} size='mini' /> { props.userData.fullname }
+                <Menu.Item className="cursor name" as='div' onClick={() => handleItemClick()}>
+                  <Image circular={true} style={styles.UserIcon} src={props.userData.pictureUrl} size='mini' /> { props.userData.fullname }
                 </Menu.Item>
               </Link>
               
               <Link href="/bookings">
-                <Menu.Item className="cursor" as='div'>
+                <Menu.Item className="cursor" as='div' onClick={() => handleItemClick()}>
                   <Image src='/static/images/basket.svg' size='mini' />
                 </Menu.Item>
               </Link>
@@ -228,8 +230,8 @@ const Navbar = (props) => {
             <Display if={props.userData.isLoggedIn && props.userData.role !== 'client'}>
             
               <Link href="/provider/home">
-                <Menu.Item className="" as='div'>
-                  <Image style={styles.UserIcon} src={props.userData.pictureUrl} size='mini' /> { props.userData.fullname }
+                <Menu.Item className="" as='div' onClick={() => handleItemClick()}>
+                  <Image circular={true} style={styles.UserIcon} src={props.userData.pictureUrl} size='mini' /> { props.userData.fullname }
                 </Menu.Item>
               </Link> 
                           

@@ -4,6 +4,7 @@ import withReduxStore from '../lib/with-redux-store'
 import { Provider } from 'react-redux'
 import 'semantic-ui-less/semantic.less';
 import { getCurrentUser } from '../services/auth.ts'
+import { getCities } from '../services/generatData.ts'
 import {saveUserData} from '../store/actions'
 import * as types from '../store/actions/types'
 import axios from 'axios'
@@ -12,6 +13,7 @@ import '../app.less';
 import { Snackbar } from '../components/shared/SnackBar';
 import { Progress } from 'semantic-ui-react'
 import Head from 'next/head'
+import Loader from '../components/shared/Loader';
 
 
 class Glamour extends App {
@@ -29,10 +31,11 @@ class Glamour extends App {
     snackbarRef: React.createRef(),
     message: "Your session has expired, please login to continue",
     showProgress: false,
-    progress: 0
+    progress: 0,
+    loading: false
   }
 
-  componentDidMount() { 
+  componentDidMount() {
     // const script = document.createElement("script");
     // script.src = "https://js.stripe.com/v3/";
     // script.async = true;
@@ -42,27 +45,34 @@ class Glamour extends App {
     // }
 
     if (window.sessionStorage.getItem('glamourToken')) {
+      this.setState({loading: true})
       getCurrentUser()
       .then(res => {
         this.props.reduxStore.dispatch(saveUserData({
           ...res.data.me,
           isLoggedIn: true
         }))
+        this.setState({loading: false})
+      })
+      .catch(err => {
+        this.setState({loading: false})
       })
     }
     
   // // axios token interceptor
   // axios.defaults.headers.common['x-access-token'] =  `${window.sessionStorage.getItem('glamourToken')}`
-  // axios.interceptors.response.use(function (response) {
-  //   // Do something with response data
-  //   return response;
-  // }, function (error) {
-  //   let err = {...error}
-  //   console.log('err.response.status', err.response.status)
-  //   err.response.status === 403 ? this._showSnackbarHandler() : null
-  //   // Do something with response error
-  //   // return Promise.reject(error);
-  // });
+  axios.interceptors.response.use(function (response) {
+    // Do something with response data
+    return response;
+  }, (error) => {
+    let err = {...error}
+    if (err.response.status === 403) {
+      this.state.snackbarRef.current.openSnackBar();
+      setTimeout(() => {
+        Router.push('/login')
+      }, 3000);
+    }
+  });
 
     Router.events.on('routeChangeStart', url => {
       this.setState({showProgress: true})
@@ -73,6 +83,7 @@ class Glamour extends App {
       }, 1000);
     })
     Router.events.on('routeChangeComplete', () => {
+      window.scrollTo(0, 0);
       this.setState({progress: 100})
       this.setState({
         showProgress: false,
@@ -86,21 +97,19 @@ class Glamour extends App {
   }
 
   
-  // _showSnackbarHandler = () => {
-  //   snackbarRef.current.openSnackBar();
-  // }
+  _showSnackbarHandler = () => {
+    this.state.snackbarRef.current.openSnackBar();
+  }
 
   render () {
     const { Component, pageProps, reduxStore } = this.props
     return (
       <Container id="glamour">
-        {/* <Snackbar ref = {this.state.snackbarRef} 
-          type="error" 
-          position={'top'} 
-          showClose={true} 
-          duration={20000} 
-          message={this.state.message} /> */}
-          
+      {
+
+        this.state.loading ? 
+        <Loader /> : null
+      }
       <Head>
         <title>Grooming on demand</title>
         <link rel="shortcut icon" href="/static/images/favicon.ico" />
@@ -114,6 +123,13 @@ class Glamour extends App {
             </>
           {/* </PersistGate> */}
         </Provider>
+        <Snackbar ref = {this.state.snackbarRef} 
+          type="error" 
+          position={'top'} 
+          showClose={false} 
+          duration={3000} 
+          message={this.state.message} />
+          
       </Container>
     )
   }

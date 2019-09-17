@@ -8,45 +8,51 @@ import * as actions from '../../store/actions'
 import './less/nav.less'
 import Display from './Display';
 import { getUserData } from '../../store';
+import { getStatus } from '../../services/auth.ts'
 
 
 class InnerNav extends Component {
-  state = { 
+  state = {
     activeItem: 'Home',
+    navStatus: {
+      bookings: false,
+      message: false,
+      notification: false
+    },
     links: [
       {
         text: 'Home',
         image: '/static/icons/home.svg',
         to: '/provider/home',
-        hasNotif: false,
+        hasNotif: null,
         for: 'provider'
       },
       {
         text: 'Home',
         image: '/static/icons/home.svg',
         to: '/serviceproviders',
-        hasNotif: false,
+        hasNotif: null,
         for: 'client'
       },
       {
         text: 'Notifications',
         image: '/static/icons/bell.svg',
         to: '/notifications',
-        hasNotif: true,
+        hasNotif: 'notification',
         for: 'all'
       },
       {
         text: 'Messages',
         image: '/static/icons/messages.svg',
         to: '/messages',
-        hasNotif: true,
+        hasNotif: 'message',
         for: 'all'
       },
       {
         text: 'My Bookings',
         image: '/static/icons/bookings.svg',
         to: '/bookings',
-        hasNotif: true,
+        hasNotif: 'bookings',
         for: 'all'
       },
       {
@@ -60,6 +66,16 @@ class InnerNav extends Component {
   }
 
   componentDidMount() {
+    getStatus()
+    .then(res => {
+      this.setState({
+        navStatus: res.data
+      })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+
     this.setState({ activeItem: this.state.links.find(link => link.to === Router.router.route).text})
   }
 
@@ -75,7 +91,7 @@ class InnerNav extends Component {
                 active={this.state.activeItem === link.text} 
                 onClick={() => this.handleItemClick(link.text)}
                 >
-                <Display if={link.hasNotif}>
+                <Display if={this.state.navStatus[link.hasNotif]}>
                   <span className="notif">.</span>
                 </Display>
                 <img src={link.image} className="linkIcon" alt=""/> 

@@ -43,11 +43,6 @@ const LoginForm = (props) => {
         password: loginFormData.password
       }
 
-      // let form = new FormData()
-      // Object.keys(data).forEach(key => {
-      //   form.append(key, data[key])
-      // })
-
       login(data)
       .then(res => {
         window.sessionStorage.setItem('glamourToken', res.data.data.token)
@@ -57,41 +52,25 @@ const LoginForm = (props) => {
         }
         props.saveUserData(payload)
         setlogginIn(false)   
-          // get user notifications
-          // getUserNotifications(res.data.data.token)
-          // .then(res => {
-          //   let notifications = res.data.data.notification
-          //   props.saveUserNotifications(notifications)
-          // })
-          // .catch(err => {
-          //   console.log(err)
-          // })
-
           if ( res.data.data.user.role === 'client')  {
             getUserAddresses(res.data.data.token)
             .then(addresses => {
                 props.saveUserAddresses(addresses.data.addresses)
-                props.saveActiveAddress(addresses.data.addresses[0]['_id'])
+                addresses.data.addresses[0] ? props.saveActiveAddress(addresses.data.addresses[0]['_id']) : props.saveActiveAddress('')
             })
             .catch(err => {
               console.log(err)
             })
-
-            // getSavedProviders(res.data.data.token)
-            // .then(prv => {
-            //   console.log(prv)
-            //   props.saveFavedProviders(prv.data.providers)
-            // })
-            // .catch(err => {
-            //   console.log(err)
-            // })
           }
+
           if (Router.router.query.from === 'book-service') {
             Router.push('/checkout')
           } else if (res.data.data.user.role === 'client') {
             Router.push('/serviceproviders')
-          } else {
+          } else if (res.data.data.user.role === 'provider') {
             Router.push('/provider/home')
+          } else {
+            Router.push('/admin')
           }
       })
       .catch(err => {

@@ -86,7 +86,7 @@ const styles = {
         console.log(res)
         setsigningUp(false)
         setModal(true) 
-        Router.push('/login')
+        // Router.push('/login')
         // return <Snackbar message={res.data.message} actionText="dismiss" />
       })
       .catch(err => {
@@ -248,7 +248,7 @@ const styles = {
             <img src="/static/icons/green-check.svg" style={styles.modalImage} alt=""/>
             <p style={styles.modalHeading}>Successful</p>
             <p style={styles.modalText}>
-              Your account has been sucessfully created
+              Your account has been sucessfully created. Please check your mail to verify your account
             </p>
             <Link href="/login">
               <Button  secondary style={styles.button}>

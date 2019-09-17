@@ -5,7 +5,7 @@ import './less/team.less';
 const TeamMember = (props) => {
   return (
     <Grid.Column  mobile={8} tablet={8} computer={props.size} largeScreen={props.size} widescreen={props.size}>
-      <Image src={props.img} />
+      <Image src={`https://randomuser.me/api/portraits/women/${props.no}.jpg`} />
       <Header className="mt-7" as='h4'>
         {props.name}
         <Header.Subheader>

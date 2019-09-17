@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import {Grid, Header, Select, Input, Checkbox, Button} from 'semantic-ui-react'
+import {Grid, Header, Select, Input, Checkbox, Button, Message} from 'semantic-ui-react'
 import Link from 'next/link';
 import Password from '../../../components/shared/Password';
 import './less/stepOne.less'
+import Display from '../../../components/shared/Display';
 
 
 const options = [
@@ -26,7 +27,7 @@ export default function StepOne(props) {
   }
 
   const submit = (e) => {
-    console.log(signupFormData)
+    // console.log(signupFormData)
     e.preventDefault();
     let  _formErrors = {};
     Object.keys(signupFormData).forEach((item) => {
@@ -35,9 +36,12 @@ export default function StepOne(props) {
       }
     })
 
+    console.log(formErrors)
+
     setFormErrors(_formErrors)
     if (Object.keys(_formErrors).length === 0) {
-      props.jump(signupFormData, 1)
+      let signupFormData_ = {...signupFormData.accept}
+      props.jump(signupFormData_, 1)
     }
 
     // CALL API WITH signupFormData
@@ -52,7 +56,7 @@ export default function StepOne(props) {
     phone: '',
     password: '',
     referral: '',
-    accept: true
+    accept: false
   });
 
   useEffect(() => {
@@ -136,6 +140,7 @@ export default function StepOne(props) {
             <div className="is-flex mt-10">
               <Checkbox
                 className="stepOne-form--checkbox"
+                error={formErrors['accept']}
                 onChange={(e, data) => handleChange(e, 'accept', data)}
               />
               <span>
@@ -146,6 +151,11 @@ export default function StepOne(props) {
                 of Glamour on Demand
               </span>
             </div>
+              <Display if={formErrors.accept}>
+                <Message negative>
+                  Kindly accept the terms and conditions
+                </Message>
+              </Display>
             <div className="is-v-centered">
                 {/* {props.children} */}
                 <Button

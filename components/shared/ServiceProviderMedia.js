@@ -11,7 +11,18 @@ const ServiceProviderMedia = (props) => {
   })
   return (
     <div className={ 'is-flex ' + props.className }>
-      { props.clientDetails && <img className="h40 is-round mr-15" src={props.clientDetails.from.userPhoto}></img> }
+      { props.clientDetails && 
+        // <img className="h40 is-round mr-15" src={props.clientDetails.from.userPhoto}></img> 
+        <div style={{
+          width: '50px', 
+          height: '50px', 
+          borderRadius: '50%', 
+          overflow: 'hidden', 
+          backgroundSize: 'cover', 
+          margin: '0 10px 0 0',
+          backgroundImage: `url(${props.clientDetails.from.userPhoto})`}}>
+        </div>
+      }
       <div>
         { props.clientDetails && <h4 className="has-font-freightbigpro fw900">{props.clientDetails.from.name}</h4> }
         <span className="time-container">

@@ -47,7 +47,7 @@ class Home extends Component {
 
     getAllTrends()
     .then(res => {
-      this.props.saveTrends(res.data.data)
+      this.props.saveTrends(res.data.data.services)
     })
     .catch(err => {
       console.log(err)
