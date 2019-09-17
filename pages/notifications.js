@@ -21,6 +21,13 @@ class notifications extends Component {
     .catch(err => {
       console.log(err)
     })
+<<<<<<< HEAD
+=======
+    // let token = window.sessionStorage.getItem('glamourToken')
+    // if (!token) {
+    //   Router.push("/login")
+    // }
+>>>>>>> 0d42c63d71e0dda2f220858d395eb18411b7652b
   }
 
   render () {

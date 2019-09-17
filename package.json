@@ -10,7 +10,8 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "postinstall": "node semantic-ui-less-postinstall",
-    "export": "next build && next export"
+    "export": "next build && next export",
+    "export_": "next export"
   },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",

@@ -49,6 +49,7 @@ class ServiceProvider extends Component {
                 && provider.postcode.toLowerCase().includes(e.postcode.toLowerCase())
         }) : newArray = this.state.allProviders.filter(provider => {
             return provider.description.toLowerCase().includes(f.searchFor.toLowerCase())
+                && provider.service.toLowerCase().includes(f.sortBy.toLowerCase())
                 && provider.postcode.toLowerCase().includes(f.postcode.toLowerCase())
                 && provider.service.toLowerCase().includes(f.sortBy.toLowerCase())
         })

@@ -114,45 +114,37 @@ class ProviderSignup extends Component {
             showClose={true} 
             duration={5000} 
             message={this.state.message} />
-            <Grid id="signup" className="providerSignup" columns={2} centered>
-                <Grid.Row>
-                    <Grid.Column mobile={14} tablet={11} computer={10} largeScreen={8} widescreen={7}>
-                        {/* <Grid Column> */}
-                            {/* <Grid.Row> */}
-                                <div className="indicatorsWrap_"  mobile={16} tablet={11}>
-                                    <div className="indicatorsWrapInner">
-                                        <ul className="indicators">
-                                            {
-                                                this.state.steps.map((step, i) => {
-                                                    if (i <= this.state.step) return <li onClick={() => this.setState({...this.state, step: i})} className={step.active}><div className="listContent"><p>{step.text}</p></div></li>
-                                                    if (i > this.state.step) return <li className={step.active}><div className="listContent"><p>{step.text}</p></div></li>
-                                                })
-                                            }
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div className="indicatorsWrap">
-                                    <div className="indicatorsWrapInner">
-                                        <ul className="indicators">
-                                            {
-                                                this.state.steps.map((step, i) => {
-                                                    if (i <= this.state.step) return <li onClick={() => this.setState({...this.state, step: i})} className={step.active}><div className="listContent"><p>{step.text}</p></div></li>
-                                                    if (i > this.state.step) return <li className={step.active}><div className="listContent"><p>{step.text}</p></div></li>
-                                                })
-                                            }
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div className="formWrap">
-                                    {
-                                        this.whatStep()
-                                    }
-                                </div>
-                            {/* </Grid.Row> */}
-                        {/* </Grid> */}
-                    </Grid.Column>
-                </Grid.Row>
-            </Grid>
+            <div id="signup" className="providerSignup">
+                <div className="indicatorsWrap_">
+                    <div className="indicatorsWrapInner">
+                        <ul className="indicators">
+                            {
+                                this.state.steps.map((step, i) => {
+                                    if (i <= this.state.step) return <li onClick={() => this.setState({...this.state, step: i})} className={step.active}><div className="listContent"><p>{step.text}</p></div></li>
+                                    if (i > this.state.step) return <li className={step.active}><div className="listContent"><p>{step.text}</p></div></li>
+                                })
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div className="indicatorsWrap">
+                    <div className="indicatorsWrapInner">
+                        <ul className="indicators">
+                            {
+                                this.state.steps.map((step, i) => {
+                                    if (i <= this.state.step) return <li onClick={() => this.setState({...this.state, step: i})} className={step.active}><div className="listContent"><p>{step.text}</p></div></li>
+                                    if (i > this.state.step) return <li className={step.active}><div className="listContent"><p>{step.text}</p></div></li>
+                                })
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div className="formWrap">
+                    {
+                        this.whatStep()
+                    }
+                </div>
+            </div>
         </Auth>
     )
   }
