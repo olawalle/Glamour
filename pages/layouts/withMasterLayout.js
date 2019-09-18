@@ -22,7 +22,7 @@ export default (Page) => {
 
     componentDidMount() {
       // axios token interceptor
-      axios.defaults.headers.common['x-access-token'] =  `${window.sessionStorage.getItem('glamourToken')}`
+      if (window.sessionStorage.getItem('glamourToken')) axios.defaults.headers.common['x-access-token'] =  window.sessionStorage.getItem('glamourToken')
 
       Router.router.route === '/' ? this.setState({show: false}) : this.setState({show: true })
     }

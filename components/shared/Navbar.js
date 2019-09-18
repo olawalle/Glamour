@@ -84,8 +84,8 @@ const Navbar = (props) => {
         <Menu.Item>
           <Link href="/">
             {
-              props.from === 'banner' ? <Image className="logo" src='/static/images/logoWhite.svg' size='' /> :
-                <Image className="logo" src='/static/images/logo-male.png' size='' />
+              props.from === 'banner' ? <Image className="logo" src='/static/images/logoWhite.svg' /> :
+                <Image className="logo" src='/static/images/logo-male.png' />
             }
           </Link>
         </Menu.Item>
