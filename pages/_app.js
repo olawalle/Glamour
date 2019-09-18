@@ -61,18 +61,20 @@ class Glamour extends App {
     
   // // axios token interceptor
   // axios.defaults.headers.common['x-access-token'] =  `${window.sessionStorage.getItem('glamourToken')}`
-  axios.interceptors.response.use(function (response) {
-    // Do something with response data
-    return response;
-  }, (error) => {
-    let err = {...error}
-    if (err.response.status === 403) {
-      this.state.snackbarRef.current.openSnackBar();
-      setTimeout(() => {
-        Router.push('/login')
-      }, 3000);
-    }
-  });
+  axios.interceptors.response.use((response) => {
+    return Promise.resolve(response)
+   }, (error) => {
+     let err = {...error}
+     if (err.response.status === 403) {
+       // redirect users to the login page once token expires
+       this.state.snackbarRef.current.openSnackBar();
+       setTimeout(() => {
+         Router.push('/login')
+       }, 3000);
+     } else {
+       return Promise.reject(error)
+     }
+   });
 
     Router.events.on('routeChangeStart', url => {
       this.setState({showProgress: true})
