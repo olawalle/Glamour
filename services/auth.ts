@@ -51,7 +51,10 @@ let getStatus = (role) => {
     let url =  role === 'client' ? apiUrls.clientStatusUrl : apiUrls.providerStatusUrl
     return axios({
         method: 'GET',
-        url
+        url,
+        headers: {
+            'x-access-token': window.sessionStorage.getItem('glamourToken')
+        }
     })
 }
 

@@ -45,6 +45,7 @@ const LoginForm = (props) => {
 
       login(data)
       .then(res => {
+        console.log('then')
         window.sessionStorage.setItem('glamourToken', res.data.data.token)
         let payload = {
           ...res.data.data.user,
@@ -78,7 +79,6 @@ const LoginForm = (props) => {
         setMessage(err.response.data.message)
         setSnackType('error')
         _showSnackbarHandler()
-        console.log({...err})
       })
     }
   }
