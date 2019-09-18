@@ -111,12 +111,21 @@ class ServiceProvider extends Component {
                     </Grid>  :
                     <div className="emptyProviders">
                         <img src="/static/icons/empty_service.svg" alt=""/>
-                        <h1>
-                            No providers match your specified criteria
-                        </h1>
-                        <Button className="mainBtn secondaryBtn" onClick={() => this.setState({allProviders: this.props.serviceProviders})}>
-                            View All
-                        </Button>
+                        {
+                            this.props.serviceProviders.length === 0 ? <div>
+                                <h1>
+                                    No Providers yet. Kindly check back later
+                                </h1>
+                            </div> :
+                            <div>
+                                <h1>
+                                    No providers match your specified criteria
+                                </h1>
+                                <Button className="mainBtn secondaryBtn" onClick={() => this.setState({allProviders: this.props.serviceProviders})}>
+                                    View All
+                                </Button>
+                            </div>
+                        }
                     </div>
                     }
                 </div>
