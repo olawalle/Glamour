@@ -75,8 +75,7 @@ const LoginForm = (props) => {
       })
       .catch(err => {
         setlogginIn(false)
-        console.log({...err})
-        // setMessage(err.response.data.message)
+        setMessage(err.response.data.message)
         setSnackType('error')
         _showSnackbarHandler()
       })
