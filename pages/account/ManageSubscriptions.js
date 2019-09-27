@@ -154,11 +154,12 @@ const ManageSubscriptions_ = (props) => {
     }
     postSubscriptionPayment(amt, selectedPlan._id)
     .then(resp => {
-      console.log(resp)
+      setsendingRequest(false)
       setSecret(resp.data.data.client_secret)
       handleSubmit(resp.data.data.client_secret)
     })
     .catch(err => {
+      setsendingRequest(false)
       console.log({...err})
     })
   }
@@ -170,7 +171,7 @@ const ManageSubscriptions_ = (props) => {
         card
       )
       .then(function(result) {
-        console.log(result)
+        // console.log(result)
         if (result.paymentIntent) {
           let data = {
             secret: result.paymentIntent.id,
@@ -249,7 +250,7 @@ const ManageSubscriptions_ = (props) => {
                 </Grid.Column>
             </Grid.Row>
             {
-              !userSubscription.present &&  <Grid.Row className="subscriptionsWrapper">
+              userSubscription.present &&  <Grid.Row className="subscriptionsWrapper">
                 {
                   props.subscriptions.availableSubscriptions.map(sub => {
                         return <Grid.Column width={4} key={sub._id}>
