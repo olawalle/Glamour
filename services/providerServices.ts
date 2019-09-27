@@ -120,6 +120,21 @@ let getSubscriptions = () => {
     })
 }
 
+let addSubscription = (data) => {
+    return axios({
+        method: 'POST',
+        url: apiUrls.subscriptionsUrl,
+        data
+    })
+}
+
+let deleteSubscription = (id) => {
+    return axios({
+        method: 'DELETE',
+        url: apiUrls.subscriptionsUrl+'/'+id
+    })
+}
+
 let getBills = () => {
     return axios({
         method: 'GET',
@@ -143,5 +158,7 @@ export {
     deleteLookbook,
     providerSubscribe,
     getSubscriptions,
+    addSubscription,
+    deleteSubscription,
     getBills
 }
