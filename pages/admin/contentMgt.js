@@ -115,7 +115,7 @@ export default function ContentMgt(props) {
                                     {city.name}
                                 </Table.Cell>
                                 <Table.Cell>
-                                    {city.amount}
+                                    £{city.amount}
                                 </Table.Cell>
                                 <Table.Cell>
                                     {city.duration} days

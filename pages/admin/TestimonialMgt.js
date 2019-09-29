@@ -33,7 +33,7 @@ export default function TestimonialMgt(props) {
         updateLoading2(true)
         getAllTestimonials() 
         .then(res => {
-            updateTestimonials(res.data.data)
+            updateTestimonials(res.data.testimonials)
             updateLoading2(false)
         })
         .catch(err => {
@@ -72,13 +72,18 @@ export default function TestimonialMgt(props) {
         form.append('picture', picture)
         form.append('fullname', fullname)
         form.append('body', body)
-        form.append('location', userLocation)
+        form.append('userLocation', userLocation)
         updateLoading(true)
         addTestimonial(form)
         .then(res => {
             getAll()
             updateIsEditting(false)
             updateLoading(false)
+
+            updateImage('')
+            updateName('')
+            updateDesc('')
+            updateLocation('')
         })
         .catch(err => {
             updateError(true)
@@ -163,14 +168,14 @@ export default function TestimonialMgt(props) {
                                 return <Table.Row key={i}>
                                         {/* <Table.Cell>{testimonial._id}</Table.Cell> */}
                                         <Table.Cell>{testimonial.fullname}</Table.Cell>
-                                        <Table.Cell>{testimonial.location}</Table.Cell>
+                                        <Table.Cell>{testimonial.userLocation}</Table.Cell>
                                         <Table.Cell>
-                                            <img src={testimonial.pictureUrl} width="80" alt=""/>
+                                            <img src={testimonial.pictureUrl} width="40" alt=""/>
                                         </Table.Cell>
                                         <Table.Cell>{testimonial.body}</Table.Cell>
                                         <Table.Cell>{dayjs(testimonial.createdAt).format('DD MMM YYYY')}</Table.Cell>
                                         <Table.Cell>
-                                            <span onClick={() => openEdit(testimonial._id)} className="edit">Edit</span>
+                                            {/* <span onClick={() => openEdit(testimonial._id)} className="edit">Edit</span> */}
                                             <span onClick={() => setOpen(true)} style={{color: 'red', padding: '0 20px', cursor: 'pointer'}}>Delete</span>
                                         </Table.Cell>
                                     </Table.Row>

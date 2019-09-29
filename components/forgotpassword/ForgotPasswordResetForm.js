@@ -58,12 +58,16 @@ const forgotPasswordResetForm = (props) => {
       }
       requestReset(data)
       .then(res => {
-        console.log(res)
         setLoading(false)
+        setSuccess(true)
+        setSuccessMsg(res.data.message)
       })
       .catch(err => {
-        console.log(err)
         setLoading(false)
+        showWarning(true)
+        setTimeout(() => {
+          showWarning(false)
+        }, 5000);
       })
     }
   }
@@ -82,6 +86,9 @@ const forgotPasswordResetForm = (props) => {
     // CALL API WITH forgotPasswordFormData
     if (changePwrdData.newPwrd !== changePwrdData.newPwrd2) {
       showWarning(true)
+      setTimeout(() => {
+        showWarning(false)
+      }, 5000);
     } else if (Object.keys(_formErrors).length === 0) {
       setLoading(true)
       let data = {
@@ -90,12 +97,16 @@ const forgotPasswordResetForm = (props) => {
       }
       resetPassword(data, token)
       .then(res => {
-        console.log(res)
+        setSuccess(true)
+        setSuccessMsg(res.data.message)
         setLoading(false)
       })
       .catch(err => {
-        console.log(err)
         setLoading(false)
+        showWarning(true)
+        setTimeout(() => {
+          showWarning(false)
+        }, 5000);
       })
     }
   }
@@ -105,6 +116,9 @@ const forgotPasswordResetForm = (props) => {
   const [hasToken, setHasToken] = useState(false)
   const [warning, showWarning] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [errMsg, setErrMsg] = useState('')
+  const [success, setSuccess] = useState(false)
+  const [successMsg, setSuccessMsg] = useState('')
 
   const [forgotPasswordFormData, setForgotPasswordData] = useState({
     email: ''
@@ -136,6 +150,16 @@ const forgotPasswordResetForm = (props) => {
               placeholder='Email address'
               fluid
             />
+            {
+              warning && <Message negative>
+                An error occured. Please try again
+              </Message>
+            }
+            {
+              success && <Message positive>
+                {successMsg}
+              </Message>
+            }
             <div className="is-v-centered mt20">
               <Button
                 onClick={submit}
@@ -165,18 +189,18 @@ const forgotPasswordResetForm = (props) => {
           </Header>
           <form className="forgotPassword-form">
             <Input
-              type="text"
+              type="password"
               error={formErrors['newPwrd']}
-              onChange={(e) => handleChange(e, 'newPwrd')}
+              onChange={(e) => handleChange_(e, 'newPwrd')}
               value={changePwrdData.newPwrd}
               size="huge"
               placeholder='New password'
               fluid
             />
             <Input
-              type="text"
+              type="password"
               error={formErrors['newPwrd']}
-              onChange={(e) => handleChange(e, 'newPwrd2')}
+              onChange={(e) => handleChange_(e, 'newPwrd2')}
               value={changePwrdData.newPwrd2}
               size="huge"
               placeholder='Confirm New password'
@@ -185,6 +209,11 @@ const forgotPasswordResetForm = (props) => {
             {
               warning && <Message negative>
                 The passwords provided do not match
+              </Message>
+            }
+            {
+              success && <Message positive>
+                {successMsg}
               </Message>
             }
             <div className="is-v-centered mt20">

@@ -29,7 +29,9 @@ const Service =  (props) => {
   }
   return (
     <Grid.Column style={styles.Column} onClick={toServices}>
-      <Image className="has-full-width" src={props.img} />
+      <div style={{width: '100%', height: '200px', overflow: 'hidden'}}>
+        <Image className="has-full-width" src={props.img} />
+      </div>
       <Header style={styles.Header} as='h4'>
         {props.name}
       </Header>

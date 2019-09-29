@@ -13,7 +13,7 @@ import dynamic from 'next/dynamic';
 import { Skeleton } from 'antd';
 import { getTestimonials, getBeautyServices, getTopTrends } from '../store';
 import 'antd/lib/skeleton/style/index.css'
-import { getAllServices, getAllTrends, getAllProviders } from '../services/generatData.ts'
+import { getAllServices, getAllTrends, getAllProviders, getAllTestimonials } from '../services/generatData.ts'
 import Router from 'next/router';
 
 const Testimonials = dynamic(
@@ -61,6 +61,11 @@ class Home extends Component {
     })
     .catch(err => {
       console.log(err)
+    })
+
+    getAllTestimonials()
+    .then(res => {
+      this.props.saveTestimonials(res.data.testimonials)
     })
   }
 

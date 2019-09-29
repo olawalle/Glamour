@@ -42,7 +42,7 @@ let changePassword = (data, id) => {
 
 let requestReset = (data) => {
     return axios({
-        method: 'PUT',
+        method: 'POST',
         url: apiUrls.requestReset,
         data: data
     })
@@ -50,7 +50,7 @@ let requestReset = (data) => {
 
 let resetPassword = (data) => {
     return axios({
-        method: 'PUT',
+        method: 'POST',
         url: apiUrls.resetPassword,
         data: data
     })
