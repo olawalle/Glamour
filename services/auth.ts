@@ -39,6 +39,23 @@ let changePassword = (data, id) => {
     })
 }
 
+
+let requestReset = (data) => {
+    return axios({
+        method: 'PUT',
+        url: apiUrls.requestReset,
+        data: data
+    })
+}
+
+let resetPassword = (data) => {
+    return axios({
+        method: 'PUT',
+        url: apiUrls.resetPassword,
+        data: data
+    })
+}
+
 let getCurrentUser = () => {
     return axios({
         method: 'GET',
@@ -236,6 +253,8 @@ export {
     deactivateUser,
     getCurrentUser,
     changePassword,
+    requestReset,
+    resetPassword,
     getUserNotifications,
     getStatus,
     getBookings,

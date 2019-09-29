@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Table, Input, Button, Grid, Radio, Loader } from 'semantic-ui-react'
+import { Table, Input, Button, Grid, Radio, Loader, Modal } from 'semantic-ui-react'
 import { getCities, addCity, removeCity, editCity } from '../../services/generatData.ts'
 
 export default function CityMgt(props) {
@@ -23,6 +23,8 @@ export default function CityMgt(props) {
     const [sendingRequest, updatesendingRequest] = useState(false)
     const [loading, setLoading] = useState(false)
     const [adding, setAdding] = useState(false)
+    const [open, setOpen] = useState(false)
+    const [id, setId] = useState('')
 
     const postCity = () => {
         updatesendingRequest(true)
@@ -50,6 +52,11 @@ export default function CityMgt(props) {
         })
     }
 
+    const openModal = (id) => {
+        setId(id)
+        setOpen(true)
+    }
+    
     const updateCity_ = (e, id) => {
         setLoading(true)
         let selectedCity = cities.find(city => city._id === id)
@@ -75,7 +82,7 @@ export default function CityMgt(props) {
         
     }
 
-    const deleteCity = (id) => {
+    const deleteCity = () => {
         removeCity(id)
         .then(res => {
             getCities()
@@ -141,7 +148,7 @@ export default function CityMgt(props) {
                                     <Radio toggle checked={city.status === 'Active'} onChange={(a, b) => updateCity_(b, city._id)} />
                                 </Table.Cell>
                                 <Table.Cell style={{color: 'red', cursor: 'pointer'}}>
-                                    <span onClick={() => deleteCity(city._id)}>
+                                    <span onClick={() => openModal(city._id)}>
                                         remove
                                     </span>
                                 </Table.Cell>
@@ -198,6 +205,20 @@ export default function CityMgt(props) {
             }
             </> : <Loader active />
             } 
+            <Modal size='mini' open={open} onClose={() => setOpen(false)}>
+              <Modal.Header>Delete City</Modal.Header>
+              <Modal.Content>
+                <p>Are you sure you want to delete this city?</p>
+              </Modal.Content>
+              <Modal.Actions>
+                <Button negative onClick={() => setOpen(false)}>No</Button>
+                <Button
+                  positive
+                  content='Yes'
+                  onClick={deleteCity}
+                />
+              </Modal.Actions>
+            </Modal>
         </>
     )
 }

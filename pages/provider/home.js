@@ -16,7 +16,7 @@ import CustomImageUploader from '../../components/shared/CustomImageUploader';
 import Display from '../../components/shared/Display';
 import { getCurrentUser, updateProvider } from '../../services/auth.ts'
 import { getProviderServices, getProviderBookings } from '../../services/providerServices.ts'
-import { uploadImage, uploadBanner } from '../../services/generatData.ts'
+import { uploadImage, uploadBanner , getAllServices} from '../../services/generatData.ts'
 import Loader from '../../components/shared/Loader'
 import { Snackbar } from '../../components/shared/SnackBar';
 
@@ -47,8 +47,15 @@ const ProviderHome = (props) => {
               console.log({...err})
             })
         }
-    }, [])
 
+        getAllServices()
+        .then(res => {
+            props.saveServices(res.data.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }, [])
     const [bannerSrc, updateBannerSrc] = useState({image: props.userData.bannerUrl})
     const [userPhoto, updateUserPhoto] = useState(props.userData.pictureUrl)
     const [showNav, updateShowNav] = useState(true)

@@ -3,60 +3,60 @@ import { ADD_TESTIMONIALS, SET_LOADING_TESTIMONIALS } from '../actions/types';
 const INITIAL_STATE = {
   all: [
     {
-      img: '/static/images/team/teammember3.png',
-      city: 'London',
+      pictureUrl: 'https://randomuser.me/api/portraits/women/2.jpg',
+      location: 'London',
       fullname: 'Melissa McCarthy',
-      testimony: `“They're using our own satellites against us. And the clock is ticking.
+      body: `“They're using our own satellites against us. And the clock is ticking.
       They're using our own satellites against us.
       And the clock is ticking. Just my luck, no ice.
       God help us, we're in the hands of engineers.”`,
     },
     {
-      img: '/static/images/team/teammember7.png',
-      city: 'Bristol',
+      pictureUrl: 'https://randomuser.me/api/portraits/women/5.jpg',
+      location: 'Bristol',
       fullname: 'Linda Florentine',
-      testimony: `“So you two dig up, dig up dinosaurs? Yeah,
+      body: `“So you two dig up, dig up dinosaurs? Yeah,
       but your scientists were so preoccupied with whether or not they could,
       they didn't stop to think if they should.”`,
     },
     {
-      img: '/static/images/team/teammember2.png',
-      city: 'Manchester',
+      pictureUrl: 'https://randomuser.me/api/portraits/women/25.jpg',
+      location: 'Manchester',
       fullname: 'Julie Tarantino',
-      testimony: `“Life finds a way. What do they got in there? King Kong?
+      body: `“Life finds a way. What do they got in there? King Kong?
       Eventually, you do plan to have dinosaurs on your dinosaur tour, right?
       They're using our own satellites against us. And the clock is ticking.”`,
     },
     {
-      img: '/static/images/team/teammember8.png',
-      city: 'London',
+      pictureUrl: 'https://randomuser.me/api/portraits/women/13.jpg',      
+      location: 'London',
       fullname: 'Melissa McCarthy',
-      testimony: `“They're using our own satellites against us. And the clock is ticking.
+      body: `“They're using our own satellites against us. And the clock is ticking.
       They're using our own satellites against us.
       And the clock is ticking. Just my luck, no ice.
       God help us, we're in the hands of engineers.”`,
     },
     {
-      img: '/static/images/team/teammember4.png',
-      city: 'Bristol',
+      pictureUrl: 'https://randomuser.me/api/portraits/women/25.jpg',      
+      location: 'Bristol',
       fullname: 'Linda Florentine',
-      testimony: `“So you two dig up, dig up dinosaurs? Yeah,
+      body: `“So you two dig up, dig up dinosaurs? Yeah,
       but your scientists were so preoccupied with whether or not they could,
       they didn't stop to think if they should.”`,
     },
     {
-      img: '/static/images/team/teammember5.png',
-      city: 'Manchester',
+      pictureUrl: 'https://randomuser.me/api/portraits/women/25.jpg',      
+      location: 'Manchester',
       fullname: 'Julie Tarantino',
-      testimony: `“Life finds a way. What do they got in there? King Kong?
+      body: `“Life finds a way. What do they got in there? King Kong?
       Eventually, you do plan to have dinosaurs on your dinosaur tour, right?
       They're using our own satellites against us. And the clock is ticking.”`,
     },
     {
-      img: '/static/images/team/teammember7.png',
-      city: 'London',
+      pictureUrl: 'https://randomuser.me/api/portraits/women/25.jpg',      
+      location: 'London',
       fullname: 'Melissa McCarthy',
-      testimony: `“They're using our own satellites against us. And the clock is ticking.
+      body: `“They're using our own satellites against us. And the clock is ticking.
       They're using our own satellites against us.
       And the clock is ticking. Just my luck, no ice.
       God help us, we're in the hands of engineers.”`,

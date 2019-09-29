@@ -7,22 +7,22 @@ import Router from 'next/router'
 const steps = [
   {
     header: '01. Choose your service',
-    subHeader: "My dad once told me, laugh and the world laughs with you, Cry, and I'll give you something to cry about.",
+    subHeader: "Select your beauty service from our range of mobile beauty services, from make-up to massages and hair removals.",
     image: "/static/images/how it works/choose_your_service.svg"
   },
   {
     header: '02. Choose a time and date',
-    subHeader: "Life finds a way. Do you have any idea how long it takes those cups to decompose.",
+    subHeader: "Choose a time that suit your lifestyle and schedule. Select a time, date and location that suits you or book instantly from selected partners.",
     image: "/static/images/how it works/choose_a_time_and_date.svg"
   },
   {
     header: '03. Select service provider',
-    subHeader: "Remind me to thank John for a lovely weekend. Just my luck, no ice. Hey, you know how I'm, like, always trying.",
+    subHeader: "Select from our range of professionals and vetted partners. They will come to you at your chosen location and time.",
     image: "/static/images/how it works/select_a_service_provider.svg"
   },
   {
     header: '04. Book service',
-    subHeader: "I was part of something special. Do you have any idea how long it takes those cups to decompose.",
+    subHeader: "Secure your place and you’re ready to go. Your Beauty specialist will be at your door in no time without any hassle",
     image: "/static/images/how it works/book_service.svg"
   },
 ];

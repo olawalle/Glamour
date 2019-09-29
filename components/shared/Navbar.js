@@ -101,7 +101,7 @@ const Navbar = (props) => {
             {/* links to be shown if user is not logged in */}
             <Display if={!props.userData.isLoggedIn}>
                 <Link href="/signup/provider">
-                  <Menu.Item className="mobile hidden" position='right' as='a'>Become a provider</Menu.Item>
+                  <Menu.Item className="mobile hidden" position='right' as='a'>Become a partner</Menu.Item>
                 </Link>
                 <Link href="/login">
                   <Menu.Item position='right' as='a'>Log in</Menu.Item>
@@ -185,8 +185,8 @@ const Navbar = (props) => {
           <Display if={!props.userData.isLoggedIn}>
             <Link href="/signup/provider">
               <Menu.Item
-                name='Become a provider'
-                active={activeItem === 'Become a provider'}
+                name='Become a partner'
+                active={activeItem === 'Become a partner'}
                 onClick={() => handleItemClick()}
               />
             </Link>

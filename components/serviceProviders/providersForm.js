@@ -24,7 +24,7 @@ class ProviderForm extends Component {
     value: { min: 2, max: 10 },
     styles: {},
     value: { start: 20, end: 80 },
-    selectedValues: {min: 0, max: 5},
+    selectedValues: {min: 20, max: 100},
     options: [],
     distance: [
       { key: 'less than 1 mile', text: 'less than 1 mile', value: 'less than 1 mile' },
@@ -196,7 +196,7 @@ class ProviderForm extends Component {
                     <span className="RangeLabel">Price range</span>
                     <span className="RangeValues">£{this.state.selectedValues.min} - £{this.state.selectedValues.max}</span>
                       
-                    <Range min={0} max={20} className="slider_" defaultValue={[this.state.selectedValues.min, this.state.selectedValues.max]} onChange={(event) => this.onChange(event)}  />
+                    <Range min={20} max={300} className="slider_" defaultValue={[this.state.selectedValues.min, this.state.selectedValues.max]} onChange={(event) => this.onChange(event)}  />
                   </div>
                 </Grid.Column>
             </Grid.Row>

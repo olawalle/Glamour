@@ -101,6 +101,18 @@ const LoginForm = (props) => {
   const [message, setMessage] = useState('')
  
   useEffect(() => {
+
+    let payload = {
+      createdAt: "",
+      email: "",
+      fullname: "",
+      id: "",
+      phone: "",
+      pictureUrl: "",
+      role: "",
+      isLoggedIn: false
+    }
+    props.saveUserData(payload)
     window.sessionStorage.removeItem('glamourToken')
   }, [])
 
@@ -164,7 +176,7 @@ const LoginForm = (props) => {
                 <p>
                   Are you a service provider?
                   {' '}
-                  <Link href="/">
+                  <Link href="/signup/provider">
                     <a className="is-pink">Get started</a>
                   </Link>
                 </p>

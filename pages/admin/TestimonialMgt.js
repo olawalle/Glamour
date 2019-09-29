@@ -2,37 +2,38 @@ import React, { useEffect, useState } from 'react'
 import { Table, Button, Grid, Input, TextArea, Message, Loader , Modal} from 'semantic-ui-react'
 import dayjs from 'dayjs'
 import { 
-    addCategory, 
-    getAllCategories, 
-    editCategory,
-    deleteCategory
+    getAllTestimonials, 
+    addTestimonial, 
+    editTestimonial,
+    deleteTestimonial
 } from '../../services/generatData.ts'
 import CustomImageUploader from '../../components/shared/CustomImageUploader';
 import Display from '../../components/shared/Display';
 
-export default function CategoryMgt(props) {
+export default function TestimonialMgt(props) {
 
     useEffect(() => {
         getAll()
-    }, [])
+    }, []);
 
     const [image, updateImage] = useState('')
     const [newService, updateNewService] = useState(true)
     const [picture, updatePicture] = useState(null)
-    const [serviceName, updateName]= useState('')
-    const [metaDescription, updateDesc]= useState('') 
-    const [categories, updateCategories] = useState([])
+    const [fullname, updateName]= useState('')
+    const [body, updateDesc]= useState('') 
+    const [userLocation, updateLocation]= useState('') 
+    const [testimonials, updateTestimonials] = useState([])
     const [error, updateError] = useState(false)
     const [toCloud, uploadToCloud] = useState(false)
-    const [selectedCategory, updateSelectedCategory] = useState({})
+    const [selectedTestimonial, updateSelectedTestimonial] = useState({})
     const [disable, updateDisable] = useState(false)
     const [open, setOpen] = useState(false)
 
     const getAll = () => {
         updateLoading2(true)
-        getAllCategories() 
+        getAllTestimonials() 
         .then(res => {
-            updateCategories(res.data.data)
+            updateTestimonials(res.data.data)
             updateLoading2(false)
         })
         .catch(err => {
@@ -51,14 +52,14 @@ export default function CategoryMgt(props) {
 
     const getUrl = (pictureUrl) => {
         updateDisable(false)
-        updateSelectedCategory({
-            ...selectedCategory,
+        updateSelectedTestimonial({
+            ...selectedTestimonial,
             pictureUrl
         })
     }
 
     const check = () => {
-        if (selectedCategory.pictureUrl) {
+        if (selectedTestimonial.pictureUrl) {
             uploadToCloud(true)
             updateDisable(true)
         } else {
@@ -69,10 +70,11 @@ export default function CategoryMgt(props) {
     const addNew = () => {
         let form = new FormData()
         form.append('picture', picture)
-        form.append('serviceName', serviceName)
-        form.append('metaDescription', metaDescription)
+        form.append('fullname', fullname)
+        form.append('body', body)
+        form.append('location', userLocation)
         updateLoading(true)
-        addCategory(form)
+        addTestimonial(form)
         .then(res => {
             getAll()
             updateIsEditting(false)
@@ -90,11 +92,11 @@ export default function CategoryMgt(props) {
 
     const postEdit = () => {
         let data = {
-            ...selectedCategory,
-            metaDescription: metaDescription,
-            serviceName: serviceName
+            ...selectedTestimonial,
+            body: body,
+            fullname: fullname
         }
-        editCategory(data)
+        editTestimonial(data)
         .then(res => {
             getAll()
             updateIsEditting(false)
@@ -105,7 +107,7 @@ export default function CategoryMgt(props) {
     }
 
     const removeCategory = () => {
-        deleteCategory(selectedCategory._id)
+        deleteTestimonial(selectedTestimonial._id)
         .then(res => {
             getAll()
             setOpen(false)
@@ -118,11 +120,11 @@ export default function CategoryMgt(props) {
     }
 
     const openEdit = (id) => {
-        let selectedCategory = categories.find(cat => cat._id === id)
-        updateSelectedCategory(selectedCategory)
-        updateImage(selectedCategory.pictureUrl)
-        updateName(selectedCategory.serviceName)
-        updateDesc(selectedCategory.metaDescription)
+        let selectedTestimonial = testimonials.find(cat => cat._id === id)
+        updateSelectedTestimonial(selectedTestimonial)
+        updateImage(selectedTestimonial.pictureUrl)
+        updateName(selectedTestimonial.fullname)
+        updateDesc(selectedTestimonial.body)
         updateIsEditting(true)
         updateNewService(false)
     }
@@ -140,14 +142,15 @@ export default function CategoryMgt(props) {
             !isEditting ? 
                 <>
                     <p className="heading">
-                        Category management
+                        Testimonial management
                     </p>
                     <Table basic='very'>
                         <Table.Header>
                         <Table.Row>
                             {/* <Table.HeaderCell>ID</Table.HeaderCell> */}
-                            <Table.HeaderCell>Category title</Table.HeaderCell>
-                            <Table.HeaderCell>Image</Table.HeaderCell>
+                            <Table.HeaderCell>Full name</Table.HeaderCell>
+                            <Table.HeaderCell>Location</Table.HeaderCell>
+                            <Table.HeaderCell>Photo</Table.HeaderCell>
                             <Table.HeaderCell>Description</Table.HeaderCell>
                             <Table.HeaderCell>Created on</Table.HeaderCell>
                             <Table.HeaderCell></Table.HeaderCell>
@@ -156,17 +159,18 @@ export default function CategoryMgt(props) {
 
                         <Table.Body>
                         {
-                            categories ? categories.map((category, i) => {
+                            testimonials ? testimonials.map((testimonial, i) => {
                                 return <Table.Row key={i}>
-                                        {/* <Table.Cell>{category._id}</Table.Cell> */}
-                                        <Table.Cell>{category.serviceName}</Table.Cell>
+                                        {/* <Table.Cell>{testimonial._id}</Table.Cell> */}
+                                        <Table.Cell>{testimonial.fullname}</Table.Cell>
+                                        <Table.Cell>{testimonial.location}</Table.Cell>
                                         <Table.Cell>
-                                            <img src={category.pictureUrl} width="80" alt=""/>
+                                            <img src={testimonial.pictureUrl} width="80" alt=""/>
                                         </Table.Cell>
-                                        <Table.Cell>{category.metaDescription}</Table.Cell>
-                                        <Table.Cell>{dayjs(category.createdAt).format('DD MMM YYYY')}</Table.Cell>
+                                        <Table.Cell>{testimonial.body}</Table.Cell>
+                                        <Table.Cell>{dayjs(testimonial.createdAt).format('DD MMM YYYY')}</Table.Cell>
                                         <Table.Cell>
-                                            <span onClick={() => openEdit(category._id)} className="edit">Edit</span>
+                                            <span onClick={() => openEdit(testimonial._id)} className="edit">Edit</span>
                                             <span onClick={() => setOpen(true)} style={{color: 'red', padding: '0 20px', cursor: 'pointer'}}>Delete</span>
                                         </Table.Cell>
                                     </Table.Row>
@@ -202,10 +206,13 @@ export default function CategoryMgt(props) {
                                 </CustomImageUploader>
                             </Grid.Column>
                             <Grid.Column width={16}>
-                                <Input value={serviceName} onChange={(e) => updateName(e.target.value)} placeholder="Service name" />
+                                <Input value={fullname} onChange={(e) => updateName(e.target.value)} placeholder="Fullname" />
                             </Grid.Column>
                             <Grid.Column width={16}>
-                                <TextArea value={metaDescription} style={{width: '100%'}} onChange={(e) => updateDesc(e.target.value)}  placeholder="Service description" />
+                                <Input value={userLocation} onChange={(e) => updateLocation(e.target.value)} placeholder="Location" />
+                            </Grid.Column>
+                            <Grid.Column width={16}>
+                                <TextArea value={body} style={{width: '100%'}} onChange={(e) => updateDesc(e.target.value)}  placeholder="Testimonial body" />
                             </Grid.Column>
                         </Grid.Row>
 
@@ -253,7 +260,7 @@ export default function CategoryMgt(props) {
         <Modal size='mini' open={open} onClose={() => setOpen(false)}>
           <Modal.Header>Delete Category</Modal.Header>
           <Modal.Content>
-            <p>Are you sure you want to delete this category?</p>
+            <p>Are you sure you want to delete this Testimonial?</p>
           </Modal.Content>
           <Modal.Actions>
             <Button negative onClick={() => setOpen(false)}>No</Button>

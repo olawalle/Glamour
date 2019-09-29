@@ -64,16 +64,16 @@ class Glamour extends App {
   axios.interceptors.response.use((response) => {
    return Promise.resolve(response)
   }, (error) => {
-    let err = {...error}
-    if (err.response.status === 403) {
+    let err = {error}
+    console.log(this.state)
+    if (err.error.response.status === 403) {
       // redirect users to the login page once token expires
       this.state.snackbarRef.current.openSnackBar();
       setTimeout(() => {
         Router.push('/login')
       }, 3000);
-    } else {
-      return Promise.reject(error)
     }
+    return Promise.reject(error)
   });
 
     Router.events.on('routeChangeStart', url => {

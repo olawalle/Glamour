@@ -196,13 +196,15 @@ const PersonalDetails = (props) => {
                   </Grid.Column>
                   <Grid.Column width={9}>
                       <Input 
-                      type="text"
+                        type="text"
+                        placeholder="Full Name"
                         value={clientData.fullname}
                         error={formErrors['fullname']}
                         onChange={(e) => handleChange(e, 'fullname')}
                       />
                       <Input 
                         readOnly
+                        placeholder="City"
                         value={ props.address ? props.address.city : '' }
                       />
                   </Grid.Column>
@@ -221,12 +223,14 @@ const PersonalDetails = (props) => {
                         readOnly
                         type="email"
                         value={props.user.email}
+                        placeholder="Email address"
                         error={formErrors['email']}
                         onChange={(e) => handleChange(e, 'email')}
                       />
                       <Input 
                         value={clientData.phone}
                         type="tel"
+                        placeholder="Phone number"
                         error={formErrors['phone']}
                         onChange={(e) => handleChange(e, 'phone')}
                       />
@@ -306,12 +310,14 @@ const PersonalDetails = (props) => {
                       <Input 
                       type="text"
                         value={providerData.fullname}
+                        placeholder="Full Name"
                         error={formErrors['fullname']}
                         onChange={(e) => handleChange_(e, 'fullname')}
                       />
                       <TextArea 
                         rows="5"
                         value={providerData.description}
+                        placeholder="Description"
                         error={formErrors['description']}
                         onChange={(e) => handleChange_(e, 'description')}
                       />
@@ -329,12 +335,14 @@ const PersonalDetails = (props) => {
                   <Grid.Column width={9}>
                       <Input 
                         readOnly
+                        placeholder="Email"
                         value={props.user.email}
                       />
                       <Input 
                         type="tel"
                         value={providerData.phone}
                         error={formErrors['phone']}
+                        placeholder="Phone"
                         onChange={(e) => handleChange_(e, 'phone')}
                       />
                   </Grid.Column>

@@ -13,8 +13,10 @@ const Activate = () => {
             setVerified(true)
             setMessage(res.data.message)
             setSnackType('success')
-            Router.push('/login')
             _showSnackbarHandler()
+            setTimeout(() => {
+                Router.push('/login')
+            }, 6000);
         })
         .catch(err => {
             setMessage(err.response.data.message)
@@ -40,7 +42,7 @@ const Activate = () => {
             type={snackType} 
             position={'top'} 
             showClose={true} 
-            duration={5000} 
+            duration={10000} 
             message={message} />
             { !verified && <Loader /> }
         </>
