@@ -25,6 +25,7 @@ export const providerSchedule = `${baseUrl}/bookings/schedule`
 export const addServicesUrl = `${baseUrl}/uploads/services`
 export const addServiceCategory = `${baseUrl}/uploads/categories`
 export const servicesUrl = `${baseUrl}/categories`
+export const createTestimonialUrl = `${baseUrl}/uploads/testimonial`
 export const testimonialUrl = `${baseUrl}/testimonials`
 export const payUrl = `${baseUrl}/bookings/pay`
 export const subscriptionPayUrl = `${baseUrl}/users/pay`

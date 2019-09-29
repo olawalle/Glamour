@@ -39,6 +39,23 @@ let changePassword = (data, id) => {
     })
 }
 
+
+let requestReset = (data) => {
+    return axios({
+        method: 'POST',
+        url: apiUrls.requestReset,
+        data: data
+    })
+}
+
+let resetPassword = (data) => {
+    return axios({
+        method: 'POST',
+        url: apiUrls.resetPassword,
+        data: data
+    })
+}
+
 let getCurrentUser = () => {
     return axios({
         method: 'GET',
@@ -51,7 +68,10 @@ let getStatus = (role) => {
     let url =  role === 'client' ? apiUrls.clientStatusUrl : apiUrls.providerStatusUrl
     return axios({
         method: 'GET',
-        url
+        url,
+        headers: {
+            'x-access-token': window.sessionStorage.getItem('glamourToken')
+        }
     })
 }
 
@@ -233,6 +253,8 @@ export {
     deactivateUser,
     getCurrentUser,
     changePassword,
+    requestReset,
+    resetPassword,
     getUserNotifications,
     getStatus,
     getBookings,

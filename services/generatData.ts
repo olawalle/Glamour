@@ -70,7 +70,7 @@ let getAllTestimonials = () => {
 let addTestimonial = (data) => {
     return axios({
         method: 'POST',
-        url: apiUrls.testimonialUrl,
+        url: apiUrls.createTestimonialUrl,
         data: data
     })
 }

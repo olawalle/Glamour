@@ -35,7 +35,9 @@ const Footer = () => {
             <Grid.Column width="4" >
               <List link>
                 <List.Header>Contact us</List.Header>
-                <List.Item as='a'>support@groomingondemandltd.com</List.Item>
+                <List.Item as='a'>
+                  <a href="mailto:support@groomingondemandltd.com">support@groomingondemandltd.com</a>
+                </List.Item>
                 <List.Item as='a'>020 3570 3466</List.Item>
               </List>
               {/* <List className="social-links" horizontal relaxed>

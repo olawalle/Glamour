@@ -12,7 +12,7 @@ const Testimonial = (props) => {
           </Grid.Column>
           <Grid.Column className="pl-0" mobile={11} tablet={11} largeScreen={11} widescreen={11}>
             <Header className="testimonials--fullname" as="h5">{props.testimonial.fullname}</Header>
-            <Header className="mt-0 testimonials--city is-grey " as="h5">{props.testimonial.location}</Header>
+            <Header className="mt-0 testimonials--city is-grey " as="h5">{props.testimonial.userLocation}</Header>
           </Grid.Column>
         </Grid.Row>
       </Grid>

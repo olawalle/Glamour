@@ -36,6 +36,13 @@ export const saveTrends = (payload) => {
   }  
 }
 
+export const saveTestimonials = (payload) => {
+  return {
+    type: types.ADD_TESTIMONIALS,
+    payload
+  }  
+}
+
 export const saveProviders = (payload) => {
   return {
     type: types.SAVE_SERVICE_PROVIDERS,
