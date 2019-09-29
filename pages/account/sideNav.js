@@ -138,11 +138,6 @@ const SideNav = (props) => {
   }
 
   const logout = () => {
-    let payload = {
-      isLoggedIn: false
-    }
-    window.sessionStorage.removeItem('glamourToken')
-    props.saveUserData(payload)
     Router.push('/login')
   }
 

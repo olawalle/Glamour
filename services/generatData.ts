@@ -45,6 +45,51 @@ let addCategory = (data) => {
     })
 }
 
+let editCategory = (data) => {
+    return axios({
+        method: 'PUT',
+        url: apiUrls.categoriesUrl+'/'+data._id,
+        data: data
+    })
+}
+
+let deleteCategory = (id) => {
+    return axios({
+        method: 'DELETE',
+        url: apiUrls.categoriesUrl+'/'+id
+    })
+}
+
+let getAllTestimonials = () => {
+    return axios({
+        method: 'GET',
+        url: apiUrls.testimonialUrl
+    })
+}
+
+let addTestimonial = (data) => {
+    return axios({
+        method: 'POST',
+        url: apiUrls.testimonialUrl,
+        data: data
+    })
+}
+
+let editTestimonial = (data) => {
+    return axios({
+        method: 'PUT',
+        url: apiUrls.testimonialUrl+'/'+data._id,
+        data: data
+    })
+}
+
+let deleteTestimonial = (id) => {
+    return axios({
+        method: 'DELETE',
+        url: apiUrls.testimonialUrl+'/'+id
+    })
+}
+
 let addCity = (data) => {
     return axios({
         method: 'POST',
@@ -156,6 +201,17 @@ let generalUploadImage = (data) => {
     })
 }
 
+let getImageUrl = (data) => {
+    return axios({
+        method: 'POST',
+        url: apiUrls.uploadUrl,
+        data,
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    })
+}
+
 export {
     getAllUsers,
     getAllProviders,
@@ -163,6 +219,12 @@ export {
     getAllTrends,
     getAllCategories,
     addCategory,
+    editCategory,
+    deleteCategory,
+    getAllTestimonials,
+    addTestimonial,
+    editTestimonial,
+    deleteTestimonial,
     addAddress,
     editAddress,
     deleteAddress,
@@ -173,6 +235,7 @@ export {
     removeCity,
     getPostcode,
     uploadImage,
+    getImageUrl,
     generalUploadImage,
     uploadBanner
 }

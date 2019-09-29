@@ -11,9 +11,9 @@ import CityMgt from './admin/cityMgt';
 import ContentMgt from './admin/contentMgt';
 import OrderMgt from './admin/orderMgt';
 import Router from 'next/router'
-import { getAllUsers } from '../services/generatData.ts'
 import { getAllServices } from '../services/generatData.ts'
 import { getBeautyServices } from '../store';
+import TestimonialMgt from './admin/TestimonialMgt';
 
 const Admin = (props) => {
 
@@ -43,24 +43,16 @@ const Admin = (props) => {
     }, [])
 
     const getData = (n) => {
-        getAllUsers()
-        .then(res => {
-            updateAllUsers(res.data.users)
-            !n ? updateActiveComponent(<CustomerMgt users={res.data.users.filter(user => user.role === 'client')} />) : null
-        })
-        .catch(err => {
-            console.log(err)
-        })
     }
 
     const updateComponent = (name) => {
         switch (name) {
             case 'Customer management':
-                updateActiveComponent(<CustomerMgt users={allUsers.filter(user => user.role === 'client')} />)
+                updateActiveComponent(<CustomerMgt />)
                 break;
                 
             case 'Service provider management':
-                updateActiveComponent(<ServiceProviderMgt getUsers={getData(2)} users={allUsers.filter(user => user.role === 'provider')} />)
+                updateActiveComponent(<ServiceProviderMgt />)
                 break;
                 
             case 'Category management':
@@ -75,10 +67,12 @@ const Admin = (props) => {
                 updateActiveComponent(<OrderMgt {...props} />)
                 break;
                 
-            case 'Content management':
+            case 'Subscription management':
                 updateActiveComponent(<ContentMgt {...props} />)
                 break;
-        
+                
+            case 'Testimonial Management':
+                updateActiveComponent(<TestimonialMgt />)
             default:
                 break;
         }
@@ -121,8 +115,13 @@ const Admin = (props) => {
                         onClick={handleItemClick}
                         />
                         <Menu.Item
-                        name='Content management'
-                        active={activeItem === 'Content management'}
+                        name='Subscription management'
+                        active={activeItem === 'Subscription management'}
+                        onClick={handleItemClick}
+                        />
+                        <Menu.Item
+                        name='Testimonial Management'
+                        active={activeItem === 'Testimonial Management'}
                         onClick={handleItemClick}
                         />
                     </Menu>

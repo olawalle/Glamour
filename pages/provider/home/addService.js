@@ -26,8 +26,24 @@ const AddService = (props) => {
       updatePic(props.selectedService.pictureUrl)
       updatePlaceholder(false)
       updateServiceName(props.selectedService.serviceName)
+      setUploadToCloud(true)
       props.selectedService.status === "active" ? setstatus({text: 'active', value: true}) : setstatus({text: 'inactive', value: false})
+    } else {
+      setUploadToCloud(false)
     }
+
+    let options = []
+    Object.keys(props.services).map(key => {
+      options.push(props.services[key])
+    })
+    let options_ = options.map(option => {
+      return {
+              text: option.serviceName,
+              key: option._id,
+              value: option._id  
+            }
+      })
+      updateOptions(options_)
   }, [])
   
   const [imgPlaceholder, updatePlaceholder] = useState(true)
@@ -36,17 +52,32 @@ const AddService = (props) => {
   const [description, updateDesc] = useState('')
   const [amount, updateAmount] = useState('')
   const [duration, updateDuration] = useState('')
+  const [category, updateCategory_] = useState('')
   const [pictureUrl, updatePic] = useState(null)
   const [deleting, setdeleting] = useState(false)
   const [error, updateError] = useState({
     show: false,
     text: ''
   })
+  const [options, updateOptions] = useState([])
   const [status, setstatus] = useState({
     text: 'active',
     value: true
   })
   const [disableAdd, setdisableAdd] = useState(false)
+  const [uploadToCloud, setUploadToCloud] = useState(false)
+
+
+  const getUrl = (pictureUrl) => {
+      console.log('geturl', pictureUrl)
+      updateImageSrc({image: pictureUrl})
+  }
+
+
+  const updateCategory = (a, b) => {
+    console.log(b.value)
+    updateCategory_(b.value)
+  }
 
  const switchPlaceholder = () => {
     if (imgPlaceholder) {
@@ -93,6 +124,7 @@ const AddService = (props) => {
     amount,
     duration,
     pictureUrl,
+    category,
     status: status.text
    }
 
@@ -197,20 +229,31 @@ const AddService = (props) => {
                 <Input value={serviceName} onChange={(e) => updateServiceName(e.target.value)} placeholder="Name of service (e.g. hair curling and washing)"/>
               </Grid.Column>
               <Grid.Column width={14}>
-                { props.selectedService && <span className="labell">Service description</span> }
-                <TextArea value={description} onChange={(e) => updateDesc(e.target.value)} className="textArea" placeholder="Brief description of service" rows="5"/>
-              </Grid.Column>
-              <Grid.Column width={14}>
                 { props.selectedService && <span className="labell">Duration</span> }
                 <Select value={duration} onChange={(e, data) => updateDuration(data.value)} className="select" options={durations} placeholder="Time estimate" />
               </Grid.Column>
               <Grid.Column width={14}>
-                { props.selectedService && <span className="labell">Amount</span> }
-                <Input value={amount} onChange={(e) => updateAmount(e.target.value)} placeholder="Amount"/>
+                { props.selectedService && <span className="labell">Service description</span> }
+                <TextArea value={description} onChange={(e) => updateDesc(e.target.value)} className="textArea" placeholder="Brief description of service" rows="5"/>
+              </Grid.Column>
+              <Grid.Column width={14}>
+                { props.selectedService && <span className="labell">Rate</span> }
+                <Input value={amount} onChange={(e) => updateAmount(e.target.value)} placeholder="Rate"/>
+              </Grid.Column>
+              <Grid.Column width={14}>
+                { props.selectedService && <span className="labell">Category</span> }
+                <Select
+                  className="select"
+                  placeholder="Category" 
+                  onChange={(e, data) => updateCategory(e, data)}
+                  value={category}
+                  fluid
+                  options={options}
+                  />
               </Grid.Column>
               <Grid.Column width={14}>
                 { props.selectedService && <span className="labell">Banner</span> }
-                <CustomImageUploader getImageString={getImageString_} getImageFile={getImageFile}>
+                <CustomImageUploader getImageString={getImageString_} getImageFile={getImageFile} uploadToCloud={uploadToCloud} getUrl={getUrl}>
                   <div className="upload" style={styles.Upload}>
                     {
                       switchPlaceholder()
@@ -252,7 +295,8 @@ const AddService = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.user
+  user: state.user,
+  services: state.service.beautyServices.allServices
 })
 
 export default connect(mapStateToProps, actions)(AddService)

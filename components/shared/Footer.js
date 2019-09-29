@@ -35,10 +35,10 @@ const Footer = () => {
             <Grid.Column width="4" >
               <List link>
                 <List.Header>Contact us</List.Header>
-                <List.Item as='a'>support@glamourondemand.com</List.Item>
+                <List.Item as='a'>support@groomingondemandltd.com</List.Item>
                 <List.Item as='a'>020 3570 3466</List.Item>
               </List>
-              <List className="social-links" horizontal relaxed>
+              {/* <List className="social-links" horizontal relaxed>
                 <List.Item >
                   <a target="_blank" href="http://facebook.com/glamour"><Image size="tiny" src="/static/icons/facebook.svg" /></a>
                 </List.Item>
@@ -51,7 +51,7 @@ const Footer = () => {
                 <List.Item>
                   <a><Image size="tiny" src="/static/icons/linkedin.svg" /></a>
                 </List.Item>
-              </List>
+              </List> */}
             </Grid.Column>
           </Grid.Row>
         </Grid>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Table, Input, Button, Grid, Radio, Loader } from 'semantic-ui-react'
+import { Table, Input, Button, Grid, Radio, Loader, Modal } from 'semantic-ui-react'
 import { 
     getSubscriptions,
     addSubscription,
@@ -20,6 +20,8 @@ export default function ContentMgt(props) {
     const [sendingRequest, updatesendingRequest] = useState(false)
     const [loading, setLoading] = useState(false)
     const [adding, setAdding] = useState(false)
+    const [open, setOpen] = useState(false)
+    const [id, setId] = useState('')
 
 
     const getAll = () => {
@@ -31,6 +33,11 @@ export default function ContentMgt(props) {
         .catch(err => {
             setLoading(false)
         })
+    }
+
+    const openModal = (id) => {
+        setId(id)
+        setOpen(true)
     }
 
     const postSubscription = () => {
@@ -60,7 +67,7 @@ export default function ContentMgt(props) {
         })
     }
 
-    const deleteSub = (id) => {
+    const deleteSub = () => {
         setLoading(true)
         deleteSubscription(id)
         .then(res => {
@@ -123,7 +130,7 @@ export default function ContentMgt(props) {
                                 </Table.Cell>
                                 }  */}
                                 <Table.Cell style={{color: 'red'}}>
-                                    <b onClick={() => deleteSub(city._id)} style={{cursor: 'pointer'}}>
+                                    <b onClick={() => openModal(city._id)} style={{cursor: 'pointer'}}>
                                         Delete
                                     </b>
                                 </Table.Cell>
@@ -187,6 +194,20 @@ export default function ContentMgt(props) {
             }
             </> : <Loader active />
             } 
+            <Modal size='mini' open={open} onClose={() => setOpen(false)}>
+              <Modal.Header>Delete Subscription</Modal.Header>
+              <Modal.Content>
+                <p>Are you sure you want to delete this subscription?</p>
+              </Modal.Content>
+              <Modal.Actions>
+                <Button negative onClick={() => setOpen(false)}>No</Button>
+                <Button
+                  positive
+                  content='Yes'
+                  onClick={deleteSub}
+                />
+              </Modal.Actions>
+            </Modal>
         </>
     )
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {Grid, Input, Select} from 'semantic-ui-react'
+import {Grid, Input, Select, Message} from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions'
 import './less/cardDetailsForm.less'
@@ -26,6 +26,8 @@ const AddressForm = (props) => {
   const [addingNew, setaddingNew] = useState(true)
 
   const [loading, setloading] = useState(false)
+
+  const [warning, setWarning] = useState(false)
 
   
   const handleChange = (e, key, {value = null, checked = null } = {}) => {
@@ -54,7 +56,6 @@ const AddressForm = (props) => {
       addAddress(addressFormData)
       .then(res => {
         setloading(false)
-        console.log(res)
         fetchUserAddresses()
         setaddingNew(true)
       })
@@ -66,7 +67,6 @@ const AddressForm = (props) => {
       setloading(true)
       editAddress(addressFormData, addressFormData._id)
       .then(res => {
-        console.log(res)
         fetchUserAddresses()
         setaddingNew(true)
         setloading(false)
@@ -76,7 +76,6 @@ const AddressForm = (props) => {
         console.log(err)
       })
     }
-    console.log(addressFormData)
   }
 
   const switchActive = (e, f) => {
@@ -122,6 +121,7 @@ const AddressForm = (props) => {
           props.saveActiveAddress(res.data.addresses[0]._id)
           setAddressData(res.data.addresses[0])
           setaddressList(addressList)
+          setWarning(false)
         } else {
           setAddressData({
             aptNumber: '',
@@ -131,6 +131,8 @@ const AddressForm = (props) => {
             instructions: ''
           })
           setaddressList([])
+          setaddingNew(false)
+          setWarning(true)
           props.saveActiveAddress("")
         }
     })
@@ -209,6 +211,15 @@ const AddressForm = (props) => {
         </Grid.Row>
 
         <hr className="striped-border" />
+        <Grid.Row>
+          <Grid.Column>
+            {
+              warning && <Message warning>
+                You need to save an address to continue
+              </Message>
+            }
+          </Grid.Column>
+        </Grid.Row>
 
         <Grid.Row>
             <Grid.Column>

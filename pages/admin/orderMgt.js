@@ -48,6 +48,7 @@ export default function OrderMgt(props) {
                         <Table.Row>
                             {/* <Table.HeaderCell>Order No</Table.HeaderCell> */}
                             <Table.HeaderCell>Date</Table.HeaderCell>
+                            <Table.HeaderCell>Booked for</Table.HeaderCell>
                             <Table.HeaderCell>Customer name</Table.HeaderCell>
                             <Table.HeaderCell>Service</Table.HeaderCell>
                             <Table.HeaderCell>Price</Table.HeaderCell>
@@ -62,6 +63,9 @@ export default function OrderMgt(props) {
                                         {/* <Table.Cell>129977</Table.Cell> */}
                                         <Table.Cell>
                                             {dayjs(booking.message.createdAt).format('DD MMM, YYYY')}
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            {booking.message.time}
                                         </Table.Cell>
                                         <Table.Cell>
                                             {booking.from.name}

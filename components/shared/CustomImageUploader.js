@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { generalUploadImage } from '../../services/generatData.ts'
 
 export default class CustomImageUploader extends Component {
 
@@ -35,6 +36,22 @@ export default class CustomImageUploader extends Component {
     let file = e.target.files[0]
     this.props.getImageFile ? this.props.getImageFile(file) : null
     this.getBase64(file)
+
+    if (this.props.toCloud) {
+      console.log('yes')
+      let data = new FormData()
+      data.append('picture', file)
+      generalUploadImage(data)
+      .then(res => {
+        console.log(res)
+        this.props.getUrl(res.data.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    } else {
+      console.log('no')
+    }
   }
 
   getBase64 = (file) => {
