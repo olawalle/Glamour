@@ -36,9 +36,16 @@ const Footer = () => {
               <List link>
                 <List.Header>Contact us</List.Header>
                 <List.Item as='a'>
-                  <a href="mailto:support@groomingondemandltd.com">support@groomingondemandltd.com</a>
+                  <a href="mailto:support@glamourondemandltd.com">
+                  support@glamourondemandltd.com
+                  </a>
                 </List.Item>
-                <List.Item as='a'>020 3570 3466</List.Item>
+                <List.Item>020 3570 3466</List.Item>
+              </List>
+              <List className="" horizontal relaxed>
+                <List.Item >
+                  <img src="/static/images/stripe.png" style={{width: '250px', marginTop: '20px'}} />
+                </List.Item>
               </List>
               {/* <List className="social-links" horizontal relaxed>
                 <List.Item >
