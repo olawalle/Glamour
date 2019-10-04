@@ -42,6 +42,11 @@ const Footer = () => {
                 </List.Item>
                 <List.Item>020 3570 3466</List.Item>
               </List>
+              <List className="" horizontal relaxed>
+                <List.Item >
+                  <img src="/static/images/stripe.png" style={{width: '250px', marginTop: '20px'}} />
+                </List.Item>
+              </List>
               {/* <List className="social-links" horizontal relaxed>
                 <List.Item >
                   <a target="_blank" href="http://facebook.com/glamour"><Image size="tiny" src="/static/icons/facebook.svg" /></a>
