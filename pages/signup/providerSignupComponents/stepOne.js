@@ -95,8 +95,8 @@ export default function StepOne(props) {
               value={signupFormData.fullnames}
               className="stepOne-form--input"
               size="huge"
-              autocomplete="false" placeholder='Full Name'
-              fluid
+              placeholder='Full Name'
+              autoComplete="new-password" fluid
             />
             <Input
               type="email"
@@ -105,8 +105,8 @@ export default function StepOne(props) {
               value={signupFormData.email}
               className="stepOne-form--input"
               size="huge"
-              autocomplete="false" placeholder='Email address'
-              fluid
+              placeholder='Email address'
+              autoComplete="new-password" fluid
             />
             <Input
               type="number"
@@ -115,27 +115,27 @@ export default function StepOne(props) {
               value={signupFormData.phone}
               className="stepOne-form--input"
               size="huge"
-              autocomplete="false" placeholder='Mobile number'
-              fluid
+              placeholder='Mobile number'
+              autoComplete="new-password" fluid
             />
             <Password
               formerror={formErrors['password']}
               handlechange={(e) => handleChange(e, 'password')}
               password={signupFormData.password}
               size="huge"
-              autocomplete="false" placeholder='Password'
+              placeholder='Password'
               className="stepOne-form--input"
               auto
-              fluid
+              autoComplete="new-password" fluid
             />
             <Select
               error={formErrors['referral']}
               onChange={(e, data) => handleChange(e, 'referral', data)}
               className="stepOne-form--select signup-form--input"
               value={signupFormData.referral}
-              fluid
+              autoComplete="new-password" fluid
               options={options}
-              autocomplete="false" placeholder='How did you hear about Glamour?'
+              placeholder='How did you hear about Glamour?'
             />
             <div className="is-flex mt-10">
               <Checkbox

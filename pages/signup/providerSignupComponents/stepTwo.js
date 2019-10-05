@@ -113,7 +113,7 @@ export default function StepTwo(props) {
               value={signupFormData.postcode}
               className="stepOne-form--input"
               size="huge"
-              autocomplete="false" placeholder='Postcode'
+             autoComplete="new-password" placeholder='Postcode'
               fluid
             />
             <Select
@@ -123,7 +123,7 @@ export default function StepTwo(props) {
               value={signupFormData.mileRadius}
               fluid
               options={distance}
-              autocomplete="false" placeholder='Within mile radius'
+             autoComplete="new-password" placeholder='Within mile radius'
             />
 
             {

@@ -161,7 +161,7 @@ const styles = {
               className="signup-form--input"
               size="huge"
               placeholder='Full Name'
-              fluid
+              autoComplete="new-password" fluid
             />
             <Input
               type="email"
@@ -171,7 +171,7 @@ const styles = {
               className="signup-form--input"
               size="huge"
               placeholder='Email address'
-              fluid
+              autoComplete="new-password" fluid
             />
             <Input
               type="number"
@@ -181,7 +181,7 @@ const styles = {
               className="signup-form--input"
               size="huge"
               placeholder='Mobile number'
-              fluid
+              autoComplete="new-password" fluid
             />
             <Password
               formerror={formErrors['password']}
@@ -190,14 +190,14 @@ const styles = {
               size="huge"
               placeholder='Password'
               className="signup-form--input"
-              fluid
+              autoComplete="new-password" fluid
             />
             <Select
               error={formErrors['referral']}
               onChange={(e, data) => handleChange(e, 'referral', data)}
               className="signup-form--select signup-form--input"
               value={signupFormData.referral}
-              fluid
+              autoComplete="new-password" fluid
               options={options}
               placeholder='How did you hear about Glamour?'
             />
