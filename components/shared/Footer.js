@@ -48,8 +48,8 @@ const Footer = () => {
               <List link>
                 <List.Header>Contact us</List.Header>
                 <List.Item as='a'>
-                  <a href="mailto:support@groomingondemand.com">
-                    support@groomingondemand.com
+                  <a href="mailto:support@glamourondemand.com ">
+                  support@glamourondemand.com
                   </a>
                 </List.Item>
                 <List.Item>020 3570 3466</List.Item>
@@ -62,7 +62,7 @@ const Footer = () => {
                   <a><Image size="tiny" src="/static/icons/twitter.svg" /></a>
                 </List.Item> */}
                 <List.Item>
-                  <a href="https://www.instagram.com/groomingondemandltd/" style={{color: 'white'}}><Image size="tiny" src="/static/icons/instagram.svg" /></a>
+                  <a href="https://www.instagram.com/glamourondemandltd/" style={{color: 'white'}}><Image size="tiny" src="/static/icons/instagram.svg" /></a>
                 </List.Item>
                 {/* <List.Item>
                   <a><Image size="tiny" src="/static/icons/linkedin.svg" /></a>
