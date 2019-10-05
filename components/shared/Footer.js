@@ -91,6 +91,7 @@ const Footer = () => {
             fontFamily: 'sofiaproregular',
             position: 'fixed',
             lineHeight: '24px',
+            zIndex: '1000000',
             bottom: 0,
             boxShadow: 'rgb(239, 239, 239) 0px 2px 7px 6px',
             padding: '30px 12px',
