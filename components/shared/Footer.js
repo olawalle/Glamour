@@ -1,9 +1,21 @@
-import React from 'react';
-import { Container, Segment, Header, Divider, Grid, Image, List } from 'semantic-ui-react';
+import React, {useEffect, useState} from 'react';
+import { Container, Segment, Header, Divider, Grid, Image, List, Button } from 'semantic-ui-react';
 import Link from 'next/link';
 import './less/footer.less';
 
 const Footer = () => {
+  useEffect(() => {
+    let cookieAcceptance = window.localStorage.getItem("cookieAcceptance")
+    cookieAcceptance ? setCookie(false) : setCookie(true)
+  }, [])
+
+  const [cookieSet, setCookie] = useState(false)
+
+  const cookieAccept = () => {
+    window.localStorage.setItem('cookieAcceptance', true)
+    setCookie(false)
+  }
+
   return (
     <Segment className="footer">
       <Container>
@@ -36,31 +48,31 @@ const Footer = () => {
               <List link>
                 <List.Header>Contact us</List.Header>
                 <List.Item as='a'>
-                  <a href="mailto:support@glamourondemandltd.com">
-                  support@glamourondemandltd.com
+                  <a href="mailto:support@groomingondemand.com">
+                    support@groomingondemand.com
                   </a>
                 </List.Item>
                 <List.Item>020 3570 3466</List.Item>
+              </List>
+              <List className="social-links" horizontal relaxed>
+                {/* <List.Item >
+                  <a target="_blank" href="http://facebook.com/glamour"><Image size="tiny" src="/static/icons/facebook.svg" /></a>
+                </List.Item>
+                <List.Item>
+                  <a><Image size="tiny" src="/static/icons/twitter.svg" /></a>
+                </List.Item> */}
+                <List.Item>
+                  <a href="https://www.instagram.com/groomingondemandltd/" style={{color: 'white'}}><Image size="tiny" src="/static/icons/instagram.svg" /></a>
+                </List.Item>
+                {/* <List.Item>
+                  <a><Image size="tiny" src="/static/icons/linkedin.svg" /></a>
+                </List.Item> */}
               </List>
               <List className="" horizontal relaxed>
                 <List.Item >
                   <img src="/static/images/stripe.png" style={{width: '250px', marginTop: '20px'}} />
                 </List.Item>
               </List>
-              {/* <List className="social-links" horizontal relaxed>
-                <List.Item >
-                  <a target="_blank" href="http://facebook.com/glamour"><Image size="tiny" src="/static/icons/facebook.svg" /></a>
-                </List.Item>
-                <List.Item>
-                  <a><Image size="tiny" src="/static/icons/twitter.svg" /></a>
-                </List.Item>
-                <List.Item>
-                  <a><Image size="tiny" src="/static/icons/instagram.svg" /></a>
-                </List.Item>
-                <List.Item>
-                  <a><Image size="tiny" src="/static/icons/linkedin.svg" /></a>
-                </List.Item>
-              </List> */}
             </Grid.Column>
           </Grid.Row>
         </Grid>
@@ -70,6 +82,30 @@ const Footer = () => {
           <span>Glamour on Demand 2019</span>
         </Header>
       </Container>
+      { cookieSet && 
+        <Grid>
+          <Grid.Row style={{
+            backgroundColor: 'white',
+            color: '#637381',
+            fontSize: '16px',
+            fontFamily: 'sofiaproregular',
+            position: 'fixed',
+            lineHeight: '24px',
+            bottom: 0,
+            boxShadow: 'rgb(239, 239, 239) 0px 2px 7px 6px',
+            padding: '30px 12px',
+          }}>
+            <Grid.Column width={14}>
+              This website uses cookies <br /> <br />
+              We use cookies to personalise and provide certain functionalities across the Urban website. They also help us analyse how people use our site and help us improve it.
+              By continuing to use this site you are agreeing to use our cookies as defined in our cookie policy
+            </Grid.Column>
+            <Grid.Column width={2}>
+              <Button color="green" onClick={cookieAccept}>Got it</Button>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      }
     </Segment>
   );
 }

@@ -96,7 +96,7 @@ export default function StepOne(props) {
               className="stepOne-form--input"
               size="huge"
               autocomplete="false" placeholder='Full Name'
-              fluid
+              autoComplete="new-password" fluid
             />
             <Input
               type="email"
@@ -106,7 +106,7 @@ export default function StepOne(props) {
               className="stepOne-form--input"
               size="huge"
               autocomplete="false" placeholder='Email address'
-              fluid
+              autoComplete="new-password" fluid
             />
             <Input
               type="number"
@@ -116,7 +116,7 @@ export default function StepOne(props) {
               className="stepOne-form--input"
               size="huge"
               autocomplete="false" placeholder='Mobile number'
-              fluid
+              autoComplete="new-password" fluid
             />
             <Password
               formerror={formErrors['password']}
@@ -126,14 +126,14 @@ export default function StepOne(props) {
               autocomplete="false" placeholder='Password'
               className="stepOne-form--input"
               auto
-              fluid
+              autoComplete="new-password" fluid
             />
             <Select
               error={formErrors['referral']}
               onChange={(e, data) => handleChange(e, 'referral', data)}
               className="stepOne-form--select signup-form--input"
               value={signupFormData.referral}
-              fluid
+              autoComplete="new-password" fluid
               options={options}
               autocomplete="false" placeholder='How did you hear about Glamour?'
             />

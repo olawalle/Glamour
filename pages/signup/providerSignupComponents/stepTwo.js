@@ -114,14 +114,14 @@ export default function StepTwo(props) {
               className="stepOne-form--input"
               size="huge"
               autocomplete="false" placeholder='Postcode'
-              fluid
+              autoComplete="new-password" fluid
             />
             <Select
               error={formErrors['mileRadius']}
               onChange={(e, data) => handleChange(e, 'mileRadius', data)}
               className="stepOne-form--select signup-form--input"
               value={signupFormData.mileRadius}
-              fluid
+              autoComplete="new-password" fluid
               options={distance}
               autocomplete="false" placeholder='Within mile radius'
             />
