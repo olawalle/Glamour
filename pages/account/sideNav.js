@@ -18,6 +18,11 @@ const SideNav = (props) => {
 
   useEffect(() => {
     if (Router.router.query.child) pickRoute(Router.router.query.child)
+    if (props.role === 'client') {
+    activateLink(0)
+    } else {
+      activateLink_(0)
+    }
   }, [])
 
   // const [activeComponent, updateActiveComponent ] = useState(<PersonalDetails role={props.role} />)

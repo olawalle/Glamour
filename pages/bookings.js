@@ -31,49 +31,54 @@ class bookings extends Component {
       getAllProviders()
       .then(res => {
         this.props.saveProviders(res.data.users)
-        // Object.keys(Router.router.query).length > 0 ? this.setState({allProviders: res.data.users}, () => {
-        //   this.getFormData(null, Router.router.query)
-        // }) : this.setState({allProviders: res.data.users})
       })
       .catch(err => {
         console.log(err)
       })
 
-      if (this.props.user.role === 'client') {
-        getBookings()
-        .then(bookings => {
-          this.props.saveUserBookings(bookings.data.data)
-          this.setState({userBookings: bookings.data.data})
-        })
-        .catch(err => {
-          console.log({...err})
-        })
-      } else {        
-        getProviderBookings()
-        .then(providerBookings => {
-          this.props.saveUserBookings(providerBookings.data.data)
-          this.setState({userBookings: providerBookings.data.data})
-        })
-        .catch(err => {
-          console.log({...err})
-        })
-      }
+      this.getAllBookings()
+
     } else {
       Router.push('/login')
     }
   }
 
-  fetchData = (e) => {
-    setTimeout(() => {
-      this.setState({userBookings: e})  
-    }, 100);  
+  getAllBookings () {
+    if (this.props.user.role === 'client') {
+      getBookings()
+      .then(bookings => {
+        this.props.saveUserBookings(bookings.data.data)
+        this.setState({userBookings: bookings.data.data})
+      })
+      .catch(err => {
+        console.log({...err})
+      })
+    } else {        
+      this.fetchProviderBookings()
+    }
+  }
+
+  fetchProviderBookings = () => {
+    console.log('fetching all')
+    getProviderBookings()
+    .then(providerBookings => {
+      this.props.saveUserBookings(providerBookings.data.data)
+      this.setState({userBookings: providerBookings.data.data})
+    })
+    .catch(err => {
+      console.log({...err})
+    })
   }
 
   render () {
     return (
       <>
         <InnerNav userRole={this.props.user.role} />
-          <Bookings fetchData={this.fetchData} {...this.props} userBookings={this.state.userBookings} role={this.props.user.role} />
+          <Bookings 
+            fetchData={this.fetchProviderBookings} 
+            {...this.props} 
+            userBookings={this.state.userBookings} 
+            role={this.props.user.role} />
         <Footer/>
       </>
     );
