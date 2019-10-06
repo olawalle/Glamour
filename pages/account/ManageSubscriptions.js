@@ -10,6 +10,7 @@ import * as actions from '../../store/actions'
 
 import { getCurrentUser } from '../../services/auth.ts'
 import { postSubscriptionPayment, confirmSubscriptionPayment } from '../../services/auth.ts'
+import { getBills } from '../../services/providerServices.ts'
 import Display from '../../components/shared/Display';
 import { injectStripe, Elements, StripeProvider, } from "react-stripe-elements";
 import dayjs from 'dayjs';
@@ -19,8 +20,12 @@ const ManageSubscriptions_ = (props) => {
 
   useEffect(() => {
    if(props.user.subscriptionId !== "0" && props.user.subscriptionId !== null) {
-       setUserSubscription({present: true, type: props.subscriptions.availableSubscriptions.find(sub => sub._id === props.user.subscriptionId)})
+       setUserSubscription({
+        present: true, 
+        type: props.subscriptions.availableSubscriptions.find(sub => sub._id === props.user.subscriptionId)
+      })
    }
+   getUserBills()
   }, [])
 
   const [selectedPlan, setselectedPlan] = useState({
@@ -41,7 +46,19 @@ const ManageSubscriptions_ = (props) => {
         open: false,
         openSuccess: false
     })
+  const [addingNew, setAddingNew] = useState(false)
   const [secret, setSecret] = useState("")
+  const [bills, setBills] = useState([])
+
+  const getUserBills = () => {
+    getBills()
+    .then(res => {
+      setBills(res.data.bills)
+    })
+    .catch(err => {
+      console.log(err)
+    })  
+  }
     
   const  openModal = (id) => {
     if (id) { 
@@ -55,6 +72,7 @@ const ManageSubscriptions_ = (props) => {
     
   const close = () => {
     updateModalState({open: false})
+    setAddingNew(false)
   }
 
   const openSuccess = () => {
@@ -63,7 +81,11 @@ const ManageSubscriptions_ = (props) => {
   }
   
   const closeSuccess = () => {
-    updateModalState({openSuccess: true})
+    updateModalState({
+        openSuccess: false,
+        open: false
+    })
+    setAddingNew(false)
   }
 
   const styles = {
@@ -141,8 +163,15 @@ const ManageSubscriptions_ = (props) => {
     }
   }
 
+  const changePlan = () => {
+    setUserSubscription({
+        ...userSubscription,
+        present: false
+    })
+    setAddingNew(true)
+  }
+
   const getCard = (e) => {
-    console.log(e)
     saveCard(e)
   }
 
@@ -181,7 +210,10 @@ const ManageSubscriptions_ = (props) => {
           confirmSubscriptionPayment(data, props.user.id)
           .then(res => {
             setsendingRequest(false)
-            console.log(res)
+            updateModalState({
+                openSuccess: true,
+                open: false
+            })
             getCurrentUser()
             .then(res => {
               props.saveUserData({
@@ -194,28 +226,6 @@ const ManageSubscriptions_ = (props) => {
             console.log(err)
           })
         } 
-        // else {
-        //   let data = {
-        //     secret: result.error.payment_intent.id,
-        //     subscriptionId: selectedPlan._id
-        //   }
-        //   confirmBookings(data)
-        //   .then(res => {
-        //     setsendingRequest(false)
-        //     console.log(res)
-        //     getCurrentUser()
-        //     .then(res => {
-        //       this.props.saveUserData({
-        //         ...res.data.me,
-        //         isLoggedIn: true
-        //       })
-        //     })
-        //   })
-        //   .catch(err => {
-        //     console.log(err)
-        //     setsendingRequest(false)
-        //   })
-        // }
       })
       .catch(err => {
           console.log(err)
@@ -223,16 +233,32 @@ const ManageSubscriptions_ = (props) => {
     }
   };
 
+  const closeAddingNew = () => {
+    setUserSubscription({
+        ...userSubscription,
+        present: true
+    })
+    setAddingNew(false)
+  }
+
   return (
     <div className="manageSubscriptions">
         <Grid stackable>
             <Grid.Row>
-                <Grid.Column width="8">
+                <Grid.Column width="16">
                     <p className="topText">
                     Subscription
+
+                    { addingNew && <button onClick={() => closeAddingNew()} className="subscribeBtn" style={{float: 'right'}}>
+                            Close
+                        </button>
+                    }
                     </p>
-                    {!userSubscription.present ? <p className="lowerText">
-                        You have not subscribed. Select a suitable plan below
+                </Grid.Column>
+                <Grid.Column width="8">
+                    {!userSubscription.present ? 
+                        <p className="lowerText">
+                            {!userSubscription.type.name && <>You have not subscribed. Select a suitable plan below</>}
                         </p> : <Grid.Column width={6}>
                                 <div className={`${userSubscription.type.name.toLowerCase()} sub_`}>
                                     <p className="duration">
@@ -241,7 +267,7 @@ const ManageSubscriptions_ = (props) => {
                                     <p className="renews">
                                         Renews on {dayjs(props.user.subscriptionEnd).format('DD MMM YYYY')}
                                     </p>
-                                    <button onClick={() => openModal()} className="subscribeBtn">
+                                    <button onClick={() => changePlan()} className="subscribeBtn">
                                         Change plan
                                     </button>
                                 </div>
@@ -250,7 +276,7 @@ const ManageSubscriptions_ = (props) => {
                 </Grid.Column>
             </Grid.Row>
             {
-              userSubscription.present &&  <Grid.Row className="subscriptionsWrapper">
+              !userSubscription.present &&  <Grid.Row className="subscriptionsWrapper">
                 {
                   props.subscriptions.availableSubscriptions.map(sub => {
                         return <Grid.Column width={4} key={sub._id}>
@@ -305,26 +331,24 @@ const ManageSubscriptions_ = (props) => {
                             </Table.Header>
 
                             <Table.Body>
+                                { bills.length > 0 ?
+                                 bills.map((bill, i) => {
+                                 return <Table.Row key={bill.description+i}>
+                                        <Table.Cell>
+                                            {dayjs(bill.createdAt).format('DD MMM YYYY')}
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            {bill.description}
+                                        </Table.Cell>
+                                        <Table.Cell>£{bill.amount}</Table.Cell>
+                                    </Table.Row> 
+                                }): 
                                 <Table.Row>
-                                    <Table.Cell>05 May, 2019</Table.Cell>
-                                    <Table.Cell>Monthly subscription</Table.Cell>
-                                    <Table.Cell>£12.99</Table.Cell>
+                                    <Table.Cell colspan={3}>
+                                        No data
+                                    </Table.Cell>
                                 </Table.Row>
-                                <Table.Row>
-                                    <Table.Cell>05 May, 2019</Table.Cell>
-                                    <Table.Cell>Monthly subscription</Table.Cell>
-                                    <Table.Cell>£12.99</Table.Cell>
-                                </Table.Row>
-                                <Table.Row>
-                                    <Table.Cell>05 May, 2019</Table.Cell>
-                                    <Table.Cell>Monthly subscription</Table.Cell>
-                                    <Table.Cell>£12.99</Table.Cell>
-                                </Table.Row>
-                                <Table.Row>
-                                    <Table.Cell>05 May, 2019</Table.Cell>
-                                    <Table.Cell>Monthly subscription</Table.Cell>
-                                    <Table.Cell>£12.99</Table.Cell>
-                                </Table.Row>
+                                }
                             </Table.Body>
                         </Table>
                     </div>
@@ -348,9 +372,9 @@ const ManageSubscriptions_ = (props) => {
                                     <CardDetailsForm getCard={getCard} />
                                 </Grid>
                                 
-                                <div style={styles.checkBoxWrap}>
+                                {/* <div style={styles.checkBoxWrap}>
                                     <Checkbox /><span>Save card for future use</span>
-                                </div>
+                                </div> */}
 
                                 {/* <p style={styles.segmentTitle}>
                                     Billing address
@@ -393,13 +417,13 @@ const ManageSubscriptions_ = (props) => {
               <img src="/static/icons/green-check.svg" style={styles.modalImage} alt=""/>
               <p style={styles.modalHeading}>Successful</p>
               <p style={styles.modalText}>
-                You have successfully subscribed for the Glamour on Demand monthly plan
+                You have successfully subscribed for the Glamour on Demand {selectedPlan.name} plan
               </p>
-              <Link href="/serviceProviders">
-                <Button  secondary style={styles.button}>
+              {/* <Link href="/account"> */}
+                <Button  secondary style={styles.button} onClick={closeSuccess}>
                     Go to dashboard
                 </Button>
-              </Link>
+              {/* </Link> */}
             </div>
           </Modal.Content>
         </Modal>

@@ -13,7 +13,7 @@ import ManagePayments from './account/ManagePayments';
 import BusinessDetails from './account/BusinessDetails'
 import Display from '../components/shared/Display';
 import { uploadImage, getAllProviders } from '../services/generatData.ts'
-import {getLookbook , addLookbook, getSubscriptions, getBills} from '../services/providerServices.ts'
+import {getLookbook , addLookbook, getSubscriptions} from '../services/providerServices.ts'
 import { getSavedProviders, getCurrentUser } from '../services/auth.ts'
 import CustomImageUploader from '../components/shared/CustomImageUploader';
 import Loader from '../components/shared/Loader';
@@ -98,15 +98,15 @@ const Account = (props) => {
   ])
 
   
-  const [activeComponent, updateActiveComponent ] = useState()
+//   const [activeComponent, updateActiveComponent ] = useState()
   const snackbarRef = useRef(null);
 
   const [snackType, setSnackType] = useState('')
   const [message, setMessage] = useState('')
   const [loading, setloading] = useState(false)
-  const updateActiveComponent_ = (component) => {
-    // updateActiveComponent(component)
-  }
+//   const updateActiveComponent_ = (component) => {
+//     // updateActiveComponent(component)
+//   }
 
   useEffect(() => {
     
@@ -133,14 +133,6 @@ const Account = (props) => {
       .catch(err => {
         console.log(err)
       })
-
-      getBills()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.log(err)
-      })
     }
 
     getSubscriptions()
@@ -151,7 +143,6 @@ const Account = (props) => {
   }, [])
 
   const uploadPicture = (e) => {
-    console.log(e)
     let formData = new FormData()
     formData.append('picture', e)
     setloading(true)
@@ -160,7 +151,6 @@ const Account = (props) => {
       setloading(false)
       getCurrentUser()
       .then(response => {
-          console.log(response)
           let payload = {
           ...response.data.me,
           isLoggedIn: true

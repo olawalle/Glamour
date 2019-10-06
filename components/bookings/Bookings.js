@@ -9,9 +9,6 @@ import './less/bookings.less';
 
 const Bookings = (props) => {
 
-  const fetchData = (e) => {
-    props.fetchData(e)
-  }
   return (
     <Segment
       className='bookings h760'
@@ -43,9 +40,9 @@ const Bookings = (props) => {
                     </Display>
                     <Display if={props.userBookings.length > 0}>
                       <BookingsList
-                        fetchData={fetchData}
+                        fetchData={props.fetchData}
                         role={props.role}
-                        { ...props.userBookings}
+                        // { ...props.userBookings.reverse()}
                       />
                     </Display>
                   </Card.Content>

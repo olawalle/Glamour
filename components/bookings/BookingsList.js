@@ -16,7 +16,6 @@ import { getProviderBookings } from '../../services/providerServices.ts'
 
 
 const CartList = (props) => {
-
   const markAsCompleted = (id) => {
     setLoading(true)
     setID(id)
@@ -25,16 +24,8 @@ const CartList = (props) => {
     }
     updateStatus(data, id)
     .then(res => {
-      setLoading(false)
-      getProviderBookings()
-      .then(providerBookings => {
-        // console.log(providerBookings)
-        props.fetchData(providerBookings.data.data)
-      })
-      .catch(err => {
-        setLoading(false)
-        console.log({...err})
-      })
+      setLoading(false) 
+      props.fetchData()
     })
     .catch(err => {
       console.log(err)
@@ -101,15 +92,15 @@ const CartList = (props) => {
             </div>
           </Display>  
 
-          <Display if={props.role === 'provider' && row.message.status === "completed"}>
+          {/* <Display if={props.role === 'provider' && row.message.status === "completed"}>
             <div className="actions"> 
-              <Button className="secondaryBtn" onClick={() => leaveFeedback(row.message._id)}>
+              <Button className="secondaryBtn" onClick={() => props.fetchData()}>
                 {
                   loading && row.message._id === selectedID ? <Loader active inline='centered' /> : <>Leave feedback</>
                 }
               </Button>
             </div>
-          </Display>    
+          </Display>     */}
         </>
       )
     },
@@ -184,7 +175,7 @@ const CartList = (props) => {
 
 const mapStateToProps = (state) => ({
   serviceProviders: state.serviceProviders.allProviders,
-  bookings_: state.bookings.bookedItems
+  bookings_: state.bookings.bookedItems.reverse()
 })
 
 export default connect(mapStateToProps, actions)(CartList);
