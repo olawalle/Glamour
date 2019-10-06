@@ -84,25 +84,14 @@ const Footer = () => {
       </Container>
       { cookieSet && 
         <Grid>
-          <Grid.Row style={{
-            backgroundColor: 'white',
-            color: '#637381',
-            fontSize: '16px',
-            fontFamily: 'sofiaproregular',
-            position: 'fixed',
-            lineHeight: '24px',
-            zIndex: '100000',
-            bottom: 0,
-            boxShadow: 'rgb(239, 239, 239) 0px 2px 7px 6px',
-            padding: '30px 12px',
-          }}>
-            <Grid.Column width={14}>
+          <Grid.Row className="cookie">
+            <Grid.Column largeScreen={14} mobile={16}>
               This website uses cookies <br /> <br />
               We use cookies to personalise and provide certain functionalities across the Urban website. They also help us analyse how people use our site and help us improve it.
               By continuing to use this site you are agreeing to use our cookies as defined in our cookie policy
             </Grid.Column>
-            <Grid.Column width={2}>
-              <Button color="green" onClick={cookieAccept}>Got it</Button>
+            <Grid.Column largeScreen={2} mobile={16}>
+              <Button color="green" onClick={cookieAccept} style={{float: 'right'}}>Got it</Button>
             </Grid.Column>
           </Grid.Row>
         </Grid>
