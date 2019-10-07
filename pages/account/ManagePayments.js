@@ -20,16 +20,18 @@ export default function ManagePayments(props) {
   const getAccts = () => {
     getBankAccts()
     .then(res => {
-        let bankAcct = res.data.accounts[0]
-        updateUseracct(bankAcct)
-        updateAcctName(bankAcct.accountName)
-        updateAccountNumber(bankAcct.accountNumber)
-        updateSortCode(bankAcct.sortCode)
         if (res.data.accounts.length > 0) {
-            updateHasAcct(true)
-            updateID(bankAcct._id)
-        } else {
-            updateHasAcct(false)
+            let bankAcct = res.data.accounts[0]
+            updateUseracct(bankAcct)
+            updateAcctName(bankAcct.accountName)
+            updateAccountNumber(bankAcct.accountNumber)
+            updateSortCode(bankAcct.sortCode)
+            if (res.data.accounts.length > 0) {
+                updateHasAcct(true)
+                updateID(bankAcct._id)
+            } else {
+                updateHasAcct(false)
+            }
         }
         setLoading(false)
     })
@@ -109,7 +111,11 @@ const addAcct = () => {
   const [isAddingAccount, updateIsAddingAccount] = useState(true)
   const [isAddingCard, updateIsAddingCard] = useState(false)
   const [hasAcct, updateHasAcct] = useState(false)
-  const [userAcct, updateUseracct] = useState(null)
+  const [userAcct, updateUseracct] = useState({
+    accountName,
+    accountNumber,
+    sortCode
+  })
   const [loading, setLoading] = useState(false)
   const [id, updateID] = useState('')
   const [message, setMessage] = useState('')
@@ -155,7 +161,7 @@ const addAcct = () => {
                 <UserBankAccount 
                     userAcct={userAcct}
                     hasAcct={hasAcct}
-                    showAdd={userAcct === null} 
+                    showAdd={userAcct.accountName === ''} 
                     accountName={accountName}
                     accountNumber={accountNumber}
                     sortCode={sortCode}
