@@ -142,6 +142,36 @@ let getBills = () => {
     })
 }
 
+let getBankAccts = () => {
+    return axios({
+        method: 'GET',
+        url: apiUrls.providerBankUrl
+    })
+}
+
+let addBankAccts= (data) => {
+    return axios({
+        method: 'POST',
+        url: apiUrls.providerBankUrl,
+        data
+    })
+}
+
+let editBankAccts = (data, id) => {
+    return axios({
+        method: 'PUT',
+        url: apiUrls.providerBankUrl+'/'+id,
+        data
+    })
+}
+
+let deleteBankAccts = (id) => {
+    return axios({
+        method: 'DELETE',
+        url: apiUrls.providerBankUrl+'/'+id
+    })
+}
+ 
 export {
     addServices,
     editService,
@@ -160,5 +190,9 @@ export {
     getSubscriptions,
     addSubscription,
     deleteSubscription,
-    getBills
+    getBills,
+    getBankAccts,
+    addBankAccts,
+    editBankAccts,
+    deleteBankAccts
 }

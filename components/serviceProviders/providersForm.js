@@ -69,7 +69,9 @@ class ProviderForm extends Component {
   updateForm = (e, data, type) => {
     let fields = {...this.state.formFields}
     e.target.value ? fields[type] = e.target.value : fields[type] = data.value
-    this.setState({formFields: fields})
+    this.setState({formFields: fields}, () => {
+      this.props.getFormData(this.state.formFields)
+    })
   }
 
   clearFilter = () => {
@@ -80,6 +82,8 @@ class ProviderForm extends Component {
         distance: '',
         priceRange: ''
       }
+    }, () => {
+      this.props.getFormData(this.state.formFields)
     })
   }
   
@@ -112,9 +116,8 @@ class ProviderForm extends Component {
     })
   }
 
-  componentDidUpdate() {
-    this.props.getFormData(this.state.formFields)
-  }
+  // componentDidUpdate() {
+  // }
 
   render () {
     return (

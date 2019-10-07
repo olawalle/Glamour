@@ -50,18 +50,16 @@ class ServiceProvider extends Component {
         }) : newArray = this.state.allProviders.filter(provider => {
             return provider.description.toLowerCase().includes(f.searchFor.toLowerCase())
                 && provider.postcode.toLowerCase().includes(f.postcode.toLowerCase())
-                && provider.service.toLowerCase().includes(f.sortBy.toLowerCase())
+                && provider.schedules.filter(schedule => schedule.day.toLowerCase() === f.when.toLowerCase()).length > 0
         })
         this.setState({allProviders: newArray})
     }
 
     getWhenServiceNeeded = (day) => {
-        console.log(day)
         // let providers = [...this.state.allProviders]
         let availableProviders = this.props.serviceProviders.filter(prv => {
           return JSON.stringify(prv.schedules).includes(day)
         })
-        console.log(availableProviders)
         if (day !== 'Invalid') {
             this.setState({allProviders: availableProviders})
         }
