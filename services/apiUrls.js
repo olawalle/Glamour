@@ -29,6 +29,7 @@ export const createTestimonialUrl = `${baseUrl}/uploads/testimonial`
 export const testimonialUrl = `${baseUrl}/testimonials`
 export const payUrl = `${baseUrl}/bookings/pay`
 export const subscriptionPayUrl = `${baseUrl}/users/pay`
+export const providerBankUrl = `${baseUrl}/booking/payouts`
 export const trendsUrl = `${baseUrl}/users/trends`
 export const categoriesUrl = `${baseUrl}/categories`
 export const clientBookingsUrl = `${baseUrl}/bookings`

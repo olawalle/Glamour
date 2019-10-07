@@ -142,6 +142,21 @@ let getBills = () => {
     })
 }
 
+let getBankAccts = () => {
+    return axios({
+        method: 'GET',
+        url: apiUrls.providerBankUrl
+    })
+}
+
+let addBankAccts = (data) => {
+    return axios({
+        method: 'POST',
+        url: apiUrls.providerBankUrl,
+        data
+    })
+}
+
 export {
     addServices,
     editService,
@@ -160,5 +175,7 @@ export {
     getSubscriptions,
     addSubscription,
     deleteSubscription,
-    getBills
+    getBills,
+    getBankAccts,
+    addBankAccts
 }

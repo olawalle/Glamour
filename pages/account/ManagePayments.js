@@ -1,10 +1,49 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Grid, Table, Input, Button } from 'semantic-ui-react'
 import './less/managePayments.less'
+import {
+    getBankAccts,
+    addBankAccts
+} from '../../services/providerServices.ts';
 import UserCards from './UserCards';
 import UserBankAccount from './UserBankAccount';
 
 export default function ManagePayments(props) {
+  useEffect(() => {
+    getAccts()
+  }, [])
+
+  const getAccts = () => {
+    getBankAccts()
+    .then(res => {
+        console.log(res)
+    })
+    .catch(err => {
+        console.log(err)
+    })
+  }
+
+  const addAcct = () => {
+    let data = {
+        accountName,
+        accountNumber,
+        sortCode
+    }
+
+    addBankAccts(data)
+    .then(res => {
+        console.log(res)
+    })
+    .catch(err => {
+        console.log(err)
+    })
+  }
+
+
+  const [accountName, updateAcctName] = useState('')
+  const [accountNumber, updateAccountNumber] = useState('')
+  const [sortCode, updateSortCode] = useState('')
+  
   const [isAddingAccount, updateIsAddingAccount] = useState(false)
   const [isAddingCard, updateIsAddingCard] = useState(false)
 
@@ -87,9 +126,9 @@ export default function ManagePayments(props) {
             {
                 renderAccount()
             }
-            {
+            {/* {
                 renderCard()
-            }
+            } */}
               <Grid.Column width={12} className="paymentSection">
                 <p className="sectionTitle">
                     Payment history
