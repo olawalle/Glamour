@@ -149,7 +149,7 @@ let getBankAccts = () => {
     })
 }
 
-let addBankAccts = (data) => {
+let addBankAccts= (data) => {
     return axios({
         method: 'POST',
         url: apiUrls.providerBankUrl,
@@ -157,6 +157,21 @@ let addBankAccts = (data) => {
     })
 }
 
+let editBankAccts = (data, id) => {
+    return axios({
+        method: 'PUT',
+        url: apiUrls.providerBankUrl+'/'+id,
+        data
+    })
+}
+
+let deleteBankAccts = (id) => {
+    return axios({
+        method: 'DELETE',
+        url: apiUrls.providerBankUrl+'/'+id
+    })
+}
+ 
 export {
     addServices,
     editService,
@@ -177,5 +192,7 @@ export {
     deleteSubscription,
     getBills,
     getBankAccts,
-    addBankAccts
+    addBankAccts,
+    editBankAccts,
+    deleteBankAccts
 }

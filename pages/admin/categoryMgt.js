@@ -105,6 +105,7 @@ export default function CategoryMgt(props) {
     }
 
     const removeCategory = () => {
+        // console.log(selectedCategory)
         deleteCategory(selectedCategory._id)
         .then(res => {
             getAll()
@@ -125,6 +126,12 @@ export default function CategoryMgt(props) {
         updateDesc(selectedCategory.metaDescription)
         updateIsEditting(true)
         updateNewService(false)
+    }
+
+    const openDelete = (id) => {
+        let selectedCategory = categories.find(cat => cat._id === id)
+        updateSelectedCategory(selectedCategory)
+        setOpen(true)
     }
 
     
@@ -167,7 +174,7 @@ export default function CategoryMgt(props) {
                                         <Table.Cell>{dayjs(category.createdAt).format('DD MMM YYYY')}</Table.Cell>
                                         <Table.Cell>
                                             <span onClick={() => openEdit(category._id)} className="edit">Edit</span>
-                                            <span onClick={() => setOpen(true)} style={{color: 'red', padding: '0 20px', cursor: 'pointer'}}>Delete</span>
+                                            <span onClick={() => openDelete(category._id)} style={{color: 'red', padding: '0 20px', cursor: 'pointer'}}>Delete</span>
                                         </Table.Cell>
                                     </Table.Row>
                             }) : null
@@ -228,13 +235,13 @@ export default function CategoryMgt(props) {
                                         <Loader active inline='centered' />
                                         </Display>
                                     </Button>
-                                    <Button floated="right" onClick={() => updateIsEditting(false)}>
+                                    <Button floated="right"  onClick={() => updateIsEditting(false)}>
                                         Cancel
                                     </Button>
                                 </Display>
                                 <Display if={!newService}>
-                                    <Button floated="right" onClick={postEdit} disabled={disable}>
-                                        Edit
+                                    <Button floated="right" color="green" onClick={postEdit} disabled={disable}>
+                                        Save
                                     </Button>
                                     <Button floated="right" onClick={() => updateIsEditting(false)}>
                                         Cancel
