@@ -18,7 +18,7 @@ export default function UserBankAccount(props) {
             {
                 !props.showAdd && props.userAcct !== null ? <div className="filledCardFrame">
                         <p className="cardname">
-                            {props.userAcct.accountName}
+                            {props.userAcct ? props.userAcct.accountName : ''}
                             <img src="/static/icons/cog.svg" title="edit account details" onClick={() =>updateIsAddingCard(true)} className="cog" alt=""/>
                         </p> 
 
@@ -30,7 +30,7 @@ export default function UserBankAccount(props) {
                                 .... .... ....
                             </span>
                             <span className="last4">
-                                {props.userAcct.accountNumber.substring(props.userAcct.accountNumber.length - 4, props.userAcct.accountNumber.length)}
+                                {props.userAcct ? props.userAcct.accountNumber.substring(props.userAcct.accountNumber.length - 4, props.userAcct.accountNumber.length) : ''}
                             </span>
                         </p>
                         <p className="cardNo">
@@ -38,7 +38,7 @@ export default function UserBankAccount(props) {
                                 sort code
                             </span> <br />
                             <span className="sort">
-                                {props.userAcct.sortCode}
+                                {props.userAcct ? props.userAcct.sortCode : ''}
                             </span>
                         </p>
                     </div> : <div className="emptyCardFrame" onClick={() => showAddingForm()}>
