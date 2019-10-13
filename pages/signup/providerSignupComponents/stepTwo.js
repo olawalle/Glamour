@@ -38,6 +38,7 @@ export default function StepTwo(props) {
     getPostcode(data)
     .then(res => {
       if (!res.data.city) setshowMessage(true)
+      else setshowMessage(false)
       setfoundPostcode(res.data.city)
     })
     .catch(err => {

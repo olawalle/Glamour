@@ -49,7 +49,8 @@ class Home extends Component {
     .then(res => {
       this.props.saveTrends(res.data.data.filter(trend => {
         return trend.serviceName !== null && trend.pictureUrl !== null
-      }))
+      }).splice(0, 3)
+      )
     })
     .catch(err => {
       console.log(err)

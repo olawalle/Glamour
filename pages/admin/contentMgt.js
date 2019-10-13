@@ -41,6 +41,7 @@ export default function ContentMgt(props) {
     }
 
     const postSubscription = () => {
+        setLoading(true)
         updatesendingRequest(true)
         let data = {
             name,
@@ -52,17 +53,15 @@ export default function ContentMgt(props) {
         addSubscription(data)
         .then(res => {
             updatesendingRequest(false)
-            getCities()
-            .then(res => {
-                getAll()
-                setAdding(false)
-                setLoading(false)
-            })
-            .catch(err => {
-                setAdding(false)
-            })
+            setAdding(false)
+            getAll()
+            setOpen(false)
+            setLoading(false)
         })
         .catch(err => {
+            setLoading(false)
+            setOpen(false)
+            setAdding(false)
             updatesendingRequest(false)
         })
     }
@@ -73,9 +72,11 @@ export default function ContentMgt(props) {
         .then(res => {
             getAll()
             setLoading(false)
+            setOpen(false)
         })
         .catch(err => {
             setLoading(false)
+            setOpen(false)
         })
     }
 

@@ -88,7 +88,11 @@ const Footer = () => {
             <Grid.Column largeScreen={14} mobile={16}>
               This website uses cookies <br /> <br />
               We use cookies to personalise and provide certain functionalities across the Urban website. They also help us analyse how people use our site and help us improve it.
-              By continuing to use this site you are agreeing to use our cookies as defined in our cookie policy
+              By continuing to use this site you are agreeing to use our cookies as defined in our 
+              
+              <Link href="/privacypolicy">
+                <a style={{marginLeft: '5px'}}>cookie policy</a>
+              </Link>
             </Grid.Column>
             <Grid.Column largeScreen={2} mobile={16}>
               <Button color="green" onClick={cookieAccept} style={{float: 'right'}}>Got it</Button>

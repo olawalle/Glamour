@@ -14,8 +14,8 @@ const Trend = (props) => {
   return (
     <>
       <Grid.Column  style={styles.Column}>
-        <div style={{width: '100%', height: '200px', overflow: 'hidden'}}>
-        <Image className="has-full-width" src={props.pictureUrl} />
+        <div style={{width: '100%', height: '200px', overflow: 'hidden', backgroundSize: 'cover', backgroundImage: `url(${props.pictureUrl})`}}>
+        {/* <Image className="has-full-width" src={} /> */}
         </div>
         <Header style={styles.Header} as='h4'>
           {props.serviceName}
