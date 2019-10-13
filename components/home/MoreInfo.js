@@ -17,14 +17,16 @@ const MoreInfo = (props) => {
           <Grid.Column className="is-h-centered" textAlign="left" width="8" verticalAlign="middle">
             <div className="moreinfo-text">
               <Header as="h4">
-                Are you a service provider?
+                Are you a beauty service provider?
               </Header>
               <Header.Subheader>
-                I was part of something special.
-                Is this my espresso machine? Wh-what is-h-how did you get my espresso machine?
-                What do they got in there? King Kong? So you two dig up, dig up dinosaurs?
+                Are you interested in expanding your client base, scaling up, 
+                and increasing revenue or are you making a move to go it alone in 
+                the beauty industry? Partner with Glamour on Demand and or 
+                Grooming on Demand platform and be part of a thriving community of 
+                mobile beauty and hair professionals who have bossed up and taken charge of their businesses. 
               </Header.Subheader>
-              <Button content="Get started" secondary onClick={toServices} />
+              <Button content="Get started"  secondary onClick={toServices}/>
             </div>
           </Grid.Column>
         </Grid.Row>

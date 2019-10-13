@@ -38,6 +38,7 @@ export default function StepTwo(props) {
     getPostcode(data)
     .then(res => {
       if (!res.data.city) setshowMessage(true)
+      else setshowMessage(false)
       setfoundPostcode(res.data.city)
     })
     .catch(err => {
@@ -113,17 +114,17 @@ export default function StepTwo(props) {
               value={signupFormData.postcode}
               className="stepOne-form--input"
               size="huge"
-              autocomplete="false" placeholder='Postcode'
-              autoComplete="new-password" fluid
+             autoComplete="new-password" placeholder='Postcode'
+              fluid
             />
             <Select
               error={formErrors['mileRadius']}
               onChange={(e, data) => handleChange(e, 'mileRadius', data)}
               className="stepOne-form--select signup-form--input"
               value={signupFormData.mileRadius}
-              autoComplete="new-password" fluid
+              fluid
               options={distance}
-              autocomplete="false" placeholder='Within mile radius'
+             autoComplete="new-password" placeholder='Within mile radius'
             />
 
             {

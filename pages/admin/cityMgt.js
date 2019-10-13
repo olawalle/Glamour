@@ -88,11 +88,13 @@ export default function CityMgt(props) {
             getCities()
             .then(res => {
                 setLoading(false)
+                setOpen(false)
                 setAdding(false)
                 updateCities(res.data.cities)
             })
             .catch(err => {
                 setAdding(false)
+                setOpen(false)
             })
         })
     }
