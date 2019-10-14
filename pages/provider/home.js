@@ -245,7 +245,6 @@ const ProviderHome = (props) => {
     }
 
     const close = () => {
-        console.log('closing')
         updateModal({ open: false, edit: false })
         updateShowNav(true)
     }

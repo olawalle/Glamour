@@ -141,6 +141,7 @@ const AddService = (props) => {
       .then(res => {
         let services = res.data.data.services
         props.saveProviderServices(services)
+        closee()
       })
       .catch(err => {
         console.log({...err})
