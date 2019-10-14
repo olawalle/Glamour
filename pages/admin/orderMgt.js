@@ -59,7 +59,7 @@ export default function OrderMgt(props) {
                         <Table.Body>
                             {
                                 bookings.map((booking, i) => {
-                                    return <Table.Row onClick={() => selectOrder(i)}>
+                                    return <Table.Row onClick={() => selectOrder(i)} style={{cursor: 'pointer'}} title="click for more details">
                                         {/* <Table.Cell>129977</Table.Cell> */}
                                         <Table.Cell>
                                             {dayjs(booking.message.createdAt).format('DD MMM, YYYY')}
@@ -106,7 +106,7 @@ export default function OrderMgt(props) {
                     <>
                         <div className="boxx">
                             {/* <Icon size="small" name="home" className="icon" onClick={() => updateIsViewing(false)} /> */}
-                            <span style={{padding: '12px'}} onClick={() => unopen()}>
+                            <span style={{padding: '20px', cursor: 'pointer'}} onClick={() => unopen()}>
                                 Close
                             </span>
                             <Grid>
