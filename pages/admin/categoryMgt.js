@@ -77,6 +77,10 @@ export default function CategoryMgt(props) {
             getAll()
             updateIsEditting(false)
             updateLoading(false)
+            updateImage('')
+            updatePicture(null)
+            updateName('')
+            updateDesc('')
         })
         .catch(err => {
             updateError(true)
@@ -98,6 +102,12 @@ export default function CategoryMgt(props) {
         .then(res => {
             getAll()
             updateIsEditting(false)
+            updateSelectedCategory({})
+            updateImage('')
+            updatePicture(null)
+            updateName('')
+            updateDesc('')
+            updateNewService(true)
         })
         .catch(err => {
             console.log({...err})
