@@ -116,7 +116,7 @@ export default function OrderMgt(props) {
                                             ORDER NUMBER:
                                         </p>
                                         <p className="row-text">
-                                            {selectedBooking.message._id}
+                                            {selectedBooking.message.reference}
                                         </p>
 
                                     </Grid.Column>
@@ -152,7 +152,9 @@ export default function OrderMgt(props) {
                                         Service provider
                                     </Grid.Column>
                                     <Grid.Column width={8} className="rightside">
-                                        Martha Jones
+                                        {
+                                            selectedBooking.provider.name
+                                        }
                                     </Grid.Column>
                                 </Grid.Row>
                                 <Grid.Row>
