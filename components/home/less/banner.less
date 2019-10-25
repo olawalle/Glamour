@@ -1,5 +1,5 @@
 #__next .home-banner {
-  background: #020202;
+  // background: #020202;
   background-image: url(/static/images/female-banner.png);
   background-position-x: 0;
   background-size: cover ;
@@ -7,23 +7,6 @@
   margin: 0px ;
   border-radius: 0px ;
 
-  .navv {
-    width: 100%;
-    background-color: transparent;
-    height: 100px;
-    color: #fff;
-    position: absolute;
-    top: 0;
-    .ui.menu {
-      background-color: transparent !important;
-      color: #fff !important;
-      box-shadow: none !important;
-      border: 0 !important;
-      .item {
-        color: #fff
-      }
-    }
-  }
 
   .ui.header {
     font-family: freightproblack ;
@@ -53,9 +36,10 @@
   .home-banner {
     min-height: 850px ;
     background-position-x: 0;
-    background-position-y: 35px !important;
+    // background-position-y: -20px !important;
     background-size: 170% !important;
     background-repeat: no-repeat !important;
+    top: 0px;
     .searchForm .date--picker img {
       left: -5px ;
     }
@@ -74,24 +58,6 @@
 
     .searchForm .button {
             // width: 100% ;
-    }
-    .navv {
-      width: 100%;
-      background-color: #000000c0 !important;
-      height: 60px !important;
-      color: #fff;
-      position: fixed !important;
-      top: 0;
-      z-index: 10000000000000000000 !important;
-      .ui.menu {
-        background-color: transparent !important;
-        color: #fff !important;
-        box-shadow: none !important;
-        border: 0 !important;
-        .item {
-          color: #3a3a3a !important
-        }
-      }
     }
   }
 }
