@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions';
 import withMasterLayout from './layouts/withMasterLayout';
@@ -28,57 +28,68 @@ const Testimonials = dynamic(
 
 class Home extends Component {
 
-  static async getInitialProps ({ reduxStore, req }) {
+  static async getInitialProps({ reduxStore, req }) {
     const isServer = !!req
     // DISPATCH ACTIONS HERE ONLY WITH `reduxStore.dispatch`
     return {}
   }
 
-  componentDidMount () {
+  state = {
+    ref: React.createRef()
+  }
+
+  componentDidMount() {
 
     // get list of service categories, trends and serviceProviders
     getAllServices()
-    .then(res => {
-      this.props.saveServices(res.data.data)
-    })
-    .catch(err => {
-      console.log(err)
-    })
+      .then(res => {
+        this.props.saveServices(res.data.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
 
     getAllTrends()
-    .then(res => {
-      this.props.saveTrends(res.data.data.filter(trend => {
-        return trend.serviceName !== null && trend.pictureUrl !== null
-      }))
-    })
-    .catch(err => {
-      console.log(err)
-    })
+      .then(res => {
+        this.props.saveTrends(res.data.data.filter(trend => {
+          return trend.serviceName !== null && trend.pictureUrl !== null
+        }))
+      })
+      .catch(err => {
+        console.log(err)
+      })
 
     getAllProviders()
-    .then(res => {
-      this.props.saveProviders(res.data.users)
-    })
-    .catch(err => {
-      console.log(err)
-    })
+      .then(res => {
+        this.props.saveProviders(res.data.users)
+      })
+      .catch(err => {
+        console.log(err)
+      })
 
     getAllTestimonials()
-    .then(res => {
-      this.props.saveTestimonials(res.data.testimonials)
-    })
+      .then(res => {
+        this.props.saveTestimonials(res.data.testimonials)
+      })
   }
 
-  render () {
+  // used to scroll up to the "HOW IT WORKS" section
+  jumpUp = () => {
+    window.scrollTo(0, this.state.ref.current.offsetTop)
+  }
+
+  render() {
     return (
       <>
         <Banner showName={true} />
         <BeautyServices beautyServices={this.props.beautyServices} />
         <Trends trends={this.props.trends} />
-        <HowItWorks />
+        <div ref={this.state.ref} >
+          <HowItWorks />
+        </div>
         <Testimonials testimonials={this.props.testimonials} />
         <MoreInfo />
-        <Footer />
+        <Footer fromHow={this.jumpUp} />
       </>
     )
   }
