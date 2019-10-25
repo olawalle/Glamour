@@ -13,10 +13,12 @@ const Footer = (props) => {
     cookieAcceptance ? setCookie(false) : setCookie(true)
 
     Router.router.route === '/' ? showHow(true) : showHow(false)
+    setYear(new Date().getFullYear())
   }, [])
 
   const [cookieSet, setCookie] = useState(false)
   const [how, showHow] = useState(false)
+  const [year, setYear] = useState('2019')
 
   const cookieAccept = () => {
     window.localStorage.setItem('cookieAcceptance', true)
@@ -95,7 +97,7 @@ const Footer = (props) => {
         <Divider />
         <Header className="copyright" textAlign="center" as="h3">
           <Image src="/static/icons/copyright.svg" />
-          <span>Glamour on Demand 2019</span>
+          <span>Glamour on Demand {year}</span>
         </Header>
       </Container>
       {cookieSet &&
