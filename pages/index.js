@@ -16,7 +16,6 @@ import 'antd/lib/skeleton/style/index.css'
 import { getAllServices, getAllTrends, getAllProviders, getAllTestimonials } from '../services/generatData.ts'
 import Router from 'next/router';
 import Navbar from '../components/shared/Navbar';
-import './less/index.less'
 
 const Testimonials = dynamic(
   () => import('../components/home/Testimonials'),
@@ -86,10 +85,6 @@ class Home extends Component {
   render() {
     return (
       <>
-
-        <div className="navv">
-          <Navbar from="banner" />
-        </div>
         <Banner showName={true} />
         <BeautyServices beautyServices={this.props.beautyServices} />
         <Trends trends={this.props.trends} />

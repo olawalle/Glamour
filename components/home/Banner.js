@@ -7,9 +7,9 @@ import './less/banner.less';
 const Banner = (props) => {
   return (
     <Segment className="is-v-centered home-banner">
-      {/* <div className="navv">
+      <div className="navv">
         <Navbar from="banner" />
-      </div> */}
+      </div>
       <Container>
         <Grid stackable stretched verticalAlign="middle" columns={4} centered>
           <Grid.Row centered verticalAlign="middle" stretched>

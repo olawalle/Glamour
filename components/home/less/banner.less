@@ -30,11 +30,29 @@
   .subheader-container {
     margin-bottom: 40px;
   }
+
+  .navv {
+    width: 100%;
+    background-color: transparent;
+    height: 100px;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    .ui.menu {
+      background-color: transparent !important;
+      color: #fff !important;
+      box-shadow: none !important;
+      border: 0 !important;
+      .item {
+        color: #fff
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 798px) {
   .home-banner {
-    height: 750px !important;
+    height: 800px !important;
     min-height: auto !important;
     background-position-x: 0;
     // background-position-y: -20px !important;
@@ -78,7 +96,7 @@
 
     .header-container {
       margin-bottom: 10px !important;
-      margin-top: -80px !important
+      margin-top: -60px !important
     }
 
     .sub.header {
@@ -86,6 +104,25 @@
       line-height: 20px !important;
       margin: 0px 35px !important;
       font-size: 15px !important;
+    }
+
+    .navv {
+      width: 100%;
+      background-color: #000000c0 !important;
+      height: 60px !important;
+      color: #fff;
+      position: fixed !important;
+      top: 0;
+      z-index: 10000000000000000000 !important;
+      .ui.menu {
+        background-color: transparent !important;
+        color: #fff !important;
+        box-shadow: none !important;
+        border: 0 !important;
+        .item {
+          color: #3a3a3a !important
+        }
+      }
     }
   }
 }
