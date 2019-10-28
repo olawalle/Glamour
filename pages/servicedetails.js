@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import withMasterLayout from '../pages/layouts/withMasterLayout';
 import { connect } from 'react-redux';
 import { Container, Grid, Button, Loader } from 'semantic-ui-react';
@@ -19,12 +19,12 @@ import { saveProvider, getSavedProviders, deleteSavedProvider, createConversatio
 import Display from '../components/shared/Display';
 
 class ServiceDetails extends Component {
-    static async getInitialProps ({ reduxStore, req }) {
+    static async getInitialProps({ reduxStore, req }) {
         this.test = reduxStore
-      // DISPATCH ACTIONS HERE ONLY WITH `reduxStore.dispatch`
-  
-      return {
-      }
+        // DISPATCH ACTIONS HERE ONLY WITH `reduxStore.dispatch`
+
+        return {
+        }
     }
 
     state = {
@@ -54,127 +54,127 @@ class ServiceDetails extends Component {
         saving: false,
         bookedTimes: []
     }
-    
+
 
     componentDidMount() {
-        
+
         let userData = window.sessionStorage.getItem('glamourToken')
-            
+
         //API call to get all available providers
         getAllProviders()
-        .then(res => {
-            this.props.saveProviders(res.data.users)
-            this.setState({
-                selectedProvider: res.data.users.find(provider => provider._id === Router.router.query.provider)
-            }, () => {
-                this.props.selectProvider(this.state.selectedProvider)
-            })
+            .then(res => {
+                this.props.saveProviders(res.data.users)
+                this.setState({
+                    selectedProvider: res.data.users.find(provider => provider._id === Router.router.query.provider)
+                }, () => {
+                    this.props.selectProvider(this.state.selectedProvider)
+                })
 
-            if (userData) {
-                getSavedProviders()
-                .then(prv => {
-                    this.props.saveFavedProviders(prv.data.providers)
-                    let present = this.props.savedProviders.find(provider => provider.providerId === Router.router.query.provider)
-                    if (present) {
-                        this.setState({present: true})
-                    }
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-            }
-        })
-        .catch(err => {
-            console.log(err)
-        })
+                if (userData) {
+                    getSavedProviders()
+                        .then(prv => {
+                            this.props.saveFavedProviders(prv.data.providers)
+                            let present = this.props.savedProviders.find(provider => provider.providerId === Router.router.query.provider)
+                            if (present) {
+                                this.setState({ present: true })
+                            }
+                        })
+                        .catch(err => {
+                            console.log(err)
+                        })
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
 
         getProviderSchedule(Router.router.query.provider)
-        .then(res => {
-            console.log(res)
-            this.setState({
-                bookedTimes: res.data.data
+            .then(res => {
+                // console.log(res)
+                this.setState({
+                    bookedTimes: res.data.data
+                })
             })
-        })
-        .catch(err => {
-            console.log(err)
-        })
+            .catch(err => {
+                console.log(err)
+            })
 
         getProviderReviews(Router.router.query.provider)
-        .then(res => {
-            res.data.data ? this.setState({reviews: res.data.data}) : null
-        })
-        .catch(err => {
-            console.log(err)
-        })
-        
+            .then(res => {
+                res.data.data ? this.setState({ reviews: res.data.data }) : null
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
         getProviderPublicServices(Router.router.query.provider)
-        .then(res => {
-            let services = res.data.data.services
-            this.setState({servicesRendered: services})
-            //   props.saveProviderServices(services)
-        })
-        .catch(err => {
-            console.log({...err})
-        })
+            .then(res => {
+                let services = res.data.data.services
+                this.setState({ servicesRendered: services })
+                //   props.saveProviderServices(services)
+            })
+            .catch(err => {
+                console.log({ ...err })
+            })
 
         getLookbook(Router.router.query.provider)
-        .then(res => {
-            this.setState({lookbook: res.data.looks})
-        })
-        .catch(err => {
-            console.log(err)
-        })
-        
+            .then(res => {
+                this.setState({ lookbook: res.data.looks })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
         let id = Router.router.query.provider
         if (this.props.serviceProviders.length > 0) {
-                this.setState({selectedProvider: this.props.serviceProviders.find(provider => provider._id === id)}, () => {
+            this.setState({ selectedProvider: this.props.serviceProviders.find(provider => provider._id === id) }, () => {
                 // console.log(this.state.selectedProvider)
             })
         }
     }
 
     favProvider = () => {
-        this.setState({saving: true})
-        saveProvider({providerId: Router.router.query.provider})
-        .then(res => {
-            console.log(res)
-            getSavedProviders()
-            .then(prv => {
-              this.setState({saving: false, present: true})
-              this.props.saveFavedProviders(prv.data.providers)
+        this.setState({ saving: true })
+        saveProvider({ providerId: Router.router.query.provider })
+            .then(res => {
+                // console.log(res)
+                getSavedProviders()
+                    .then(prv => {
+                        this.setState({ saving: false, present: true })
+                        this.props.saveFavedProviders(prv.data.providers)
+                    })
+                    .catch(err => {
+                        this.setState({ saving: false })
+                        console.log({ ...err })
+                    })
             })
             .catch(err => {
-              this.setState({saving: false})
-              console.log({...err})
+                this.setState({ saving: false })
+                console.log(err)
             })
-        })
-        .catch(err => {
-            this.setState({saving: false})
-            console.log(err)
-        })
     }
 
-    
+
     unFavProvider = () => {
-        this.setState({saving: true})
+        this.setState({ saving: true })
         deleteSavedProvider(Router.router.query.provider)
-        .then(res => {
-            console.log(res)
-            getSavedProviders()
-            .then(prv => {
-              this.setState({saving: false})
-              this.props.saveFavedProviders(prv.data.providers)
-              this.setState({saving: false, present: false})
+            .then(res => {
+                // console.log(res)
+                getSavedProviders()
+                    .then(prv => {
+                        this.setState({ saving: false })
+                        this.props.saveFavedProviders(prv.data.providers)
+                        this.setState({ saving: false, present: false })
+                    })
+                    .catch(err => {
+                        this.setState({ saving: false })
+                        console.log(err)
+                    })
             })
             .catch(err => {
-              this.setState({saving: false})
-              console.log(err)
+                this.setState({ saving: false })
+                console.log(err)
             })
-        })
-        .catch(err => {
-            this.setState({saving: false})
-            console.log(err)
-        })
     }
 
     sendMessage = () => {
@@ -184,13 +184,13 @@ class ServiceDetails extends Component {
         }
         console.log(data)
         createConversation(data)
-        .then(res => {
-            console.log(res)
-            Router.push('/messages?conversationId='+res.data.data._id)
-        })
-        .catch(err => {
-            console.log(err)
-        })
+            .then(res => {
+                // console.log(res)
+                Router.push('/messages?conversationId=' + res.data.data._id)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     showInnerNav = () => {
@@ -199,62 +199,62 @@ class ServiceDetails extends Component {
         }
     }
 
-    
+
     renderServiceComponent() {
         if (this.state.servicesRendered.length > 0) return this.state.servicesRendered.map((service, i) => <Service isEmpty={false} key={`service${i}`} id={service._id} userServices={service} selected={false} />)
         else return <Service isEmpty={true} />
     }
 
-    render () {
+    render() {
         return (
             <>
-            <Banner banner={this.state.selectedProvider.bannerUrl ? this.state.selectedProvider.bannerUrl : '/static/images/EmptyBanner.png'}  text={''} />
-            <Container>
-                <div className="serviceDetails">
-                    <Grid stackable>
-                        <Grid.Row>
-                            <Grid.Column width={10}>
-                                <div className="userDesc">
-                                    <div className={this.state.selectedProvider.instant ? "userPhoto_" : "userPhoto"}>
-                                        <img src={this.state.selectedProvider.pictureUrl } alt=""/>
-                                    </div>
-                                    {this.props.isLoggedIn && <span className="buttons">
-                                        {
-                                            !this.state.present ? <Button size="huge" onClick={this.favProvider} className="mainBtn secondaryBtn"> 
-                                                                    <Display if={this.state.saving}>
-                                                                        <Loader active inline='centered' />
-                                                                    </Display>
-                                                                    <Display if={!this.state.saving}>
-                                                                        <img src="../static/icons/heart.svg" alt=""/> 
-                                                                        <span>Save</span>
-                                                                    </Display>
-                                                                </Button> : <Button size="huge" onClick={this.unFavProvider} className="mainBtn secondaryBtn"> 
-                                                                                <Display if={this.state.saving}>
-                                                                                    <Loader active inline='centered' />
-                                                                                </Display>
-                                                                                <Display if={!this.state.saving}>
-                                                                                    <img src="../static/icons/heart.svg" alt=""/> 
-                                                                                    <span>Unsave</span>
-                                                                                </Display>
-                                                                            </Button>
-                                        }
-                                        <Button size="huge"  className="mainBtn" secondary onClick={this.sendMessage}>
-                                            Send Message
+                <Banner banner={this.state.selectedProvider.bannerUrl ? this.state.selectedProvider.bannerUrl : '/static/images/EmptyBanner.png'} text={''} />
+                <Container>
+                    <div className="serviceDetails">
+                        <Grid stackable>
+                            <Grid.Row>
+                                <Grid.Column width={10}>
+                                    <div className="userDesc">
+                                        <div className={this.state.selectedProvider.instant ? "userPhoto_" : "userPhoto"}>
+                                            <img src={this.state.selectedProvider.pictureUrl} alt="" />
+                                        </div>
+                                        {this.props.isLoggedIn && <span className="buttons">
+                                            {
+                                                !this.state.present ? <Button size="huge" onClick={this.favProvider} className="mainBtn secondaryBtn">
+                                                    <Display if={this.state.saving}>
+                                                        <Loader active inline='centered' />
+                                                    </Display>
+                                                    <Display if={!this.state.saving}>
+                                                        <img src="../static/icons/heart.svg" alt="" />
+                                                        <span>Save</span>
+                                                    </Display>
+                                                </Button> : <Button size="huge" onClick={this.unFavProvider} className="mainBtn secondaryBtn">
+                                                        <Display if={this.state.saving}>
+                                                            <Loader active inline='centered' />
+                                                        </Display>
+                                                        <Display if={!this.state.saving}>
+                                                            <img src="../static/icons/heart.svg" alt="" />
+                                                            <span>Unsave</span>
+                                                        </Display>
+                                                    </Button>
+                                            }
+                                            <Button size="huge" className="mainBtn" secondary onClick={this.sendMessage}>
+                                                Send Message
                                         </Button>
-                                    </span>
-                                    }
-                                    <p className="userName">
-                                        {this.state.selectedProvider.fullname }
-                                    </p>
-                                    <p className="userJob">
-                                        {this.state.selectedProvider.service}
-                                    </p>
-                                    <p className="userDetails">
-                                        {this.state.selectedProvider.description}
-                                    </p>
-                                </div>
-                            </Grid.Column>
-                            <Grid.Column width={10}>
+                                        </span>
+                                        }
+                                        <p className="userName">
+                                            {this.state.selectedProvider.fullname}
+                                        </p>
+                                        <p className="userJob">
+                                            {this.state.selectedProvider.service}
+                                        </p>
+                                        <p className="userDetails">
+                                            {this.state.selectedProvider.description}
+                                        </p>
+                                    </div>
+                                </Grid.Column>
+                                <Grid.Column width={10}>
                                     <div className="serviceWrap lightShadow">
                                         <div className="serviceWrapTitle">
                                             Services
@@ -266,12 +266,12 @@ class ServiceDetails extends Component {
                                         </div>
                                     </div>
                                 </Grid.Column>
-                                
+
                                 <Grid.Column width={6} className="forBig">
                                     <div className="lightShadow bookServiceComponent">
                                         <BookService bookedTimes={this.state.bookedTimes} providerDetails={this.state.selectedProvider} />
                                     </div>
-                                </Grid.Column>  
+                                </Grid.Column>
                                 <Grid.Column width={10}>
                                     <div className="lookBookWrap lightShadow">
                                         <Grid columns={2}>
@@ -289,14 +289,14 @@ class ServiceDetails extends Component {
                                                 </Grid.Column> */}
                                             </Grid.Row>
                                         </Grid>
-                                        
-                                        {this.state.lookbook.length > 0 ? <LookBook_ looks={this.state.lookbook} /> : 
+
+                                        {this.state.lookbook.length > 0 ? <LookBook_ looks={this.state.lookbook} /> :
                                             <div className="emptyState">
-                                                <img src="/static/icons/empty_service.svg" alt=""/>
+                                                <img src="/static/icons/empty_service.svg" alt="" />
                                                 <p>
-                                                This provider has no lookbook uploaded.
+                                                    This provider has no lookbook uploaded.
                                                 </p>
-                                            </div> 
+                                            </div>
                                         }
                                     </div>
                                     <div className="reviewsComponentWrap lightShadow">
@@ -308,12 +308,12 @@ class ServiceDetails extends Component {
                                                             Reviews
                                                         </span>
                                                     </Grid.Column>
-                                                    <Grid.Column  mobile={10} tablet={8} computer={8} largeScreen={8} className="lookStars">
+                                                    <Grid.Column mobile={10} tablet={8} computer={8} largeScreen={8} className="lookStars">
                                                         <span>
                                                             {
                                                                 <Stars stars={this.state.selectedProvider.stars ? this.state.selectedProvider.stars : 0} />
-                                                            }      
-                                                            ({this.state.reviews.length})                                   
+                                                            }
+                                                            ({this.state.reviews.length})
                                                         </span>
                                                     </Grid.Column>
                                                 </Grid.Row>
@@ -322,23 +322,23 @@ class ServiceDetails extends Component {
                                         <div className="reviewsComponentWrapChild">
                                             <Display if={this.state.reviews.length === 0}>
                                                 <div className="emptyState">
-                                                    <img src="/static/icons/empty_service.svg" alt=""/>
+                                                    <img src="/static/icons/empty_service.svg" alt="" />
                                                     <p>
-                                                    This provider has no reviews yet.
+                                                        This provider has no reviews yet.
                                                     </p>
-                                                </div>                                                
+                                                </div>
                                             </Display>
                                             <Display if={this.state.reviews.length > 0}>
                                                 <Reviews reviews={this.state.reviews} />
                                             </Display>
                                         </div>
                                     </div>
-                            </Grid.Column>                       
-                        </Grid.Row>
-                    </Grid>
-                </div>
-            </Container>
-            <Footer />
+                                </Grid.Column>
+                            </Grid.Row>
+                        </Grid>
+                    </div>
+                </Container>
+                <Footer />
             </>
         );
     }

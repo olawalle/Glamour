@@ -101,7 +101,7 @@ const AddService = (props) => {
     data.append('pictureUrl', file)
     generalUploadImage(data)
     .then(res => {
-      console.log(res)
+      // console.log(res)
       updatePic(res.data.data)
     })
     .catch(err => {
@@ -187,7 +187,7 @@ const AddService = (props) => {
   setdeleting(true)
   deleteProviderServices(props.selectedService._id)
   .then(res => {
-    console.log(res)
+    // console.log(res)
     getProviderServices(props.user.id)
     .then(res => {
       setdeleting(false)

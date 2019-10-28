@@ -136,7 +136,7 @@ const Account = (props) => {
 
       getBills()
       .then(res => {
-        console.log(res)
+        // console.log(res)
       })
       .catch(err => {
         console.log(err)

@@ -33,7 +33,7 @@ const Admin = (props) => {
         // get list of service categories, trends and serviceProviders
         getAllServices()
         .then(res => {
-            // console.log(res)
+            // // console.log(res)
             saveServices(res.data.data)
         })
         .catch(err => {

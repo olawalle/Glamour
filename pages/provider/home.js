@@ -129,7 +129,7 @@ const ProviderHome = (props) => {
         formData.append('picture', imageFile)
         uploadBanner(formData, props.user.id)
         .then(res => {
-            console.log(res)
+            // console.log(res)
             getUserDetails()
         })
         .catch(err => {

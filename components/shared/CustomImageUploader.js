@@ -43,7 +43,7 @@ export default class CustomImageUploader extends Component {
       data.append('picture', file)
       generalUploadImage(data)
       .then(res => {
-        console.log(res)
+        // console.log(res)
         this.props.getUrl(res.data.data)
       })
       .catch(err => {
