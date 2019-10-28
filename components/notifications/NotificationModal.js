@@ -40,7 +40,7 @@ const NotificationModal = (props) => {
     setloading(true)
     postReviews(data)
     .then(res => {
-      console.log(res)
+      // console.log(res)
       setloading(false)
       props.setIsWritingReview(false);  
     })

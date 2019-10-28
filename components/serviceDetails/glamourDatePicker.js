@@ -19,86 +19,86 @@ export default class glamourDatePicker extends Component {
     availableDaysOfTheWeek: [],
     allDates: [],
     monthNames: [
-      {name: "January", position: 1},
-      {name: "February", position: 2},
-      {name: "March", position: 3},
-      {name: "April", position: 4},
-      {name: "May", position: 5},
-      {name: "June", position: 6},
-      {name: "July", position: 7},
-      {name: "August", position: 8},
-      {name: "September", position: 9},
-      {name: "October", position: 10},
-      {name: "November", position: 11},
-      {name: "December", position: 12}
+      { name: "January", position: 1 },
+      { name: "February", position: 2 },
+      { name: "March", position: 3 },
+      { name: "April", position: 4 },
+      { name: "May", position: 5 },
+      { name: "June", position: 6 },
+      { name: "July", position: 7 },
+      { name: "August", position: 8 },
+      { name: "September", position: 9 },
+      { name: "October", position: 10 },
+      { name: "November", position: 11 },
+      { name: "December", position: 12 }
     ],
     pickedDate: '',
     userAvailableTimes: { from: '09:00 am', to: '05:00 pm' },
     userAvailableTimesArray: [],
     disabledTimes: null,
     times: [
-        {time: '00:00 am' , selected: '', disabled: ''},
-        {time: '00:30 am' , selected: '', disabled: ''},
-        {time: '01:00 am' , selected: '', disabled: ''},
-        {time: '01:30 am' , selected: '', disabled: ''},
-        {time: '02:00 am' , selected: '', disabled: ''},
-        {time: '02:30 am' , selected: '', disabled: ''},
-        {time: '03:00 am' , selected: '', disabled: ''},
-        {time: '03:30 am' , selected: '', disabled: ''},
-        {time: '04:00 am' , selected: '', disabled: ''},
-        {time: '04:30 am' , selected: '', disabled: ''},
-        {time: '05:00 am' , selected: '', disabled: ''},
-        {time: '05:30 am' , selected: '', disabled: ''},
-        {time: '06:00 am' , selected: '', disabled: ''},
-        {time: '06:30 am' , selected: '', disabled: ''},
-        {time: '07:00 am' , selected: '', disabled: ''},
-        {time: '07:30 am' , selected: '', disabled: ''},
-        {time: '08:00 am' , selected: '', disabled: ''},
-        {time: '08:30 am' , selected: '', disabled: ''},
-        {time: '09:00 am' , selected: '', disabled: ''},
-        {time: '09:30 am' , selected: '', disabled: ''},
-        {time: '10:00 am' , selected: '', disabled: ''},
-        {time: '10:30 am' , selected: '', disabled: ''},
-        {time: '11:00 am' , selected: '', disabled: ''},
-        {time: '11:30 am' , selected: '', disabled: ''},
-        {time: '12:00 pm', selected: '', disabled: ''},
-        {time: '12:30 pm', selected: '', disabled: ''},
-        {time: '01:00 pm', selected: '', disabled: ''},
-        {time: '01:30 pm', selected: '', disabled: ''},
-        {time: '02:00 pm', selected: '', disabled: ''},
-        {time: '02:30 pm', selected: '', disabled: ''},
-        {time: '03:00 pm', selected: '', disabled: ''},
-        {time: '03:30 pm', selected: '', disabled: ''},
-        {time: '04:00 pm', selected: '', disabled: ''},
-        {time: '04:30 pm', selected: '', disabled: ''},
-        {time: '05:00 pm', selected: '', disabled: ''},
-        {time: '05:30 pm', selected: '', disabled: ''},
-        {time: '06:00 pm', selected: '', disabled: ''},
-        {time: '06:30 pm', selected: '', disabled: ''},
-        {time: '07:00 pm', selected: '', disabled: ''},
-        {time: '07:30 pm', selected: '', disabled: ''},
-        {time: '08:00 pm', selected: '', disabled: ''},
-        {time: '08:30 pm', selected: '', disabled: ''},
-        {time: '09:00 pm', selected: '', disabled: ''},
-        {time: '09:30 pm', selected: '', disabled: ''},
-        {time: '10:00 pm', selected: '', disabled: ''},
-        {time: '10:30 pm', selected: '', disabled: ''},
-        {time: '11:00 pm', selected: '', disabled: ''},
-        {time: '11:30 pm', selected: '', disabled: ''},
+      { time: '00:00 am', selected: '', disabled: '' },
+      { time: '00:30 am', selected: '', disabled: '' },
+      { time: '01:00 am', selected: '', disabled: '' },
+      { time: '01:30 am', selected: '', disabled: '' },
+      { time: '02:00 am', selected: '', disabled: '' },
+      { time: '02:30 am', selected: '', disabled: '' },
+      { time: '03:00 am', selected: '', disabled: '' },
+      { time: '03:30 am', selected: '', disabled: '' },
+      { time: '04:00 am', selected: '', disabled: '' },
+      { time: '04:30 am', selected: '', disabled: '' },
+      { time: '05:00 am', selected: '', disabled: '' },
+      { time: '05:30 am', selected: '', disabled: '' },
+      { time: '06:00 am', selected: '', disabled: '' },
+      { time: '06:30 am', selected: '', disabled: '' },
+      { time: '07:00 am', selected: '', disabled: '' },
+      { time: '07:30 am', selected: '', disabled: '' },
+      { time: '08:00 am', selected: '', disabled: '' },
+      { time: '08:30 am', selected: '', disabled: '' },
+      { time: '09:00 am', selected: '', disabled: '' },
+      { time: '09:30 am', selected: '', disabled: '' },
+      { time: '10:00 am', selected: '', disabled: '' },
+      { time: '10:30 am', selected: '', disabled: '' },
+      { time: '11:00 am', selected: '', disabled: '' },
+      { time: '11:30 am', selected: '', disabled: '' },
+      { time: '12:00 pm', selected: '', disabled: '' },
+      { time: '12:30 pm', selected: '', disabled: '' },
+      { time: '01:00 pm', selected: '', disabled: '' },
+      { time: '01:30 pm', selected: '', disabled: '' },
+      { time: '02:00 pm', selected: '', disabled: '' },
+      { time: '02:30 pm', selected: '', disabled: '' },
+      { time: '03:00 pm', selected: '', disabled: '' },
+      { time: '03:30 pm', selected: '', disabled: '' },
+      { time: '04:00 pm', selected: '', disabled: '' },
+      { time: '04:30 pm', selected: '', disabled: '' },
+      { time: '05:00 pm', selected: '', disabled: '' },
+      { time: '05:30 pm', selected: '', disabled: '' },
+      { time: '06:00 pm', selected: '', disabled: '' },
+      { time: '06:30 pm', selected: '', disabled: '' },
+      { time: '07:00 pm', selected: '', disabled: '' },
+      { time: '07:30 pm', selected: '', disabled: '' },
+      { time: '08:00 pm', selected: '', disabled: '' },
+      { time: '08:30 pm', selected: '', disabled: '' },
+      { time: '09:00 pm', selected: '', disabled: '' },
+      { time: '09:30 pm', selected: '', disabled: '' },
+      { time: '10:00 pm', selected: '', disabled: '' },
+      { time: '10:30 pm', selected: '', disabled: '' },
+      { time: '11:00 pm', selected: '', disabled: '' },
+      { time: '11:30 pm', selected: '', disabled: '' },
     ]
   }
 
   getDaysArray = (start, end) => {
-    for(var arr=[],dt=start; dt<=end; dt.setDate(dt.getDate()+1)){
-        arr.push(new Date(dt));
+    for (var arr = [], dt = start; dt <= end; dt.setDate(dt.getDate() + 1)) {
+      arr.push(new Date(dt));
     }
     return arr;
   };
-  
+
   getDates = (previouslySelectedDate) => {
     const start = dayjs().format('YYYY-MM-DD')
     const end = dayjs().add(1, 'year').format('YYYY-MM-DD')
-    var daylist = this.getDaysArray(new Date(start),new Date(end));
+    var daylist = this.getDaysArray(new Date(start), new Date(end));
     let arr = []
     daylist.map((v, i) => {
       let date = dayjs(v).format('DD MMMM YYYY').split(" ")
@@ -109,51 +109,74 @@ export default class glamourDatePicker extends Component {
       arr.push(reshapedDate)
     })
 
-    this.setState({pickedDate: `${arr[0].day} ${arr[0].month}`})
+    this.setState({ pickedDate: `${arr[0].day} ${arr[0].month}` })
 
-    this.setState({dateLimits: {
-      min: arr[0],
-      max: arr[arr.length - 1]
-    }})
+    this.setState({
+      dateLimits: {
+        min: arr[0],
+        max: arr[arr.length - 1]
+      }
+    })
 
-    let datesDictionary = arr.reduce((agg, curr) => {  
+    let datesDictionary = arr.reduce((agg, curr) => {
       agg[curr.month] = agg[curr.month] ? agg[curr.month].concat(curr) : [curr];
       return agg
     }, {})
     let currentMonth = dayjs().format('MMMM')
     let currentYear = dayjs().format('YYYY')
 
-    this.setState({datesDictionary: datesDictionary})
+    this.setState({ datesDictionary: datesDictionary })
 
-    
+
     if (previouslySelectedDate !== '') {
       let day = previouslySelectedDate.split(",")[0].split(" ")[0]
       let month = previouslySelectedDate.split(",")[0].split(" ")[1]
-      let year = previouslySelectedDate.split(",")[1].replace(/\s/g,'')
+      let year = previouslySelectedDate.split(",")[1].replace(/\s/g, '')
       let selectedDatesPosition = 0
       let fullPreviouslySelectedDate = datesDictionary[`${month}, ${year}`].map((date, i) => {
         if (day === date.day) {
           selectedDatesPosition = i
-          return  {...date, active: 'active'}
-         } else {
-          return {...date, active: ''}
-         }
+          return { ...date, active: 'active' }
+        } else {
+          return { ...date, active: '' }
+        }
       }).map(d => {
-        return {...d, isAvailable: this.userIsAvailable(`${d.day}, ${d.month}`)}
+        return { ...d, isAvailable: this.userIsAvailable(`${d.day}, ${d.month}`) }
       })
       this.moveDatesLeft(selectedDatesPosition)
-      this.setState({allDates: fullPreviouslySelectedDate}, () => {
+      this.setState({ allDates: fullPreviouslySelectedDate }, () => {
       })
     } else {
       let all = datesDictionary[`${currentMonth}, ${currentYear}`].map(d => {
-        return {...d, isAvailable: this.userIsAvailable(`${d.day}, ${d.month}`)}
+        return { ...d, isAvailable: this.userIsAvailable(`${d.day}, ${d.month}`) }
       })
-      this.setState({allDates: all})
+      this.setState({ allDates: all })
     }
   }
 
   userIsAvailable = (date) => {
-    let whatDay = (dayjs(date).$d).toString().split(' ')[0]
+    let months = [
+      'january',
+      'february',
+      'march',
+      'april',
+      'may',
+      'june',
+      'july',
+      'august',
+      'september',
+      'october',
+      'november',
+      'december'
+    ]
+    // conversion from date to date_ necessary because dayjs isnt recognising the date format
+    let splitDate = date.split(', ').reverse()
+    let monthIndex = parseInt(months.findIndex(month => month === splitDate[1].toLowerCase())) < 10 ?
+      '0' + months.findIndex(month => month === splitDate[1].toLowerCase()) :
+      months.findIndex(month => month === splitDate[1].toLowerCase())
+    let date_ = `${splitDate[0]}-${splitDate[2]}-${monthIndex}`
+    let whatDay = (dayjs(date_).$d)
+      .toString().split(' ')[0]
     let isAvailable = this.props.userSchedule.map(day => day.day).includes(whatDay)
     return isAvailable ? 'isAvailable' : 'notAvailable'
   }
@@ -166,9 +189,9 @@ export default class glamourDatePicker extends Component {
       if (!n) {
         this.refs.section.scrollLeft = position + dayWidth
       } else if (n && n > 6) {
-          // scroll to the selected date
-          // ***** 3px added coz there is a smallfraction of the first timewrap showing
-          this.refs.section.scrollLeft = position + (dayWidth * n - 7) + 3   
+        // scroll to the selected date
+        // ***** 3px added coz there is a smallfraction of the first timewrap showing
+        this.refs.section.scrollLeft = position + (dayWidth * n - 7) + 3
       }
     }, 100);
   }
@@ -181,23 +204,23 @@ export default class glamourDatePicker extends Component {
 
   renderDates = () => {
     return this.state.allDates.map((day, i) => {
-      return i === 0 ? <div key={`date${i}`} onClick={() => this.pick(i)} className={`card--content ${day.active} ${day.isAvailable}`} title={`Book for ${ day.day } ${day.month}`}>
-              {day.day}
-            </div>
-            :
-            <div key={`date${i}`} onClick={() => this.pick(i)} className={`card--content ${day.active} ${day.isAvailable}`}  title={`Book for ${ day.day } ${day.month}`}>
-              {day.day}
-            </div>
+      return i === 0 ? <div key={`date${i}`} onClick={() => this.pick(i)} className={`card--content ${day.active} ${day.isAvailable}`} title={`Book for ${day.day} ${day.month}`}>
+        {day.day}
+      </div>
+        :
+        <div key={`date${i}`} onClick={() => this.pick(i)} className={`card--content ${day.active} ${day.isAvailable}`} title={`Book for ${day.day} ${day.month}`}>
+          {day.day}
+        </div>
     })
   }
 
   pick = (i) => {
-    let newDates = this.state.allDates.map((date, j) => i === j ? {...date, active: 'active'} : {...date, active: ''})
+    let newDates = this.state.allDates.map((date, j) => i === j ? { ...date, active: 'active' } : { ...date, active: '' })
     let pickedDate = `${newDates[i].day} ${newDates[i].month}`
 
     let whatDay = (dayjs(pickedDate).$d).toString().split(' ')[0]
     let daySchedule = this.props.userSchedule.find(d => d.day === whatDay)
-    this.setState({userAvailableTimes: daySchedule}, () => {
+    this.setState({ userAvailableTimes: daySchedule }, () => {
       this.getUserAvailableTimesArray()
     })
 
@@ -205,14 +228,14 @@ export default class glamourDatePicker extends Component {
       return {
         date: `${itm.time.split(' ')[0]} ${itm.time.split(' ')[1]} ${itm.time.split(' ')[2]}`,
         time_: `${itm.time.split(' ')[3]} ${itm.time.split(' ')[4]}`,
-        duration: itm.services.map(serv =>  parseInt(serv.duration.split('-')[1].replace('hr', ''))).reduce((no, curr) => no += curr, 0)
+        duration: itm.services.map(serv => parseInt(serv.duration.split('-')[1].replace('hr', ''))).reduce((no, curr) => no += curr, 0)
       }
     })
-    
+
     let selectedDay = arr_.find(date => date.date === pickedDate)
     if (selectedDay) {
       this.setState({
-        disabledTimes: {time: selectedDay.time_, timeCount: selectedDay.duration * 2}
+        disabledTimes: { time: selectedDay.time_, timeCount: selectedDay.duration * 2 }
       })
     } else {
       this.setState({
@@ -220,8 +243,8 @@ export default class glamourDatePicker extends Component {
       })
     }
 
-    this.setState({allDates: newDates})
-    this.setState({pickedDate: pickedDate}, () => {
+    this.setState({ allDates: newDates })
+    this.setState({ pickedDate: pickedDate }, () => {
       this.props.pickDate(pickedDate)
     })
   }
@@ -240,17 +263,17 @@ export default class glamourDatePicker extends Component {
       let reshapedTimes = this.state.userAvailableTimesArray.map((time, j) => {
         if (selectedTime === time.time) {
           this.props.pickTime(this.state.userAvailableTimesArray[j].time)
-          return {...time, selected: 'active'}
-        }  else {
-            return {...time, selected: ''}
-          }
+          return { ...time, selected: 'active' }
+        } else {
+          return { ...time, selected: '' }
+        }
       })
-      this.setState({userAvailableTimesArray: reshapedTimes})
+      this.setState({ userAvailableTimesArray: reshapedTimes })
     } else {
       let reshapedTimes = this.state.userAvailableTimesArray.map((time, j) => {
-        return i === j ? {...time, selected: 'active'} : {...time, selected: ''}
+        return i === j ? { ...time, selected: 'active' } : { ...time, selected: '' }
       })
-      this.setState({userAvailableTimesArray: reshapedTimes}, () => {
+      this.setState({ userAvailableTimesArray: reshapedTimes }, () => {
         this.props.pickTime(this.state.userAvailableTimesArray[i].time)
       })
     }
@@ -266,31 +289,31 @@ export default class glamourDatePicker extends Component {
         let newYear = currentYear
         this.setState({
           allDates: this.state.datesDictionary[`${this.state.monthNames[active].name},${newYear}`].map(d => {
-            return {...d, isAvailable: this.userIsAvailable(`${d.day}, ${d.month}`)}
+            return { ...d, isAvailable: this.userIsAvailable(`${d.day}, ${d.month}`) }
           })
         })
       } else {
-        let newYear = parseFloat(currentYear.replace(/\s/g,'')) + 1
+        let newYear = parseFloat(currentYear.replace(/\s/g, '')) + 1
         this.setState({
-          allDates: this.state.datesDictionary[this.state.monthNames[0].name+", "+newYear].map(d => {
-            return {...d, isAvailable: this.userIsAvailable(`${d.day}, ${d.month}`)}
+          allDates: this.state.datesDictionary[this.state.monthNames[0].name + ", " + newYear].map(d => {
+            return { ...d, isAvailable: this.userIsAvailable(`${d.day}, ${d.month}`) }
           })
         })
       }
     } else {
       // switch to previous month
       if (active === 1) {
-        let newYear = parseFloat(currentYear.replace(/\s/g,'')) - 1
+        let newYear = parseFloat(currentYear.replace(/\s/g, '')) - 1
         this.setState({
-          allDates: this.state.datesDictionary[this.state.monthNames[11].name+", "+newYear].map(d => {
-            return {...d, isAvailable: this.userIsAvailable(`${d.day}, ${d.month}`)}
+          allDates: this.state.datesDictionary[this.state.monthNames[11].name + ", " + newYear].map(d => {
+            return { ...d, isAvailable: this.userIsAvailable(`${d.day}, ${d.month}`) }
           })
         })
       } else {
         let newYear = currentYear
         this.setState({
           allDates: this.state.datesDictionary[`${this.state.monthNames[active - 2].name},${newYear}`].map(d => {
-            return {...d, isAvailable: this.userIsAvailable(`${d.day}, ${d.month}`)}
+            return { ...d, isAvailable: this.userIsAvailable(`${d.day}, ${d.month}`) }
           })
         })
       }
@@ -313,18 +336,18 @@ export default class glamourDatePicker extends Component {
         return time
       }
     })
-    
+
     if (this.state.disabledTimes) {
       let a = userAvailableTimesArray.findIndex((time, i) => time.time === this.state.disabledTimes.time)
       let b = userAvailableTimesArray.map((time, i) => {
-        return i >= a && i <= a + this.state.disabledTimes.timeCount ? {...time, disabled: 'isDisabled'} : {...time}
+        return i >= a && i <= a + this.state.disabledTimes.timeCount ? { ...time, disabled: 'isDisabled' } : { ...time }
       })
-      this.setState({userAvailableTimesArray: b}, () => {
-        this.pickTime(null, this.props.selectedTime)  
+      this.setState({ userAvailableTimesArray: b }, () => {
+        this.pickTime(null, this.props.selectedTime)
       })
     } else {
-      this.setState({userAvailableTimesArray: userAvailableTimesArray}, () => {
-        this.pickTime(null, this.props.selectedTime)  
+      this.setState({ userAvailableTimesArray: userAvailableTimesArray }, () => {
+        this.pickTime(null, this.props.selectedTime)
       })
     }
   }
@@ -334,37 +357,37 @@ export default class glamourDatePicker extends Component {
     this.getUserAvailableTimesArray()
   }
 
-  render () {
+  render() {
     return (
       <div className="datePickerWrap">
         <p className="month">
-          <img src="/static/icons/chevron-right.svg" onClick={() => this.switchMonth(2)} className="month-left-chevron turn" alt=""/>
-            {this.getMonth()}
-          <img src="/static/icons/chevron-right.svg" onClick={() => this.switchMonth(1)} className="month-left-chevron" alt=""/>
+          <img src="/static/icons/chevron-right.svg" onClick={() => this.switchMonth(2)} className="month-left-chevron turn" alt="" />
+          {this.getMonth()}
+          <img src="/static/icons/chevron-right.svg" onClick={() => this.switchMonth(1)} className="month-left-chevron" alt="" />
         </p>
         <div className="days" ref="days">
-          <img src="/static/icons/chevron-right.svg" onClick={() => this.moveDatesRight()} className="left-chevron turn" alt=""/>
+          <img src="/static/icons/chevron-right.svg" onClick={() => this.moveDatesRight()} className="left-chevron turn" alt="" />
           <section className="kard" ref="section">
             {
               this.renderDates()
             }
           </section>
-          <img src="/static/icons/chevron-right.svg" onClick={() => this.moveDatesLeft()} className="right-chevron" alt=""/>
+          <img src="/static/icons/chevron-right.svg" onClick={() => this.moveDatesLeft()} className="right-chevron" alt="" />
         </div>
         <Grid className="time">
           <Grid.Row className="timeRow">
             {
-             this.state.userAvailableTimesArray.map((time, i) => {
-               return time.disabled === 'isDisabled' ? <Grid.Column width={4} key={`time${i}`}>
-                        <div className={`singleTime ${time.selected} ${time.disabled}`} title="user booked for this time">
-                          {time.time}
-                        </div>
-                      </Grid.Column> : <Grid.Column width={4} key={`time${i}`}>
-                        <div className={`singleTime ${time.selected} ${time.disabled}`} onClick={() => this.pickTime(i)}>
-                          {time.time}
-                        </div>
-                      </Grid.Column>
-              }) 
+              this.state.userAvailableTimesArray.map((time, i) => {
+                return time.disabled === 'isDisabled' ? <Grid.Column width={4} key={`time${i}`}>
+                  <div className={`singleTime ${time.selected} ${time.disabled}`} title="user booked for this time">
+                    {time.time}
+                  </div>
+                </Grid.Column> : <Grid.Column width={4} key={`time${i}`}>
+                    <div className={`singleTime ${time.selected} ${time.disabled}`} onClick={() => this.pickTime(i)}>
+                      {time.time}
+                    </div>
+                  </Grid.Column>
+              })
             }
           </Grid.Row>
         </Grid>

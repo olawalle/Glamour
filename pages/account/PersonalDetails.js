@@ -80,7 +80,7 @@ const PersonalDetails = (props) => {
     console.log(data)
     changePassword(data)
     .then(res => {
-      console.log(res)
+      // console.log(res)
       updatemessageType('success')
       updateMessage(res.data.message)
       setTimeout(() => {

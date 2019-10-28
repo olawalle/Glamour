@@ -83,7 +83,7 @@ const styles = {
       }
       clientRegister(data)
       .then(res => {
-        console.log(res)
+        // console.log(res)
         setsigningUp(false)
         setModal(true) 
         // Router.push('/login')

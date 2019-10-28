@@ -39,7 +39,7 @@ const ThreadBlock = (props) => {
     sendMessage(msg)
     .then(res => {
       setsending(false)
-      console.log(res)
+      // console.log(res)
       props.getConvo(props.activeConversation)
       setmessageBody('')
     })

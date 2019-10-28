@@ -90,7 +90,6 @@ class ServiceDetails extends Component {
 
         getProviderSchedule(Router.router.query.provider)
         .then(res => {
-            console.log(res)
             this.setState({
                 bookedTimes: res.data.data
             })
@@ -137,7 +136,7 @@ class ServiceDetails extends Component {
         this.setState({saving: true})
         saveProvider({providerId: Router.router.query.provider})
         .then(res => {
-            console.log(res)
+            // console.log(res)
             getSavedProviders()
             .then(prv => {
               this.setState({saving: false, present: true})
@@ -159,7 +158,7 @@ class ServiceDetails extends Component {
         this.setState({saving: true})
         deleteSavedProvider(Router.router.query.provider)
         .then(res => {
-            console.log(res)
+            // console.log(res)
             getSavedProviders()
             .then(prv => {
               this.setState({saving: false})
@@ -185,7 +184,7 @@ class ServiceDetails extends Component {
         console.log(data)
         createConversation(data)
         .then(res => {
-            console.log(res)
+            // console.log(res)
             Router.push('/messages?conversationId='+res.data.data._id)
         })
         .catch(err => {

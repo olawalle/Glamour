@@ -99,7 +99,7 @@ const AddressForm = (props) => {
     setloading(true)
     deleteAddress(addressFormData._id)
     .then(res => {
-      console.log(res)
+      // console.log(res)
       setloading(false)
       fetchUserAddresses()
     })
