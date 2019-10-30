@@ -66,9 +66,14 @@ class ProviderForm extends Component {
         },
       },
       () => {
-        let fields = { ...this.state.formFields }
-        fields.priceRange = `${this.state.selectedValues.min} - ${this.state.selectedValues.max}`
-        this.setState({ formFields: fields })
+        let fields = {
+          ...this.state.formFields,
+          priceRange: `${this.state.selectedValues.min} - ${this.state.selectedValues.max}`
+        }
+        this.setState({ formFields: fields },
+          () => {
+            this.props.getFormData(this.state.formFields)
+          })
       },
     )
   }
@@ -91,13 +96,11 @@ class ProviderForm extends Component {
           searchFor: '',
           postcode: '',
           distance: '',
-          priceRange: '',
+          priceRange: '0 - 0',
         },
-      },
-      () => {
-        this.props.getFormData(this.state.formFields)
-      },
+      }
     )
+    this.props.clearFilter()
   }
 
   componentDidMount() {

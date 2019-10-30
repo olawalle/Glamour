@@ -18,7 +18,7 @@ export const getBills = `${baseUrl}/bill`
 export const cityUrl = `${baseUrl}/city`
 export const getAllBookings = `${baseUrl}/bookings/admin`
 
-export const allProvidersUrl =  `${baseUrl}/users/provider`
+export const allProvidersUrl = `${baseUrl}/users/provider`
 export const providerServicesUrl = `${baseUrl}/services`
 export const providerPublicServicesUrl = `${baseUrl}/services/provider`
 export const providerSchedule = `${baseUrl}/bookings/schedule`

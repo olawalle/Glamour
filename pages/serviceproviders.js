@@ -40,33 +40,37 @@ class ServiceProvider extends Component {
   }
 
   getFormData = (e, f) => {
+    let ranges = e.priceRange.split(' - ')
     // filter list of providers based on user preferences
     let newArray = []
     !f
       ? (newArray = this.props.serviceProviders.filter(provider => {
-          return (
-            provider.description
-              .toLowerCase()
-              .includes(e.searchFor.toLowerCase()) &&
-            provider.mileRadius
-              .toLowerCase()
-              .includes(e.distance.toLowerCase()) &&
-            provider.postcode.toLowerCase().includes(e.postcode.toLowerCase())
-          )
-        }))
+        return (
+          provider.description
+            .toLowerCase()
+            .includes(e.searchFor.toLowerCase()) &&
+          provider.mileRadius
+            .toLowerCase()
+            .includes(e.distance.toLowerCase()) &&
+          provider.postcode.toLowerCase().includes(e.postcode.toLowerCase()) &&
+          provider.avgPrice >= parseFloat(ranges[0])
+          &&
+          provider.avgPrice <= parseFloat(ranges[1])
+        )
+      }))
       : (newArray = this.state.allProviders.filter(provider => {
-          return (
-            provider.description
-              .toLowerCase()
-              .includes(f.searchFor.toLowerCase()) &&
-            provider.postcode
-              .toLowerCase()
-              .includes(f.postcode.toLowerCase()) &&
-            provider.schedules.filter(
-              schedule => schedule.day.toLowerCase() === f.when.toLowerCase(),
-            ).length > 0
-          )
-        }))
+        return (
+          provider.description
+            .toLowerCase()
+            .includes(f.searchFor.toLowerCase()) &&
+          provider.postcode
+            .toLowerCase()
+            .includes(f.postcode.toLowerCase()) &&
+          provider.schedules.filter(
+            schedule => schedule.day.toLowerCase() === f.when.toLowerCase(),
+          ).length > 0
+        )
+      }))
     this.setState({ allProviders: newArray })
   }
 
@@ -78,6 +82,12 @@ class ServiceProvider extends Component {
     if (day !== 'Invalid') {
       this.setState({ allProviders: availableProviders })
     }
+  }
+
+  clearFilter = () => {
+    this.setState({
+      allProviders: this.props.serviceProviders,
+    })
   }
 
   componentDidMount() {
@@ -93,8 +103,8 @@ class ServiceProvider extends Component {
         this.props.saveProviders(res.data.users)
         Object.keys(Router.router.query).length > 0
           ? this.setState({ allProviders: res.data.users }, () => {
-              this.getFormData(null, Router.router.query)
-            })
+            this.getFormData(null, Router.router.query)
+          })
           : this.setState({ allProviders: res.data.users })
       })
       .catch(err => {
@@ -113,6 +123,7 @@ class ServiceProvider extends Component {
             <ProvidersForm
               getWhenServiceNeeded={this.getWhenServiceNeeded}
               getFormData={this.getFormData}
+              clearFilter={this.clearFilter}
             />
 
             {this.state.allProviders.length > 0 ? (
@@ -126,29 +137,25 @@ class ServiceProvider extends Component {
                 </Grid.Row>
               </Grid>
             ) : (
-              <div className="emptyProviders">
-                <img src="/static/icons/empty_service.svg" alt="" />
-                {this.props.serviceProviders.length === 0 ? (
-                  <div>
-                    <h1>No Providers yet. Kindly check back later</h1>
-                  </div>
-                ) : (
-                  <div>
-                    <h1>No providers match your specified criteria</h1>
-                    <Button
-                      className="mainBtn secondaryBtn"
-                      onClick={() =>
-                        this.setState({
-                          allProviders: this.props.serviceProviders,
-                        })
-                      }
-                    >
-                      View All
+                <div className="emptyProviders">
+                  <img src="/static/icons/empty_service.svg" alt="" />
+                  {this.props.serviceProviders.length === 0 ? (
+                    <div>
+                      <h1>No Providers yet. Kindly check back later</h1>
+                    </div>
+                  ) : (
+                      <div>
+                        <h1>No providers match your specified criteria</h1>
+                        <Button
+                          className="mainBtn secondaryBtn"
+                          onClick={this.clearFilter}
+                        >
+                          View All
                     </Button>
-                  </div>
-                )}
-              </div>
-            )}
+                      </div>
+                    )}
+                </div>
+              )}
           </div>
         </Container>
         <Footer />
