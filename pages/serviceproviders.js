@@ -36,7 +36,7 @@ class ServiceProvider extends Component {
   state = {
     position: '',
     options: [],
-    allProviders: [],
+    allProviders: []
   }
 
   getFormData = (e, f) => {
