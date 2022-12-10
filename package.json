@@ -23,7 +23,7 @@
     "element-theme-default": "^1.4.13",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "font-awesome": "^4.7.0",
     "jquery": "^3.4.0",
     "lodash": "^4.17.11",
